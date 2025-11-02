@@ -1,0 +1,49 @@
+services:
+  app:
+    build: .
+    container_name: proyecto_educativo
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html:delegated
+      - ./apache.conf:/etc/apache2/conf-available/z-mvc.conf
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: proyecto_educacion
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    command: >
+      bash -c "a2enmod rewrite &&
+               a2enconf z-mvc &&
+               apache2-foreground"
+
+  db:
+    image: postgres:16
+    container_name: postgres-educacion
+    restart: always
+    environment:
+      POSTGRES_DB: proyecto_educacion
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-educacion
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
