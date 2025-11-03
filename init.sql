@@ -17,7 +17,7 @@ CREATE TABLE Tb_rol (
 
 CREATE TABLE Tb_usuario (
     id_usuario SERIAL PRIMARY KEY,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     tipo_documento tipo_documento,
     no_documento VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE Tb_datos_personales (
 -- ============================================================
 CREATE TABLE Tb_curso (
     id_curso SERIAL PRIMARY KEY,
-    ficha VARCHAR(50) NOT NULL,
+    ficha VARCHAR(50) NOT NULL UNIQUE,
     nombre_curso VARCHAR(100) NOT NULL,
     id_profesor INT NOT NULL,
     FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
@@ -84,6 +84,7 @@ CREATE TABLE Tb_asistencia (
     estado estado_asistencia NOT NULL,
     observaciones TEXT,
     id_estudiante_curso INT NOT NULL,
+    UNIQUE(fecha, id_estudiante_curso),
     FOREIGN KEY (id_estudiante_curso) REFERENCES Tb_estudiante_curso(id_estudiante_curso)
 );
 
@@ -92,6 +93,10 @@ CREATE TABLE Tb_asistencia (
 -- ============================================================
 CREATE TABLE Tb_expediente_estudiante (
     id_expediente_estudiante SERIAL PRIMARY KEY,
+    tipo_documento VARCHAR(100) NOT NULL,
+    fecha_subida DATE DEFAULT CURRENT_DATE,
+    descripcion TEXT,
+    nombre_archivo VARCHAR(200) NOT NULL,
     documento VARCHAR(500) NOT NULL, -- ruta o referencia al documento
     id_usuario INT NOT NULL, -- el estudiante también es usuario
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
@@ -111,7 +116,8 @@ CREATE TABLE Tb_estado_estudiante (
 -- ============================================================
 CREATE TABLE Tb_competencia (
     id_competencia SERIAL PRIMARY KEY,
-    nombre VARCHAR(79) NOT NULL,
+    codigo VARCHAR(50) NOT NULL UNIQUE,
+    nombre VARCHAR(200) NOT NULL,
     descripcion TEXT,
     id_profesor INT NOT NULL,
     FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
@@ -127,6 +133,9 @@ CREATE TABLE Tb_competencia_curso (
 
 CREATE TABLE Tb_evaluacion (
     id_evaluacion SERIAL PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    duracion INT NOT NULL, -- duración en minutos
+    activa BOOLEAN DEFAULT TRUE,
     descripcion VARCHAR(500) NOT NULL,
     fecha DATE DEFAULT CURRENT_DATE,
     id_curso INT,
@@ -185,15 +194,29 @@ CREATE TABLE Tb_resultado_competencia (
     UNIQUE (id_competencia, id_usuario)  -- un resultado por competencia y estudiante
 );
 
+CREATE TABLE Tb_respuestas_estudiante(
+    id_respuesta SERIAL PRIMARY KEY,
+    id_evaluacion INT,
+    id_pregunta INT,
+    id_opcion INT,
+    id_usuario INT, -- estudiante
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion),
+    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta),
+    FOREIGN KEY (id_opcion) REFERENCES Tb_opciones_respuesta(id_opcion),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+)
+
 -- ============================================================
 -- NOTIFICACIONES Y LOG
 -- ============================================================
 CREATE TABLE Tb_notificaciones (
     id_notificacion SERIAL PRIMARY KEY,
+    tipo VARCHAR(100) NOT NULL,
+    titulo VARCHAR(200) NOT NULL,
     fecha_envio DATE NOT NULL DEFAULT CURRENT_DATE,
     mensaje TEXT NOT NULL,
     id_usuario INT,
-    entregado BOOLEAN DEFAULT FALSE,
+    leida BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
 
@@ -232,9 +255,11 @@ CREATE TABLE Tb_entrega_actividad (
     calificacion calificacion ,
     observaciones TEXT,
     id_actividad INT NOT NULL,
+    id_profesor INT,
     id_estudiante INT NOT NULL,
     FOREIGN KEY (id_actividad) REFERENCES Tb_actividad(id_actividad),
     FOREIGN KEY (id_estudiante) REFERENCES Tb_usuario(id_usuario),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario),
     UNIQUE (id_actividad, id_estudiante) -- una sola entrega por estudiante por actividad
 );
 
