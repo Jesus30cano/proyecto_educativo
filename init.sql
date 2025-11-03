@@ -1,272 +1,246 @@
--- ================================================
--- 🔹 SCRIPT DE CREACIÓN DE BASE DE DATOS - CORREGIDO
--- ================================================
+-- ============================================================
+-- ENUMERACIONES
+-- ============================================================
+CREATE TYPE tipo_documento AS ENUM ('cedula_de_ciudadania', 'tarjeta_identidad', 'cedula_extranjeria');
+CREATE TYPE estado_asistencia AS ENUM ('presente', 'excusa', 'ausente');
+CREATE TYPE tipo_rol AS ENUM ('administrador', 'profesor', 'estudiante');
+CREATE TYPE estado_est AS ENUM ('activo', 'inactivo');
+CREATE TYPE calificacion AS ENUM ('aprobado', 'reprobado');
 
--- ================================================
--- ROLES Y USUARIOS
--- ================================================
-CREATE TABLE tb_rol (
+-- ============================================================
+-- TABLAS BASE
+-- ============================================================
+CREATE TABLE Tb_rol (
     id_rol SERIAL PRIMARY KEY,
-    nombre VARCHAR(30) NOT NULL
+    nombre_rol tipo_rol UNIQUE NOT NULL
 );
 
-CREATE TABLE tb_usuario (
+CREATE TABLE Tb_usuario (
     id_usuario SERIAL PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    email_verified_at TIMESTAMP DEFAULT NULL,
-    contrasena VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    tipo_documento tipo_documento,
+    no_documento VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     activo BOOLEAN DEFAULT TRUE,
-    id_rol INT,
-    remember_token VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_rol) REFERENCES tb_rol(id_rol)
+    id_rol INT NOT NULL,
+    FOREIGN KEY (id_rol) REFERENCES Tb_rol(id_rol)
 );
 
--- ================================================
--- ENTIDADES DE USUARIOS
--- ================================================
-CREATE TABLE tb_administrador (
-    id_administrador SERIAL PRIMARY KEY,
-    no_documento INT NOT NULL UNIQUE,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    fecha_nacimiento DATE NOT NULL,
-    telefono VARCHAR(20),
-    id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario)
-);
-
-CREATE TABLE tb_profesor (
-    id_profesor SERIAL PRIMARY KEY,
-    no_documento INT UNIQUE NOT NULL,
+CREATE TABLE Tb_datos_personales (
+    id_datos_personales SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
-    titulo VARCHAR(100),
-    id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario)
+    telefono VARCHAR(20),
+    direccion VARCHAR(100),
+    genero VARCHAR(20),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_usuario INT UNIQUE NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
 
-CREATE TABLE tb_curso (
+-- ============================================================
+-- CURSOS Y RELACIONES
+-- ============================================================
+CREATE TABLE Tb_curso (
     id_curso SERIAL PRIMARY KEY,
     ficha VARCHAR(50) NOT NULL,
     nombre_curso VARCHAR(100) NOT NULL,
-    id_profesor INT,
-    FOREIGN KEY (id_profesor) REFERENCES tb_profesor(id_profesor)
+    id_profesor INT NOT NULL,
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
 );
 
-CREATE TABLE tb_estudiante (
-    id_estudiante SERIAL PRIMARY KEY,
-    no_documento INT UNIQUE NOT NULL,
+CREATE TABLE Tb_estudiante_curso (
+    id_estudiante_curso SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_curso INT NOT NULL,
+    UNIQUE (id_usuario, id_curso),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
+);
+
+-- ============================================================
+-- CONTACTOS DE EMERGENCIA (para cualquier usuario)
+-- ============================================================
+CREATE TABLE Tb_contacto_emergencia (
+    id_contacto_emergencia SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
-    fecha_nacimiento DATE NOT NULL,
-    fecha_ingreso DATE NOT NULL,
-    direccion VARCHAR(100),
-    telefono VARCHAR(20),
-    id_usuario INT,
-    id_curso INT,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario),
-    FOREIGN KEY (id_curso) REFERENCES tb_curso(id_curso)
+    telefono VARCHAR(20) NOT NULL,
+    parentesco VARCHAR(50), -- Ej: madre, padre, amigo, colega
+    direccion VARCHAR(150),
+    correo VARCHAR(100),
+    observaciones TEXT,
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
 
-CREATE TABLE tb_padre_familia (
-    id_padre_familia SERIAL PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    telefono VARCHAR(20),
-    id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario)
-);
-
--- ================================================
--- TABLAS DE LARAVEL (cache, jobs, tokens, etc.)
--- ================================================
-CREATE TABLE migrations (
-    id SERIAL PRIMARY KEY,
-    migration VARCHAR(255) NOT NULL,
-    batch INT NOT NULL
-);
-
-CREATE TABLE cache (
-    key VARCHAR(255) PRIMARY KEY,
-    value TEXT NOT NULL,
-    expiration INT NOT NULL
-);
-
-CREATE TABLE cache_locks (
-    key VARCHAR(255) PRIMARY KEY,
-    owner VARCHAR(255) NOT NULL,
-    expiration INT NOT NULL
-);
-
-CREATE TABLE failed_jobs (
-    id BIGSERIAL PRIMARY KEY,
-    uuid VARCHAR(255) NOT NULL UNIQUE,
-    connection TEXT NOT NULL,
-    queue TEXT NOT NULL,
-    payload TEXT NOT NULL,
-    exception TEXT NOT NULL,
-    failed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE jobs (
-    id BIGSERIAL PRIMARY KEY,
-    queue VARCHAR(255) NOT NULL,
-    payload TEXT NOT NULL,
-    attempts SMALLINT NOT NULL,
-    reserved_at INT,
-    available_at INT NOT NULL,
-    created_at INT NOT NULL
-);
-
-CREATE TABLE job_batches (
-    id VARCHAR(255) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    total_jobs INT NOT NULL,
-    pending_jobs INT NOT NULL,
-    failed_jobs INT NOT NULL,
-    failed_job_ids TEXT NOT NULL,
-    options TEXT,
-    cancelled_at INT,
-    created_at INT NOT NULL,
-    finished_at INT
-);
-
-CREATE TABLE password_reset_tokens (
-    email VARCHAR(255) PRIMARY KEY,
-    token VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP
-);
-
-CREATE TABLE personal_access_tokens (
-    id BIGSERIAL PRIMARY KEY,
-    tokenable_type VARCHAR(255) NOT NULL,
-    tokenable_id BIGINT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    token VARCHAR(64) NOT NULL UNIQUE,
-    abilities TEXT,
-    last_used_at TIMESTAMP,
-    expires_at TIMESTAMP,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
-);
-
-CREATE TABLE sessions (
-    id VARCHAR(255) PRIMARY KEY,
-    user_id BIGINT,
-    ip_address VARCHAR(45),
-    user_agent TEXT,
-    payload TEXT NOT NULL,
-    last_activity INT
-);
-
--- ================================================
--- ASISTENCIAS, EVALUACIONES, CALIFICACIONES
--- ================================================
-CREATE TYPE estado_asistencia AS ENUM ('presente', 'excusa', 'ausente');
-
-CREATE TABLE tb_asistencia (
+-- ============================================================
+-- ASISTENCIAS
+-- ============================================================
+CREATE TABLE Tb_asistencia (
     id_asistencia SERIAL PRIMARY KEY,
     fecha DATE NOT NULL,
-    presente estado_asistencia,
-    id_curso INT,
-    id_estudiante INT,
-    FOREIGN KEY (id_curso) REFERENCES tb_curso(id_curso),
-    FOREIGN KEY (id_estudiante) REFERENCES tb_estudiante(id_estudiante)
+    estado estado_asistencia NOT NULL,
+    observaciones TEXT,
+    id_estudiante_curso INT NOT NULL,
+    FOREIGN KEY (id_estudiante_curso) REFERENCES Tb_estudiante_curso(id_estudiante_curso)
 );
 
-CREATE TABLE tb_expediente_estudiante (
+-- ============================================================
+-- ESTADOS Y EXPEDIENTES DE ESTUDIANTES
+-- ============================================================
+CREATE TABLE Tb_expediente_estudiante (
     id_expediente_estudiante SERIAL PRIMARY KEY,
-    documento VARCHAR(500) NOT NULL,
-    id_estudiante INT,
-    FOREIGN KEY (id_estudiante) REFERENCES tb_estudiante(id_estudiante)
+    documento VARCHAR(500) NOT NULL, -- ruta o referencia al documento
+    id_usuario INT NOT NULL, -- el estudiante también es usuario
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
 
-CREATE TYPE estado_est AS ENUM ('activo', 'inactivo');
-
-CREATE TABLE tb_estado_estudiante (
+CREATE TABLE Tb_estado_estudiante (
     id_estado_estudiante SERIAL PRIMARY KEY,
-    estado estado_est,
-    id_estudiante INT,
-    FOREIGN KEY (id_estudiante) REFERENCES tb_estudiante(id_estudiante)
+    estado estado_est NOT NULL,
+    fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    observaciones TEXT,
+    id_usuario INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
 
-CREATE TABLE tb_competencia (
+-- ============================================================
+-- COMPETENCIAS Y EVALUACIONES
+-- ============================================================
+CREATE TABLE Tb_competencia (
     id_competencia SERIAL PRIMARY KEY,
     nombre VARCHAR(79) NOT NULL,
-    id_profesor INT,
-    FOREIGN KEY (id_profesor) REFERENCES tb_profesor(id_profesor)
+    descripcion TEXT,
+    id_profesor INT NOT NULL,
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
 );
 
-CREATE TABLE tb_competencia_curso (
-    id_curso INT,
-    id_competencia INT,
+CREATE TABLE Tb_competencia_curso (
+    id_curso INT NOT NULL,
+    id_competencia INT NOT NULL,
     PRIMARY KEY (id_curso, id_competencia),
-    FOREIGN KEY (id_curso) REFERENCES tb_curso(id_curso),
-    FOREIGN KEY (id_competencia) REFERENCES tb_competencia(id_competencia)
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia)
 );
 
-CREATE TABLE tb_evaluacion (
+CREATE TABLE Tb_evaluacion (
     id_evaluacion SERIAL PRIMARY KEY,
     descripcion VARCHAR(500) NOT NULL,
-    fecha DATE,
+    fecha DATE DEFAULT CURRENT_DATE,
     id_curso INT,
     id_competencia INT,
-    FOREIGN KEY (id_curso) REFERENCES tb_curso(id_curso),
-    FOREIGN KEY (id_competencia) REFERENCES tb_competencia(id_competencia)
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia)
 );
 
-CREATE TABLE tb_preguntas (
+CREATE TABLE Tb_preguntas (
     id_pregunta SERIAL PRIMARY KEY,
     pregunta TEXT NOT NULL,
     id_evaluacion INT,
-    FOREIGN KEY (id_evaluacion) REFERENCES tb_evaluacion(id_evaluacion)
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion)
 );
 
-CREATE TABLE tb_opciones_respuesta (
+CREATE TABLE Tb_opciones_respuesta (
     id_opcion SERIAL PRIMARY KEY,
     opcion TEXT NOT NULL,
     es_correcta BOOLEAN,
     id_pregunta INT,
-    FOREIGN KEY (id_pregunta) REFERENCES tb_preguntas(id_pregunta)
+    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta)
 );
 
-CREATE TABLE tb_evaluacion_pregunta (
+CREATE TABLE Tb_evaluacion_pregunta (
     id_evaluacion INT,
     id_pregunta INT,
     PRIMARY KEY (id_evaluacion, id_pregunta),
-    FOREIGN KEY (id_evaluacion) REFERENCES tb_evaluacion(id_evaluacion),
-    FOREIGN KEY (id_pregunta) REFERENCES tb_preguntas(id_pregunta)
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion),
+    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta)
 );
 
-CREATE TABLE tb_calificacion (
+CREATE TABLE Tb_calificacion (
     id_calificacion SERIAL PRIMARY KEY,
-    nota NUMERIC(5,2),
+    nota calificacion NOT NULL,
     id_profesor INT,
     id_competencia INT,
-    id_estudiante INT,
+    id_usuario INT, -- estudiante
     id_evaluacion INT,
-    FOREIGN KEY (id_profesor) REFERENCES tb_profesor(id_profesor),
-    FOREIGN KEY (id_competencia) REFERENCES tb_competencia(id_competencia),
-    FOREIGN KEY (id_estudiante) REFERENCES tb_estudiante(id_estudiante),
-    FOREIGN KEY (id_evaluacion) REFERENCES tb_evaluacion(id_evaluacion)
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario),
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion)
 );
 
-CREATE TABLE tb_notificaciones (
+CREATE TABLE Tb_resultado_competencia (
+    id_resultado SERIAL PRIMARY KEY,
+    fecha_evaluacion DATE DEFAULT CURRENT_DATE,
+    estado calificacion NOT NULL,
+    observaciones TEXT,
+    id_competencia INT NOT NULL,
+    id_usuario INT NOT NULL,  -- estudiante
+    id_profesor INT NOT NULL, -- profesor que evaluó
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario),
+    UNIQUE (id_competencia, id_usuario)  -- un resultado por competencia y estudiante
+);
+
+-- ============================================================
+-- NOTIFICACIONES Y LOG
+-- ============================================================
+CREATE TABLE Tb_notificaciones (
     id_notificacion SERIAL PRIMARY KEY,
-    fecha_envio DATE NOT NULL,
+    fecha_envio DATE NOT NULL DEFAULT CURRENT_DATE,
     mensaje TEXT NOT NULL,
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario)
+    entregado BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
 
-CREATE TABLE tb_log_actividades (
+CREATE TABLE Tb_log_actividades (
     id_log SERIAL PRIMARY KEY,
     actividad VARCHAR(255) NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
+
+-- ============================================================
+-- ACTIVIDADES (creadas por el profesor)
+-- ============================================================
+CREATE TABLE Tb_actividad (
+    id_actividad SERIAL PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    descripcion TEXT,
+    fecha_publicacion DATE DEFAULT CURRENT_DATE,
+    fecha_entrega DATE,
+    ruta_archivo VARCHAR(500),  -- ruta del archivo subido por el docente (PDF, DOCX, etc.)
+    id_competencia INT NOT NULL,
+    id_curso INT NOT NULL,
+    id_profesor INT NOT NULL,
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
+);
+-- ============================================================
+-- ENTREGAS DE LOS ESTUDIANTES
+-- ============================================================
+CREATE TABLE Tb_entrega_actividad (
+    id_entrega SERIAL PRIMARY KEY,
+    fecha_entrega TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ruta_archivo VARCHAR(500) NOT NULL,  -- archivo entregado por el estudiante
+    calificacion calificacion ,
+    observaciones TEXT,
+    id_actividad INT NOT NULL,
+    id_estudiante INT NOT NULL,
+    FOREIGN KEY (id_actividad) REFERENCES Tb_actividad(id_actividad),
+    FOREIGN KEY (id_estudiante) REFERENCES Tb_usuario(id_usuario),
+    UNIQUE (id_actividad, id_estudiante) -- una sola entrega por estudiante por actividad
+);
+
+CREATE INDEX idx_usuario_rol ON Tb_usuario(id_rol);
+CREATE INDEX idx_curso_profesor ON Tb_curso(id_profesor);
+CREATE INDEX idx_competencia_profesor ON Tb_competencia(id_profesor);
+CREATE INDEX idx_entrega_estudiante ON Tb_entrega_actividad(id_estudiante);
+CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad(id_actividad);
+
