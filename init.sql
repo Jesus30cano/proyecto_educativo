@@ -15,6 +15,11 @@ CREATE TABLE Tb_rol (
     nombre_rol tipo_rol UNIQUE NOT NULL
 );
 
+INSERT INTO Tb_rol (nombre_rol) VALUES
+('administrador'),
+('profesor'),
+('estudiante');
+
 CREATE TABLE Tb_usuario (
     id_usuario SERIAL PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -45,13 +50,22 @@ CREATE TABLE Tb_datos_personales (
 CREATE TABLE Tb_curso (
     id_curso SERIAL PRIMARY KEY,
     ficha VARCHAR(50) NOT NULL UNIQUE,
-    nombre_curso VARCHAR(100) NOT NULL,
-    id_profesor INT NOT NULL,
-    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
+    nombre_curso VARCHAR(100) NOT NULL, --ej:adso,sst
+    id_profesor_lider INT NOT NULL,
+    ficha_activa BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (id_profesor_lider) REFERENCES Tb_usuario(id_usuario)
 );
 
 CREATE TABLE Tb_estudiante_curso (
     id_estudiante_curso SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_curso INT NOT NULL,
+    UNIQUE (id_usuario, id_curso),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
+);
+CREATE TABLE Tb_profesor_curso (
+    id_profesor_curso SERIAL PRIMARY KEY,
     id_usuario INT NOT NULL,
     id_curso INT NOT NULL,
     UNIQUE (id_usuario, id_curso),
@@ -268,4 +282,59 @@ CREATE INDEX idx_curso_profesor ON Tb_curso(id_profesor);
 CREATE INDEX idx_competencia_profesor ON Tb_competencia(id_profesor);
 CREATE INDEX idx_entrega_estudiante ON Tb_entrega_actividad(id_estudiante);
 CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad(id_actividad);
+
+-- ============================================================
+-- fuciones validar usuario : SELECT validar_usuario('cedula_de_ciudadania','12345678','mi_contraseña');
+-- retorna id_usuario, nombre, id_rol, activo, apellido
+-- ============================================================
+CREATE OR REPLACE FUNCTION validar_usuario(tipo_doc tipo_documento, no_doc VARCHAR, pass VARCHAR)
+RETURNS TABLE(id_usuario INT, nombre VARCHAR, id_rol INT,activo BOOLEAN,apellido VARCHAR) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT u.id_usuario, dp.nombre, u.id_rol,u.activo,dp.apellido
+    FROM Tb_usuario u
+    JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
+    WHERE u.tipo_documento = tipo_doc
+      AND u.no_documento = no_doc
+      AND u.password = pass;
+END;
+$$ LANGUAGE plpgsql;
+-- ============================================================
+-- funcion datos usuario : SELECT * FROM obtener_datos_usuario(1);
+-- retorna email, tipo_documento, documento, id_rol, nombre, apellido, fecha_nacimiento, telefono, direccion, genero
+-- ============================================================
+CREATE OR REPLACE FUNCTION obtener_datos_usuario(p_id_usuario INT)
+RETURNS TABLE (
+    email VARCHAR,
+    tipo_documento tipo_documento,
+    documento VARCHAR,
+    id_rol INT,
+    nombre VARCHAR,
+    apellido VARCHAR,
+    fecha_nacimiento DATE,
+    telefono VARCHAR,
+    direccion VARCHAR,
+    genero VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        u.email,
+        u.tipo_documento,
+        u.no_documento,
+        u.id_rol,
+        d.nombre,
+        d.apellido,
+        d.fecha_nacimiento,
+        d.telefono,
+        d.direccion,
+        d.genero
+    FROM Tb_usuario u
+    INNER JOIN Tb_datos_personales d ON u.id_usuario = d.id_usuario
+    WHERE u.id_usuario = p_id_usuario;
+END;
+$$;
+
 
