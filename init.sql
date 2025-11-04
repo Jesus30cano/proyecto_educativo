@@ -287,20 +287,20 @@ CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad(id_actividad);
 -- fuciones validar usuario : SELECT validar_usuario('cedula_de_ciudadania','12345678','mi_contraseña');
 -- retorna id_usuario, nombre, id_rol, activo, apellido
 -- ============================================================
-CREATE OR REPLACE FUNCTION validar_usuario(tipo_doc tipo_documento, no_doc VARCHAR, pass VARCHAR)
-RETURNS TABLE(id_usuario INT, nombre VARCHAR, id_rol INT,activo BOOLEAN,apellido VARCHAR) AS $$
+CREATE OR REPLACE FUNCTION validar_usuario(tipo_doc tipo_documento, no_doc VARCHAR)
+RETURNS TABLE(id_usuario INT, nombre VARCHAR, id_rol INT,activo BOOLEAN,apellido VARCHAR,pass VARCHAR) AS $$
 BEGIN
     RETURN QUERY
-    SELECT u.id_usuario, dp.nombre, u.id_rol,u.activo,dp.apellido
+    SELECT u.id_usuario, dp.nombre, u.id_rol,u.activo,dp.apellido, u.password
     FROM Tb_usuario u
     JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
     WHERE u.tipo_documento = tipo_doc
       AND u.no_documento = no_doc
-      AND u.password = pass;
+      LIMIT 1;
 END;
 $$ LANGUAGE plpgsql;
 -- ============================================================
--- funcion datos usuario : SELECT * FROM obtener_datos_usuario(1);
+-- funcion datos usuario : SELECT  obtener_datos_usuario(1);
 -- retorna email, tipo_documento, documento, id_rol, nombre, apellido, fecha_nacimiento, telefono, direccion, genero
 -- ============================================================
 CREATE OR REPLACE FUNCTION obtener_datos_usuario(p_id_usuario INT)
