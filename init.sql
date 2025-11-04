@@ -218,7 +218,7 @@ CREATE TABLE Tb_respuestas_estudiante(
     FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta),
     FOREIGN KEY (id_opcion) REFERENCES Tb_opciones_respuesta(id_opcion),
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
-)
+);
 
 -- ============================================================
 -- NOTIFICACIONES Y LOG
@@ -336,5 +336,19 @@ BEGIN
     WHERE u.id_usuario = p_id_usuario;
 END;
 $$;
+-- ============================================================
+-- funcion validar existenci de correo usuario : SELECT verificar_correo_usuario('jsjshs@gmail.com')
+-- retorna BOOLEAN true o false
+-- ============================================================
+CREATE OR REPLACE FUNCTION verificar_correo_usuario(p_email VARCHAR)
+RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN EXISTS (
+        SELECT 1
+        FROM Tb_usuario
+        WHERE email = p_email
+    );
+END;
+$$ LANGUAGE plpgsql;
 
 
