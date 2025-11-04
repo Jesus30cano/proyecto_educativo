@@ -8,7 +8,7 @@ class Users{
         $this->conn = $database->getConnection();
     }
 
-    public function login($tipo_doc, $cedula, $password) {
+    public function buscar_usuario($tipo_doc, $cedula) {
         try {
             $query = "SELECT * FROM validar_usuario(:tipo_doc, :cedula)";
             $stmt = $this->conn->prepare($query);
@@ -24,6 +24,22 @@ class Users{
             return false;
         }
     }
+
+    public function validar_correo_existente($correo) {
+        try {
+            $query = "SELECT verificar_correo_usuario(:correo) as correo_existente";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':correo', $correo);   
+            $stmt->execute();
+            return $result = $stmt->fetch(PDO::FETCH_ASSOC);
+           
+
+        } catch (PDOException $e) {
+            error_log("Error en validar_correo_existente: " . $e->getMessage());
+            return false;
+        }
+    }
+
 }
 
 ?>

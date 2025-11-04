@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="../../../public/css/login_styles/login_styles.css"> <?php //Css que esta en public en la carpeta css ?>
+    <link rel="stylesheet" href="../../../public/css/login_styles/login_styles.css">
 </head>
+
 <body>
 
     <div class="container-all">
@@ -15,16 +16,28 @@
             <h1 class="tittle">Plataforma Educativa</h1>
             <h2 class="subtitle">Inicia Sesión</h2>
 
-            <form action="#" method="POST"> <?php//Metodos?>
-
+            <form id="loginForm">
+                <!-- 🔽 Tipo de documento -->
                 <div class="input-group">
-                    <label for="document">Documento</label>
-                    <input type="text" name="document" required>
+                    <label for="tipo_documento">Tipo de Documento</label>
+                    <select name="tipo_documento" id="tipo_documento" required>
+                        <option value="">Selecciona tu tipo de documento</option>
+                        <option value="cedula_de_ciudadania">Cédula de Ciudadanía</option>
+                        <option value="tarjeta_identidad">Tarjeta de Identidad</option>
+                        <option value="cedula_extranjeria">Cédula de Extranjería</option>
+                    </select>
                 </div>
 
+                <!-- 🔽 Documento -->
+                <div class="input-group">
+                    <label for="document">Documento</label>
+                    <input type="text" name="document" id="document" required>
+                </div>
+
+                <!-- 🔽 Contraseña -->
                 <div class="input-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" id="password" required>
                 </div>
 
                 <button type="submit" class="btn-login">
@@ -34,10 +47,8 @@
 
             <p class="text-footer">
                 Bienvenido a la plataforma
-               <?php//aqui estaba el link (ahref) para que lo llevara al registro?>
             </p>
         </div>
-
 
         <div class="panel-info">
             <div class="capa"></div>
@@ -49,6 +60,8 @@
         </div>
 
     </div>
+
+    <script src="../../../public/js/login.js"></script>
 </body>
 
 </html>
