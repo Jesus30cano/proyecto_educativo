@@ -78,13 +78,13 @@ class AuthController extends Controller
                 $redirect = '';
                 switch ($user['id_rol']) {
                     case 1:
-                        $redirect = '/admin/dashboard';
+                        $redirect = '/admin/dashboard/index';
                         break;
                     case 2:
-                        $redirect = '/profesor/inicio';
+                        $redirect = '/teacher_panel/dashboard/index';
                         break;
                     case 3:
-                        $redirect = '/estudiante/inicio';
+                        $redirect = '/student_panel/dashboard/index';
                         break;
                     default:
                         return $this->jsonResponse([

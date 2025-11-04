@@ -21,11 +21,11 @@ $statsData = [
 </head>
 <body>
     <div class="container">
-        <?php include '../components/navbar.php'; // los componentes de navegacion y cosas asi para ser reutilizadas en cualquier dashboard?>
-        <?php include '../components/action-bar.php'; ?>
+        <?php include  __DIR__ . '/../components/navbar.php'; // los componentes de navegacion y cosas asi para ser reutilizadas en cualquier dashboard?>
+        <?php include  __DIR__ . '/../components/action-bar.php'; ?>
 
         <div class="main-wrapper">
-            <?php include '../components/admin/sidebar.php'; //algunos componentes estan hechos para el administrador u alguna otra cosa segun el rol. la carpeta de components hay subcawrpetas para diferente rol ?>
+            <?php include  __DIR__ . '/../components/admin/sidebar.php'; //algunos componentes estan hechos para el administrador u alguna otra cosa segun el rol. la carpeta de components hay subcawrpetas para diferente rol ?>
 
             <main class="main-content">
                 <div class="welcome-card">
@@ -33,7 +33,7 @@ $statsData = [
                     <p class="subtitle">Gestiona tu institución educativa desde un solo lugar</p>
                 </div>
 
-                <?php include '../components/admin/stats-grid.php'; ?>
+                <?php include __DIR__ . '/../components/admin/stats-grid.php'; ?>
 
                 <div class="welcome-card">
                     <h2 class="title">Sección: <?= ucfirst($activeSection) ?></h2>
