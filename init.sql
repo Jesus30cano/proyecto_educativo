@@ -45,6 +45,29 @@ CREATE TABLE Tb_datos_personales (
 );
 
 -- ============================================================
+--datos de prueba 
+-- ============================================================
+-- ============================================================
+-- USUARIOS DE EJEMPLO
+-- ============================================================
+
+INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
+('admin@plataforma.com', 'cedula_de_ciudadania', '111111111', '$2y$10$mW/HS7/e6Q.0CDOaLVfroeEfBs.71Vp/ucuKkvDDRXyQy8bKfCX0S', TRUE, 1),
+('profesor@plataforma.com', 'tarjeta_identidad', '222222222', '$2y$10$CN7vIzIwuKDayz3BSTOCG.N4vV2MkODNaQsL67smqNbPOBho88N3W', TRUE, 2),
+('estudiante@plataforma.com', 'cedula_extranjeria', '333333333', '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S', TRUE, 3);
+
+-- ============================================================
+-- DATOS PERSONALES (opcional)
+-- ============================================================
+
+INSERT INTO Tb_datos_personales (nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario)
+VALUES
+('Carlos', 'Ramírez', '1985-06-15', '3001234567', 'Calle 10 #5-20', 'Masculino', 1),
+('Laura', 'Gómez', '1990-04-22', '3109876543', 'Carrera 8 #12-45', 'Femenino', 2),
+('Andrés', 'Torres', '2002-09-10', '3207654321', 'Avenida 15 #30-50', 'Masculino', 3);
+
+
+-- ============================================================
 -- CURSOS Y RELACIONES
 -- ============================================================
 CREATE TABLE Tb_curso (

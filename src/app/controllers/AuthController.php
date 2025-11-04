@@ -51,7 +51,7 @@ class AuthController extends Controller
                 }
 
                 // Verificar contraseña
-                if (!password_verify($password, $user['password_hash'])) {
+                if (!password_verify($password, $user['pass'])) {
                     return $this->jsonResponse([
                         'status' => 'error',
                         'message' => 'Contraseña incorrecta.'
