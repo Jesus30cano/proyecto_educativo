@@ -278,7 +278,7 @@ CREATE TABLE Tb_entrega_actividad (
 );
 
 CREATE INDEX idx_usuario_rol ON Tb_usuario(id_rol);
-CREATE INDEX idx_curso_profesor ON Tb_curso(id_profesor);
+CREATE INDEX idx_curso_profesor ON Tb_curso(id_profesor_lider);
 CREATE INDEX idx_competencia_profesor ON Tb_competencia(id_profesor);
 CREATE INDEX idx_entrega_estudiante ON Tb_entrega_actividad(id_estudiante);
 CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad(id_actividad);
@@ -352,3 +352,42 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION admin_registrar_usuario (
+        p_email VARCHAR, 
+        p_tipo_documento tipo_documento,
+        p_no_documento VARCHAR,
+        p_password VARCHAR,
+        p_id_rol INT
+)
+    RETURNS VOID
+AS $$
+
+    BEGIN
+
+        INSERT INTO Tb_usuario(email, tipo_documento, no_documento, password, id_rol) 
+        VALUES (p_email, p_tipo_documento, p_no_documento, p_password, p_id_rol);
+
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION usuario_datos_personales(
+        p_nombre VARCHAR,
+        p_apellido VARCHAR,
+        p_fecha_nacimiento DATE, 
+        p_telefono VARCHAR,
+        p_direccion VARCHAR,
+        p_genero VARCHAR,
+        p_id_usuario INT
+)
+
+    RETURNS VOID 
+AS $$
+    
+    BEGIN
+
+	    INSERT INTO Tb_datos_personales(nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario)
+	    VALUES (p_nombre, p_apellido, p_fecha_nacimiento, p_telefono, p_direccion, p_genero, p_id_usuario);
+
+END;
+$$ LANGUAGE plpgsql;
