@@ -375,6 +375,13 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+-- ======================================================================
+-- función registrar usuario (administrador): 
+-- SELECT admin_registrar_usuario('Brallano@gmail.com','cedula_de_ciudadania','12345678','clave123',3);
+-- Inserta un nuevo usuario en la tabla Tb_usuario
+-- no retorna datos
+-- ======================================================================
+
 CREATE OR REPLACE FUNCTION admin_registrar_usuario (
         p_email VARCHAR, 
         p_tipo_documento tipo_documento,
@@ -392,6 +399,17 @@ AS $$
 
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+-- ======================================================================
+-- FUNCIÓN: usuario_datos_personales
+-- USO: SELECT usuario_datos_personales('Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino',1);
+-- DESCRIPCIÓN: Registra los datos personales de un usuario en Tb_datos_personales.
+-- PARÁMETROS:
+--   nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario
+-- RETORNO: No retorna datos (void)
+-- ======================================================================
 
 
 CREATE OR REPLACE FUNCTION usuario_datos_personales(
@@ -412,5 +430,107 @@ AS $$
 	    INSERT INTO Tb_datos_personales(nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario)
 	    VALUES (p_nombre, p_apellido, p_fecha_nacimiento, p_telefono, p_direccion, p_genero, p_id_usuario);
 
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- ============================================================
+-- FUNCION: listar_usuarios_por_idrol
+-- USO: SELECT * FROM listar_usuarios_por_idrol(3);  -- 2 = profesor, 3 = estudiante
+-- DESCRIPCIÓN: Lista los usuarios según su rol.
+-- CAMPOS RETORNADOS:
+--   id_usuario, nombre, apellido, email, estado (activo/inactivo),
+--   fecha_nacimiento, telefono, direccion, genero, fecha_registro
+-- ============================================================
+
+
+
+CREATE OR REPLACE FUNCTION listar_usuarios_por_idrol(p_id_rol INT)
+RETURNS TABLE(
+    id_usuario INT,
+    nombre VARCHAR,
+    apellido VARCHAR,
+    email VARCHAR,
+    estado VARCHAR,
+    fecha_nacimiento DATE,
+    telefono VARCHAR,
+    direccion VARCHAR,
+    genero VARCHAR,
+    fecha_registro TIMESTAMP
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        u.id_usuario,
+        d.nombre,
+        d.apellido,
+        u.email,
+        CASE 
+            WHEN u.activo = TRUE THEN 'activo'
+            ELSE 'inactivo'
+        END::VARCHAR AS estado,
+        d.fecha_nacimiento,
+        d.telefono,
+        d.direccion,
+        d.genero,
+        d.fecha_registro
+    FROM Tb_usuario u
+    INNER JOIN Tb_datos_personales d ON u.id_usuario = d.id_usuario
+    WHERE u.id_rol = p_id_rol;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: actualizar_datos_personales
+-- USO: SELECT actualizar_datos_personales(1,'Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino');
+-- DESCRIPCIÓN: Actualiza los datos personales del usuario en Tb_datos_personales.
+-- PARÁMETROS:
+--   p_id_usuario, p_nombre, p_apellido, p_fecha_nacimiento, p_telefono, p_direccion, p_genero
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION actualizar_datos_personales (
+    p_id_usuario INT,
+    p_nombre VARCHAR,
+    p_apellido VARCHAR,
+    p_fecha_nacimiento DATE,
+    p_telefono VARCHAR,
+    p_direccion VARCHAR,
+    p_genero VARCHAR
+)
+RETURNS VOID AS $$
+BEGIN
+    UPDATE Tb_datos_personales
+    SET 
+        nombre = p_nombre,
+        apellido = p_apellido,
+        fecha_nacimiento = p_fecha_nacimiento,
+        telefono = p_telefono,
+        direccion = p_direccion,
+        genero = p_genero
+    WHERE id_usuario = p_id_usuario;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- =======================================================================================
+-- FUNCIÓN: desactivar_usuario
+-- USO: SELECT desactivar_usuario(5);
+-- DESCRIPCIÓN: Marca un usuario como inactivo (no elimina registro).
+-- PARÁMETRO:
+--   p_id_usuario → ID del usuario a desactivar
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION desactivar_usuario(p_id_usuario INT)
+RETURNS VOID AS $$
+BEGIN
+    UPDATE Tb_usuario
+    SET activo = FALSE
+    WHERE id_usuario = p_id_usuario;
 END;
 $$ LANGUAGE plpgsql;
