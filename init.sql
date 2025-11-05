@@ -969,3 +969,174 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+
+
+-- =======================================================================================
+-- FUNCIÓN: enviar_notificacion_general
+-- USO:
+--   -- Enviar a todos
+--   SELECT enviar_notificacion_general('aviso','Reunión','Asamblea mañana 8 AM');
+--
+--   -- Enviar solo a profesores (id_rol = 2)
+--   SELECT enviar_notificacion_general('recordatorio','Reunión Docente','Mañana a las 8', 2);
+-- DESCRIPCIÓN:
+--   Inserta una notificación para todos los usuarios o un grupo por rol.
+-- PARÁMETROS:
+--   p_tipo        → tipo de mensaje (aviso, alerta, etc.)
+--   p_titulo      → título de la notificación
+--   p_mensaje     → contenido del mensaje
+--   p_id_rol      → rol destino (NULL = todos los usuarios)
+-- RETORNA:
+--   Mensaje de confirmación
+-- =======================================================================================
+CREATE OR REPLACE FUNCTION enviar_notificacion_general(
+    p_tipo VARCHAR,
+    p_titulo VARCHAR,
+    p_mensaje TEXT,
+    p_id_rol INT DEFAULT NULL
+)
+RETURNS TEXT
+AS $$
+BEGIN
+    -- Insertar notificación para todos o para rol específico
+    INSERT INTO Tb_notificaciones (tipo, titulo, mensaje, id_usuario)
+    SELECT p_tipo, p_titulo, p_mensaje, u.id_usuario
+    FROM Tb_usuario u
+    WHERE p_id_rol IS NULL OR u.id_rol = p_id_rol;
+
+    RETURN 'Notificaciones enviadas correctamente';
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: enviar_notificacion_a_usuario
+-- USO:
+--   SELECT enviar_notificacion_a_usuario(
+--       3,
+--       'alerta',
+--       'Entrega Pendiente',
+--       'Sube la actividad antes de las 11:59 PM'
+--   );
+-- DESCRIPCIÓN:
+--   Inserta una notificación dirigida a un solo usuario.
+-- PARÁMETROS:
+--   p_id_usuario  → usuario destino
+--   p_tipo        → tipo de mensaje
+--   p_titulo      → título de la notificación
+--   p_mensaje     → contenido del mensaje
+-- RETORNA:
+--   Mensaje de confirmación
+-- =======================================================================================
+CREATE OR REPLACE FUNCTION enviar_notificacion_a_usuario(
+    p_id_usuario INT,
+    p_tipo VARCHAR,
+    p_titulo VARCHAR,
+    p_mensaje TEXT
+)
+RETURNS TEXT
+AS $$
+BEGIN
+    -- Insertar notificación para un usuario específico
+    INSERT INTO Tb_notificaciones (tipo, titulo, mensaje, id_usuario)
+    VALUES (p_tipo, p_titulo, p_mensaje, p_id_usuario);
+
+    RETURN 'Notificación enviada';
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: marcar_notificacion_leida
+-- USO:
+--   SELECT marcar_notificacion_leida(1, 1);
+-- DESCRIPCIÓN:
+--   Cambia el estado de una notificación a leída.
+-- PARÁMETROS:
+--   p_id_notificacion → ID de la notificación
+--   p_id_usuario      → usuario que leyó la notificación
+-- RETORNA:
+--   Mensaje indicando resultado (éxito o error)
+-- =======================================================================================
+CREATE OR REPLACE FUNCTION marcar_notificacion_leida(
+    p_id_notificacion INT,
+    p_id_usuario INT
+)
+RETURNS TEXT
+AS $$
+BEGIN
+    -- Actualizar notificación como leída solo si pertenece al usuario
+    UPDATE Tb_notificaciones
+    SET leida = TRUE
+    WHERE id_notificacion = p_id_notificacion
+      AND id_usuario = p_id_usuario;
+
+    -- Si no afectó ninguna fila, no existe o no pertenece al usuario
+    IF NOT FOUND THEN
+        RETURN 'No se encontró notificación para este usuario';
+    END IF;
+
+    RETURN 'Notificación marcada como leída';
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_boletin_estudiante
+-- USO:
+--   SELECT * FROM obtener_boletin_estudiante(3);
+-- DESCRIPCIÓN:
+--   Retorna el boletín académico de un estudiante, incluyendo competencias y estados.
+-- PARÁMETROS:
+--   p_id_usuario → ID del estudiante
+-- RETORNO:
+--   Datos del estudiante, curso, competencia, estado, profesor
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION obtener_boletin_estudiante(
+    p_id_usuario INT
+)
+RETURNS TABLE(
+    id_estudiante INT,
+    nombre_estudiante VARCHAR,
+    apellido_estudiante VARCHAR,
+    nombre_curso VARCHAR,
+    competencia VARCHAR,
+    estado_competencia calificacion,
+    profesor VARCHAR,
+    fecha_evaluacion DATE,
+    observaciones TEXT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        u.id_usuario AS id_estudiante,
+        dp.nombre,
+        dp.apellido,
+        c.nombre_curso,
+        comp.nombre AS competencia,
+        rc.estado AS estado_competencia,
+        CONCAT(prof.nombre, ' ', prof.apellido)::VARCHAR AS profesor,
+        rc.fecha_evaluacion,
+        rc.observaciones
+    FROM Tb_usuario u
+    JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
+    JOIN Tb_estudiante_curso ec ON u.id_usuario = ec.id_usuario
+    JOIN Tb_curso c ON ec.id_curso = c.id_curso
+    LEFT JOIN Tb_resultado_competencia rc ON rc.id_usuario = u.id_usuario
+    LEFT JOIN Tb_competencia comp ON rc.id_competencia = comp.id_competencia
+    LEFT JOIN Tb_datos_personales prof ON rc.id_profesor = prof.id_usuario
+    WHERE u.id_usuario = p_id_usuario;
+END;
+$$ LANGUAGE plpgsql;
