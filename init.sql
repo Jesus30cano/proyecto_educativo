@@ -480,10 +480,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b061e2e (agregue funciones básicas para gestión de usuarios)
 -- ======================================================================
 -- función registrar usuario (administrador): 
 -- SELECT admin_registrar_usuario('Brallano@gmail.com','cedula_de_ciudadania','12345678','clave123',3);
@@ -968,4 +964,98 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- ============================================================
+-- Función: obtener_actividades
+-- Descripción: Retorna todas las actividades filtradas por
+-- competencia, curso y profesor.
+-- Ejemplo de uso:
+-- SELECT * FROM obtener_actividades(1, 2, 3);
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION obtener_actividades(
+    p_id_competencia INT,
+    p_id_curso INT,
+    p_id_profesor INT
+)
+RETURNS TABLE (
+    id_actividad INT,
+    titulo VARCHAR,
+    descripcion TEXT,
+    fecha_publicacion DATE,
+    fecha_entrega DATE,
+    ruta_archivo VARCHAR,
+    id_competencia INT,
+    id_curso INT,
+    id_profesor INT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        a.id_actividad,
+        a.titulo,
+        a.descripcion,
+        a.fecha_publicacion,
+        a.fecha_entrega,
+        a.ruta_archivo,
+        a.id_competencia,
+        a.id_curso,
+        a.id_profesor
+    FROM Tb_actividad a
+    WHERE 
+        a.id_competencia = p_id_competencia
+        AND a.id_curso = p_id_curso
+        AND a.id_profesor = p_id_profesor
+    ORDER BY a.fecha_publicacion DESC;
+END;
+$$ LANGUAGE plpgsql;
+-- ============================================================
+-- Procedimiento: crear_actividad
+-- Descripción: Inserta una nueva actividad en la tabla Tb_actividad.
+-- Uso:
+-- CALL crear_actividad(
+--     'Título de ejemplo',
+--     'Descripción de la actividad',
+--     '2025-11-10',
+--     '/uploads/actividades/act_001.pdf',
+--     1,  -- id_competencia
+--     2,  -- id_curso
+--     3   -- id_profesor
+-- );
+-- ============================================================
+
+CREATE OR REPLACE PROCEDURE crear_actividad(
+    p_titulo VARCHAR,
+    p_descripcion TEXT,
+    p_fecha_entrega DATE,
+    p_ruta_archivo VARCHAR,
+    p_id_competencia INT,
+    p_id_curso INT,
+    p_id_profesor INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Tb_actividad (
+        titulo,
+        descripcion,
+        fecha_publicacion,
+        fecha_entrega,
+        ruta_archivo,
+        id_competencia,
+        id_curso,
+        id_profesor
+    ) VALUES (
+        p_titulo,
+        p_descripcion,
+        CURRENT_DATE,
+        p_fecha_entrega,
+        p_ruta_archivo,
+        p_id_competencia,
+        p_id_curso,
+        p_id_profesor
+    );
+
+END;
+$$;
 
