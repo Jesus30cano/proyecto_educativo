@@ -480,6 +480,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
 -- ======================================================================
 -- función registrar usuario (administrador): 
 -- SELECT admin_registrar_usuario('Brallano@gmail.com','cedula_de_ciudadania','12345678','clave123',3);
@@ -487,56 +488,73 @@ $$ LANGUAGE plpgsql;
 -- no retorna datos
 -- ======================================================================
 
-CREATE OR REPLACE FUNCTION admin_registrar_usuario (
-        p_email VARCHAR, 
-        p_tipo_documento tipo_documento,
-        p_no_documento VARCHAR,
-        p_password VARCHAR,
-        p_id_rol INT
+-- =====================================================================================
+-- PROCEDIMIENTO: admin_registrar_usuario
+-- USO:
+--   CALL admin_registrar_usuario(
+--       'Brallano@gmail.com',
+--       'cedula_de_ciudadania',
+--       '12345678',
+--       'clave123',
+--       3
+--   );
+--
+-- DESCRIPCIÓN:
+--   Registra un nuevo usuario en la tabla Tb_usuario con los datos proporcionados.
+--   No retorna ningún valor.
+-- =====================================================================================
+
+
+CREATE OR REPLACE PROCEDURE admin_registrar_usuario (
+     p_email VARCHAR, 
+     p_tipo_documento tipo_documento,
+     p_no_documento VARCHAR,
+     p_password VARCHAR,
+     p_id_rol INT
 )
-    RETURNS VOID
+LANGUAGE plpgsql
 AS $$
+BEGIN
+    INSERT INTO Tb_usuario(email, tipo_documento, no_documento, password, id_rol) 
+    VALUES (p_email, p_tipo_documento, p_no_documento, p_password, p_id_rol);
 
-    BEGIN
-
-        INSERT INTO Tb_usuario(email, tipo_documento, no_documento, password, id_rol) 
-        VALUES (p_email, p_tipo_documento, p_no_documento, p_password, p_id_rol);
-
+    RAISE NOTICE 'Usuario % registrado correctamente con rol %', p_email, p_id_rol;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 
 -- ======================================================================
--- FUNCIÓN: usuario_datos_personales
--- USO: SELECT usuario_datos_personales('Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino',1);
+-- PROCEDIMIENTO: usuario_datos_personales
+-- USO: CALL usuario_datos_personales('Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino',1);
 -- DESCRIPCIÓN: Registra los datos personales de un usuario en Tb_datos_personales.
 -- PARÁMETROS:
 --   nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos (procedimiento, sin RETURN)
 -- ======================================================================
 
-
-CREATE OR REPLACE FUNCTION usuario_datos_personales(
-        p_nombre VARCHAR,
-        p_apellido VARCHAR,
-        p_fecha_nacimiento DATE, 
-        p_telefono VARCHAR,
-        p_direccion VARCHAR,
-        p_genero VARCHAR,
-        p_id_usuario INT
+CREATE OR REPLACE PROCEDURE usuario_datos_personales(
+    p_nombre VARCHAR,
+    p_apellido VARCHAR,
+    p_fecha_nacimiento DATE,
+    p_telefono VARCHAR,
+    p_direccion VARCHAR,
+    p_genero VARCHAR,
+    p_id_usuario INT
 )
-
-    RETURNS VOID 
+LANGUAGE plpgsql
 AS $$
-    
-    BEGIN
-
-	    INSERT INTO Tb_datos_personales(nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario)
-	    VALUES (p_nombre, p_apellido, p_fecha_nacimiento, p_telefono, p_direccion, p_genero, p_id_usuario);
-
+BEGIN
+    INSERT INTO Tb_datos_personales(
+        nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario
+    )
+    VALUES (
+        p_nombre, p_apellido, p_fecha_nacimiento, p_telefono, p_direccion, p_genero, p_id_usuario
+    );
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 
@@ -590,15 +608,15 @@ $$ LANGUAGE plpgsql;
 
 
 -- =======================================================================================
--- FUNCIÓN: actualizar_datos_personales
--- USO: SELECT actualizar_datos_personales(1,'Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino');
+-- PROCEDIMIENTO: actualizar_datos_personales
+-- USO: CALL actualizar_datos_personales(1,'Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino');
 -- DESCRIPCIÓN: Actualiza los datos personales del usuario en Tb_datos_personales.
 -- PARÁMETROS:
 --   p_id_usuario, p_nombre, p_apellido, p_fecha_nacimiento, p_telefono, p_direccion, p_genero
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos (procedimiento)
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION actualizar_datos_personales (
+CREATE OR REPLACE PROCEDURE actualizar_datos_personales(
     p_id_usuario INT,
     p_nombre VARCHAR,
     p_apellido VARCHAR,
@@ -607,7 +625,8 @@ CREATE OR REPLACE FUNCTION actualizar_datos_personales (
     p_direccion VARCHAR,
     p_genero VARCHAR
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     UPDATE Tb_datos_personales
     SET 
@@ -619,38 +638,41 @@ BEGIN
         genero = p_genero
     WHERE id_usuario = p_id_usuario;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 -- =======================================================================================
--- FUNCIÓN: desactivar_usuario
--- USO: SELECT desactivar_usuario(1);
+-- PROCEDIMIENTO: desactivar_usuario
+-- USO: CALL desactivar_usuario(1);
 -- DESCRIPCIÓN: Marca un usuario como inactivo (no elimina registro).
 -- PARÁMETRO:
 --   p_id_usuario → ID del usuario a desactivar
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos (procedimiento)
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION desactivar_usuario(p_id_usuario INT)
-RETURNS VOID AS $$
+CREATE OR REPLACE PROCEDURE desactivar_usuario(p_id_usuario INT)
+LANGUAGE plpgsql
+AS $$
 BEGIN
     UPDATE Tb_usuario
     SET activo = FALSE
     WHERE id_usuario = p_id_usuario;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 
 -- =======================================================================================
--- FUNCIÓN: actualizar_usuario
+-- PROCEDIMIENTO: actualizar_usuario
 -- USO:
--- SELECT actualizar_usuario(1, 'Empirico@example.com', '123456789', 3);
+-- CALL actualizar_usuario(1, 'Empirico@gmail.com', '123456789', 3);
 --
 -- DESCRIPCIÓN:
 -- Actualiza los datos de la tabla Tb_usuario:
 -- email, password y rol del usuario según su id.
--- *No modifica documento, tipo documento.*
+-- *No modifica documento ni tipo de documento.*
 --
 -- PARÁMETROS:
 --   p_id_usuario INT       -> id del usuario a actualizar
@@ -658,16 +680,17 @@ $$ LANGUAGE plpgsql;
 --   p_password VARCHAR     -> nueva contraseña
 --   p_id_rol INT           -> rol actualizado (2=Profesor, 3=Estudiante)
 --
--- RETORNO: No retorna datos (VOID)
+-- RETORNO: No retorna datos (procedimiento)
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION actualizar_usuario (
+CREATE OR REPLACE PROCEDURE actualizar_usuario(
     p_id_usuario INT,
     p_email VARCHAR,
     p_password VARCHAR,
     p_id_rol INT
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     UPDATE Tb_usuario
     SET 
@@ -676,55 +699,59 @@ BEGIN
         id_rol = p_id_rol
     WHERE id_usuario = p_id_usuario;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 -- =======================================================================================
--- FUNCIÓN: activar_usuario
--- USO: SELECT activar_usuario(1);
+-- PROCEDIMIENTO: activar_usuario
+-- USO: CALL activar_usuario(1);
 -- DESCRIPCIÓN: Marca un usuario como activo.
 -- PARÁMETRO:
 --   p_id_usuario → ID del usuario a activar
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos (procedimiento)
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION activar_usuario(p_id_usuario INT)
-RETURNS VOID AS $$
+CREATE OR REPLACE PROCEDURE activar_usuario(p_id_usuario INT)
+LANGUAGE plpgsql
+AS $$
 BEGIN
     UPDATE Tb_usuario
     SET activo = TRUE
     WHERE id_usuario = p_id_usuario;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 -- =======================================================================================
--- FUNCIÓN: crear_curso
--- USO: SELECT crear_curso('2933470', 'ADSO', 2);
+-- PROCEDIMIENTO: crear_curso
+-- USO: CALL crear_curso('2933470', 'ADSO', 2);
 -- DESCRIPCIÓN: Inserta un nuevo curso en la tabla Tb_curso.
 -- PARÁMETROS:
 --   p_ficha → identificador único del curso
 --   p_nombre_curso → nombre del curso
 --   p_id_profesor_lider → ID del profesor líder del curso
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos (procedimiento)
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION crear_curso(
+CREATE OR REPLACE PROCEDURE crear_curso(
     p_ficha VARCHAR,
     p_nombre_curso VARCHAR,
     p_id_profesor_lider INT
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     INSERT INTO Tb_curso(ficha, nombre_curso, id_profesor_lider)
     VALUES (p_ficha, p_nombre_curso, p_id_profesor_lider);
 END;
-$$ LANGUAGE plpgsql;
+$$;
 
 
 -- =======================================================================================
--- FUNCIÓN: editar_curso
--- USO: SELECT editar_curso(1, '2933480', 'ADSO', 2, TRUE);
+-- PROCEDIMIENTO: editar_curso
+-- USO: CALL editar_curso(1, '2933480', 'ADSO', 2, TRUE);
 -- DESCRIPCIÓN: Actualiza los datos de un curso en la tabla Tb_curso.
 -- PARÁMETROS:
 --   p_id_curso           → ID del curso a editar
@@ -732,17 +759,18 @@ $$ LANGUAGE plpgsql;
 --   p_nombre_curso       → Nombre del curso
 --   p_id_profesor_lider  → ID del profesor líder asignado al curso
 --   p_ficha_activa       → Indica si la ficha del curso está activa (TRUE/FALSE)
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION editar_curso(
+CREATE OR REPLACE PROCEDURE editar_curso(
     p_id_curso INT,
     p_ficha VARCHAR,
     p_nombre_curso VARCHAR,
     p_id_profesor_lider INT,
     p_ficha_activa BOOLEAN
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     UPDATE Tb_curso
     SET 
@@ -752,100 +780,110 @@ BEGIN
         ficha_activa = p_ficha_activa
     WHERE id_curso = p_id_curso;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 -- =======================================================================================
--- FUNCIÓN: asignar_estudiante_a_curso
--- USO: SELECT asignar_estudiante_a_curso(1, 1);
+-- PROCEDIMIENTO: asignar_estudiante_a_curso
+-- USO: CALL asignar_estudiante_a_curso(1, 1);
 -- DESCRIPCIÓN: Asigna un estudiante a un curso insertando la relación en Tb_estudiante_curso.
 -- PARÁMETROS:
 --   p_id_usuario → ID del estudiante a asignar
 --   p_id_curso   → ID del curso al que se quiere asignar al estudiante
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION asignar_estudiante_a_curso(
+CREATE OR REPLACE PROCEDURE asignar_estudiante_a_curso(
     p_id_usuario INT,
     p_id_curso INT
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     INSERT INTO Tb_estudiante_curso(id_usuario, id_curso)
     VALUES (p_id_usuario, p_id_curso);
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 -- =======================================================================================
--- FUNCIÓN: remover_estudiante_de_curso
--- USO: SELECT remover_estudiante_de_curso(1, 1);
+-- PROCEDIMIENTO: remover_estudiante_de_curso
+-- USO: CALL remover_estudiante_de_curso(1, 1);
 -- DESCRIPCIÓN: Remueve la relación de un estudiante con un curso en Tb_estudiante_curso.
 -- PARÁMETROS:
 --   p_id_usuario → ID del estudiante a remover
 --   p_id_curso   → ID del curso del que se quiere remover al estudiante
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION remover_estudiante_de_curso(
+CREATE OR REPLACE PROCEDURE remover_estudiante_de_curso(
     p_id_usuario INT,
     p_id_curso INT
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     DELETE FROM Tb_estudiante_curso
     WHERE id_usuario = p_id_usuario
       AND id_curso = p_id_curso;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 
 -- =======================================================================================
--- FUNCIÓN: asignar_profesor_a_curso
--- USO: SELECT asignar_profesor_a_curso(4, 1);
+-- PROCEDIMIENTO: asignar_profesor_a_curso
+-- USO: CALL asignar_profesor_a_curso(4, 1);
 -- DESCRIPCIÓN: Asigna un profesor a un curso en Tb_profesor_curso.
 -- PARÁMETROS:
 --   p_id_usuario → ID del profesor
 --   p_id_curso   → ID del curso
--- RETORNO: No retorna datos (void)
+-- NOTA: Si el profesor ya está asignado al curso, no hace nada (gracias a ON CONFLICT).
+-- RETORNO: No retorna datos
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION asignar_profesor_a_curso(
+CREATE OR REPLACE PROCEDURE asignar_profesor_a_curso(
     p_id_usuario INT,
     p_id_curso INT
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     INSERT INTO Tb_profesor_curso(id_usuario, id_curso)
     VALUES (p_id_usuario, p_id_curso)
-    ON CONFLICT (id_usuario, id_curso) DO NOTHING;  -- Evita duplicados
+    ON CONFLICT (id_usuario, id_curso) DO NOTHING;  
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 
 -- =======================================================================================
--- FUNCIÓN: remover_profesor_de_curso
--- USO: SELECT remover_profesor_de_curso(4, 1);
--- DESCRIPCIÓN: Remueve la relación de un profesor con un curso en Tb_profesor_curso.
+-- PROCEDIMIENTO: remover_profesor_de_curso
+-- USO: CALL remover_profesor_de_curso(4, 1);
+-- DESCRIPCIÓN: Elimina la relación entre un profesor y un curso en Tb_profesor_curso.
 -- PARÁMETROS:
 --   p_id_usuario → ID del profesor a remover
 --   p_id_curso   → ID del curso del que se quiere remover al profesor
--- RETORNO: No retorna datos (void)
+-- RETORNO: No retorna datos
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION remover_profesor_de_curso(
+CREATE OR REPLACE PROCEDURE remover_profesor_de_curso(
     p_id_usuario INT,
     p_id_curso INT
 )
-RETURNS VOID AS $$
+LANGUAGE plpgsql
+AS $$
 BEGIN
     DELETE FROM Tb_profesor_curso
     WHERE id_usuario = p_id_usuario
       AND id_curso = p_id_curso;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
 
 
 
@@ -1009,6 +1047,12 @@ BEGIN
     ORDER BY a.fecha_publicacion DESC;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+
+
+
 -- ============================================================
 -- Procedimiento: crear_actividad
 -- Descripción: Inserta una nueva actividad en la tabla Tb_actividad.
