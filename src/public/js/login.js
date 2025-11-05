@@ -21,29 +21,34 @@ async function login() {
       data = JSON.parse(text);
     } catch (e) {
       console.error("Respuesta no es JSON:", text);
-      alert("Error interno. El servidor no devolvió una respuesta válida.");
+      showToast("Error interno. El servidor no devolvió una respuesta válida.", "#e74c3c", 4000);
       return;
     }
 
     if (data.status === "success") {
-      alert(data.message);
+      showToast(data.message, "#27ae60", 3000);
       localStorage.setItem("id_user", data.id_user);
       localStorage.setItem("usuario", data.usuario);
       localStorage.setItem("rol", data.rol);
-      window.location.href = data.redirect || "/home";
+      
+      // Redirigir después de mostrar el toast
+      setTimeout(() => {
+        window.location.href = data.redirect || "/home";
+      }, 1500);
     } else if (data.status === "error") {
       if (data.errors && Array.isArray(data.errors)) {
-        alert("Errores encontrados:\n\n" + data.errors.join("\n"));
+        // Usar el toast con array de mensajes
+        showToast(data.errors, "#e74c3c", 5000);
       } else {
-        alert(data.message || "Credenciales inválidas.");
+        showToast(data.message || "Credenciales inválidas.", "#e74c3c", 4000);
       }
     } else {
-      alert("Ocurrió un error inesperado.");
+      showToast("Ocurrió un error inesperado.", "#e74c3c", 4000);
     }
 
   } catch (error) {
     console.error("Error de conexión o JSON inválido:", error);
-    alert("Error de conexión. Por favor, intenta de nuevo.");
+    showToast("Error de conexión. Por favor, intenta de nuevo.", "#e74c3c", 4000);
   }
 }
 

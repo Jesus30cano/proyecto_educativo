@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="../../../public/css/toast.css">
     <link rel="stylesheet" href="../../../public/css/login_styles/login_styles.css">
+
+
 </head>
 
 <body>
@@ -18,7 +21,7 @@
 
             <form id="loginForm">
                 <!-- 🔽 Tipo de documento -->
-                <div class="input-group">
+                <div class="input-group" id="tipo_documento_group">
                     <label for="tipo_documento">Tipo de Documento</label>
                     <select name="tipo_documento" id="tipo_documento" required>
                         <option value="">Selecciona tu tipo de documento</option>
@@ -60,8 +63,9 @@
         </div>
 
     </div>
+    <script src="/../../../public/js/toast.js"></script>
 
-    <script src="../../../public/js/login.js"></script>
+    <script src="/../../../public/js/login.js"></script>
 </body>
 
 </html>
