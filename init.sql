@@ -538,3 +538,41 @@ BEGIN
     WHERE id_usuario = p_id_usuario;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: actualizar_usuario
+-- USO:
+-- SELECT actualizar_usuario(1, 'Empirico@example.com', '123456789', 3);
+--
+-- DESCRIPCIÓN:
+-- Actualiza los datos de la tabla Tb_usuario:
+-- email, password y rol del usuario según su id.
+-- *No modifica documento, tipo documento.*
+--
+-- PARÁMETROS:
+--   p_id_usuario INT       -> id del usuario a actualizar
+--   p_email VARCHAR        -> nuevo email
+--   p_password VARCHAR     -> nueva contraseña
+--   p_id_rol INT           -> rol actualizado (2=Profesor, 3=Estudiante)
+--
+-- RETORNO: No retorna datos (VOID)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION actualizar_usuario (
+    p_id_usuario INT,
+    p_email VARCHAR,
+    p_password VARCHAR,
+    p_id_rol INT
+)
+RETURNS VOID AS $$
+BEGIN
+    UPDATE Tb_usuario
+    SET 
+        email = p_email,
+        password = p_password,
+        id_rol = p_id_rol
+    WHERE id_usuario = p_id_usuario;
+END;
+$$ LANGUAGE plpgsql;
