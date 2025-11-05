@@ -375,6 +375,10 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b061e2e (agregue funciones básicas para gestión de usuarios)
 -- ======================================================================
 -- función registrar usuario (administrador): 
 -- SELECT admin_registrar_usuario('Brallano@gmail.com','cedula_de_ciudadania','12345678','clave123',3);
@@ -519,7 +523,7 @@ $$ LANGUAGE plpgsql;
 
 -- =======================================================================================
 -- FUNCIÓN: desactivar_usuario
--- USO: SELECT desactivar_usuario(5);
+-- USO: SELECT desactivar_usuario(1);
 -- DESCRIPCIÓN: Marca un usuario como inactivo (no elimina registro).
 -- PARÁMETRO:
 --   p_id_usuario → ID del usuario a desactivar
