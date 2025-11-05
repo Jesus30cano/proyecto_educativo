@@ -50,7 +50,7 @@ CREATE TABLE Tb_datos_personales (
 -- ============================================================
 -- USUARIOS DE EJEMPLO
 -- ============================================================
-
+-- la clave es prueba123 para los tres usuarios
 INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
 ('admin@plataforma.com', 'cedula_de_ciudadania', '111111111', '$2y$10$mW/HS7/e6Q.0CDOaLVfroeEfBs.71Vp/ucuKkvDDRXyQy8bKfCX0S', TRUE, 1),
 ('profesor@plataforma.com', 'tarjeta_identidad', '222222222', '$2y$10$CN7vIzIwuKDayz3BSTOCG.N4vV2MkODNaQsL67smqNbPOBho88N3W', TRUE, 2),
