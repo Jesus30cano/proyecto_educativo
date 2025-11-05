@@ -81,10 +81,10 @@ class AuthController extends Controller
                         $redirect = '/admin/dashboard/index';
                         break;
                     case 2:
-                        $redirect = '/teacher_panel/dashboard/index';
+                        $redirect = '/teacher/dashboard/index';
                         break;
                     case 3:
-                        $redirect = '/student_panel/dashboard/index';
+                        $redirect = '/student/dashboard/index';
                         break;
                     default:
                         return $this->jsonResponse([

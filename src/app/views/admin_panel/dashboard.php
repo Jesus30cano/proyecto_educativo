@@ -17,7 +17,7 @@ $statsData = [
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>Panel de Administración - Cognia</title>
-    <link rel="stylesheet" href="../../../public/css/dashboard.css">
+    <link rel="stylesheet" href="/../../../public/css/dashboard.css">
 </head>
 <body>
     <div class="container">

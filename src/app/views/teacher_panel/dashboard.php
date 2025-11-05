@@ -10,15 +10,15 @@ $activeSection = $_GET['section'] ?? 'inicio';
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>Panel de Administración - Cognia</title>
-    <link rel="stylesheet" href="../../../public/css/dashboard.css">
+    <link rel="stylesheet" href="/../../../public/css/dashboard.css">
 </head>
 <body>
     <div class="container">
-        <?php include '../components/navbar.php'; ?>
-        <?php include '../components/action-bar.php'; ?>
+        <?php include __DIR__ . '/../components/navbar.php'; ?>
+        <?php include __DIR__ . '/../components/action-bar.php'; ?>
 
         <div class="main-wrapper">
-            <?php include '../components/teacher/sidebar.php'; ?>
+            <?php include __DIR__ . '/../components/teacher/sidebar.php'; ?>
 
             <main class="main-content">
                 <div class="welcome-card">

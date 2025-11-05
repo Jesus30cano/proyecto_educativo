@@ -210,3 +210,32 @@ input[type="email"]:focus {
         /*height: 200px; */
     }
 }
+
+select#tipo_documento { 
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #90CAF9; /* Azul Claro */
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #F5F5F5;
+    color: #37474F; /* Gris Texto */
+    transition: border-color 0.3s;
+    cursor: pointer;
+    appearance: none; /* Remueve el estilo por defecto del navegador */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2337474F' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+select#tipo_documento:focus {
+    border-color: #1E88E5; /* Azul Primario */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+}
+
+select#tipo_documento option {
+    background-color: white;
+    color: #37474F;
+    padding: 10px;
+}
