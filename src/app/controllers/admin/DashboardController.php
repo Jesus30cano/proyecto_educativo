@@ -11,6 +11,13 @@ class DashboardController extends Controller
     public function index()
     {
         // Lógica para mostrar el dashboard del administrador
+        session_start();
+       
+        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 1) {
+            // Redirigir si no está autenticado o no es admin
+            header('Location: /auth/login');
+            exit;
+        }
         $this->view('admin_panel/dashboard');
     }
 

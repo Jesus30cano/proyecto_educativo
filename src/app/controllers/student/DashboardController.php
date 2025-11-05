@@ -10,6 +10,13 @@ class DashboardController extends Controller
     }
     public function index()
     {
+        session_start();
+       
+        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 3) {
+            // Redirigir si no está autenticado o no es admin
+            header('Location: /auth/login');
+            exit;
+        }
         // Lógica para mostrar el dashboard del administrador
         $this->view('student_panel/dashboard');
     }
