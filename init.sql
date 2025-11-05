@@ -576,3 +576,291 @@ BEGIN
     WHERE id_usuario = p_id_usuario;
 END;
 $$ LANGUAGE plpgsql;
+
+
+-- =======================================================================================
+-- FUNCIÓN: activar_usuario
+-- USO: SELECT activar_usuario(1);
+-- DESCRIPCIÓN: Marca un usuario como activo.
+-- PARÁMETRO:
+--   p_id_usuario → ID del usuario a activar
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION activar_usuario(p_id_usuario INT)
+RETURNS VOID AS $$
+BEGIN
+    UPDATE Tb_usuario
+    SET activo = TRUE
+    WHERE id_usuario = p_id_usuario;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- =======================================================================================
+-- FUNCIÓN: crear_curso
+-- USO: SELECT crear_curso('2933470', 'ADSO', 2);
+-- DESCRIPCIÓN: Inserta un nuevo curso en la tabla Tb_curso.
+-- PARÁMETROS:
+--   p_ficha → identificador único del curso
+--   p_nombre_curso → nombre del curso
+--   p_id_profesor_lider → ID del profesor líder del curso
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION crear_curso(
+    p_ficha VARCHAR,
+    p_nombre_curso VARCHAR,
+    p_id_profesor_lider INT
+)
+RETURNS VOID AS $$
+BEGIN
+    INSERT INTO Tb_curso(ficha, nombre_curso, id_profesor_lider)
+    VALUES (p_ficha, p_nombre_curso, p_id_profesor_lider);
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- =======================================================================================
+-- FUNCIÓN: editar_curso
+-- USO: SELECT editar_curso(1, '2933480', 'ADSO', 2, TRUE);
+-- DESCRIPCIÓN: Actualiza los datos de un curso en la tabla Tb_curso.
+-- PARÁMETROS:
+--   p_id_curso           → ID del curso a editar
+--   p_ficha              → Ficha del curso (única)
+--   p_nombre_curso       → Nombre del curso
+--   p_id_profesor_lider  → ID del profesor líder asignado al curso
+--   p_ficha_activa       → Indica si la ficha del curso está activa (TRUE/FALSE)
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION editar_curso(
+    p_id_curso INT,
+    p_ficha VARCHAR,
+    p_nombre_curso VARCHAR,
+    p_id_profesor_lider INT,
+    p_ficha_activa BOOLEAN
+)
+RETURNS VOID AS $$
+BEGIN
+    UPDATE Tb_curso
+    SET 
+        ficha = p_ficha,
+        nombre_curso = p_nombre_curso,
+        id_profesor_lider = p_id_profesor_lider,
+        ficha_activa = p_ficha_activa
+    WHERE id_curso = p_id_curso;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- =======================================================================================
+-- FUNCIÓN: asignar_estudiante_a_curso
+-- USO: SELECT asignar_estudiante_a_curso(1, 1);
+-- DESCRIPCIÓN: Asigna un estudiante a un curso insertando la relación en Tb_estudiante_curso.
+-- PARÁMETROS:
+--   p_id_usuario → ID del estudiante a asignar
+--   p_id_curso   → ID del curso al que se quiere asignar al estudiante
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION asignar_estudiante_a_curso(
+    p_id_usuario INT,
+    p_id_curso INT
+)
+RETURNS VOID AS $$
+BEGIN
+    INSERT INTO Tb_estudiante_curso(id_usuario, id_curso)
+    VALUES (p_id_usuario, p_id_curso);
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- =======================================================================================
+-- FUNCIÓN: remover_estudiante_de_curso
+-- USO: SELECT remover_estudiante_de_curso(1, 1);
+-- DESCRIPCIÓN: Remueve la relación de un estudiante con un curso en Tb_estudiante_curso.
+-- PARÁMETROS:
+--   p_id_usuario → ID del estudiante a remover
+--   p_id_curso   → ID del curso del que se quiere remover al estudiante
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION remover_estudiante_de_curso(
+    p_id_usuario INT,
+    p_id_curso INT
+)
+RETURNS VOID AS $$
+BEGIN
+    DELETE FROM Tb_estudiante_curso
+    WHERE id_usuario = p_id_usuario
+      AND id_curso = p_id_curso;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: asignar_profesor_a_curso
+-- USO: SELECT asignar_profesor_a_curso(4, 1);
+-- DESCRIPCIÓN: Asigna un profesor a un curso en Tb_profesor_curso.
+-- PARÁMETROS:
+--   p_id_usuario → ID del profesor
+--   p_id_curso   → ID del curso
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION asignar_profesor_a_curso(
+    p_id_usuario INT,
+    p_id_curso INT
+)
+RETURNS VOID AS $$
+BEGIN
+    INSERT INTO Tb_profesor_curso(id_usuario, id_curso)
+    VALUES (p_id_usuario, p_id_curso)
+    ON CONFLICT (id_usuario, id_curso) DO NOTHING;  -- Evita duplicados
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: remover_profesor_de_curso
+-- USO: SELECT remover_profesor_de_curso(4, 1);
+-- DESCRIPCIÓN: Remueve la relación de un profesor con un curso en Tb_profesor_curso.
+-- PARÁMETROS:
+--   p_id_usuario → ID del profesor a remover
+--   p_id_curso   → ID del curso del que se quiere remover al profesor
+-- RETORNO: No retorna datos (void)
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION remover_profesor_de_curso(
+    p_id_usuario INT,
+    p_id_curso INT
+)
+RETURNS VOID AS $$
+BEGIN
+    DELETE FROM Tb_profesor_curso
+    WHERE id_usuario = p_id_usuario
+      AND id_curso = p_id_curso;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: reporte_notas_estudiante
+-- USO: SELECT * FROM reporte_notas_estudiante(1);
+-- DESCRIPCIÓN: Muestra todas las calificaciones de un estudiante específico.
+-- PARÁMETROS:
+--   p_id_usuario → ID del estudiante
+-- RETORNO:
+--   id_evaluacion, titulo_evalacion, nombre_competencia, nota, id_profeso
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION reporte_notas_estudiante(
+    p_id_usuario INT
+)
+RETURNS TABLE(
+    id_evaluacion INT,
+    titulo_evaluacion VARCHAR,
+    nombre_competencia VARCHAR,
+    nota calificacion,
+    id_profesor INT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        c.id_evaluacion,
+        c.titulo,
+        comp.nombre,
+        cal.nota,
+        cal.id_profesor
+    FROM Tb_calificacion cal
+    JOIN Tb_evaluacion c ON cal.id_evaluacion = c.id_evaluacion
+    JOIN Tb_competencia comp ON cal.id_competencia = comp.id_competencia
+    WHERE cal.id_usuario = p_id_usuario;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- =======================================================================================
+-- FUNCIÓN: reporte_notas_por_curso
+-- USO: SELECT * FROM reporte_notas_por_curso(1);
+-- DESCRIPCIÓN: Muestra las calificaciones de todos los estudiantes de un curso.
+-- PARÁMETROS:
+--   p_id_curso → ID del curso
+-- RETORNO:
+--   id_usuario, nombre_estudiante, apellido_estudiante, id_evaluacion, titulo_evaluacion, nota
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION reporte_notas_por_curso(
+    p_id_curso INT
+)
+RETURNS TABLE(
+    id_usuario INT,
+    nombre_estudiante VARCHAR,
+    apellido_estudiante VARCHAR,
+    id_evaluacion INT,
+    titulo_evaluacion VARCHAR,
+    nota calificacion
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        u.id_usuario,
+        dp.nombre,
+        dp.apellido,
+        cal.id_evaluacion,
+        e.titulo,
+        cal.nota
+    FROM Tb_estudiante_curso ec
+    JOIN Tb_usuario u ON ec.id_usuario = u.id_usuario
+    JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
+    LEFT JOIN Tb_calificacion cal ON cal.id_usuario = u.id_usuario
+    LEFT JOIN Tb_evaluacion e ON cal.id_evaluacion = e.id_evaluacion
+    WHERE ec.id_curso = p_id_curso;
+END;
+$$ LANGUAGE plpgsql;-- =======================================================================================
+-- FUNCIÓN: reporte_notas_por_curso
+-- USO: SELECT * FROM reporte_notas_por_curso(1);
+-- DESCRIPCIÓN: Muestra las calificaciones de todos los estudiantes de un curso.
+-- PARÁMETROS:
+--   p_id_curso → ID del curso
+-- RETORNO:
+--   id_usuario, nombre_estudiante, apellido_estudiante, id_evaluacion, titulo_evaluacion, nota
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION reporte_notas_por_curso(
+    p_id_curso INT
+)
+RETURNS TABLE(
+    id_usuario INT,
+    nombre_estudiante VARCHAR,
+    apellido_estudiante VARCHAR,
+    id_evaluacion INT,
+    titulo_evaluacion VARCHAR,
+    nota calificacion
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        u.id_usuario,
+        dp.nombre,
+        dp.apellido,
+        cal.id_evaluacion,
+        e.titulo,
+        cal.nota
+    FROM Tb_estudiante_curso ec
+    JOIN Tb_usuario u ON ec.id_usuario = u.id_usuario
+    JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
+    LEFT JOIN Tb_calificacion cal ON cal.id_usuario = u.id_usuario
+    LEFT JOIN Tb_evaluacion e ON cal.id_evaluacion = e.id_evaluacion
+    WHERE ec.id_curso = p_id_curso;
+END;
+$$ LANGUAGE plpgsql;
+
+
