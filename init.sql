@@ -121,6 +121,7 @@ CREATE TABLE Tb_asistencia (
     estado estado_asistencia NOT NULL,
     observaciones TEXT,
     id_estudiante_curso INT NOT NULL,
+    id_profesor INT NOT NULL,
     UNIQUE(fecha, id_estudiante_curso),
     FOREIGN KEY (id_estudiante_curso) REFERENCES Tb_estudiante_curso(id_estudiante_curso)
 );
@@ -287,6 +288,8 @@ CREATE TABLE Tb_actividad (
 -- ============================================================
 CREATE TABLE Tb_entrega_actividad (
     id_entrega SERIAL PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    descripcion TEXT,
     fecha_entrega TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ruta_archivo VARCHAR(500) NOT NULL,  -- archivo entregado por el estudiante
     calificacion calificacion ,
@@ -374,6 +377,108 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- ============================================================
+-- funcion para traer datos de emergencia de un usuario : SELECT obtener_contactos_emergencia(1);
+-- retorna id_contacto_emergencia, nombre, apellido, telefono, parentesco, direccion, correo, observaciones, id_usuario
+-- ============================================================
+CREATE OR REPLACE FUNCTION obtener_contactos_emergencia(p_id_usuario INT)
+RETURNS TABLE (
+    id_contacto_emergencia INT,
+    nombre VARCHAR,
+    apellido VARCHAR,
+    telefono VARCHAR,
+    parentesco VARCHAR,
+    direccion VARCHAR,
+    correo VARCHAR,
+    observaciones TEXT,
+    id_usuario INT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        ce.id_contacto_emergencia,
+        ce.nombre,
+        ce.apellido,
+        ce.telefono,
+        ce.parentesco,
+        ce.direccion,
+        ce.correo,
+        ce.observaciones,
+        ce.id_usuario
+    FROM Tb_contacto_emergencia ce
+    WHERE ce.id_usuario = p_id_usuario;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- ============================================================
+-- función: obtener_notificaciones_usuario
+-- descripción: retorna todas las notificaciones de un usuario ordenadas por fecha
+-- uso: SELECT * FROM obtener_notificaciones_usuario(5);
+-- retorna: id_notificacion, tipo, titulo, fecha_envio, mensaje, leida, id_usuario
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION obtener_notificaciones_usuario(p_id_usuario INT)
+RETURNS TABLE (
+    id_notificacion INT,
+    tipo VARCHAR,
+    titulo VARCHAR,
+    fecha_envio DATE,
+    mensaje TEXT,
+    leida BOOLEAN,
+    id_usuario INT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        n.id_notificacion,
+        n.tipo,
+        n.titulo,
+        n.fecha_envio,
+        n.mensaje,
+        n.leida,
+        n.id_usuario
+    FROM Tb_notificaciones n
+    WHERE n.id_usuario = p_id_usuario
+    ORDER BY n.fecha_envio DESC;
+END;
+$$ LANGUAGE plpgsql;
+
+-- ============================================================
+-- función: obtener_log_actividades_paginado
+-- descripción: retorna las actividades registradas en el log de forma paginada
+-- uso: SELECT * FROM obtener_log_actividades_paginado(1, 15);
+--       --> página 1, 15 registros por página
+-- retorna: id_log, actividad, fecha, id_usuario
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION obtener_log_actividades_paginado(
+    p_pagina INT DEFAULT 1,        -- número de página (1, 2, 3, ...)
+    p_tamano_pagina INT DEFAULT 15 -- cantidad de registros por página
+)
+RETURNS TABLE (
+    id_log INT,
+    actividad VARCHAR,
+    fecha TIMESTAMP,
+    id_usuario INT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        l.id_log,
+        l.actividad,
+        l.fecha,
+        l.id_usuario
+    FROM Tb_log_actividades l
+    ORDER BY l.fecha DESC
+    LIMIT p_tamano_pagina
+    OFFSET (p_pagina - 1) * p_tamano_pagina;
+END;
+$$ LANGUAGE plpgsql;
 
 <<<<<<< HEAD
 =======
