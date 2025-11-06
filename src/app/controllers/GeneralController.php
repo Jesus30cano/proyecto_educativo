@@ -150,6 +150,12 @@ class GeneralController extends Controller
         try {
             $generalModel = $this->model('General');
             $notificaciones = $generalModel->mostar_notificaciones($id_usuario);
+            if (!$notificaciones) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'No hay notificaciones.'
+                ], 404);
+            }
 
             return $this->jsonResponse([
                 'status' => 'success',
@@ -191,6 +197,12 @@ class GeneralController extends Controller
         try {
             $generalModel = $this->model('General');
             $log = $generalModel->mostrar_log_general($pagina,$cantidad);
+            if (!$log) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'No hay entradas en el log.'
+                ], 404);
+            }
 
             return $this->jsonResponse([
                 'status' => 'success',
