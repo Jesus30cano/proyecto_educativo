@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../models/admin/AdminModel.php";
+
 
 class DashboardController extends Controller
 {
@@ -15,7 +15,8 @@ class DashboardController extends Controller
             exit;
         }
 
-        $this->adminModel = new AdminModel();
+        
+
     }
 
     private function jsonResponse($data, $statusCode = 200)
@@ -53,8 +54,8 @@ class DashboardController extends Controller
 
         try {
             $password_hashed = password_hash($input['password'], PASSWORD_DEFAULT);
-
-            $this->adminModel->adminRegistrarUsuario(
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->registrarUsuario(
                 $input['email'],
                 $input['tipo_documento'],
                 $input['no_documento'],
@@ -79,7 +80,9 @@ class DashboardController extends Controller
         }
 
         try {
-            $usuarios = $this->adminModel->listarUsuariosPorIdRol((int)$input['id_rol']);
+            $adminModel = $this->model('admin/AdminModel');
+            
+            $usuarios = $adminModel->listarUsuariosPorIdRol((int)$input['id_rol']);
             $this->jsonResponse(['usuarios' => $usuarios]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al listar usuarios: ' . $e->getMessage()], 500);
@@ -97,7 +100,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $this->adminModel->desactivarUsuario((int)$input['id_usuario']);
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->desactivarUsuario((int)$input['id_usuario']);
             $this->jsonResponse(['mensaje' => 'Usuario desactivado correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al desactivar usuario: ' . $e->getMessage()], 500);
@@ -121,8 +125,8 @@ class DashboardController extends Controller
 
         try {
             $password_hashed = password_hash($input['password'], PASSWORD_DEFAULT);
-
-            $this->adminModel->actualizarUsuario(
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->actualizarUsuario(
                 (int)$input['id_usuario'],
                 $input['email'],
                 $password_hashed,
@@ -146,7 +150,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $this->adminModel->activarUsuario((int)$input['id_usuario']);
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->activarUsuario((int)$input['id_usuario']);
             $this->jsonResponse(['mensaje' => 'Usuario activado correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al activar usuario: ' . $e->getMessage()], 500);
@@ -168,7 +173,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $this->adminModel->crearCurso(
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->crearCurso(
                 $input['ficha'],
                 $input['nombre_curso'],
                 (int)$input['id_profesor_lider']
@@ -197,9 +203,10 @@ class DashboardController extends Controller
         }
 
         try {
+            $adminModel = $this->model('admin/AdminModel');
             $ficha_activa = filter_var($input['ficha_activa'], FILTER_VALIDATE_BOOLEAN);
 
-            $this->adminModel->editarCurso(
+            $adminModel->editarCurso(
                 (int)$input['id_curso'],
                 $input['ficha'],
                 $input['nombre_curso'],
@@ -224,7 +231,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $this->adminModel->asignarEstudianteACurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->asignarEstudianteACurso((int)$input['id_usuario'], (int)$input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Estudiante asignado al curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al asignar estudiante al curso: ' . $e->getMessage()], 500);
@@ -242,7 +250,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $this->adminModel->removerEstudianteDeCurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->removerEstudianteDeCurso((int)$input['id_usuario'], (int)$input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Estudiante removido del curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al remover estudiante del curso: ' . $e->getMessage()], 500);
@@ -260,7 +269,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $this->adminModel->asignarProfesorACurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->asignarProfesorACurso((int)$input['id_usuario'], (int)$input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Profesor asignado al curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al asignar profesor al curso: ' . $e->getMessage()], 500);
@@ -278,7 +288,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $this->adminModel->removerProfesorDeCurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->removerProfesorDeCurso((int)$input['id_usuario'], (int)$input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Profesor removido del curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al remover profesor del curso: ' . $e->getMessage()], 500);
@@ -296,7 +307,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $notas = $this->adminModel->reporteNotasEstudiante((int)$input['id_usuario']);
+            $adminModel = $this->model('admin/AdminModel');
+            $notas = $adminModel->reporteNotasEstudiante((int)$input['id_usuario']);
             $this->jsonResponse(['notas' => $notas]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al obtener el reporte de notas: ' . $e->getMessage()], 500);
@@ -314,7 +326,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $notas = $this->adminModel->reporteNotasPorCurso((int)$input['id_curso']);
+            $adminModel = $this->model('admin/AdminModel');
+            $notas = $adminModel->reporteNotasPorCurso((int)$input['id_curso']);
             $this->jsonResponse(['notas' => $notas]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al obtener el reporte de notas por curso: ' . $e->getMessage()], 500);
@@ -333,14 +346,13 @@ class DashboardController extends Controller
 
         try {
             $id_rol = isset($input['id_rol']) && is_numeric($input['id_rol']) ? (int)$input['id_rol'] : null;
-
-            $resultado = $this->adminModel->enviarNotificacionGeneral(
+            $adminModel = $this->model('admin/AdminModel');
+            $resultado = $adminModel->enviarNotificacionGeneral(
                 $input['tipo'],
                 $input['titulo'],
                 $input['mensaje'],
                 $id_rol
             );
-
             $this->jsonResponse(['mensaje' => $resultado]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al enviar notificación: ' . $e->getMessage()], 500);
@@ -363,7 +375,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $resultado = $this->adminModel->enviarNotificacionAUsuario(
+            $adminModel = $this->model('admin/AdminModel');
+            $resultado = $adminModel->enviarNotificacionAUsuario(
                 (int)$input['id_usuario'],
                 $input['tipo'],
                 $input['titulo'],
@@ -387,7 +400,8 @@ class DashboardController extends Controller
         }
 
         try {
-            $boletin = $this->adminModel->obtenerBoletinEstudiante((int)$input['id_usuario']);
+            $adminModel = $this->model('admin/AdminModel');
+            $boletin = $adminModel->obtenerBoletinEstudiante((int)$input['id_usuario']);
             $this->jsonResponse(['boletin' => $boletin]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al obtener el boletín del estudiante: ' . $e->getMessage()], 500);
