@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../models/AdminModel.php";
+require_once __DIR__ . "/../../models/admin/AdminModel.php";
 
 class DashboardController extends Controller
 {

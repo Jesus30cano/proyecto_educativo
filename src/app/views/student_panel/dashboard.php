@@ -14,13 +14,12 @@
     <title>Estudiante</title>
   </head>
   <body>
-    <!-- offcanvas -->
+    <!-- Navbar -->
       <?php include __DIR__ . '/../components/student/navbar.php'; ?>
-    <!-- offcanvas -->
 
-    <!-- top navigation bar -->
+
+    <!-- Sidebar -->
       <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
-    <!-- top navigation bar -->
 
     <main class="mt-5 pt-3">
       <div class="container-fluid">
@@ -104,6 +103,5 @@
     <script src="./../../public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
     <script src="./../../public/js/boostrap_dashboard/script.js"></script>
     <script src="./../../public/js/boostrap_dashboard/student/script.calendar.js"></script>
-
   </body>
 </html>

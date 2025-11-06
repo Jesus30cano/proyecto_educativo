@@ -29,15 +29,8 @@
           <!-- Aqui el perfil del estudiante, menu para cerrar sesion o configuracion -->
           <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser">
             <li>
-              <div class="dropdown-header text-center pb-2 border-bottom">
-                <p class="mb-0 fw-bold text-dark">Juan Perez</p> <!-- nombre u otra cosa si desean -->
-                <p class="mb-0 text-muted small">estudiante@escuela.com</p> <!-- correo -->
-              </div>
-            </li>
-
-            <li>
               <a class="dropdown-item text-center mt-2 btn btn-sm btn-outline-primary" href="perfil.php">
-                Configurar perfil
+                perfil
               </a>
             </li>
 
@@ -47,6 +40,7 @@
               </a>
             </li>
           </ul>
+          
         </li>
       </ul>
     </div>
