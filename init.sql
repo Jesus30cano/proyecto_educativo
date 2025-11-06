@@ -1274,3 +1274,96 @@ BEGIN
     WHERE u.id_usuario = p_id_usuario;
 END;
 $$ LANGUAGE plpgsql;
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_asistencias_por_curso_profesor
+-- USO:
+--   SELECT * FROM obtener_asistencias_por_curso_profesor('2933470', 4);
+-- DESCRIPCIÓN:
+--   Retorna las asistencias registradas para un curso específico y un profesor.
+-- PARÁMETROS:
+--   p_ficha        → Ficha del curso
+--   p_id_profesor  → ID del profesor
+-- RETORNO:
+--   Datos de asistencia, estudiante y curso
+
+
+CREATE OR REPLACE FUNCTION obtener_asistencias_por_curso_profesor(
+    p_ficha VARCHAR,
+    p_id_profesor INT
+)
+RETURNS TABLE (
+    id_asistencia INT,
+    fecha DATE,
+    estado estado_asistencia,
+    observaciones TEXT,
+    id_estudiante_curso INT,
+    id_usuario_estudiante INT,
+    nombre_estudiante VARCHAR,
+    apellido_estudiante VARCHAR,
+    id_curso INT,
+    nombre_curso VARCHAR,
+    ficha VARCHAR,
+    id_profesor INT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        a.id_asistencia,
+        a.fecha,
+        a.estado,
+        a.observaciones,
+        ec.id_estudiante_curso,
+        u.id_usuario AS id_usuario_estudiante,
+        u.nombre AS nombre_estudiante,
+        u.apellido AS apellido_estudiante,
+        c.id_curso,
+        c.nombre_curso,
+        c.ficha,
+        a.id_profesor
+    FROM Tb_asistencia a
+    INNER JOIN Tb_estudiante_curso ec ON a.id_estudiante_curso = ec.id_estudiante_curso
+    INNER JOIN Tb_usuario u ON ec.id_usuario = u.id_usuario
+    INNER JOIN Tb_curso c ON ec.id_curso = c.id_curso
+    INNER JOIN Tb_profesor_curso pc ON c.id_curso = pc.id_curso
+    WHERE c.ficha = p_ficha
+      AND pc.id_usuario = p_id_profesor
+    ORDER BY a.fecha DESC;
+END;
+$$ LANGUAGE plpgsql;
+--- =======================================================================================
+-- PROCEDIMIENTO: sp_crear_asistencia_estudiante
+-- USO:
+--   CALL sp_crear_asistencia_estudiante(
+--       '2025-11-01',
+--       'presente',
+--       'Asistencia puntual',
+--       1,  -- id_estudiante_curso
+--       4   -- id_profesor
+--   );
+-- DESCRIPCIÓN:
+--   Inserta un nuevo registro de asistencia para un estudiante en Tb_asistencia.
+-- PARÁMETROS:
+--   p_fecha               → fecha de la asistencia
+--   p_estado              → estado de la asistencia (presente, ausente, tarde)
+--   p_observaciones       → observaciones adicionales
+--   p_id_estudiante_curso → ID de la relación estudiante-curso
+--   p_id_profesor         → ID del profesor que registra la asistencia
+-- RETORNO: No retorna datos (procedimiento)
+-- =======================================================================================
+CREATE OR REPLACE PROCEDURE sp_crear_asistencia_estudiante(
+    p_fecha DATE,
+    p_estado estado_asistencia,
+    p_observaciones TEXT,
+    p_id_estudiante_curso INT,
+    p_id_profesor INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Tb_asistencia (fecha, estado, observaciones, id_estudiante_curso, id_profesor)
+    VALUES (p_fecha, p_estado, p_observaciones, p_id_estudiante_curso, p_id_profesor);
+
+    RAISE NOTICE '✅ Asistencia creada para estudiante % en fecha %', p_id_estudiante_curso, p_fecha;
+END;
+$$;
