@@ -8,12 +8,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        session_start();
-
-        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 1) {
-            header('Location: /auth/login');
-            exit;
-        }
+        
 
         
 
@@ -40,33 +35,64 @@ class DashboardController extends Controller
 
     public function registrarUsuario()
     {
-        $input = json_decode(file_get_contents("php://input"), true);
+       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        if (
-            !isset($input['email']) ||
-            !isset($input['tipo_documento']) ||
-            !isset($input['no_documento']) ||
-            !isset($input['password']) ||
-            !isset($input['id_rol'])
-        ) {
-            $this->jsonResponse(['error' => 'Faltan datos requeridos.'], 400);
+        // Obtener y sanitizar datos de entrada
+        $email = htmlspecialchars(trim($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $tipo_documento = htmlspecialchars(trim($_POST['tipo_documento'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $no_documento = htmlspecialchars(trim($_POST['no_documento'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $password = trim($_POST['password'] ?? ''); 
+        $id_rol = isset($_POST['id_rol']) ? (int)$_POST['id_rol'] : null;
+        // Validaciones básicas
+        $errors = [];
+        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "El email es inválido.";
+        }
+        if (empty($tipo_documento)) {
+            $errors[] = "El tipo de documento es obligatorio.";
+        }
+        if (empty($no_documento)) {
+            $errors[] = "El número de documento es obligatorio.";
+        }
+        if (empty($password) || strlen($password) < 6) {
+            $errors[] = "La contraseña debe tener al menos 6 caracteres.";
+        }
+        if (empty($id_rol) || !is_numeric($id_rol)) {
+            $errors[] = "El rol es inválido.";
+        }
+        if (!empty($errors)) {
+            return $this->jsonResponse([
+                'status' => 'error',
+                'errors' => $errors
+            ], 400);
         }
 
         try {
-            $password_hashed = password_hash($input['password'], PASSWORD_DEFAULT);
-            $adminModel = $this->model('admin/AdminModel');
-            $adminModel->registrarUsuario(
-                $input['email'],
-                $input['tipo_documento'],
-                $input['no_documento'],
-                $password_hashed,
-                (int)$input['id_rol']
-            );
+            // Hashear la contraseña
+            $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
-            $this->jsonResponse(['mensaje' => 'Usuario registrado correctamente.']);
+            // Llamar al modelo para registrar el usuario
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->adminRegistrarUsuario($email, $tipo_documento, $no_documento, $password_hashed, $id_rol);
+
+            return $this->jsonResponse([
+                'status' => 'success',
+                'message' => 'Usuario registrado exitosamente.'
+            ]);
         } catch (PDOException $e) {
-            $this->jsonResponse(['error' => 'Error al registrar usuario: ' . $e->getMessage()], 500);
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'Error al registrar el usuario: ' . $e->getMessage()
+            ], 500);
         }
+
+
+       }else {
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+       }
     }
 
     //-----------------------------------------------------------------------------------------------
