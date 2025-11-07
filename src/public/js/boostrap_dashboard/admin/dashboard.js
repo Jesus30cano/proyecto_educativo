@@ -97,3 +97,4 @@ function actualizarTabla(data) {
     console.log("🔄 DataTable actualizado con:", data);
   }
 }
+
