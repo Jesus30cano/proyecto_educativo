@@ -87,6 +87,13 @@ CREATE TABLE Tb_estudiante_curso (
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
     FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
 );
+--prueba de datos curso y estudiante_curso
+
+INSERT INTO Tb_curso (ficha, nombre_curso, id_profesor_lider, ficha_activa)
+VALUES ('F12345', 'ADSO', 2, TRUE);
+-- Si el curso tiene id=1
+INSERT INTO Tb_estudiante_curso (id_usuario, id_curso)
+VALUES (3, 1);
 CREATE TABLE Tb_profesor_curso (
     id_profesor_curso SERIAL PRIMARY KEY,
     id_usuario INT NOT NULL,
@@ -1433,3 +1440,85 @@ BEGIN
     RAISE NOTICE '✅ Asistencia creada para estudiante % en fecha %', p_id_estudiante_curso, p_fecha;
 END;
 $$;
+-- ============================================================
+-- FUNCIÓN: obtener_totales_activos
+-- USO:
+--     SELECT * FROM obtener_totales_activos();
+--
+-- DESCRIPCIÓN:
+--     Retorna las cantidades totales de usuarios activos según su rol
+--     (estudiantes y profesores), así como el total de cursos activos
+--     registrados en el sistema.
+--
+-- PARÁMETROS:
+--     Ninguno.
+--
+-- CAMPOS RETORNADOS:
+--     total_estudiantes     → Número total de usuarios con rol 'estudiante' y estado activo.
+--     total_profesores      → Número total de usuarios con rol 'profesor' y estado activo.
+--     total_cursos_activos  → Número total de cursos con ficha activa.
+--
+-- NOTAS:
+--     - Solo se contabilizan los usuarios cuyo campo "activo" sea TRUE.
+--     - Solo se contabilizan los cursos cuyo campo "ficha_activa" sea TRUE.
+-- ============================================================
+
+CREATE OR REPLACE FUNCTION obtener_totales_activos()
+RETURNS TABLE (
+    total_estudiantes bigint,
+    total_profesores bigint,
+    total_cursos_activos bigint
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        COUNT(*) FILTER (WHERE r.nombre_rol = 'estudiante' AND u.activo = TRUE) AS total_estudiantes,
+        COUNT(*) FILTER (WHERE r.nombre_rol = 'profesor' AND u.activo = TRUE) AS total_profesores,
+        (SELECT COUNT(*) FROM Tb_curso WHERE ficha_activa = TRUE) AS total_cursos_activos
+    FROM Tb_usuario u
+    INNER JOIN Tb_rol r ON u.id_rol = r.id_rol;
+END;
+$$ LANGUAGE plpgsql;
+-- ============================================================
+-- FUNCIÓN: obtener_info_cursos
+-- USO:
+--     SELECT * FROM obtener_info_cursos();
+--
+-- DESCRIPCIÓN:
+--     Retorna información detallada de todos los cursos,
+--     incluyendo el nombre del curso, la ficha, el nombre del profesor líder
+--     y la cantidad de estudiantes inscritos en cada curso.
+-- PARÁMETROS:
+--     Ninguno.
+-- CAMPOS RETORNADOS:
+--     id_curso            → ID del curso.
+--     nombre_curso       → Nombre del curso.
+--     ficha              → Ficha del curso.
+--     nombre_profesor     → Nombre del profesor líder.
+--     cantidad_estudiantes → Cantidad de estudiantes inscritos en el curso.
+
+CREATE OR REPLACE FUNCTION obtener_info_cursos()
+RETURNS TABLE (
+    id_curso INT,
+    nombre_curso VARCHAR,
+    ficha VARCHAR,
+    nombre_profesor VARCHAR,
+    cantidad_estudiantes bigint
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        c.id_curso,
+        c.nombre_curso,
+        c.ficha,
+        dp.nombre AS nombre_profesor,
+        COUNT(ec.id_usuario) AS cantidad_estudiantes
+    FROM Tb_curso c
+    INNER JOIN Tb_usuario u ON c.id_profesor_lider = u.id_usuario
+    INNER JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
+    LEFT JOIN Tb_estudiante_curso ec ON c.id_curso = ec.id_curso
+    GROUP BY c.id_curso, c.nombre_curso, c.ficha, dp.nombre;
+END;
+$$ LANGUAGE plpgsql;

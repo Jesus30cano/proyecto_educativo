@@ -501,6 +501,7 @@ class DashboardController extends Controller
     //prueba para la dashboard
     public function data()
     {
+        
         // Ejemplo de datos (luego los reemplazas con consultas a tus modelos)
         $response = [
             "status" => "success",
@@ -523,4 +524,43 @@ class DashboardController extends Controller
         exit;
     }
 
+    public function obtenerTotalesActivos()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            
+        
+        try {
+            $adminModel = $this->model('admin/AdminModel');
+            $totalActivos = $adminModel->obtener_total_activo();
+            $this->jsonResponse(["status" => "success", "data" => $totalActivos]);
+        } catch (PDOException $e) {
+            $this->jsonResponse(['error' => 'Error al obtener totales activos: ' . $e->getMessage()], 500);
+        }
+    }else {
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
+
+}
+public function obtenerTotalesCursos()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            
+        
+        try {
+            $adminModel = $this->model('admin/AdminModel');
+            $totalCursos = $adminModel->obtener_total_cursos();
+            $this->jsonResponse(["status" => "success", "data" => $totalCursos]);
+        } catch (PDOException $e) {
+            $this->jsonResponse(['error' => 'Error al obtener totales de cursos: ' . $e->getMessage()], 500);
+        }
+    }else {
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
+}
 }

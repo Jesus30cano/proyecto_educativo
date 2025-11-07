@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  cargarDatosDashboard();
+  cargarDatosDashboardCard();
+  cargarDatosDashboardTabla();
 });
 
 // Función para cargar datos desde el backend
-async function cargarDatosDashboard() {
+async function cargarDatosDashboardCard() {
   try {
-    const response = await fetch("/admin/dashboard/data"); // Asegúrate de que esta ruta coincida con la del backend
+    const response = await fetch("/admin/dashboard/obtenerTotalesActivos"); // Asegúrate de que esta ruta coincida con la del backend
 
     // Validar que la respuesta sea JSON(hay que revisar si funciona bien esto, no lo entendi muy bien)
     const contentType = response.headers.get("content-type");
@@ -22,50 +23,64 @@ async function cargarDatosDashboard() {
 
     if (data.status !== "success") {
       console.error(
-        "⚠️ Error en el backend:",
-        data.message || "Respuesta no exitosa"
+        "❌ Error en la respuesta del servidor:", data.message 
       );
       return;
     }
-
+    
     actualizarContadores(data.data);
-    actualizarTabla(data.data.cursos || []);
+    
   } catch (error) {
     console.error("❌ Error cargando dashboard:", error);
+  }
+}
+async function cargarDatosDashboardTabla() {
+  try {
+    const response = await fetch("/admin/dashboard/obtenerTotalesCursos"); // Asegúrate de que esta ruta coincida con la del backend
+    const data = await response.json();
+    if (data.status !== "success") {
+      console.error(
+        "❌ Error en la respuesta del servidor:", data.message 
+      );
+      return;
+    }
+    console.log("✅ Datos del dashboard cargados:", data.data);
+    actualizarTabla(data.data || []);
+  } catch (error) {
+    console.error("❌ Error cargando dashboard tabla:", error);
   }
 }
 
 // 🔹 Actualiza los cards (contador)
 function actualizarContadores(info) {
   document.getElementById("totalEstudiantes").textContent =
-    info.totalEstudiantes;
-  document.getElementById("totalProfesores").textContent = info.totalProfesores;
-  document.getElementById("totalCursos").textContent = info.totalCursos;
+    info.total_estudiantes;
+  document.getElementById("totalProfesores").textContent = info.total_profesores;
+  
+  document.getElementById("totalCursos").textContent = info.total_cursos_activos;
 }
 
-// 🔹 Inicializamos DataTable una sola vez
 let tablaInicializada = false;
 
-function actualizarTabla(lista) {
+function actualizarTabla(data) {
   if (!tablaInicializada) {
-    $("#example").DataTable({ //el nombre example es el id de la tabla, hay que cambiarlo por otro mas adecuado
-      data: lista,
+    $("#example").DataTable({
+      data: data,
       columns: [
-        { data: "curso" },
-        { data: "nombre" }, // ✅ CORREGIDO (antes nombreCurso)
+        { data: "id_curso" },
+        { data: "nombre_curso" },
         { data: "ficha" },
-        { data: "profesor" },
-        { data: "lider" },
-        { data: "estudiantes" }
+        { data: "nombre_profesor" },
+        { data: "nombre_profesor" },
+        { data: "cantidad_estudiantes" }
       ],
-      destroy: true // permite recargar en caso de cambios
+      destroy: true
     });
-
     tablaInicializada = true;
   } else {
     let table = $("#example").DataTable();
     table.clear();
-    table.rows.add(lista);
+    table.rows.add(data);
     table.draw();
   }
 }
