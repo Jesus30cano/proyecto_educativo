@@ -130,6 +130,8 @@ class AuthController extends Controller
 
     public function restablecer_contrasena()
     {
+
+        $correo = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $correo = htmlspecialchars(trim($_POST['correo'] ?? ''), ENT_QUOTES, 'UTF-8');
 
