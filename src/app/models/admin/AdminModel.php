@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../../core/Database.php";
+require_once __DIR__ . "/../../../core/Database.php";
 
 class AdminModel {
     private $conn;
@@ -235,6 +235,19 @@ public function crear_datos_personales($id_usuario, $nombre, $apellido, $fecha_n
     $stmt->execute();
 }
 
+public function obtener_total_activo() {
+    $sql = "SELECT * FROM obtener_totales_activos()";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function obtener_total_cursos() {
+    $sql = "SELECT * FROM obtener_total_cursos()";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 
 

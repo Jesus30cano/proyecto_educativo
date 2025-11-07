@@ -63,6 +63,17 @@ function actualizarContadores(info) {
 let tablaInicializada = false;
 
 function actualizarTabla(data) {
+  // Convierte data en array si es un solo objeto
+  if (!Array.isArray(data)) {
+    console.warn("⚠️ 'data' no es un array. Empaquetando en array:", data);
+    data = [data];
+  }
+
+  // Opcional: advertencia si el array está vacío
+  if (data.length === 0) {
+    console.warn("⚠️ El array de datos está vacío.");
+  }
+
   if (!tablaInicializada) {
     $("#example").DataTable({
       data: data,
@@ -71,16 +82,18 @@ function actualizarTabla(data) {
         { data: "nombre_curso" },
         { data: "ficha" },
         { data: "nombre_profesor" },
-        { data: "nombre_profesor" },
+        { data: "nombre_profesor" }, // Si quieres la columna 'Lider' igual que 'nombre_profesor'
         { data: "cantidad_estudiantes" }
       ],
       destroy: true
     });
     tablaInicializada = true;
+    console.log("✅ DataTable inicializado con:", data);
   } else {
     let table = $("#example").DataTable();
     table.clear();
     table.rows.add(data);
     table.draw();
+    console.log("🔄 DataTable actualizado con:", data);
   }
 }
