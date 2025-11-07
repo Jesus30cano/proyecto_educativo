@@ -8,10 +8,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        
-
-        
-
+        session_start();
     }
 
     private function jsonResponse($data, $statusCode = 200)
