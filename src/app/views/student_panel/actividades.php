@@ -5,166 +5,180 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/style.css" />
-    <title>Estudiante</title>
+    <title>Actividades</title>
 </head>
 
 <body>
     <!-- offcanvas -->
-      <?php include __DIR__ . '/../components/student/navbar.php'; ?>
+    <?php include __DIR__ . '/../components/student/navbar.php'; ?>
     <!-- offcanvas -->
 
     <!-- top navigation bar -->
-      <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
+    <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
     <!-- top navigation bar -->
 
 
     <main class="mt-5 pt-3">
         <div class="container-fluid">
 
-        <!-- Bienvenida al estudiante -->
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                <div class="card bg-primary text-white">
-                    <div class="card-body">
-                        <h3 class="mb-2"><i class="bi bi-emoji-smile me-2"></i>¡Bienvenido de nuevo, Estudiante!</h3>
-                        <p class="mb-0">Esta es la session de actividades. actividades creadas por profesores son mostradas aqui</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-            <!-- Titulo -->
+            <!-- Bienvenida al estudiante -->
             <div class="row">
-                <div class="col-md-12">
-                    <h4><i class="bi bi-list-task me-2"></i> Mis Actividades Asignadas</h4>
+                <div class="col-md-12 mb-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h3 class="mb-2"><i class="bi me-2"></i>Session de Actividades</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Columna principal de actividades -->
+                <div class="col-lg-9">
+                    <!-- Filtro de competencias -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0"><i class="bi bi-funnel me-2"></i>Filtrar Actividades</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row align-items-end">
+                                <div class="col-md-8 mb-3 mb-md-0">
+                                    <label for="selectCompetencia" class="form-label fw-bold">Selecciona una
+                                        competencia:</label>
+                                    <select class="form-select" id="selectCompetencia">
+                                        <!-- Filtrp de las competencias -->
+                                        <option value="todas" selected>Todas las Competencias</option>
+                                        <!-- Las opciones -->
+                                        <option value="desarrollo-software">Desarrollo de Software Seguro</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary w-100">
+                                        <i class="bi bi-search me-2"></i>Buscar
+                                    </button> <!-- El boton para las busquedas de las actividades segun el filtro -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Título de sección -->
+                    <h4 class="mb-3"><i class="bi bi-list-task me-2"></i>Mis Actividades Asignadas</h4>
                     <hr>
-                </div>
-            </div>
 
-            <div class="card mb-4 shadow-sm border-warning">
-                <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">
-                        Diseño de Diagramas UML (Patrones de Diseño) <!-- titulo de la actividad-->
-                    </h5>
-                    <span class="badge bg-light text-dark fs-6">
-                        <i class="bi bi-exclamation-diamond me-1"></i> <!-- estado de actividad -->
-                        PENDIENTE
-                    </span>
-                </div>
-
-                <div class="card-body">
+                    <!-- Grid de tarjetas de actividades -->
                     <div class="row">
 
-                        <div class="col-md-8">
-                            <p class="mb-2"><strong>Competencia:</strong> Desarrollo de Software Seguro</p> <!-- competencia -->
-                            <p class="mb-1"><strong>Descripción:</strong> Desarollar un software seguro </p> <!-- descripcion -->
-
-                            <div class="d-flex align-items-center mt-3">
-                                <a href="#" target="_blank" class="btn btn-outline-primary btn-sm me-3"> <!-- documento de intruccion del profesor -->
-                                    <i class="bi bi-file-earmark-arrow-down me-1"></i> Instrucciones (PDF/DOCX)
-                                </a>
+                        <!-- Actividad 1 - cuando es PENDIENTE -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 border-warning shadow-sm">
+                                <div class="card-header bg-warning text-white">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">Diseño de Diagramas UML</h6> <!-- Nombre de la actividad -->
+                                        <span class="badge bg-light text-dark">
+                                            <i class="bi bi-exclamation-circle"></i> Pendiente
+                                        </span> <!-- Estado de la actividad -->
+                                    </div>
                                 </div>
-
-                            <hr class="mt-4">
-
-                            <h6 class="mt-3 text-primary"><i class="bi bi-cloud-upload me-1"></i> Enviar Mi Archivo</h6>
-                            <form action="#" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="id_actividad" value="101">
-
-                                <div class="input-group mb-3">
-                                    <input class="form-control form-control-sm" type="file" name="archivo_entrega"
-                                        required> <!-- subir archivo estudiante -->
-                                    <button class="btn btn-success btn-sm" type="submit">
-                                        <i class="bi bi-upload"></i> Subir <!-- subir entrega del archivo -->
-                                    </button>
+                                <div class="card-body">
+                                    <p class="text-muted mb-2"><small><i class="bi bi-bookmark me-1"></i>Desarrollo de
+                                            Software Seguro</small></p> <!-- Competencias -->
+                                    <p class="card-text small">Desarrollar un software seguro aplicando patrones de
+                                        diseño...</p> <!-- Descripcion de la actividad -->
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="text-danger"><i class="bi bi-calendar-x me-1"></i><small>Vence: 15
+                                                Nov 2025</small></span> <!-- Fecha de la actividad -->
+                                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#modalActividad1">
+                                            <i class="bi bi-eye me-1"></i>Ver Detalles
+                                        </button> <!-- Abre una ventana de los detalles-->
+                                    </div>
                                 </div>
-                            </form>
-
+                            </div>
                         </div>
 
-                        <!-- fecha de entrega -->
-                        <div class="col-md-4 border-start text-center">
-                            <div class="card bg-light p-4">
-                                <p class="mb-0 text-muted fw-bold"><i class="bi bi-calendar-check me-1"></i> FECHA LÍMITE</p>
-                                <h1 class="display-4 fw-bold text-danger mb-0">
-                                    15
-                                </h1>
-                                <p class="lead mb-0 text-dark">
-                                    Noviembre 2025
-                                </p>
-                                <p class="text-muted mt-1 mb-0" style="font-size: 0.9rem;">Día de la semana: Miércoles</p>
+                        <!-- Actividad 2 - cuando es ENTREGADA. Contiene lo mismo que la actividad de arriba, pero, cambiando el modo cuando es entregada -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 border-success shadow-sm">
+                                <!-- border-success cambia el color a verde -->
+                                <div class="card-header bg-success text-white">
+                                    <!-- bg-success cambia el color a verde -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">Informe de Penetración</h6>
+                                        <span class="badge bg-light text-success">
+                                            <i class="bi bi-check-circle"></i> Entregada
+                                        </span> <!-- Estado de la actividad -->
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted mb-2"><small><i class="bi bi-bookmark me-1"></i>Seguridad
+                                            Informática Avanzada</small></p>
+                                    <p class="card-text small">Crear un informe detallado sobre penetración de
+                                        sistemas...</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="text-success"><i class="bi bi-star-fill me-1"></i><small>Nota:
+                                                4.8/5.0</small></span>
+                                        <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#modalActividad2">
+                                            <i class="bi bi-eye me-1"></i>Ver Detalles
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
 
-            <!-- Lo mismo, pero, cuando el trabajo esta enviado -->
-            <div class="card mb-4 shadow-sm border-success">
-                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">
-                        Informe de Penetración de Sistemas
-                    </h5>
-                    <span class="badge bg-light text-success fs-6">
-                        <i class="bi bi-check-circle me-1"></i>
-                        ENTREGADA
-                    </span>
-                </div>
-
-                <div class="card-body">
-                    <div class="row">
-
-                        <div class="col-md-8">
-                            <p class="mb-2"><strong>Competencia:</strong> Seguridad Informática Avanzada</p>
-                            <p class="mb-1"><strong>Descripción:</strong> crear un informe</p>
-
-                            <div class="alert alert-success py-2 d-inline-block">
-                                Calificación Obtenida: <strong>4.8 / 5.0</strong> <!-- nota del estudiante -->
-                            </div>
-
-                            <div class="d-flex align-items-center mt-3">
-                                <a href="#" target="_blank" class="btn btn-outline-primary btn-sm me-3">
-                                    <i class="bi bi-file-earmark-arrow-down me-1"></i> Instrucciones (PDF/DOCX)
-                                </a>
-
-                                <a href="#" class="btn btn-outline-secondary btn-sm">
-                                    <i class="bi bi-eye me-1"></i> Ver mi archivo <!-- ver documento enviado del estudiante -->
-                                </a>
-                            </div>
-
-                            <hr class="mt-4">
-
-                            <p class="mb-1"><strong><Obj>Observaciones</Obj>:</strong>Ni modo</p> <!-- observacion del profesor-->
-                            <p class="text-success mt-3"><i class="bi bi-check-all me-1"></i> ¡Entrega registrada y calificada!</p>
-                            
-
+                <!-- Panel lateral de notificaciones -->
+                <div class="col-lg-3">
+                    <div class="card sticky-top" style="top: 80px;">
+                        <div class="card-header bg-info text-white">
+                            <h6 class="mb-0"><i class="bi bi-bell me-2"></i>Notificaciones</h6>
                         </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
 
-                        <div class="col-md-4 border-start text-center">
-                            <div class="card bg-light p-4">
-                                <p class="mb-0 text-muted fw-bold"><i class="bi bi-calendar-check me-1"></i> FECHA LÍMITE</p>
-                                <h1 class="display-4 fw-bold text-success mb-0">
-                                    28
-                                </h1>
-                                <p class="lead mb-0 text-dark">
-                                    Noviembre 2025
-                                </p>
-                                <p class="text-muted mt-1 mb-0" style="font-size: 0.9rem;">Día de la semana: Jueves</p>
+                                <!-- Notificación 1 -->
+                                <div class="list-group-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-exclamation-triangle text-warning me-2 mt-1"></i>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1 small">Diseño de Diagramas UML</h6>
+                                            <!-- }Nombre de la actividad -->
+                                            <p class="mb-1 small text-muted">Vence pronto</p> <!-- Fecha de acabado -->
+                                            <small class="text-danger"><i class="bi bi-clock"></i> 15 Nov 2025</small>
+                                            <!-- Igual -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Notificación 2 -->
+                                <div class="list-group-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-check-circle text-success me-2 mt-1"></i>
+                                        <!-- bi-check-circle y text-success cambia el icono y el resultado de la nota (si gustan pueden quitar la nota) -->
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1 small">Informe de Penetración</h6>
+                                            <p class="mb-1 small text-muted">Calificada</p>
+                                            <small class="text-success"><i class="bi bi-star-fill"></i> Nota:
+                                                4.8/5.0</small> <!-- Calificacion obtenida -->
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-            <div class="mb-5"></div>
-
         </div>
     </main>
+
+    <!-- Modal de actividades incluidos aqui -->
+    <?php include __DIR__ . '/../components/student/modal.actividades.php'; ?>
 
     <script src="./../../public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
 </body>

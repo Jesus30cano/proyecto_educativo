@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/dataTables.bootstrap5.min.css" />
   <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/style.css" />
-  <title>Dashboard Admin - Institución</title>
+  <title>Gestión de Profesores</title>
 </head>
 <body>
   <!-- Navbar -->
@@ -18,7 +18,17 @@
   <!-- Sidebar -->
   <?php include __DIR__ . '/../components/admin/Sidebar.php'; ?>
 
-  <!-- Contenido dinámico -->
+  <!-- Main Content -->
+  <main class="mt-5 pt-3">
+    <div class="container-fluid">
+      <h4 class="mb-4">PROFESOR</h4>
+
+      <!-- Toolbar con botón Crear Usuario -->
+      <?php include __DIR__ .'/../components/admin/toolbar.php'; ?>
+
+
+    </div>
+  </main>
 
 
   <!-- JavaScript -->
@@ -28,5 +38,6 @@
     <script src="./../../public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
     <script src="./../../public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
     <script src="./../../public/js/boostrap_dashboard/navigation.js"></script>
+    <script src="./../../public/js/boostrap_dashboard/admin/modal.js"></script>
 </body>
 </html>
