@@ -362,6 +362,72 @@ BEGIN
     WHERE u.id_usuario = p_id_usuario;
 END;
 $$;
+
+-- ============================================================
+-- procedimiento actualizar datos personales : CALL actualizar_datos_personales(1,'Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino');
+-- no retorna datos
+-- ============================================================
+CREATE OR REPLACE PROCEDURE actualizar_datos_personales(
+    p_id_usuario INT,
+    p_nombre VARCHAR(100),
+    p_apellido VARCHAR(100),
+    p_fecha_nacimiento DATE,
+    p_telefono VARCHAR(20),
+    p_direccion VARCHAR(100),
+    p_genero VARCHAR(20)
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Tb_datos_personales
+    SET
+        nombre = p_nombre,
+        apellido = p_apellido,
+        fecha_nacimiento = p_fecha_nacimiento,
+        telefono = p_telefono,
+        direccion = p_direccion,
+        genero = p_genero
+    WHERE id_usuario = p_id_usuario;
+END;
+$$;
+-------------------------------------------------------------
+-- ============================================================
+-- procedimiento crear datos personales : CALL crear_datos_personales(1,'Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino');
+-- no retorna datos
+
+-- ============================================================
+ CREATE OR REPLACE PROCEDURE crear_datos_personales(
+    p_id_usuario INT,
+    p_nombre VARCHAR(100),
+    p_apellido VARCHAR(100),
+    p_fecha_nacimiento DATE,
+    p_telefono VARCHAR(20),
+    p_direccion VARCHAR(100),
+    p_genero VARCHAR(20)
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Tb_datos_personales (
+        nombre,
+        apellido,
+        fecha_nacimiento,
+        telefono,
+        direccion,
+        genero,
+        id_usuario
+    ) VALUES (
+        p_nombre,
+        p_apellido,
+        p_fecha_nacimiento,
+        p_telefono,
+        p_direccion,
+        p_genero,
+        p_id_usuario
+    );
+END;
+$$;
+
 -- ============================================================
 -- funcion validar existenci de correo usuario : SELECT verificar_correo_usuario('jsjshs@gmail.com')
 -- retorna BOOLEAN true o false
