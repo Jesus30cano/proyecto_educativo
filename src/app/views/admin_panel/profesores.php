@@ -39,5 +39,6 @@
     <script src="./../../public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
     <script src="./../../public/js/boostrap_dashboard/navigation.js"></script>
     <script src="./../../public/js/boostrap_dashboard/admin/modal.js"></script>
+    
 </body>
 </html>
