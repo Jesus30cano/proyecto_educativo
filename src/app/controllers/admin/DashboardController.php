@@ -20,7 +20,7 @@ class DashboardController extends Controller
     }
 
     public function index()
-    {  
+    {
         if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 1) {
             header('Location: /auth/login');
             exit;
@@ -32,64 +32,64 @@ class DashboardController extends Controller
 
     public function registrarUsuario()
     {
-       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // Obtener y sanitizar datos de entrada
-        $email = htmlspecialchars(trim($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $tipo_documento = htmlspecialchars(trim($_POST['tipo_documento'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $no_documento = htmlspecialchars(trim($_POST['no_documento'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $password = trim($_POST['password'] ?? ''); 
-        $id_rol = isset($_POST['id_rol']) ? (int)$_POST['id_rol'] : null;
-        // Validaciones básicas
-        $errors = [];
-        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "El email es inválido.";
-        }
-        if (empty($tipo_documento)) {
-            $errors[] = "El tipo de documento es obligatorio.";
-        }
-        if (empty($no_documento)) {
-            $errors[] = "El número de documento es obligatorio.";
-        }
-        if (empty($password) || strlen($password) < 6) {
-            $errors[] = "La contraseña debe tener al menos 6 caracteres.";
-        }
-        if (empty($id_rol) || !is_numeric($id_rol)) {
-            $errors[] = "El rol es inválido.";
-        }
-        if (!empty($errors)) {
+            // Obtener y sanitizar datos de entrada
+            $email = htmlspecialchars(trim($_POST['email'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $tipo_documento = htmlspecialchars(trim($_POST['tipo_documento'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $no_documento = htmlspecialchars(trim($_POST['no_documento'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $password = trim($_POST['password'] ?? '');
+            $id_rol = isset($_POST['id_rol']) ? (int) $_POST['id_rol'] : null;
+            // Validaciones básicas
+            $errors = [];
+            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors[] = "El email es inválido.";
+            }
+            if (empty($tipo_documento)) {
+                $errors[] = "El tipo de documento es obligatorio.";
+            }
+            if (empty($no_documento)) {
+                $errors[] = "El número de documento es obligatorio.";
+            }
+            if (empty($password) || strlen($password) < 6) {
+                $errors[] = "La contraseña debe tener al menos 6 caracteres.";
+            }
+            if (empty($id_rol) || !is_numeric($id_rol)) {
+                $errors[] = "El rol es inválido.";
+            }
+            if (!empty($errors)) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'errors' => $errors
+                ], 400);
+            }
+
+            try {
+                // Hashear la contraseña
+                $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+
+                // Llamar al modelo para registrar el usuario
+                $adminModel = $this->model('admin/AdminModel');
+                $adminModel->adminRegistrarUsuario($email, $tipo_documento, $no_documento, $password_hashed, $id_rol);
+
+                return $this->jsonResponse([
+                    'status' => 'success',
+                    'message' => 'Usuario registrado exitosamente.'
+                ]);
+            } catch (PDOException $e) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'Error al registrar el usuario: ' . $e->getMessage()
+                ], 500);
+            }
+
+
+        } else {
             return $this->jsonResponse([
                 'status' => 'error',
-                'errors' => $errors
-            ], 400);
+                'message' => 'Método no permitido.'
+            ], 405);
         }
-
-        try {
-            // Hashear la contraseña
-            $password_hashed = password_hash($password, PASSWORD_DEFAULT);
-
-            // Llamar al modelo para registrar el usuario
-            $adminModel = $this->model('admin/AdminModel');
-            $adminModel->adminRegistrarUsuario($email, $tipo_documento, $no_documento, $password_hashed, $id_rol);
-
-            return $this->jsonResponse([
-                'status' => 'success',
-                'message' => 'Usuario registrado exitosamente.'
-            ]);
-        } catch (PDOException $e) {
-            return $this->jsonResponse([
-                'status' => 'error',
-                'message' => 'Error al registrar el usuario: ' . $e->getMessage()
-            ], 500);
-        }
-
-
-       }else {
-        return $this->jsonResponse([
-            'status' => 'error',
-            'message' => 'Método no permitido.'
-        ], 405);
-       }
     }
 
     //-----------------------------------------------------------------------------------------------
@@ -104,8 +104,8 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            
-            $usuarios = $adminModel->listarUsuariosPorIdRol((int)$input['id_rol']);
+
+            $usuarios = $adminModel->listarUsuariosPorIdRol((int) $input['id_rol']);
             $this->jsonResponse(['usuarios' => $usuarios]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al listar usuarios: ' . $e->getMessage()], 500);
@@ -124,7 +124,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $adminModel->desactivarUsuario((int)$input['id_usuario']);
+            $adminModel->desactivarUsuario((int) $input['id_usuario']);
             $this->jsonResponse(['mensaje' => 'Usuario desactivado correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al desactivar usuario: ' . $e->getMessage()], 500);
@@ -150,10 +150,10 @@ class DashboardController extends Controller
             $password_hashed = password_hash($input['password'], PASSWORD_DEFAULT);
             $adminModel = $this->model('admin/AdminModel');
             $adminModel->actualizarUsuario(
-                (int)$input['id_usuario'],
+                (int) $input['id_usuario'],
                 $input['email'],
                 $password_hashed,
-                (int)$input['id_rol']
+                (int) $input['id_rol']
             );
 
             $this->jsonResponse(['mensaje' => 'Usuario actualizado correctamente.']);
@@ -174,7 +174,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $adminModel->activarUsuario((int)$input['id_usuario']);
+            $adminModel->activarUsuario((int) $input['id_usuario']);
             $this->jsonResponse(['mensaje' => 'Usuario activado correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al activar usuario: ' . $e->getMessage()], 500);
@@ -200,7 +200,7 @@ class DashboardController extends Controller
             $adminModel->crearCurso(
                 $input['ficha'],
                 $input['nombre_curso'],
-                (int)$input['id_profesor_lider']
+                (int) $input['id_profesor_lider']
             );
 
             $this->jsonResponse(['mensaje' => 'Curso creado correctamente.']);
@@ -230,10 +230,10 @@ class DashboardController extends Controller
             $ficha_activa = filter_var($input['ficha_activa'], FILTER_VALIDATE_BOOLEAN);
 
             $adminModel->editarCurso(
-                (int)$input['id_curso'],
+                (int) $input['id_curso'],
                 $input['ficha'],
                 $input['nombre_curso'],
-                (int)$input['id_profesor_lider'],
+                (int) $input['id_profesor_lider'],
                 $ficha_activa
             );
 
@@ -255,7 +255,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $adminModel->asignarEstudianteACurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel->asignarEstudianteACurso((int) $input['id_usuario'], (int) $input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Estudiante asignado al curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al asignar estudiante al curso: ' . $e->getMessage()], 500);
@@ -274,7 +274,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $adminModel->removerEstudianteDeCurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel->removerEstudianteDeCurso((int) $input['id_usuario'], (int) $input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Estudiante removido del curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al remover estudiante del curso: ' . $e->getMessage()], 500);
@@ -293,7 +293,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $adminModel->asignarProfesorACurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel->asignarProfesorACurso((int) $input['id_usuario'], (int) $input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Profesor asignado al curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al asignar profesor al curso: ' . $e->getMessage()], 500);
@@ -312,7 +312,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $adminModel->removerProfesorDeCurso((int)$input['id_usuario'], (int)$input['id_curso']);
+            $adminModel->removerProfesorDeCurso((int) $input['id_usuario'], (int) $input['id_curso']);
             $this->jsonResponse(['mensaje' => 'Profesor removido del curso correctamente.']);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al remover profesor del curso: ' . $e->getMessage()], 500);
@@ -331,7 +331,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $notas = $adminModel->reporteNotasEstudiante((int)$input['id_usuario']);
+            $notas = $adminModel->reporteNotasEstudiante((int) $input['id_usuario']);
             $this->jsonResponse(['notas' => $notas]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al obtener el reporte de notas: ' . $e->getMessage()], 500);
@@ -350,7 +350,7 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $notas = $adminModel->reporteNotasPorCurso((int)$input['id_curso']);
+            $notas = $adminModel->reporteNotasPorCurso((int) $input['id_curso']);
             $this->jsonResponse(['notas' => $notas]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al obtener el reporte de notas por curso: ' . $e->getMessage()], 500);
@@ -368,7 +368,7 @@ class DashboardController extends Controller
         }
 
         try {
-            $id_rol = isset($input['id_rol']) && is_numeric($input['id_rol']) ? (int)$input['id_rol'] : null;
+            $id_rol = isset($input['id_rol']) && is_numeric($input['id_rol']) ? (int) $input['id_rol'] : null;
             $adminModel = $this->model('admin/AdminModel');
             $resultado = $adminModel->enviarNotificacionGeneral(
                 $input['tipo'],
@@ -400,7 +400,7 @@ class DashboardController extends Controller
         try {
             $adminModel = $this->model('admin/AdminModel');
             $resultado = $adminModel->enviarNotificacionAUsuario(
-                (int)$input['id_usuario'],
+                (int) $input['id_usuario'],
                 $input['tipo'],
                 $input['titulo'],
                 $input['mensaje']
@@ -424,79 +424,103 @@ class DashboardController extends Controller
 
         try {
             $adminModel = $this->model('admin/AdminModel');
-            $boletin = $adminModel->obtenerBoletinEstudiante((int)$input['id_usuario']);
+            $boletin = $adminModel->obtenerBoletinEstudiante((int) $input['id_usuario']);
             $this->jsonResponse(['boletin' => $boletin]);
         } catch (PDOException $e) {
             $this->jsonResponse(['error' => 'Error al obtener el boletín del estudiante: ' . $e->getMessage()], 500);
         }
     }
-public function crearDatosPersonales()
+    public function crearDatosPersonales()
     {
-       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // Obtener y sanitizar datos de entrada
-        $id_usuario = isset($_POST['id_usuario']) ? (int)$_POST['id_usuario'] : null;
-        $nombre = htmlspecialchars(trim($_POST['nombre'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $apellido = htmlspecialchars(trim($_POST['apellido'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $fecha_nacimiento = htmlspecialchars(trim($_POST['fecha_nacimiento'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $telefono = htmlspecialchars(trim($_POST['telefono'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $direccion = htmlspecialchars(trim($_POST['direccion'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $genero = htmlspecialchars(trim($_POST['genero'] ?? ''), ENT_QUOTES, 'UTF-8');
+            // Obtener y sanitizar datos de entrada
+            $id_usuario = isset($_POST['id_usuario']) ? (int) $_POST['id_usuario'] : null;
+            $nombre = htmlspecialchars(trim($_POST['nombre'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $apellido = htmlspecialchars(trim($_POST['apellido'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $fecha_nacimiento = htmlspecialchars(trim($_POST['fecha_nacimiento'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $telefono = htmlspecialchars(trim($_POST['telefono'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $direccion = htmlspecialchars(trim($_POST['direccion'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $genero = htmlspecialchars(trim($_POST['genero'] ?? ''), ENT_QUOTES, 'UTF-8');
 
-        // Validaciones básicas
-        $errors = [];
-        if (empty($id_usuario) || !is_numeric($id_usuario)) {
-            $errors[] = "El ID de usuario es inválido.";
-        }
-        if (empty($nombre)) {
-            $errors[] = "El nombre es obligatorio.";
-        }
-        if (empty($apellido)) {
-            $errors[] = "El apellido es obligatorio.";
-        }
-        if (empty($fecha_nacimiento)) {
-            $errors[] = "La fecha de nacimiento es obligatoria.";
-        }
-        if (empty($telefono)) {
-            $errors[] = "El teléfono es obligatorio.";
-        }
-        if (empty($direccion)) {
-            $errors[] = "La dirección es obligatoria.";
-        }
-        if (empty($genero)) {
-            $errors[] = "El género es obligatorio.";
-        }
-        if (!empty($errors)) {
-            return $this->jsonResponse([
-                'status' => 'error',
-                'errors' => $errors
-            ], 400);
-        }
-
-        try {
-            // Llamar al modelo para crear los datos personales
-            $adminModel = $this->model('admin/AdminModel');
-            $adminModel->crear_datos_personales($id_usuario, $nombre, $apellido, $fecha_nacimiento, $telefono, $direccion, $genero);
-
-            return $this->jsonResponse([
-                'status' => 'success',
-                'message' => 'Datos personales creados exitosamente.'
-            ]); 
-
+            // Validaciones básicas
+            $errors = [];
+            if (empty($id_usuario) || !is_numeric($id_usuario)) {
+                $errors[] = "El ID de usuario es inválido.";
             }
-        catch (PDOException $e) {
+            if (empty($nombre)) {
+                $errors[] = "El nombre es obligatorio.";
+            }
+            if (empty($apellido)) {
+                $errors[] = "El apellido es obligatorio.";
+            }
+            if (empty($fecha_nacimiento)) {
+                $errors[] = "La fecha de nacimiento es obligatoria.";
+            }
+            if (empty($telefono)) {
+                $errors[] = "El teléfono es obligatorio.";
+            }
+            if (empty($direccion)) {
+                $errors[] = "La dirección es obligatoria.";
+            }
+            if (empty($genero)) {
+                $errors[] = "El género es obligatorio.";
+            }
+            if (!empty($errors)) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'errors' => $errors
+                ], 400);
+            }
+
+            try {
+                // Llamar al modelo para crear los datos personales
+                $adminModel = $this->model('admin/AdminModel');
+                $adminModel->crear_datos_personales($id_usuario, $nombre, $apellido, $fecha_nacimiento, $telefono, $direccion, $genero);
+
+                return $this->jsonResponse([
+                    'status' => 'success',
+                    'message' => 'Datos personales creados exitosamente.'
+                ]);
+
+            } catch (PDOException $e) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'Error al crear los datos personales: ' . $e->getMessage()
+                ], 500);
+            }
+        } else {
             return $this->jsonResponse([
                 'status' => 'error',
-                'message' => 'Error al crear los datos personales: ' . $e->getMessage()
-            ], 500);
+                'message' => 'Método no permitido.'
+            ], 405);
         }
-    }else {
-        return $this->jsonResponse([
-            'status' => 'error',
-            'message' => 'Método no permitido.'
-        ], 405);
     }
-}
 
+
+    //prueba para la dashboard
+    public function data()
+    {
+        // Ejemplo de datos (luego los reemplazas con consultas a tus modelos)
+        $response = [
+            "status" => "success",
+            "data" => [
+                "totalEstudiantes" => 120,
+                "totalProfesores" => 15,
+                "totalCursos" => 7,
+                "cursos" => [
+                    ["curso" => "9C", "nombre" => "Matemáticas", "ficha" => "2933470", "profesor" => "Lopez", "lider" => "Sí", "estudiantes" => 35],
+                    ["curso" => "7B", "nombre" => "Lenguaje", "ficha" => "2933480", "profesor" => "Suárez", "lider" => "No", "estudiantes" => 32],
+                    ["curso" => "10A", "nombre" => "Inglés", "ficha" => "2933490", "profesor" => "Martínez", "lider" => "Sí", "estudiantes" => 41]
+                ]
+            ]
+        ];
+
+        // Enviar encabezado adecuado
+        header("Content-Type: application/json; charset=UTF-8");
+
+        echo json_encode($response);
+        exit;
+    }
 
 }
