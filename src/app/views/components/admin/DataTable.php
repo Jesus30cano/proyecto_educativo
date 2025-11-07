@@ -19,15 +19,6 @@
             </thead>
             <tbody>
 
-                <tr>
-                  <td>9C</td>
-                  <td>Matematicas</td>
-                  <td>2933470</td>
-                  <td>Lopez</td>
-                  <td>si</td>
-                  <td>35</td>
-                </tr>
-
             </tbody>
           </table>
         </div>
