@@ -1,4 +1,4 @@
-# general 
+# controllers/general 
 + mostrarDatosPersonales
 + mostrarDatosEmergencia
 + mostrarNotificaciones
@@ -8,14 +8,14 @@
 +
 +
 +
-# auth
+# controllers/auth
 + login
 + restablecer_contrasena
 +
 +
 +
 +
-# admin/dashboard
+# controllers/admin/dashboard
 + index
 + registrarUsuario
 + listarUsuariosPorIdRol
@@ -36,7 +36,7 @@
 + crearDatosPersonales
 
 
-# student/dashboard
+# controllers/student/dashboard
 + index
 +
 +
@@ -45,7 +45,7 @@
 +
 +
 +
-# teacher/dashboard
+# controllers/teacher/dashboard
 + index
 +
 +
@@ -54,7 +54,7 @@
 +
 +
 +
-# teacher/Activity
+# controllers/teacher/Activity
 + crear_actividad
 + obtener_actividades
 +
