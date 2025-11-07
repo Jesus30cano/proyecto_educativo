@@ -9,8 +9,8 @@
           <table id="example" class="table table-striped data-table" style="width: 100%">
             <thead>
               <tr>
-                <th>Curso </th>
-                <th>Nombre Curso</th>
+                <th>ID Ficha</th>
+                <th>Nombre </th>
                 <th>Ficha</th>
                 <th>Profesor</th>
                 <th>Lider</th>

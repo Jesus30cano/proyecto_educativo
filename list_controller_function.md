@@ -34,6 +34,8 @@
 + enviarNotificacionAUsuario
 + obtenerBoletinEstudiante
 + crearDatosPersonales
++ obtenerTotalesCursos --vista principal
++ obtenerTotalesActivos -- vista principal
 
 
 # controllers/student/dashboard
