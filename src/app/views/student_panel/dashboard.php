@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/style.css" />
-    <title>Estudiante</title>
+    <title>Contenido Principal</title>
   </head>
   <body>
     <!-- Navbar -->
@@ -21,16 +21,15 @@
     <!-- Sidebar -->
       <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
 
-    <main class="mt-5 pt-3">
+     <main class="mt-5 pt-3">
       <div class="container-fluid">
-
         <!-- Bienvenida al estudiante -->
         <div class="row">
           <div class="col-md-12 mb-4">
             <div class="card bg-primary text-white">
               <div class="card-body">
                 <h3 class="mb-2"><i class="bi bi-emoji-smile me-2"></i>¡Bienvenido de nuevo, Estudiante!</h3>
-                <p class="mb-0">Tienes (Aqui numero de evaluaciones) evaluaciones pendientes.</p>
+                <p class="mb-0">Tienes (Aqui numero de evaluaciones) evaluaciones pendientes esta semana.</p>
               </div>
             </div>
           </div>
@@ -39,6 +38,7 @@
         <div class="row">
           <div class="col-md-12">
             <h4>Contenido principal</h4>
+            <hr>
           </div>
         </div>
 
@@ -51,15 +51,72 @@
                 Calendario
               </div>
               <div class="card-body">
-                <div id="calendar"></div> <!-- El calendario es manejado por un script en js (no tiene nada). esto es solo el diseño del calendario-->
+                <div id="calendar"></div> <!-- El calendario es manejado por un script en js -->
               </div>
             </div>
           </div>
         </div>
 
-        <div class="row">
+          <div class="row">
+          <div class="col-md-12">
+            <h4>Calificaciones recientes</h4>
+            <hr>
+          </div>
+        </div>
+
+          <!-- NUEVO-->
+          <!-- Tabla de datos. calificaciones recientes del estudiante sin importar que competencia es -->
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <span><i class="bi bi-table me-2"></i></span> Calificaciones
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr> <!-- datos que mostrara la tabla. el js de esto ya esta modificado para que trabaje con los datos -->
+                                            <th>Profesor</th>
+                                            <th>Competencia</th>
+                                            <th>Evaluacion</th>
+                                            <th>Fecha Evaluacion</th>
+                                            <th>nota de calificacion</th>
+                                            <th>Observacion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Aqui se ingresan los datos en el tr (esto es un ejemplo)-->
+                                        <tr>
+                                            <td>hola</td>
+                                            <td>Sistema</td>
+                                            <td>Tarea</td>
+                                            <td>2025-01-01</td>
+                                            <td>5.0</td>
+                                            <td>AAAAAAAAAAAAAAAAA</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Profesor</th>
+                                            <th>Competencia</th>
+                                            <th>Evaluacion</th>
+                                            <th>Fecha Evaluacion</th>
+                                            <th>nota de calificacion</th>
+                                            <th>Observacion</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="row">
           <div class="col-md-12">
             <h4>Mensajeria</h4>
+            <hr>
           </div>
         </div>
 
@@ -87,11 +144,12 @@
                 <div class="text-center mt-3">
                   <button class="btn btn-primary">
                     <i class="bi bi-envelope me-2"></i>Ver todos los mensajes
-                  </button> <!-- lo debe llevar al php de mensajeria -->
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </main>
