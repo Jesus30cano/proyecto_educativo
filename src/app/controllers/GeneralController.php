@@ -223,6 +223,70 @@ class GeneralController extends Controller
         }
 
 }
+
+public function actualizarDatosPersonales()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id_usuario = htmlspecialchars (trim($_POST['id_usuario'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $nombre = htmlspecialchars (trim($_POST['nombre'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $apellido = htmlspecialchars (trim($_POST['apellido'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $fecha_nacimiento = htmlspecialchars (trim($_POST['fecha_nacimiento'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $telefono = htmlspecialchars (trim($_POST['telefono'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $direccion = htmlspecialchars (trim($_POST['direccion'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $genero = htmlspecialchars (trim($_POST['genero'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+            // Validaciones
+            $errors = [];
+            if (empty($id_usuario)) $errors[] = "El ID de usuario es obligatorio.";
+            if (empty($nombre)) $errors[] = "El nombre es obligatorio.";
+            if (empty($apellido)) $errors[] = "El apellido es obligatorio.";
+            if (empty($fecha_nacimiento)) $errors[] = "La fecha de nacimiento es obligatoria.";
+            if (empty($telefono)) $errors[] = "El teléfono es obligatorio.";
+            if (empty($direccion)) $errors[] = "La dirección es obligatoria.";
+            if (empty($genero)) $errors[] = "El género es obligatorio.";
+
+            if (!empty($errors)) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'errors' => $errors
+                ], 400);
+            }
+
+        try {
+            $generalModel = $this->model('General');
+            $generalModel->actualizar_datos_personales($id_usuario, $nombre, $apellido, $fecha_nacimiento, $telefono, $direccion, $genero);
+
+            return $this->jsonResponse([
+                'status' => 'success',
+                'message' => 'Datos personales actualizados correctamente.'
+            ], 200);
+
+        } catch (Exception $e) {
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'Error al actualizar datos personales.'
+            ], 500);
+        }
+    }else {
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
+}
+
+public function logout()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        session_unset();
+        session_destroy();
+        
+        header('Location: /auth/login');
+
+        exit;
+    }
 }
     
 ?>

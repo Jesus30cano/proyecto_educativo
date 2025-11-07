@@ -41,6 +41,22 @@ class General {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
    }
 
+public function actualizar_datos_personales($id_usuario, $nombre, $apellido, $fecha_nacimiento, $telefono, $direccion, $genero) 
+{
+    $sql = "CALL actualizar_datos_personales(:id_usuario, :nombre, :apellido, :fecha_nacimiento, :telefono, :direccion, :genero)";
+    $stmt = $this->conn->prepare($sql);
+
+    $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':apellido', $apellido);
+    $stmt->bindParam(':fecha_nacimiento', $fecha_nacimiento);
+    $stmt->bindParam(':telefono', $telefono);
+    $stmt->bindParam(':direccion', $direccion);
+    $stmt->bindParam(':genero', $genero);
+
+    $stmt->execute();
+}
+
 }
 
 ?>

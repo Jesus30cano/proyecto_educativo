@@ -433,4 +433,73 @@ class DashboardController extends Controller
             $this->jsonResponse(['error' => 'Error al obtener el boletín del estudiante: ' . $e->getMessage()], 500);
         }
     }
+public function crearDatosPersonales()
+    {
+       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        // Obtener y sanitizar datos de entrada
+        $id_usuario = isset($_POST['id_usuario']) ? (int)$_POST['id_usuario'] : null;
+        $nombre = htmlspecialchars(trim($_POST['nombre'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $apellido = htmlspecialchars(trim($_POST['apellido'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $fecha_nacimiento = htmlspecialchars(trim($_POST['fecha_nacimiento'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $telefono = htmlspecialchars(trim($_POST['telefono'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $direccion = htmlspecialchars(trim($_POST['direccion'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $genero = htmlspecialchars(trim($_POST['genero'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+        // Validaciones básicas
+        $errors = [];
+        if (empty($id_usuario) || !is_numeric($id_usuario)) {
+            $errors[] = "El ID de usuario es inválido.";
+        }
+        if (empty($nombre)) {
+            $errors[] = "El nombre es obligatorio.";
+        }
+        if (empty($apellido)) {
+            $errors[] = "El apellido es obligatorio.";
+        }
+        if (empty($fecha_nacimiento)) {
+            $errors[] = "La fecha de nacimiento es obligatoria.";
+        }
+        if (empty($telefono)) {
+            $errors[] = "El teléfono es obligatorio.";
+        }
+        if (empty($direccion)) {
+            $errors[] = "La dirección es obligatoria.";
+        }
+        if (empty($genero)) {
+            $errors[] = "El género es obligatorio.";
+        }
+        if (!empty($errors)) {
+            return $this->jsonResponse([
+                'status' => 'error',
+                'errors' => $errors
+            ], 400);
+        }
+
+        try {
+            // Llamar al modelo para crear los datos personales
+            $adminModel = $this->model('admin/AdminModel');
+            $adminModel->crear_datos_personales($id_usuario, $nombre, $apellido, $fecha_nacimiento, $telefono, $direccion, $genero);
+
+            return $this->jsonResponse([
+                'status' => 'success',
+                'message' => 'Datos personales creados exitosamente.'
+            ]); 
+
+            }
+        catch (PDOException $e) {
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'Error al crear los datos personales: ' . $e->getMessage()
+            ], 500);
+        }
+    }else {
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
+}
+
+
 }
