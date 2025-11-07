@@ -1522,3 +1522,402 @@ BEGIN
     GROUP BY c.id_curso, c.nombre_curso, c.ficha, dp.nombre;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
+
+
+--========================================================================================================
+--================Requerimientos estudiante===============================================================
+
+
+
+--=====================================Visualización de cursos y materias:================================
+
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_curso_por_estudiante
+-- USO: SELECT * FROM obtener_curso_por_estudiante(1);
+--
+-- DESCRIPCIÓN:
+--   Retorna la información del curso al que está asignado un estudiante.
+--   Muestra ficha, nombre del curso y nombre completo del profesor líder.
+--
+-- PARÁMETROS:
+--   p_id_usuario → ID del estudiante (id_usuario en Tb_usuario)
+--
+-- RETORNO:
+--   Tabla con los siguientes campos:
+--     id_curso, ficha, nombre_curso, profesor_lider
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION obtener_curso_por_estudiante(
+    p_id_usuario INT
+)
+RETURNS TABLE(
+    id_curso INT,
+    ficha VARCHAR,
+    nombre_curso VARCHAR,
+    profesor_lider TEXT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        c.id_curso,
+        c.ficha,
+        c.nombre_curso,
+        CONCAT(dp.nombre, ' ', dp.apellido) AS profesor_lider
+    FROM Tb_estudiante_curso ec
+    INNER JOIN Tb_curso c ON ec.id_curso = c.id_curso
+    INNER JOIN Tb_usuario u ON c.id_profesor_lider = u.id_usuario
+    INNER JOIN Tb_datos_personales dp ON dp.id_usuario = u.id_usuario
+    WHERE ec.id_usuario = p_id_usuario;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_competencias_por_curso
+-- USO: SELECT * FROM obtener_competencias_por_curso(1);
+--
+-- DESCRIPCIÓN:
+-- Devuelve todas las competencias asociadas a un curso específico.
+-- Incluye información de la competencia, su código, descripción y el profesor que la imparte.
+--
+-- PARÁMETRO:
+--   p_id_curso → ID del curso del cual se quieren ver las competencias
+--
+-- RETORNO:
+--   id_competencia, codigo, nombre_competencia, descripcion, profesor
+-- =======================================================================================
+ 
+CREATE OR REPLACE FUNCTION obtener_competencias_por_curso(
+    p_id_curso INT
+)
+RETURNS TABLE(
+    id_competencia INT,
+    codigo VARCHAR,
+    nombre_competencia VARCHAR,
+    descripcion TEXT,
+    profesor TEXT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        c.id_competencia,
+        c.codigo,
+        c.nombre,
+        c.descripcion,
+        CONCAT(dp.nombre, ' ', dp.apellido) AS profesor
+    FROM Tb_competencia c
+    LEFT JOIN Tb_competencia_curso cc ON c.id_competencia = cc.id_competencia
+    LEFT JOIN Tb_usuario u ON c.id_profesor = u.id_usuario
+    LEFT JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
+    WHERE cc.id_curso = p_id_curso;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+--===========================================Subida de actividades y exámenes:=====================
+
+
+
+
+
+
+-- =======================================================================================
+-- PROCEDIMIENTO: subir_entrega_actividad
+-- USO: CALL subir_entrega_actividad(2, 1, 'ntrega aCtividada', 'Trabajo final', '/archivos/entregas/trabajo1.pdf');
+-- DESCRIPCIÓN:
+--   Permite que un estudiante suba una entrega para una actividad.
+-- PARÁMETROS:
+--   p_id_actividad → ID de la actividad asignada
+--   p_id_estudiante → ID del estudiante que entrega
+--   p_titulo → Título de la entrega
+--   p_descripcion → Descripción opcional
+--   p_ruta_archivo → Ruta del archivo subido
+-- =======================================================================================
+
+CREATE OR REPLACE PROCEDURE subir_entrega_actividad(
+    p_id_actividad INT,
+    p_id_estudiante INT,
+    p_titulo VARCHAR,
+    p_descripcion TEXT,
+    p_ruta_archivo VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Tb_entrega_actividad (
+        titulo,
+        descripcion,
+        ruta_archivo,
+        id_actividad,
+        id_estudiante
+    )
+    VALUES (
+        p_titulo,
+        p_descripcion,
+        p_ruta_archivo,
+        p_id_actividad,
+        p_id_estudiante
+    )
+    ON CONFLICT (id_actividad, id_estudiante)
+    DO UPDATE
+        SET descripcion = EXCLUDED.descripcion,
+            ruta_archivo = EXCLUDED.ruta_archivo,
+            fecha_entrega = CURRENT_TIMESTAMP;
+
+    
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (CONCAT('Subió una entrega para la actividad ', p_id_actividad), p_id_estudiante);
+END;
+$$;
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_actividades_pendientes
+-- USO:
+-- SELECT * FROM obtener_actividades_pendientes(2);
+--
+-- DESCRIPCIÓN:
+-- Devuelve la lista de actividades pendientes para un estudiante.
+-- Muestra actividades del curso asignado al estudiante que aún no ha entregado
+-- y cuya fecha de entrega no ha pasado.
+--
+-- PARÁMETRO:
+--   p_id_estudiante → ID del estudiante (id_usuario)
+--
+-- RETORNO:
+--   id_actividad, titulo, descripcion, fecha_entrega, nombre_curso, nombre_profesor
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION obtener_actividades_pendientes(p_id_estudiante INT)
+RETURNS TABLE (
+    id_actividad INT,
+    titulo VARCHAR,
+    descripcion TEXT,
+    fecha_entrega DATE,
+    nombre_curso VARCHAR,
+    nombre_profesor TEXT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        a.id_actividad,
+        a.titulo,
+        a.descripcion,
+        a.fecha_entrega,
+        c.nombre_curso,
+        CONCAT(dp.nombre, ' ', dp.apellido) AS nombre_profesor
+    FROM Tb_actividad a
+    INNER JOIN Tb_curso c ON a.id_curso = c.id_curso
+    INNER JOIN Tb_profesor_curso pc ON c.id_curso = pc.id_curso
+    INNER JOIN Tb_datos_personales dp ON a.id_profesor = dp.id_usuario
+    INNER JOIN Tb_estudiante_curso ec ON ec.id_curso = c.id_curso
+    WHERE ec.id_usuario = p_id_estudiante
+      AND a.fecha_entrega >= CURRENT_DATE
+      AND a.id_actividad NOT IN (
+          SELECT ea.id_actividad
+          FROM Tb_entrega_actividad ea
+          WHERE ea.id_estudiante = p_id_estudiante
+      )
+    ORDER BY a.fecha_entrega ASC;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
+--============================Visualización de calificaciones:=============================================
+
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_calificaciones_por_estudiante
+-- USO: SELECT * FROM obtener_calificaciones_por_estudiante(1);
+-- DESCRIPCIÓN:
+--   Devuelve todas las actividades de un estudiante, junto con las calificaciones
+--   (si existen). Incluye las que aún no han sido calificadas.
+-- PARÁMETROS:
+--   p_id_estudiante → ID del estudiante
+-- RETORNO:
+--   id_actividad, titulo_actividad, nombre_materia, calificacion, fecha_entrega, estado
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION obtener_calificaciones_por_estudiante(p_id_estudiante INT)
+RETURNS TABLE(
+    id_actividad INT,
+    titulo_actividad VARCHAR,
+    descripcion TEXT,
+    nombre_competencia VARCHAR,
+    nombre_curso VARCHAR,
+    calificacion TEXT,
+    fecha_entrega TIMESTAMP,
+    estado TEXT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        a.id_actividad,
+        a.titulo AS titulo_actividad,
+        a.descripcion,
+        c.nombre AS nombre_competencia,
+        cu.nombre_curso,
+        ea.calificacion::TEXT,
+        ea.fecha_entrega,
+        CASE
+            WHEN ea.id_entrega IS NULL THEN 'Sin entregar'
+            WHEN ea.calificacion IS NULL THEN 'Entregado, sin calificar'
+            ELSE 'Calificado'
+        END AS estado
+    FROM Tb_actividad a
+    INNER JOIN Tb_competencia c ON a.id_competencia = c.id_competencia
+    INNER JOIN Tb_curso cu ON a.id_curso = cu.id_curso
+    INNER JOIN Tb_estudiante_curso ec ON ec.id_curso = cu.id_curso
+    LEFT JOIN Tb_entrega_actividad ea 
+        ON ea.id_actividad = a.id_actividad
+       AND ea.id_estudiante = p_id_estudiante
+    WHERE ec.id_usuario = p_id_estudiante;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_calificaciones_examenes
+-- USO: SELECT * FROM obtener_calificaciones_examenes(2);
+-- DESCRIPCIÓN:
+--   Retorna todas las evaluaciones (exámenes) asociadas al curso del estudiante indicado,
+--   junto con su calificación (si la tiene), fecha de evaluación, y un estado descriptivo:
+--     • 'Sin presentar' → el estudiante no tiene registro de calificación.
+--     • 'Presentado, sin calificar' → existe registro pero la nota es NULL.
+--     • 'Calificado' → existe registro con nota.
+--
+-- PARÁMETROS:
+--   p_id_estudiante → ID del usuario (estudiante) que consulta sus calificaciones.
+--
+-- RETORNO:
+--   id_evaluacion       INT
+--   titulo_evaluacion   VARCHAR
+--   descripcion         TEXT
+--   nombre_competencia  VARCHAR
+--   nombre_curso        VARCHAR
+--   calificacion        TEXT        
+--   fecha_evaluacion    DATE
+--   estado              VARCHAR
+-- =======================================================================================
+
+CREATE OR REPLACE FUNCTION obtener_calificaciones_examenes(p_id_estudiante INT)
+RETURNS TABLE (
+    id_evaluacion INT,
+    titulo_evaluacion VARCHAR,
+    descripcion VARCHAR,
+    nombre_competencia VARCHAR,
+    nombre_curso VARCHAR,
+    calificacion TEXT,
+    fecha_evaluacion DATE,
+    estado VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        e.id_evaluacion,
+        e.titulo AS titulo_evaluacion,
+        e.descripcion,
+        comp.nombre AS nombre_competencia,
+        cu.nombre_curso,
+        cal.nota::TEXT AS calificacion,    
+        e.fecha AS fecha_evaluacion,       
+        (CASE
+            WHEN cal.id_calificacion IS NULL THEN 'Sin presentar'
+            WHEN cal.nota IS NULL THEN 'Presentado, sin calificar'
+            ELSE 'Calificado'
+        END)::VARCHAR AS estado
+    FROM Tb_evaluacion e
+    INNER JOIN Tb_competencia comp ON e.id_competencia = comp.id_competencia
+    INNER JOIN Tb_curso cu ON e.id_curso = cu.id_curso
+    INNER JOIN Tb_estudiante_curso ec ON ec.id_curso = cu.id_curso
+    LEFT JOIN Tb_calificacion cal 
+        ON cal.id_evaluacion = e.id_evaluacion
+       AND cal.id_usuario = p_id_estudiante    
+    WHERE ec.id_usuario = p_id_estudiante;
+END;
+$$;
+
+
+
+
+
+
+
+
+
+--=====================================Notificaciones:==============================================
+
+
+
+
+
+-- =======================================================================================
+-- FUNCIÓN: obtener_notificaciones_por_usuario
+-- USO: SELECT * FROM obtener_notificaciones_por_usuario(2);
+-- DESCRIPCIÓN:
+--   Retorna todas las notificaciones asociadas a un usuario específico, ordenadas
+--   desde la más reciente a la más antigua.
+-- PARÁMETROS:
+--   p_id_usuario → ID del usuario del cual se desean consultar las notificaciones.
+-- RETORNO:
+--   id_notificacion → Identificador único de la notificación.
+--   tipo            → Tipo o categoría de la notificación (por ejemplo, "Actividad", "Calificación").
+--   titulo          → Título o encabezado breve de la notificación.
+--   mensaje         → Contenido o descripción del mensaje de la notificación.
+--   fecha_envio     → Fecha en la que fue enviada la notificación.
+--   leida           → Indica si la notificación ya fue marcada como leída (TRUE/FALSE).
+-- =======================================================================================
+CREATE OR REPLACE FUNCTION obtener_notificaciones_por_usuario(p_id_usuario INT)
+RETURNS TABLE (
+    
+    tipo VARCHAR,
+    titulo VARCHAR,
+    mensaje TEXT,
+    fecha_envio DATE,
+    leida BOOLEAN
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        n.tipo,
+        n.titulo,
+        n.mensaje,
+        n.fecha_envio,
+        n.leida
+    FROM Tb_notificaciones n
+    WHERE id_usuario = p_id_usuario
+    ORDER BY fecha_envio DESC;
+END;
+$$;

@@ -40,13 +40,14 @@
 
 # controllers/student/dashboard
 + index
-+
-+
-+
-+
-+
-+
-+
++ obtenerCursoPorEstudiante
++ obtenerCompetenciasPorCurso
++ subirEntregaActividad
++ obtenerActividadesPendientes
++ obtenerCalificacionesPorEstudiante
++ obtenerCalificacionesExamenes
++ obtenerNotificacionesPorUsuario
++ marcarNotificacionLeida
 # controllers/teacher/dashboard
 + index
 +
