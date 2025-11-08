@@ -37,7 +37,7 @@
 
             <div class="row">
                 <!-- Columna principal de actividades -->
-                <div class="col-lg-9">
+                <div class="col-12">
                     <!-- Filtro de competencias -->
                     <div class="card mb-4">
                         <div class="card-header bg-light">
@@ -131,49 +131,9 @@
 
                     </div>
                 </div>
-
-                <!-- Panel lateral de notificaciones -->
-                <div class="col-lg-3">
-                    <div class="card sticky-top" style="top: 80px;">
-                        <div class="card-header bg-info text-white">
-                            <h6 class="mb-0"><i class="bi bi-bell me-2"></i>Notificaciones</h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="list-group list-group-flush">
-
-                                <!-- Notificación 1 -->
-                                <div class="list-group-item">
-                                    <div class="d-flex align-items-start">
-                                        <i class="bi bi-exclamation-triangle text-warning me-2 mt-1"></i>
-                                        <div class="flex-grow-1">
-                                            <h6 class="mb-1 small">Diseño de Diagramas UML</h6>
-                                            <!-- }Nombre de la actividad -->
-                                            <p class="mb-1 small text-muted">Vence pronto</p> <!-- Fecha de acabado -->
-                                            <small class="text-danger"><i class="bi bi-clock"></i> 15 Nov 2025</small>
-                                            <!-- Igual -->
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Notificación 2 -->
-                                <div class="list-group-item">
-                                    <div class="d-flex align-items-start">
-                                        <i class="bi bi-check-circle text-success me-2 mt-1"></i>
-                                        <!-- bi-check-circle y text-success cambia el icono y el resultado de la nota (si gustan pueden quitar la nota) -->
-                                        <div class="flex-grow-1">
-                                            <h6 class="mb-1 small">Informe de Penetración</h6>
-                                            <p class="mb-1 small text-muted">Calificada</p>
-                                            <small class="text-success"><i class="bi bi-star-fill"></i> Nota:
-                                                4.8/5.0</small> <!-- Calificacion obtenida -->
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+
+        </div>
         </div>
     </main>
 

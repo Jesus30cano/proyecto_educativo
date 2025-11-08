@@ -117,16 +117,16 @@
                                 <div class="col-md-8 mb-3 mb-md-0">
                                     <label for="selectCompetencia" class="form-label fw-bold">Selecciona una
                                         competencia:</label>
-                                    <select class="form-select form-select-lg" id="selectCompetencia">
+                                    <select class="form-select form-select-lg" id="selectCompetencia"> <!-- Opcion de selecionar una competencia -->
                                         <option value="todas" selected>Todas las Competencias</option>
-                                        <option value="matematicas">Matemáticas</option>
+                                        <option value="matematicas">Matemáticas</option> <!-- Opciones -->
                                         <option value="programacion">Programación</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <button class="btn btn-primary w-100">
                                         <i class="bi bi-funnel me-2"></i>Aplicar Filtro
-                                    </button>
+                                    </button> <!-- Boton para buscar calificacioes segun la competencia -->
                                 </div>
                             </div>
                         </div>
@@ -164,25 +164,7 @@
                                             <td>5.0</td>
                                             <td>AAAAAAAAAAAAAAAAA</td>
                                         </tr>
-                                        <tr> <!-- Segundo dato-->
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>2024-01-01</td>
-                                            <td>60</td>
-                                            <td>AAAAAAAAAAAAAAAAA</td>
-                                        </tr>
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Profesor</th>
-                                            <th>Competencia</th>
-                                            <th>Evaluacion</th>
-                                            <th>Fecha Evaluacion</th>
-                                            <th>nota de calificacion</th>
-                                            <th>Observacion</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

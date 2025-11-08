@@ -29,7 +29,7 @@
             <div class="card bg-primary text-white">
               <div class="card-body">
                 <h3 class="mb-2"><i class="bi bi-emoji-smile me-2"></i>¡Bienvenido de nuevo, Estudiante!</h3>
-                <p class="mb-0">Tienes (Aqui numero de evaluaciones) evaluaciones pendientes esta semana.</p>
+                <p class="mb-0">Este es tu apartado principal</p>
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <!-- Calendario -->
+        <!-- Calendario. esto lo puse como diseño, podria tener color unos dias que avisen alguna actividad o evaluacion. si desean se puede borrar -->
         <div class="row">
           <div class="col-md-12 mb-3">
             <div class="card h-100">
@@ -70,7 +70,7 @@
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            <span><i class="bi bi-table me-2"></i></span> Calificaciones
+                            <span><i class="bi bi-table me-2"></i></span> Calificaciones recientes del estudiante
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -96,16 +96,7 @@
                                             <td>AAAAAAAAAAAAAAAAA</td>
                                         </tr>
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Profesor</th>
-                                            <th>Competencia</th>
-                                            <th>Evaluacion</th>
-                                            <th>Fecha Evaluacion</th>
-                                            <th>nota de calificacion</th>
-                                            <th>Observacion</th>
-                                        </tr>
-                                    </tfoot>
+                                    <!-- aqui estaba el tfoot (lo mismo del thead, pero, abajo)-->
                                 </table>
                             </div>
                         </div>
@@ -113,42 +104,6 @@
                 </div>
             </div>
 
-             <div class="row">
-          <div class="col-md-12">
-            <h4>Mensajeria</h4>
-            <hr>
-          </div>
-        </div>
-
-        <!-- Mensajería -->
-        <div class="row">
-          <div class="col-md-12 mb-3">
-            <div class="card">
-              <div class="card-header">
-                <span><i class="bi bi-chat-dots me-2"></i></span> Mensajes Recientes
-              </div>
-              <div class="card-body">
-                <div class="list-group">
-
-                  <!-- Mensaje 1 -->
-                  <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h6 class="mb-1"><i class="bi bi-person-circle me-2"></i>Prof. María García</h6> <!-- nombre profesor u admin -->
-                      <small class="text-muted">Hace 3 horas</small> <!-- fecha -->
-                    </div>
-                    <p class="mb-1">Recordatorio: La entrega del proyecto final es el viernes.</p> <!-- descripcion -->
-                    <small class="text-muted">Matemáticas Avanzadas</small> <!-- competencia -->
-                  </a>
-
-                
-                <div class="text-center mt-3">
-                  <button class="btn btn-primary">
-                    <i class="bi bi-envelope me-2"></i>Ver todos los mensajes
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>

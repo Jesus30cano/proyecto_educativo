@@ -28,7 +28,7 @@
         <div class="col-md-12 mb-4">
           <div class="card bg-primary text-white">
             <div class="card-body">
-              <h3 class="mb-2"><i class="bi bi-emoji-smile me-2"></i>Session de perfil Estudiante</h3>
+              <h3 class="mb-2"><i class="bi me-2"></i>Session de perfil Estudiante</h3>
             </div>
           </div>
         </div>
