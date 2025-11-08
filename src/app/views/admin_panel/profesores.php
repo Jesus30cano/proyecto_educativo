@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/dataTables.bootstrap5.min.css" />
   <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/style.css" />
+  <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/admin/styles_modal.css" />
   <title>Gestión de Profesores</title>
 </head>
 <body>
@@ -25,6 +26,8 @@
 
       <!-- Toolbar con botón Crear Usuario -->
       <?php include __DIR__ .'/../components/admin/toolbar.php'; ?>
+
+      <!-- Aqui faltan las opciones faltante de andres sobre el profesor (carta y la lista) -->
 
 
     </div>

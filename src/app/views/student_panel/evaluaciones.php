@@ -14,10 +14,10 @@
 
 <body>
   <!-- navbar -->
-      <?php include __DIR__ . '/../components/student/navbar.php'; ?>
+  <?php include __DIR__ . '/../components/student/navbar.php'; ?>
 
-    <!-- sidebar -->
-      <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
+  <!-- sidebar -->
+  <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
 
 
   <main class="mt-5 pt-3">
@@ -36,7 +36,7 @@
 
       <div class="row">
         <!-- Columna principal de evaluaciones -->
-        <div class="col-lg-9">
+        <div class="col-12">
 
           <!-- Filtro de evaluaciones -->
           <div class="card mb-4">
@@ -166,48 +166,11 @@
               </div>
             </div>
 
-
           </div>
         </div>
 
-        <!-- Panel lateral de notificaciones -->
-        <div class="col-lg-3">
-          <div class="card sticky-top" style="top: 80px;">
-            <div class="card-header bg-warning text-dark">
-              <h6 class="mb-0"><i class="bi bi-bell me-2"></i>Recordatorios</h6>
-            </div>
-            <div class="card-body p-0">
-              <div class="list-group list-group-flush">
-
-                <!-- Notificación 1 -->
-                <div class="list-group-item">
-                  <div class="d-flex align-items-start">
-                    <i class="bi bi-exclamation-triangle text-danger me-2 mt-1"></i>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1 small">Evaluación Próxima</h6> <!-- Nombre de la evaluacion -->
-                      <p class="mb-1 small text-muted">Matemáticas</p> <!-- Competencia -->
-                      <small class="text-danger"><i class="bi bi-clock"></i> 10 Nov 2024</small> <!-- Fecha limite -->
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Notificación 2  lo mismo de arriba comentado -->
-                <div class="list-group-item">
-                  <div class="d-flex align-items-start">
-                    <i class="bi bi-exclamation-triangle text-danger me-2 mt-1"></i>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1 small">Evaluación Próxima</h6> <!-- Nombre de la evaluacion -->
-                      <p class="mb-1 small text-muted">Programacion</p> <!-- Competencia -->
-                      <small class="text-danger"><i class="bi bi-clock"></i> 11 Nov 2024</small> <!-- Fecha limite -->
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+    </div>
 
     </div>
   </main>

@@ -17,7 +17,7 @@
             <li>
               <a href="#" class="nav-link px-3 active">
                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                <span>Dashboard</span>
+                <span>Inicio</span>
               </a>
             </li>
 
@@ -56,13 +56,6 @@
               <a href="#" class="nav-link px-3">
                 <span class="me-2"><i class="bi bi-book-fill"></i></span>
                 <span>Perfil</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="nav-link px-3 active">
-                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                <span>Mensajeria</span>
               </a>
             </li>
 
