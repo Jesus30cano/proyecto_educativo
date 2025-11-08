@@ -1867,7 +1867,29 @@ BEGIN
 END;
 $$;
 
-
+--============================================
+--procedimiento para cambiar la clave de un usuario
+-- =======================================================================================
+-- PROCEDIMIENTO: cambiar_clave_usuario
+-- USO: CALL cambiar_clave_usuario('correo@ejemplo.com', 'nueva_clave');
+-- DESCRIPCIÓN:
+--   Actualiza la contraseña de un usuario basado en su correo electrónico.
+-- PARÁMETROS:
+--   p_correo       → Correo electrónico del usuario
+--   p_nueva_clave  → Nueva contraseña a establecer
+-- RETORNO: No retorna datos (procedimiento)
+CREATE OR REPLACE PROCEDURE cambiar_clave_usuario(
+    p_correo VARCHAR,
+    p_nueva_clave VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Tb_usuario
+    SET password = p_nueva_clave
+    WHERE email= p_correo;
+END;
+$$;
 
 
 

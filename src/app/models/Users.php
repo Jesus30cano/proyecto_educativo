@@ -26,16 +26,30 @@ class Users{
     }
 
     public function validar_correo_existente($correo) {
+    try {
+        $query = "SELECT verificar_correo_usuario(:correo) AS existe";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':correo', $correo);   
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Esto da un array como ['existe' => true/false]
+        return $result['existe'] ? true : false;
+    } catch (PDOException $e) {
+        error_log("Error en validar_correo_existente: " . $e->getMessage());
+        return false;
+    }
+}
+    public function actualizar_password($correo, $new_password) {
         try {
-            $query = "SELECT verificar_correo_usuario(:correo) as correo_existente";
+            $query = "CALL cambiar_clave_usuario(:correo, :new_password)";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':correo', $correo);   
+            $stmt->bindParam(':correo', $correo);
+            $stmt->bindParam(':new_password', $new_password);
             $stmt->execute();
-            return $result = $stmt->fetch(PDO::FETCH_ASSOC);
-           
+            return true;
 
         } catch (PDOException $e) {
-            error_log("Error en validar_correo_existente: " . $e->getMessage());
+            error_log("Error en actualizar_password: " . $e->getMessage());
             return false;
         }
     }
