@@ -1,0 +1,115 @@
+/* Grid moderno tipo Classroom */
+#contenedorCursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Tarjeta del curso */
+.course-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Efecto hover moderno */
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Icono grande */
+.course-icon {
+  width: 48px;
+  height: 48px;
+  background: #4f46e5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.course-icon i {
+  font-size: 24px;
+  color: white;
+}
+
+/* Título */
+.course-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+/* Texto info */
+.course-info {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Botón ver curso */
+.course-card button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.competencias-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.competencia-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: 0.25s;
+}
+
+.competencia-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.title {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.desc {
+  color: #555;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.info {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+:root {
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 56px;
+}
+
+/* Ajuste correcto para el contenido */
+.main-content {
+  margin-top: var(--topNavbarHeight) !important;
+  margin-left: var(--offcanvas-width) !important;
+  padding: 24px;
+}
+
+@media (max-width: 991px) {
+  .main-content {
+    margin-left: 0 !important;
+  }
+}

@@ -21,6 +21,10 @@ class DashboardController extends Controller
         $this->view('teacher_panel/dashboard');
     }
 
+
+    /* ================================
+   Todas estas funciones son de prueba, corregir luego
+================================ */
     public function obtenerResumenProfesor()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {

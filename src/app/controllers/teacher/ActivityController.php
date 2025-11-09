@@ -9,6 +9,19 @@ class ActivityController extends Controller
         exit;
     }
 
+    public function index()
+    {
+        session_start();
+
+        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 2) {
+            // Redirigir si no está autenticado o no es teacher
+            header('Location: /auth/login');
+            exit;
+        }
+        // Lógica para mostrar el dashboard del administrador
+        $this->view('teacher_panel/activities');
+    }
+
     public function crear_actividad()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
