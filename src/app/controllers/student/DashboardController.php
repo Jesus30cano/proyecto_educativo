@@ -264,10 +264,10 @@ public function obtenerNotificacionesPorUsuario()
     }
 
     try {
-        $studentModel = $this->model('student/StudentModel');
+        $studentModel = $this->model('general');
         $id_usuario = $_SESSION['user_id'];
 
-        $notificaciones = $studentModel->obtenerNotificacionesPorUsuario($id_usuario);
+        $notificaciones = $studentModel->mostar_notificaciones($id_usuario);
 
         return $this->jsonResponse([
             'status' => 'success',

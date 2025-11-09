@@ -184,7 +184,7 @@ class AuthController extends Controller
                     $mail->Host = 'smtp.gmail.com'; // Cambiar por el host SMTP real
                     $mail->SMTPAuth = true;
                     $mail->Username = 'cognia.oficial.s.a.s@gmail.com'; // Cambiar por tu correo
-                    $mail->Password = '##############'; // Cambiar por tu contraseña
+                    $mail->Password = '#########'; // Cambiar por tu contraseña
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                     $mail->Port = 587;
 

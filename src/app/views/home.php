@@ -120,14 +120,7 @@
                     <p>Teléfono: +57 300 123 4567</p>
                     <p>Dirección: Barranquilla, Colombia</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Enlaces</h3>
-                    <ul>
-                        <li><a href="#home">Inicio</a></li>
-                        <li><a href="#about">Nosotros</a></li>
-                        <li><a href="#services">Servicios</a></li>
-                    </ul>
-                </div>
+                
                 <div class="footer-section">
                     <h3>Síguenos</h3>
                     <div class="social-links">

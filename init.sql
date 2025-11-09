@@ -4,7 +4,7 @@
 CREATE TYPE tipo_documento AS ENUM ('cedula_de_ciudadania', 'tarjeta_identidad', 'cedula_extranjeria');
 CREATE TYPE estado_asistencia AS ENUM ('presente', 'excusa', 'ausente');
 CREATE TYPE tipo_rol AS ENUM ('administrador', 'profesor', 'estudiante');
-CREATE TYPE estado_est AS ENUM ('activo', 'inactivo');
+CREATE TYPE estado_est AS ENUM ('activo', 'inactivo', 'suspendido', 'graduado', 'retirado','aplazado');
 CREATE TYPE calificacion AS ENUM ('aprobado', 'reprobado');
 
 -- ============================================================
@@ -15,10 +15,7 @@ CREATE TABLE Tb_rol (
     nombre_rol tipo_rol UNIQUE NOT NULL
 );
 
-INSERT INTO Tb_rol (nombre_rol) VALUES
-('administrador'),
-('profesor'),
-('estudiante');
+
 
 CREATE TABLE Tb_usuario (
     id_usuario SERIAL PRIMARY KEY,
@@ -44,28 +41,6 @@ CREATE TABLE Tb_datos_personales (
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
 
--- ============================================================
---datos de prueba 
--- ============================================================
--- ============================================================
--- USUARIOS DE EJEMPLO
--- ============================================================
--- la clave es prueba123 para los tres usuarios
-INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
-('admin@plataforma.com', 'cedula_de_ciudadania', '111111111', '$2y$10$mW/HS7/e6Q.0CDOaLVfroeEfBs.71Vp/ucuKkvDDRXyQy8bKfCX0S', TRUE, 1),
-('profesor@plataforma.com', 'tarjeta_identidad', '222222222', '$2y$10$CN7vIzIwuKDayz3BSTOCG.N4vV2MkODNaQsL67smqNbPOBho88N3W', TRUE, 2),
-('estudiante@plataforma.com', 'cedula_extranjeria', '333333333', '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S', TRUE, 3);
-
--- ============================================================
--- DATOS PERSONALES (opcional)
--- ============================================================
-
-INSERT INTO Tb_datos_personales (nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario)
-VALUES
-('Carlos', 'Ramírez', '1985-06-15', '3001234567', 'Calle 10 #5-20', 'Masculino', 1),
-('Laura', 'Gómez', '1990-04-22', '3109876543', 'Carrera 8 #12-45', 'Femenino', 2),
-('Andrés', 'Torres', '2002-09-10', '3207654321', 'Avenida 15 #30-50', 'Masculino', 3);
-
 
 -- ============================================================
 -- CURSOS Y RELACIONES
@@ -87,13 +62,7 @@ CREATE TABLE Tb_estudiante_curso (
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
     FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
 );
---prueba de datos curso y estudiante_curso
 
-INSERT INTO Tb_curso (ficha, nombre_curso, id_profesor_lider, ficha_activa)
-VALUES ('F12345', 'ADSO', 2, TRUE);
--- Si el curso tiene id=1
-INSERT INTO Tb_estudiante_curso (id_usuario, id_curso)
-VALUES (3, 1);
 CREATE TABLE Tb_profesor_curso (
     id_profesor_curso SERIAL PRIMARY KEY,
     id_usuario INT NOT NULL,
@@ -136,25 +105,43 @@ CREATE TABLE Tb_asistencia (
 -- ============================================================
 -- ESTADOS Y EXPEDIENTES DE ESTUDIANTES
 -- ============================================================
-CREATE TABLE Tb_expediente_estudiante (
-    id_expediente_estudiante SERIAL PRIMARY KEY,
-    tipo_documento VARCHAR(100) NOT NULL,
+CREATE TABLE Tb_expediente_usuario (
+    id_expediente_usuario SERIAL PRIMARY KEY,
+    nombre_documento VARCHAR(100) NOT NULL,
     fecha_subida DATE DEFAULT CURRENT_DATE,
     descripcion TEXT,
     nombre_archivo VARCHAR(200) NOT NULL,
-    documento VARCHAR(500) NOT NULL, -- ruta o referencia al documento
+    ruta_documento VARCHAR(500) NOT NULL, -- ruta o referencia al documento
     id_usuario INT NOT NULL, -- el estudiante también es usuario
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
-
-CREATE TABLE Tb_estado_estudiante (
-    id_estado_estudiante SERIAL PRIMARY KEY,
+-- hay que hacer un tiger para el historial de estados del estudiante
+CREATE TABLE Tb_estado_usuario (
+    id_estado_usuario SERIAL PRIMARY KEY,
     estado estado_est NOT NULL,
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     observaciones TEXT,
     id_usuario INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
+-- ============================================================
+-- funcion para el tiger de estado usuario
+-- ============================================================
+CREATE OR REPLACE FUNCTION fn_registrar_estado_usuario()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO Tb_estado_usuario (estado, observaciones, id_usuario)
+    VALUES ('activo', 'creado', NEW.id_usuario);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+--============================================================
+-- trigger para registrar estado usuario al crear un nuevo usuario
+--===========================================================
+CREATE TRIGGER trg_usuario_estado_inicial
+AFTER INSERT ON Tb_usuario
+FOR EACH ROW
+EXECUTE FUNCTION fn_registrar_estado_usuario();
 
 -- ============================================================
 -- COMPETENCIAS Y EVALUACIONES
@@ -179,7 +166,6 @@ CREATE TABLE Tb_competencia_curso (
 CREATE TABLE Tb_evaluacion (
     id_evaluacion SERIAL PRIMARY KEY,
     titulo VARCHAR(200) NOT NULL,
-    duracion INT NOT NULL, -- duración en minutos
     activa BOOLEAN DEFAULT TRUE,
     descripcion VARCHAR(500) NOT NULL,
     fecha DATE DEFAULT CURRENT_DATE,
@@ -244,7 +230,8 @@ CREATE TABLE Tb_respuestas_estudiante(
     id_evaluacion INT,
     id_pregunta INT,
     id_opcion INT,
-    id_usuario INT, -- estudiante
+    id_usuario INT,
+    UNIQUE (id_evaluacion, id_pregunta, id_usuario), -- estudiante
     FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion),
     FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta),
     FOREIGN KEY (id_opcion) REFERENCES Tb_opciones_respuesta(id_opcion),
@@ -1388,8 +1375,8 @@ BEGIN
         a.observaciones,
         ec.id_estudiante_curso,
         u.id_usuario AS id_usuario_estudiante,
-        u.nombre AS nombre_estudiante,
-        u.apellido AS apellido_estudiante,
+        dp.nombre AS nombre_estudiante,
+        dp.apellido AS apellido_estudiante,
         c.id_curso,
         c.nombre_curso,
         c.ficha,
@@ -1397,6 +1384,7 @@ BEGIN
     FROM Tb_asistencia a
     INNER JOIN Tb_estudiante_curso ec ON a.id_estudiante_curso = ec.id_estudiante_curso
     INNER JOIN Tb_usuario u ON ec.id_usuario = u.id_usuario
+    INNER JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
     INNER JOIN Tb_curso c ON ec.id_curso = c.id_curso
     INNER JOIN Tb_profesor_curso pc ON c.id_curso = pc.id_curso
     WHERE c.ficha = p_ficha
@@ -1705,7 +1693,7 @@ $$;
 --   id_actividad, titulo, descripcion, fecha_entrega, nombre_curso, nombre_profesor
 -- =======================================================================================
 
-CREATE OR REPLACE FUNCTION obtener_actividades_pendientes(p_id_estudiante INT)
+   CREATE OR REPLACE FUNCTION obtener_actividades_pendientes(p_id_estudiante INT)
 RETURNS TABLE (
     id_actividad INT,
     titulo VARCHAR,
@@ -1726,7 +1714,6 @@ BEGIN
         CONCAT(dp.nombre, ' ', dp.apellido) AS nombre_profesor
     FROM Tb_actividad a
     INNER JOIN Tb_curso c ON a.id_curso = c.id_curso
-    INNER JOIN Tb_profesor_curso pc ON c.id_curso = pc.id_curso
     INNER JOIN Tb_datos_personales dp ON a.id_profesor = dp.id_usuario
     INNER JOIN Tb_estudiante_curso ec ON ec.id_curso = c.id_curso
     WHERE ec.id_usuario = p_id_estudiante
@@ -1891,58 +1878,6 @@ BEGIN
 END;
 $$;
 
-
-
-
-
-
-
---=====================================Notificaciones:==============================================
-
-
-
-
-
--- =======================================================================================
--- FUNCIÓN: obtener_notificaciones_por_usuario
--- USO: SELECT * FROM obtener_notificaciones_por_usuario(2);
--- DESCRIPCIÓN:
---   Retorna todas las notificaciones asociadas a un usuario específico, ordenadas
---   desde la más reciente a la más antigua.
--- PARÁMETROS:
---   p_id_usuario → ID del usuario del cual se desean consultar las notificaciones.
--- RETORNO:
---   id_notificacion → Identificador único de la notificación.
---   tipo            → Tipo o categoría de la notificación (por ejemplo, "Actividad", "Calificación").
---   titulo          → Título o encabezado breve de la notificación.
---   mensaje         → Contenido o descripción del mensaje de la notificación.
---   fecha_envio     → Fecha en la que fue enviada la notificación.
---   leida           → Indica si la notificación ya fue marcada como leída (TRUE/FALSE).
--- =======================================================================================
-CREATE OR REPLACE FUNCTION obtener_notificaciones_por_usuario(p_id_usuario INT)
-RETURNS TABLE (
-    
-    tipo VARCHAR,
-    titulo VARCHAR,
-    mensaje TEXT,
-    fecha_envio DATE,
-    leida BOOLEAN
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    RETURN QUERY
-    SELECT
-        n.tipo,
-        n.titulo,
-        n.mensaje,
-        n.fecha_envio,
-        n.leida
-    FROM Tb_notificaciones n
-    WHERE id_usuario = p_id_usuario
-    ORDER BY fecha_envio DESC;
-END;
-$$;
 -- ============================================================
 -- FUNCIÓN: obtener_totales_activos
 -- USO:
@@ -2018,3 +1953,39 @@ BEGIN
     GROUP BY c.id_curso, c.nombre_curso, c.ficha, dp.nombre;
 END;
 $$ LANGUAGE plpgsql;
+-- =======================================================================================
+-- todos los inser al final del script
+-- =======================================================================================
+INSERT INTO Tb_rol (nombre_rol) VALUES
+('administrador'),
+('profesor'),
+('estudiante');
+-- ============================================================
+--datos de prueba 
+-- ============================================================
+-- ============================================================
+-- USUARIOS DE EJEMPLO
+-- ============================================================
+-- la clave es prueba123 para los tres usuarios
+INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
+('admin@plataforma.com', 'cedula_de_ciudadania', '111111111', '$2y$10$mW/HS7/e6Q.0CDOaLVfroeEfBs.71Vp/ucuKkvDDRXyQy8bKfCX0S', TRUE, 1),
+('profesor@plataforma.com', 'tarjeta_identidad', '222222222', '$2y$10$CN7vIzIwuKDayz3BSTOCG.N4vV2MkODNaQsL67smqNbPOBho88N3W', TRUE, 2),
+('estudiante@plataforma.com', 'cedula_extranjeria', '333333333', '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S', TRUE, 3);
+
+-- ============================================================
+-- DATOS PERSONALES (opcional)
+-- ============================================================
+
+INSERT INTO Tb_datos_personales (nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario)
+VALUES
+('Carlos', 'Ramírez', '1985-06-15', '3001234567', 'Calle 10 #5-20', 'Masculino', 1),
+('Laura', 'Gómez', '1990-04-22', '3109876543', 'Carrera 8 #12-45', 'Femenino', 2),
+('Andrés', 'Torres', '2002-09-10', '3207654321', 'Avenida 15 #30-50', 'Masculino', 3);
+
+--prueba de datos curso y estudiante_curso
+
+INSERT INTO Tb_curso (ficha, nombre_curso, id_profesor_lider, ficha_activa)
+VALUES ('F12345', 'ADSO', 2, TRUE);
+-- Si el curso tiene id=1
+INSERT INTO Tb_estudiante_curso (id_usuario, id_curso)
+VALUES (3, 1);
