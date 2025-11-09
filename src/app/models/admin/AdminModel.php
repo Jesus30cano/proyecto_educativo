@@ -246,7 +246,7 @@ public function obtener_total_cursos() {
     $sql = "SELECT * FROM obtener_total_cursos()";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 

@@ -11,9 +11,9 @@
 # controllers/auth
 + login
 + restablecer_contrasena
-+
-+
-+
++  vista_forgot_password
++ validar_codigo
++ actualizar_contrasena
 +
 # controllers/admin/dashboard
 + index

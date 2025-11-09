@@ -93,21 +93,6 @@ class AdminModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
-
-    // Obtener notificaciones de un usuario
-    public function obtenerNotificacionesPorUsuario($id_usuario) {
-        $sql = "SELECT * FROM obtener_notificaciones_por_usuario(:id_usuario)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-
-
-
     // Marcar una notificación como leída
     public function marcarNotificacionLeida($id_notificacion, $id_usuario) {
         $sql = "SELECT marcar_notificacion_leida(:id_notificacion, :id_usuario) AS mensaje";
