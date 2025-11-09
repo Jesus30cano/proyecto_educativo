@@ -47,10 +47,11 @@
                     ACCEDER
                 </button>
             </form>
-
             <p class="text-footer">
-                Bienvenido a la plataforma
+                <a href="/auth/vista_forgot_password">¿Olvidaste tu contraseña?</a>
             </p>
+
+           
         </div>
 
         <div class="panel-info">
