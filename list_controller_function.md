@@ -17,26 +17,48 @@
 +
 # controllers/admin/dashboard
 + index
++ obtenerTotalesCursos --vista principal
++ obtenerTotalesActivos -- vista principal
+
+# controllers/admin/general
 + registrarUsuario
 + listarUsuariosPorIdRol
 + desactivarUsuario
 + actualizarUsuario
 + activarUsuario
++ crearDatosPersonales
+
+# controllers/admin/student
++ reporteNotasEstudiante
++ obtenerBoletinEstudiante
+
+# controllers/admin/teacher
++
++
++
+
+# controllers/admin/profile
++
++
++
+
+# controllers/admin/attendance
++
++
++
+
+# controllers/admin/notifications
++ enviarNotificacionAUsuario
++ enviarNotificacionGeneral
+
+# controllers/admin/course
 + crearCurso
 + editarCurso
 + asignarEstudianteACurso
 + removerEstudianteDeCurso
 + asignarProfesorACurso
 + removerProfesorDeCurso
-+ reporteNotasEstudiante
 + reporteNotasPorCurso
-+ enviarNotificacionGeneral
-+ 
-+ obtenerBoletinEstudiante
-+ crearDatosPersonales
-+ obtenerTotalesCursos --vista principal
-+ obtenerTotalesActivos -- vista principal
-
 
 # controllers/student/dashboard
 + index
