@@ -11,12 +11,12 @@
           <table id="example" class="table table-striped data-table" style="width: 100%">
             <thead>
               <tr>
-                <th>PROFESORES</th>
-                <th>CURSOS</th>
-                <th>NUMERO ESTUDIANTES </th>
+                <th>FICHA</th>
+                <th>CURSO</th>
+                <th>INSTRUCTOR</th>
                 <th>FECHA INICIO</th>
                 <th>FECHA FIN</th>
-                <th>ESTADO</th>
+                <th>APRENDIZES</th>
               </tr>
             </thead>
             <tbody>

@@ -78,11 +78,11 @@ function actualizarTabla(data) {
     $("#example").DataTable({
       data: data,
       columns: [
-        { data: "id_curso" },
-        { data: "nombre_curso" },
         { data: "ficha" },
+        { data: "nombre_curso" },
         { data: "nombre_profesor" },
-        { data: "nombre_profesor" }, // Si quieres la columna 'Lider' igual que 'nombre_profesor'
+        { data: "fecha_inicio" },
+        { data: "fecha_fin" }, 
         { data: "cantidad_estudiantes" }
       ],
       destroy: true
