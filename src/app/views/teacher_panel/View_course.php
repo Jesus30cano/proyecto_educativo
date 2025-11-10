@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css">
-  <link rel="stylesheet" href="/public/css/teacher_courses/ver_curso.css">
+  <link rel="stylesheet" href="/public/css/teacher_courses/courses.css">
 
 </head>
 

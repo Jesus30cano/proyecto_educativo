@@ -31,7 +31,7 @@
 + reporteNotasEstudiante
 + reporteNotasPorCurso
 + enviarNotificacionGeneral
-+ enviarNotificacionAUsuario
++ 
 + obtenerBoletinEstudiante
 + crearDatosPersonales
 + obtenerTotalesCursos --vista principal
