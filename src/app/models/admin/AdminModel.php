@@ -70,28 +70,32 @@ public function activarUsuario($id_usuario){
 
 
 
-public function crearCurso($ficha, $nombre_curso, $id_profesor_lider)
+public function crearCurso($ficha, $nombre_curso, $id_profesor_lider,$fecha_inicio, $fecha_fin)
 {
-    $sql = "CALL crear_curso(:ficha, :nombre_curso, :id_profesor_lider)";
+    $sql = "CALL crear_curso(:ficha, :nombre_curso, :id_profesor_lider, :fecha_inicio, :fecha_fin)";
     $stmt = $this->conn->prepare($sql);
     $stmt->bindParam(':ficha', $ficha);
     $stmt->bindParam(':nombre_curso', $nombre_curso);
     $stmt->bindParam(':id_profesor_lider', $id_profesor_lider, PDO::PARAM_INT);
+    $stmt->bindParam(':fecha_inicio', $fecha_inicio);
+    $stmt->bindParam(':fecha_fin', $fecha_fin);
     $stmt->execute();
 }
 
 
 
 
-public function editarCurso($id_curso, $ficha, $nombre_curso, $id_profesor_lider, $ficha_activa)
+public function editarCurso($id_curso, $ficha, $nombre_curso, $id_profesor_lider, $ficha_activa,$fecha_inicio, $fecha_fin)
 {
-    $sql = "CALL editar_curso(:id_curso, :ficha, :nombre_curso, :id_profesor_lider, :ficha_activa)";
+    $sql = "CALL editar_curso(:id_curso, :ficha, :nombre_curso, :id_profesor_lider, :ficha_activa, :fecha_inicio, :fecha_fin)";
     $stmt = $this->conn->prepare($sql);
     $stmt->bindParam(':id_curso', $id_curso, PDO::PARAM_INT);
     $stmt->bindParam(':ficha', $ficha);
     $stmt->bindParam(':nombre_curso', $nombre_curso);
     $stmt->bindParam(':id_profesor_lider', $id_profesor_lider, PDO::PARAM_INT);
     $stmt->bindParam(':ficha_activa', $ficha_activa, PDO::PARAM_BOOL);
+    $stmt->bindParam(':fecha_inicio', $fecha_inicio);
+    $stmt->bindParam(':fecha_fin', $fecha_fin);
     $stmt->execute();
 }
 

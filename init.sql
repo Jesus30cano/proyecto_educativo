@@ -51,6 +51,8 @@ CREATE TABLE Tb_curso (
     nombre_curso VARCHAR(100) NOT NULL, --ej:adso,sst
     id_profesor_lider INT NOT NULL,
     ficha_activa BOOLEAN DEFAULT TRUE,
+    fecha_inicio DATE DEFAULT CURRENT_DATE,
+    fecha_fin DATE DEFAULT CURRENT_DATE + INTERVAL '1 year',
     FOREIGN KEY (id_profesor_lider) REFERENCES Tb_usuario(id_usuario)
 );
 
@@ -786,32 +788,36 @@ $$;
 
 -- =======================================================================================
 -- PROCEDIMIENTO: crear_curso
--- USO: CALL crear_curso('2933470', 'ADSO', 2);
+-- USO: CALL crear_curso('2933470', 'ADSO', 2, '2025-01-15', '2025-11-15');
 -- DESCRIPCIÓN: Inserta un nuevo curso en la tabla Tb_curso.
 -- PARÁMETROS:
 --   p_ficha → identificador único del curso
 --   p_nombre_curso → nombre del curso
 --   p_id_profesor_lider → ID del profesor líder del curso
+--   p_fecha_inicio → fecha de inicio del curso
+--   p_fecha_fin → fecha de finalización del curso
 -- RETORNO: No retorna datos (procedimiento)
 -- =======================================================================================
 
 CREATE OR REPLACE PROCEDURE crear_curso(
     p_ficha VARCHAR,
     p_nombre_curso VARCHAR,
-    p_id_profesor_lider INT
+    p_id_profesor_lider INT,
+    p_fecha_inicio DATE,
+    p_fecha_fin DATE
 )
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    INSERT INTO Tb_curso(ficha, nombre_curso, id_profesor_lider)
-    VALUES (p_ficha, p_nombre_curso, p_id_profesor_lider);
+    INSERT INTO Tb_curso(ficha, nombre_curso, id_profesor_lider, fecha_inicio, fecha_fin)
+    VALUES (p_ficha, p_nombre_curso, p_id_profesor_lider, p_fecha_inicio, p_fecha_fin);
 END;
 $$;
 
 
 -- =======================================================================================
 -- PROCEDIMIENTO: editar_curso
--- USO: CALL editar_curso(1, '2933480', 'ADSO', 2, TRUE);
+-- USO: CALL editar_curso(1, '2933480', 'ADSO', 2, TRUE, '2025-01-15', '2025-11-15');
 -- DESCRIPCIÓN: Actualiza los datos de un curso en la tabla Tb_curso.
 -- PARÁMETROS:
 --   p_id_curso           → ID del curso a editar
@@ -819,6 +825,8 @@ $$;
 --   p_nombre_curso       → Nombre del curso
 --   p_id_profesor_lider  → ID del profesor líder asignado al curso
 --   p_ficha_activa       → Indica si la ficha del curso está activa (TRUE/FALSE)
+--   p_fecha_inicio       → Fecha de inicio del curso
+--   p_fecha_fin          → Fecha de finalización del curso
 -- RETORNO: No retorna datos
 -- =======================================================================================
 
@@ -827,7 +835,9 @@ CREATE OR REPLACE PROCEDURE editar_curso(
     p_ficha VARCHAR,
     p_nombre_curso VARCHAR,
     p_id_profesor_lider INT,
-    p_ficha_activa BOOLEAN
+    p_ficha_activa BOOLEAN,
+    p_fecha_inicio DATE,
+    p_fecha_fin DATE
 )
 LANGUAGE plpgsql
 AS $$
@@ -837,7 +847,9 @@ BEGIN
         ficha = p_ficha,
         nombre_curso = p_nombre_curso,
         id_profesor_lider = p_id_profesor_lider,
-        ficha_activa = p_ficha_activa
+        ficha_activa = p_ficha_activa,
+        fecha_inicio = p_fecha_inicio,
+        fecha_fin = p_fecha_fin
     WHERE id_curso = p_id_curso;
 END;
 $$;
@@ -1934,7 +1946,9 @@ RETURNS TABLE (
     id_curso INT,
     nombre_curso VARCHAR,
     ficha VARCHAR,
-    nombre_profesor VARCHAR,
+    fecha_inicio DATE,
+    fecha_fin DATE,
+    nombre_profesor VARCHAR,         -- <--- mantiene VARCHAR
     cantidad_estudiantes bigint
 )
 AS $$
@@ -1944,13 +1958,15 @@ BEGIN
         c.id_curso,
         c.nombre_curso,
         c.ficha,
-        dp.nombre AS nombre_profesor,
+        c.fecha_inicio,
+        c.fecha_fin,
+        (dp.nombre || ' ' || dp.apellido)::VARCHAR AS nombre_profesor,   -- <--- aquí el CAST
         COUNT(ec.id_usuario) AS cantidad_estudiantes
     FROM Tb_curso c
     INNER JOIN Tb_usuario u ON c.id_profesor_lider = u.id_usuario
     INNER JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
     LEFT JOIN Tb_estudiante_curso ec ON c.id_curso = ec.id_curso
-    GROUP BY c.id_curso, c.nombre_curso, c.ficha, dp.nombre;
+    GROUP BY c.id_curso, c.nombre_curso, c.ficha, c.fecha_inicio, c.fecha_fin, dp.nombre, dp.apellido;
 END;
 $$ LANGUAGE plpgsql;
 -- =======================================================================================
