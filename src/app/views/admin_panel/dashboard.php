@@ -29,12 +29,11 @@
       <h4 class="mb-4">INICIO</h4>
 
       <!-- Dashboard Cards -->
-      <?php include __DIR__ . '/../components/admin/Cards.php'; ?>
-
-
+      <?php include __DIR__ . '/../components/admin/cards/Cards.php'; ?>
+      
       <!-- Data Table -->
-      <?php include __DIR__ . '/../components/admin/DataTable.php'; ?>
-
+      <?php include __DIR__ . '/../components/admin/tables/DataTableIndex.php'; ?>
+      
     </div>
   </main>
 

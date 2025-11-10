@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/dataTables.bootstrap5.min.css" />
   <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/style.css" />
-  <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/admin/styles_modal.css" />
   <title>Gestión de Profesores</title>
 </head>
 <body>
@@ -19,20 +18,21 @@
   <!-- Sidebar -->
   <?php include __DIR__ . '/../components/admin/Sidebar.php'; ?>
 
-  <!-- Main Content -->
+ <!-- Main Content -->
   <main class="mt-5 pt-3">
     <div class="container-fluid">
       <h4 class="mb-4">PROFESOR</h4>
 
+      <!-- Dashboard Cards -->
+      <?php include __DIR__ . '/../components/admin/cards/card_P.php'; ?>
+
       <!-- Toolbar con botón Crear Usuario -->
-      <?php include __DIR__ .'/../components/admin/toolbar.php'; ?>
+      <?php include __DIR__ . '/../components/admin/toolbars/toolbar_pro.php'; ?>
 
-      <!-- Aqui faltan las opciones faltante de andres sobre el profesor (carta y la lista) -->
-
-
+      <!-- Tabla de usuarios -->
+      <?php include __DIR__ .'/../components/admin/tables/DataTablePro.php'; ?>
     </div>
   </main>
-
 
   <!-- JavaScript -->
     <script src="./../../public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
