@@ -1,47 +1,92 @@
+/* Contenedor principal del encabezado del curso */
 .curso-header {
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, #4C3BCF 0%, #6A5AE0 100%);
+    border-radius: 16px;
+    padding: 32px;
+    color: #ffffff;
+    box-shadow: 0 8px 28px rgba(76, 59, 207, 0.18);
 }
 
+.curso-header h2 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.curso-header p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Grid de competencias */
 .competencias-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
+    gap: 24px;
 }
 
+/* Tarjetas de competencia */
 .competencia-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 14px;
-    transition: transform .25s, box-shadow .25s;
+    background: #ffffff;
+    border: 1px solid #E1E1F0;
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .competencia-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
 }
 
+/* Tipografía */
 .title {
     font-weight: 600;
+    font-size: 1.05rem;
+    color: #1E1E2D;
+    margin-bottom: 6px;
 }
 
 .desc {
-    font-size: 0.92rem;
-    color: #555;
+    font-size: 0.9rem;
+    color: #5e5e66;
+    margin-bottom: 10px;
 }
 
 .info {
-    font-size: 0.87rem;
-    color: #444;
-    margin-bottom: 15px;
+    font-size: 0.88rem;
+    color: #4C3BCF;
+    font-weight: 500;
+    margin-bottom: 16px;
 }
 
+/* Botones */
 .btn-group-actions {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
+.btn-outline-primary {
+    border-color: #4C3BCF !important;
+    color: #4C3BCF !important;
+}
+
+.btn-outline-primary:hover {
+    background: #4C3BCF !important;
+    color: #ffffff !important;
+}
+
+.btn-primary {
+    background: #4C3BCF !important;
+    border-color: #4C3BCF !important;
+}
+
+.btn-primary:hover {
+    background: #392DA5 !important;
+    border-color: #392DA5 !important;
+}
+
+/* Ajuste de distancia con navbar */
 .main-content {
-  margin-top: 95px !important;
+    margin-top: 95px !important;
 }
