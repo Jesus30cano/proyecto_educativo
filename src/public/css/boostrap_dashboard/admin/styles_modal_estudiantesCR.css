@@ -1,0 +1,85 @@
+/* === Modal de Crear Estudiante === */
+.modal_crear_estudiante {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_crear_estudiante-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 25px;
+  border: 1px solid #888;
+  width: 40%;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal_crear_estudiante .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal_crear_estudiante .close:hover {
+  color: black;
+}
+
+.modal_crear_estudiante .form-group {
+  margin-bottom: 15px;
+}
+
+.modal_crear_estudiante label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.modal_crear_estudiante input,
+.modal_crear_estudiante select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.modal_crear_estudiante .toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #5a6268;
+}

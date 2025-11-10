@@ -14,8 +14,8 @@
 
 <body>
 
-  <?php require_once __DIR__ . "/../../components/teacher/sidebar.php"; ?>
-  <?php require_once __DIR__ . "/../../components/teacher/navbar.php"; ?>
+  <?php require_once __DIR__ . "/../components/teacher/sidebar.php"; ?>
+  <?php require_once __DIR__ . "/../components/teacher/navbar.php"; ?>
 
   <main class="main-content p-4">
 
