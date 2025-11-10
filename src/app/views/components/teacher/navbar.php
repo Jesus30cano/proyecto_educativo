@@ -24,7 +24,7 @@
         <li>
           <hr class="dropdown-divider">
         </li>
-        <li><a class="dropdown-item text-danger" href="/auth/logout">Cerrar Sesión</a></li>
+        <li><a class="dropdown-item text-danger" href="/general/logout">Cerrar Sesión</a></li>
       </ul>
     </div>
 

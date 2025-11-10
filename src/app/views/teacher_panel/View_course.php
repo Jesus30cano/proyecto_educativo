@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title><?= $curso['nombre'] ?> | Curso</title>
+  <title>Curso | Ver</title>
 
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/public/css/boostrap_dashboard/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css">
-  <link rel="stylesheet" href="/public/css/teacher_courses/courses.css">
-
+  <link rel="stylesheet" href="/public/css/teacher_courses/view_course.css">
 </head>
 
 <body>
@@ -21,25 +21,19 @@
 
     <div class="container">
 
-      <h2 class="fw-bold mb-4"><?= $curso['nombre'] ?> </h2>
-      <p class="text-muted mb-4">Ficha: <?= $curso['ficha'] ?></p>
+      <div id="cursoHeader" class="curso-header mb-5 p-4 shadow-sm rounded">
+        <!-- JS inserta nombre y ficha -->
+      </div>
 
       <h4 class="fw-bold mb-3">Competencias del Curso</h4>
 
-      <div class="competencias-container">
-        <?php foreach ($competencias as $c): ?>
-          <div class="competencia-card">
-            <h5 class="title"><?= $c['nombre'] ?></h5>
-            <p class="desc"><?= $c['descripcion'] ?></p>
-            <p class="info"><strong>Actividades:</strong> <?= $c['actividades'] ?></p>
-
-            <div class="d-flex gap-2">
-              <a href="/teacher/actividades/competencia/<?= $c['id'] ?>" class="btn btn-outline-primary w-100">Ver Actividades</a>
-              <a href="/teacher/actividades/nueva/<?= $c['id'] ?>" class="btn btn-primary w-100">Agregar Actividad</a>
-            </div>
-          </div>
-        <?php endforeach; ?>
+      <div id="listaCompetencias" class="competencias-container">
+        <!-- JS inserta tarjetas -->
       </div>
+
+      <p id="sinCompetencias" class="text-muted text-center mt-4 d-none">
+        No hay competencias registradas aún.
+      </p>
 
     </div>
 
@@ -47,5 +41,12 @@
 
   <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
 
+  <script>
+    const cursoData = <?= json_encode($curso) ?>;
+    const competenciasData = <?= json_encode($competencias) ?>;
+  </script>
+
+  <script src="/public/js/teacher/view_course.js"></script>
 </body>
+
 </html>

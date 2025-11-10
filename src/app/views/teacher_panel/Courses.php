@@ -20,17 +20,30 @@
     <?php require_once __DIR__ . "/../components/teacher/navbar.php"; ?>
 
     <main class="main-content p-4">
-
         <div class="container">
-            <h2 class="mb-4 fw-bold">Mis Cursos</h2>
+
+            <!-- Título -->
+            <h2 class="fw-bold mb-3">Mis Cursos</h2>
+
+            <!-- Buscador debajo del título -->
+            <div class="mb-4" style="max-width: 320px;">
+                <input type="text" id="buscarCurso" class="form-control" placeholder="Buscar por ficha o nombre...">
+            </div>
 
             <!-- Contenedor de cursos -->
-            <div id="contenedorCursos" class="row g-4">
-                <!-- Aquí se insertan las cards dinámicamente con JavaScript -->
+            <div id="contenedorCursos" class="">
+                <!-- Se insertan cards con JS -->
             </div>
-        </div>
 
+            <!-- Mensaje cuando no hay cursos filtrados -->
+            <div id="sinResultados" class="mt-4" style="display:none;">
+                <div class="alert alert-info">No se encontraron cursos.</div>
+            </div>
+
+
+        </div>
     </main>
+
 
     <script src="/public/js/boostrap_dashboard/jquery-3.5.1.js"></script>
     <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
