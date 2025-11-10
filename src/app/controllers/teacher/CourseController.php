@@ -83,8 +83,10 @@ class CourseController extends Controller
                 "actividades" => 3
             ]
         ];
-
-        require_once __DIR__ . "/../../views/teacher_panel/View_course.php";
+        $this->view('teacher_panel/View_course', [
+            'curso' => $curso,
+            'competencias' => $competencias
+        ]);
     }
 
 }
