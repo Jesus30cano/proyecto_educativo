@@ -1,0 +1,58 @@
+/* Encabezado de Competencia */
+.competencia-header {
+    background: linear-gradient(135deg, #4C3BCF 0%, #6A5AE0 100%);
+    border-radius: 16px;
+    color: #ffffff;
+    padding: 28px;
+}
+
+/* Tarjeta de Actividad */
+.card {
+    border: 1px solid #E1E1F0;
+    border-radius: 14px;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(76, 59, 207, 0.12);
+}
+
+/* Títulos */
+.card-title {
+    font-weight: 600;
+    color: #1E1E2D;
+}
+
+/* Descripción */
+.card-text {
+    font-size: 0.92rem;
+    color: #6A6A7A;
+}
+
+/* botón outline principal */
+.btn-outline-primary {
+    border-color: #4C3BCF !important;
+    color: #4C3BCF !important;
+}
+
+.btn-outline-primary:hover {
+    background: #4C3BCF !important;
+    color: white !important;
+}
+
+/* botón principal */
+.btn-primary {
+    background: #4C3BCF !important;
+    border-color: #4C3BCF !important;
+}
+
+.btn-primary:hover {
+    background: #392DA5 !important;
+    border-color: #392DA5 !important;
+}
+
+/* Separación con navbar */
+.main-content {
+    margin-top: 95px !important;
+}
