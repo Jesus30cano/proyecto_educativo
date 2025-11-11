@@ -44,7 +44,7 @@ class AuthController extends Controller
             try {
                 // Buscar usuario en el modelo
                 $userModel = $this->model('Users');
-                $user = $userModel->buscar_usuario($tipo_documento, $document);
+                $user = $userModel->buscar_usuario( $document);
 
                 if (!$user) {
                     return $this->jsonResponse([

@@ -12,9 +12,8 @@ class AdminModel {
     // Métodos específicos para el modelo de administrador pueden ser añadidos aquí
 
 
-    public function adminRegistrarUsuario($email, $tipo_documento, $no_documento, $password, $id_rol){
-
-    $sql = "CALL admin_registrar_usuario(:email, :tipo_documento, :no_documento, :password, :id_rol)";
+    public function adminRegistrarUsuario($email, $tipo_documento, $no_documento, $password, $id_rol) {
+    $sql = "SELECT admin_registrar_usuario(:email, :tipo_documento, :no_documento, :password, :id_rol) AS id_usuario";
     $stmt = $this->conn->prepare($sql);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':tipo_documento', $tipo_documento);
@@ -22,6 +21,9 @@ class AdminModel {
     $stmt->bindParam(':password', $password);
     $stmt->bindParam(':id_rol', $id_rol, PDO::PARAM_INT);
     $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['id_usuario'] ?? null;
 }
 
 

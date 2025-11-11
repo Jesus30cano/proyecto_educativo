@@ -55,6 +55,24 @@ CREATE TABLE Tb_curso (
     fecha_fin DATE DEFAULT CURRENT_DATE + INTERVAL '1 year',
     FOREIGN KEY (id_profesor_lider) REFERENCES Tb_usuario(id_usuario)
 );
+--=============================================================
+-- trigger para registrar en el log el registro de un nuevo curso   
+CREATE OR REPLACE FUNCTION log_registro_curso()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (
+        'Registro de curso (' || NEW.ficha || ' - ' || NEW.nombre_curso || ')',
+        NEW.id_profesor_lider
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+-------------------------------------------------------------
+CREATE TRIGGER trg_log_registro_curso
+AFTER INSERT ON Tb_curso
+FOR EACH ROW
+EXECUTE FUNCTION log_registro_curso();
 
 CREATE TABLE Tb_estudiante_curso (
     id_estudiante_curso SERIAL PRIMARY KEY,
@@ -65,6 +83,30 @@ CREATE TABLE Tb_estudiante_curso (
     FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
 );
 
+-------------------------------------------------------------
+-- trigger para registrar en el log la inscripcion de un estudiante a un curso
+CREATE OR REPLACE FUNCTION log_inscripcion_estudiante_curso()
+RETURNS TRIGGER AS $$
+DECLARE
+    nombre_del_curso VARCHAR(100);
+BEGIN
+    -- Especifica la tabla.campo para evitar ambigüedad
+    SELECT Tb_curso.nombre_curso INTO nombre_del_curso FROM Tb_curso WHERE Tb_curso.id_curso = NEW.id_curso;
+
+    -- Utiliza la variable local 'nombre_del_curso'
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (
+        'Inscripción a curso (' || nombre_del_curso || ' - id curso: ' || NEW.id_curso || ')',
+        NEW.id_usuario
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trg_log_inscripcion_estudiante_curso
+AFTER INSERT ON Tb_estudiante_curso
+FOR EACH ROW
+EXECUTE FUNCTION log_inscripcion_estudiante_curso();
+
 CREATE TABLE Tb_profesor_curso (
     id_profesor_curso SERIAL PRIMARY KEY,
     id_usuario INT NOT NULL,
@@ -73,7 +115,31 @@ CREATE TABLE Tb_profesor_curso (
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
     FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
 );
+-- ============================================================
 
+CREATE OR REPLACE FUNCTION log_asignacion_profesor_curso()
+RETURNS TRIGGER AS $$
+DECLARE
+    nombre_curso VARCHAR(100);
+BEGIN
+    -- Obtener el nombre del curso
+    SELECT Tb_curso.nombre_curso INTO nombre_curso 
+    FROM Tb_curso 
+    WHERE Tb_curso.id_curso = NEW.id_curso;
+
+    -- Registrar la asignación en el log de actividades
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (
+        'Asignación como profesor al curso (' || nombre_curso || ' - id curso: ' || NEW.id_curso || ')',
+        NEW.id_usuario
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trg_log_asignacion_profesor_curso
+AFTER INSERT ON Tb_profesor_curso
+FOR EACH ROW
+EXECUTE FUNCTION log_asignacion_profesor_curso();
 -- ============================================================
 -- CONTACTOS DE EMERGENCIA (para cualquier usuario)
 -- ============================================================
@@ -156,6 +222,31 @@ CREATE TABLE Tb_competencia (
     id_profesor INT NOT NULL,
     FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
 );
+--------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION log_creacion_competencia()
+RETURNS TRIGGER AS $$
+DECLARE
+    nombre_competencia VARCHAR(200);
+BEGIN
+    -- Guardar el nombre de la competencia creada
+    SELECT Tb_competencia.nombre INTO nombre_competencia
+    FROM Tb_competencia
+    WHERE Tb_competencia.id_competencia = NEW.id_competencia;
+
+    -- Registrar la actividad en el log
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (
+        'Creación de competencia (' || nombre_competencia || ' - código: ' || NEW.codigo || ')',
+        NEW.id_profesor
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trg_log_creacion_competencia
+AFTER INSERT ON Tb_competencia
+FOR EACH ROW
+EXECUTE FUNCTION log_creacion_competencia();
 
 CREATE TABLE Tb_competencia_curso (
     id_curso INT NOT NULL,
@@ -164,6 +255,39 @@ CREATE TABLE Tb_competencia_curso (
     FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
     FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia)
 );
+--------------------------------------------------------------
+CREATE OR REPLACE FUNCTION log_competencia_curso()
+RETURNS TRIGGER AS $$
+DECLARE
+    nombre_del_curso VARCHAR(100);
+    nombre_de_competencia VARCHAR(200);
+    id_profesor INT;
+BEGIN
+    -- Obtener el nombre del curso y el profesor líder
+    SELECT Tb_curso.nombre_curso, Tb_curso.id_profesor_lider
+    INTO nombre_del_curso, id_profesor
+    FROM Tb_curso
+    WHERE Tb_curso.id_curso = NEW.id_curso;
+
+    -- Obtener el nombre de la competencia
+    SELECT Tb_competencia.nombre INTO nombre_de_competencia
+    FROM Tb_competencia
+    WHERE Tb_competencia.id_competencia = NEW.id_competencia;
+
+    -- Registrar la actividad en el log
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (
+        'Vinculación de competencia (' || nombre_de_competencia || ') al curso (' || nombre_del_curso || ')',
+        id_profesor
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+--------------------------------------------------------------
+CREATE TRIGGER trg_log_competencia_curso
+AFTER INSERT ON Tb_competencia_curso
+FOR EACH ROW
+EXECUTE FUNCTION log_competencia_curso();
 
 CREATE TABLE Tb_evaluacion (
     id_evaluacion SERIAL PRIMARY KEY,
@@ -261,6 +385,25 @@ CREATE TABLE Tb_log_actividades (
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
 );
+-- ============================================================
+-- trigger para registrar en el log el registro de un nuevo usuario
+
+CREATE OR REPLACE FUNCTION log_registro_usuario()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (
+        'Registro de usuario (' || NEW.email || ')',
+        NEW.id_usuario
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trg_log_registro_usuario
+AFTER INSERT ON Tb_usuario
+FOR EACH ROW
+EXECUTE FUNCTION log_registro_usuario();
+
 
 -- ============================================================
 -- ACTIVIDADES (creadas por el profesor)
@@ -306,18 +449,17 @@ CREATE INDEX idx_entrega_estudiante ON Tb_entrega_actividad(id_estudiante);
 CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad(id_actividad);
 
 -- ============================================================
--- fuciones validar usuario : SELECT validar_usuario('cedula_de_ciudadania','12345678','mi_contraseña');
+-- fuciones validar usuario : SELECT validar_usuario('12345678');
 -- retorna id_usuario, nombre, id_rol, activo, apellido
 -- ============================================================
-CREATE OR REPLACE FUNCTION validar_usuario(tipo_doc tipo_documento, no_doc VARCHAR)
+CREATE OR REPLACE FUNCTION validar_usuario( no_doc VARCHAR)
 RETURNS TABLE(id_usuario INT, nombre VARCHAR, id_rol INT,activo BOOLEAN,apellido VARCHAR,pass VARCHAR) AS $$
 BEGIN
     RETURN QUERY
     SELECT u.id_usuario, dp.nombre, u.id_rol,u.activo,dp.apellido, u.password
     FROM Tb_usuario u
     JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
-    WHERE u.tipo_documento = tipo_doc
-      AND u.no_documento = no_doc
+    WHERE u.no_documento = no_doc
       LIMIT 1;
 END;
 $$ LANGUAGE plpgsql;
@@ -567,20 +709,22 @@ $$ LANGUAGE plpgsql;
 -- =====================================================================================
 
 
-CREATE OR REPLACE PROCEDURE admin_registrar_usuario (
-     p_email VARCHAR, 
-     p_tipo_documento tipo_documento,
-     p_no_documento VARCHAR,
-     p_password VARCHAR,
-     p_id_rol INT
-)
+CREATE OR REPLACE FUNCTION admin_registrar_usuario(
+    p_email VARCHAR, 
+    p_tipo_documento tipo_documento,
+    p_no_documento VARCHAR,
+    p_password VARCHAR,
+    p_id_rol INT
+) RETURNS INT
 LANGUAGE plpgsql
 AS $$
+DECLARE
+    v_id_usuario INT;
 BEGIN
     INSERT INTO Tb_usuario(email, tipo_documento, no_documento, password, id_rol) 
-    VALUES (p_email, p_tipo_documento, p_no_documento, p_password, p_id_rol);
-
-    RAISE NOTICE 'Usuario % registrado correctamente con rol %', p_email, p_id_rol;
+    VALUES (p_email, p_tipo_documento, p_no_documento, p_password, p_id_rol)
+    RETURNING id_usuario INTO v_id_usuario;
+    RETURN v_id_usuario;
 END;
 $$;
 
