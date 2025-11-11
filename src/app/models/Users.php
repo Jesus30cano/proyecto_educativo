@@ -8,11 +8,10 @@ class Users{
         $this->conn = $database->getConnection();
     }
 
-    public function buscar_usuario($tipo_doc, $cedula) {
+    public function buscar_usuario($cedula) {
         try {
-            $query = "SELECT * FROM validar_usuario(:tipo_doc, :cedula)";
+            $query = "SELECT * FROM validar_usuario( :cedula)";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':tipo_doc', $tipo_doc);
             $stmt->bindParam(':cedula', $cedula);
             $stmt->execute();
 

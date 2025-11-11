@@ -33,9 +33,9 @@ class GeneralController extends Controller
 
         try {
             $generalModel = $this->model('General');
-            $datos = $generalModel->mostrar_datos_personales($id_usuario);
+            $data = $generalModel->mostrar_datos_personales($id_usuario);
 
-            if (!$datos) {
+            if (!$data) {
                 return $this->jsonResponse([
                     'status' => 'error',
                     'message' => 'Datos personales no encontrados.'
@@ -44,18 +44,7 @@ class GeneralController extends Controller
 
             return $this->jsonResponse([
                 'status' => 'success',
-                'data' => [
-                    'nombre' => $datos['nombre'],
-                    'apellido' => $datos['apellido'],
-                    'email' => $datos['email'],
-                    'telefono' => $datos['telefono'],
-                    'direccion' => $datos['direccion'],
-                    'tipo_documento' => $datos['tipo_documento'],
-                    'documento' => $datos['documento'],
-                    'fecha_nacimiento' => $datos['fecha_nacimiento'],
-                    'genero' => $datos['genero']
-
-                ]
+                'data' => $data
             ], 200);
 
         } catch (Exception $e) {

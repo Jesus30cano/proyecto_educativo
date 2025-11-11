@@ -20,5 +20,6 @@ class TeacherController extends Controller {
         $this->view('admin_panel/profesores');
     }
 
+    
 }
 ?>

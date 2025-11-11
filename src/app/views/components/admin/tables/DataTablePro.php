@@ -9,15 +9,15 @@
           <table id="example" class="table table-striped data-table" style="width: 100%">
             <thead>
               <tr>
-                <th>id</th>
-                <th>tipo documento </th>
-                <th>documento </th>
-                <th>nombre</th>
-                <th>apellido</th>
-                <th>edad</th>
-                <th>genero</th>
-                <th>fecha de nacimiento </th>
-                <th>correo </th>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO </th>
+                <th>ESTADO</th>
+                <th>FECHA DE NACIMIENTO</th>
+                <th>TELEFONO</th>
+                <th>CORREO</th>
+                <th>DIRECCION</th>
+                <th>GENERO</th>
               </tr>
             </thead>
             <tbody>
