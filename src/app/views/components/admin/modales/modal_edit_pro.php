@@ -4,10 +4,7 @@
     
     <h2>Editar Profesor</h2>
 
-    <form id="editProfesorForm" method="POST" action="">
-      <input type="hidden" name="action" value="update">
-      <input type="hidden" id="edit_profesor_id" name="id_profesor">
-
+    <form id="editProfesorForm" >
       <!-- Campo para buscar -->
       <div class="form-group">
         <label for="search_profesor_id">Buscar por ID del Profesor:</label>
@@ -18,14 +15,21 @@
       <hr>
 
       <div class="form-group">
-        <label for="edit_profesor_nombre">Nombre Completo:</label>
+        <label for="edit_profesor_nombre">Nombre:</label>
         <input type="text" id="edit_profesor_nombre" name="nombre" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="edit_profesor_apellido">Apellido:</label>
+        <input type="text" id="edit_profesor_apellido" name="apellido" required>
       </div>
 
       <div class="form-group">
-        <label for="edit_profesor_correo">Correo:</label>
-        <input type="email" id="edit_profesor_correo" name="correo" required>
+        <label for="edit_profesor_fecha_nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="edit_profesor_fecha_nacimiento" name="fecha_nacimiento" required>
       </div>
+
+     
 
       <div class="form-group">
         <label for="edit_profesor_telefono">Teléfono:</label>
@@ -33,15 +37,17 @@
       </div>
 
       <div class="form-group">
-        <label for="edit_profesor_especialidad">Especialidad:</label>
-        <input type="text" id="edit_profesor_especialidad" name="especialidad">
+        <label for="edit_profesor_direccion">Dirección:</label>
+        <input type="text" id="edit_profesor_direccion" name="direccion">
       </div>
 
       <div class="form-group">
-        <label for="edit_profesor_estado">Estado:</label>
-        <select id="edit_profesor_estado" name="estado" required>
-          <option value="activo">Activo</option>
-          <option value="inactivo">Inactivo</option>
+        <label for="edit_profesor_genero">Género:</label>
+        <select id="edit_profesor_genero" name="genero" required>
+          <option value="">Selecciona tu género</option>
+          <option value="masculino">Masculino</option>
+          <option value="femenino">Femenino</option>
+          <option value="otro">Otro</option>
         </select>
       </div>
 
