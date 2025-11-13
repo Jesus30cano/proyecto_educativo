@@ -16,13 +16,16 @@ class General {
         return $stmt->fetch(PDO::FETCH_ASSOC);
    }
    
-   public function mostar_datos_emergencia($id_usuario){
-        $query = "SELECT * FROM obtener_contactos_emergencia(:id_usuario)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-   }
+  public function mostar_datos_emergencia($id_usuario){
+    $query = "SELECT * FROM obtener_contactos_emergencia(:id_usuario)";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+    $stmt->execute();
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    error_log("Resultado emergencia: " . print_r($data, true));
+    return $data;
+}
 
    public function mostar_notificaciones($id_usuario){
         $query = "SELECT * FROM obtener_notificaciones_usuario(:id_usuario)";

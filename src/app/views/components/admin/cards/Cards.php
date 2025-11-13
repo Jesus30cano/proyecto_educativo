@@ -2,7 +2,7 @@
   <div class="col-md-4 mb-3">
     <div class="card bg-primary text-white h-100">
       <div class="card-body py-5">
-        Total Estudiantes: <span id="totalEstudiantes">0</span>
+        Total Estudiantes: <span id="totalEstudiantes"></span>
       </div>
     </div>
   </div>
@@ -10,7 +10,7 @@
   <div class="col-md-4 mb-3">
     <div class="card bg-success text-white h-100">
       <div class="card-body py-5">
-        Total Profesores: <span id="totalProfesores">0</span>
+        Total Profesores: <span id="totalProfesores"></span>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@
   <div class="col-md-4 mb-3">
     <div class="card bg-warning text-dark h-100">
       <div class="card-body py-5">
-        Total Cursos: <span id="totalCursos">0</span>
+        Total Cursos: <span id="totalCursos"></span>
       </div>
     </div>
   </div>

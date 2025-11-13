@@ -18,7 +18,11 @@ class GeneralController extends Controller
     public function mostrarDatosPersonales()
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $id_usuario = htmlspecialchars (trim($_POST['id_usuario'] ?? ''), ENT_QUOTES, 'UTF-8');
+            // Recibir el cuerpo JSON y decodificarlo
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            // Recibir el valor
+            $id_usuario = htmlspecialchars(trim($data['id_user'] ?? ''), ENT_QUOTES, 'UTF-8');
             // Validaciones
             $errors = [];
             if (empty($id_usuario)) $errors[] = "El ID de usuario es obligatorio.";
@@ -69,7 +73,11 @@ class GeneralController extends Controller
     {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $id_usuario = htmlspecialchars (trim($_POST['id_usuario'] ?? ''), ENT_QUOTES, 'UTF-8');
+            // Recibir el cuerpo JSON y decodificarlo
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            // Recibir el valor
+            $id_usuario = htmlspecialchars(trim($data['id_user'] ?? ''), ENT_QUOTES, 'UTF-8');
             // Validaciones
             $errors = [];
             if (empty($id_usuario)) $errors[] = "El ID de usuario es obligatorio.";
@@ -83,12 +91,12 @@ class GeneralController extends Controller
 
         try {
             $generalModel = $this->model('General');
-            $datos = $generalModel->mostar_datos_emergencia($id_usuario);
+            $datos = $generalModel->mostar_datos_emergencia((int) $id_usuario);
 
             if (!$datos) {
                 return $this->jsonResponse([
                     'status' => 'error',
-                    'message' => 'Datos de emergencia no encontrados.'
+                    'message' => 'Datos de emergencia no encontradoss.'.$id_usuario
                 ], 404);
             }
 

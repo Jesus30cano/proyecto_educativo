@@ -13,11 +13,11 @@ class ProfileController extends Controller {
         exit;
     }
     public function index() {
-         if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 1) {
+         if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 2) {
             header('Location: /auth/login');
             exit;
         }
-        $this->view('admin_panel/profile');
+        $this->view('teacher_panel/profile');
     }
 
 }

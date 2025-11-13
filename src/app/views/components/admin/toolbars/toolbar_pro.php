@@ -14,6 +14,7 @@
   <div class="toolbar">
     <button class="btn btn-success" onclick="openCreateModal()">➕ Crear profesor</button>
     <button class="btn btn-warning" onclick="openEditProfesorModal()">✏️ Editar Profesor</button>
+    <button class="btn btn-danger" onclick="openEliminarProfesorModal()">🗑️ Eliminar Profesor</button>
   </div>
 
 <?php include __DIR__ . '/../modales/modal_create_pro.php'; ?>
