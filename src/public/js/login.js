@@ -63,3 +63,21 @@ function setupFormSubmission() {
 }
 
 setupFormSubmission();
+// Espera a que el DOM esté completamente cargado antes de ejecutar el código
+document.addEventListener('DOMContentLoaded', function() {
+  /**
+   * Esta función elimina cualquier carácter que no sea número del input del documento.
+   * Así el usuario solo podrá escribir dígitos, ya sea al tipear o al pegar desde el portapapeles.
+   */
+  function soloNumeros(event) {
+    // Reemplaza cualquier carácter que no sea un dígito por una cadena vacía
+    event.target.value = event.target.value.replace(/\D/g, '');
+  }
+
+  // Obtiene el campo de documento por su id
+  const documentoInput = document.getElementById('document');
+  if (documentoInput) {
+    // Asigna el filtro cada vez que el usuario interactúe con el campo
+    documentoInput.addEventListener('input', soloNumeros);
+  }
+});

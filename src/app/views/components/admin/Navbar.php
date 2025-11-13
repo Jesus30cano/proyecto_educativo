@@ -25,9 +25,7 @@
       <!-- BUSCADOR -->
       <form class="d-flex ms-auto my-3 my-lg-0">
         <div class="input-group">
-          <input class="form-control" type="search" placeholder="Buscar..." />
-          <button class="btn btn-primary" type="submit">
-            <i class="bi bi-search"></i>
+        
           </button>
         </div>
       </form>
@@ -39,8 +37,8 @@
             <i class="bi bi-person-circle"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Configuración</a></li>
+            <li><a class="dropdown-item" href="/admin/profile">Perfil</a></li>
+            
             <li><a class="dropdown-item" href="/general/logout">Cerrar sesión</a></li>
           </ul>
         </li>

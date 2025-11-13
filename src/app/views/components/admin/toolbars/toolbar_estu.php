@@ -11,6 +11,8 @@
 <body>
     <div class="toolbar">
         <button class="btn btn-success" onclick="openCreateEstudianteModal()">➕ Crear Estudiante</button>
+        <button class="btn btn-warning" onclick="openEditEstudianteModal()">✏️ Editar Estudiante</button>
+        <button class="btn btn-danger" onclick="openEliminarEstudianteModal()">🗑️ Eliminar Estudiante</button>
     </div>
 
 

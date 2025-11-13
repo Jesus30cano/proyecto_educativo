@@ -29,13 +29,13 @@
           <!-- Aqui el perfil del estudiante, menu para cerrar sesion o configuracion -->
           <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser">
             <li>
-              <a class="dropdown-item text-center mt-2 btn btn-sm btn-outline-primary" href="perfil.php">
+              <a class="dropdown-item text-center mt-2 btn btn-sm btn-outline-primary" href="/student/profile/index">
                 perfil
               </a>
             </li>
 
             <li>
-              <a class="dropdown-item text-center mt-2 btn btn-sm btn-danger" href="#">
+              <a class="dropdown-item text-center mt-2 btn btn-sm btn-danger" href="/general/logout">
                 Cerrar sesión
               </a>
             </li>
