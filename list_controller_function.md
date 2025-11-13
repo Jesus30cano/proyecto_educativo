@@ -62,14 +62,24 @@
 
 # controllers/student/dashboard
 + index
-+ obtenerCursoPorEstudiante
-+ obtenerCompetenciasPorCurso
++ obtenerActividadesPendientes
+
+# controllers/student/activities
 + subirEntregaActividad
 + obtenerActividadesPendientes
-+ obtenerCalificacionesPorEstudiante
-+ obtenerCalificacionesExamenes
+
+# controllers/student/course
++ obtenerCursoPorEstudiante
++ obtenerCompetenciasPorCurso
+
+# controllers/student/notifications
 + obtenerNotificacionesPorUsuario
 + marcarNotificacionLeida
+
+# controllers/student/qualifications
++ obtenerCalificacionesPorEstudiante
++ obtenerCalificacionesExamenes
+
 # controllers/teacher/dashboard
 + index
 +
