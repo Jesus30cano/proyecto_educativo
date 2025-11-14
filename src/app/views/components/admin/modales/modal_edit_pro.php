@@ -45,9 +45,9 @@
         <label for="edit_profesor_genero">Género:</label>
         <select id="edit_profesor_genero" name="genero" required>
           <option value="">Selecciona tu género</option>
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-          <option value="otro">Otro</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Otro">Otro</option>
         </select>
       </div>
 
