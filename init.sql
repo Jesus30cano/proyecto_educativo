@@ -1562,7 +1562,7 @@ $$ LANGUAGE plpgsql;
 -- =======================================================================================
 CREATE OR REPLACE PROCEDURE sp_crear_asistencia_estudiante(
     p_fecha DATE,
-    p_estado estado_asistencia,
+    p_estado estado_asistencia, 
     p_observaciones TEXT,
     p_id_estudiante_curso INT,
     p_id_profesor INT
@@ -1576,46 +1576,8 @@ BEGIN
     RAISE NOTICE '✅ Asistencia creada para estudiante % en fecha %', p_id_estudiante_curso, p_fecha;
 END;
 $$;
--- ============================================================
--- FUNCIÓN: obtener_totales_activos
--- USO:
---     SELECT * FROM obtener_totales_activos();
---
--- DESCRIPCIÓN:
---     Retorna las cantidades totales de usuarios activos según su rol
---     (estudiantes y profesores), así como el total de cursos activos
---     registrados en el sistema.
---
--- PARÁMETROS:
---     Ninguno.
---
--- CAMPOS RETORNADOS:
---     total_estudiantes     → Número total de usuarios con rol 'estudiante' y estado activo.
---     total_profesores      → Número total de usuarios con rol 'profesor' y estado activo.
---     total_cursos_activos  → Número total de cursos con ficha activa.
---
--- NOTAS:
---     - Solo se contabilizan los usuarios cuyo campo "activo" sea TRUE.
---     - Solo se contabilizan los cursos cuyo campo "ficha_activa" sea TRUE.
--- ============================================================
 
-CREATE OR REPLACE FUNCTION obtener_totales_activos()
-RETURNS TABLE (
-    total_estudiantes bigint,
-    total_profesores bigint,
-    total_cursos_activos bigint
-)
-AS $$
-BEGIN
-    RETURN QUERY
-    SELECT
-        COUNT(*) FILTER (WHERE r.nombre_rol = 'estudiante' AND u.activo = TRUE) AS total_estudiantes,
-        COUNT(*) FILTER (WHERE r.nombre_rol = 'profesor' AND u.activo = TRUE) AS total_profesores,
-        (SELECT COUNT(*) FROM Tb_curso WHERE ficha_activa = TRUE) AS total_cursos_activos
-    FROM Tb_usuario u
-    INNER JOIN Tb_rol r ON u.id_rol = r.id_rol;
-END;
-$$ LANGUAGE plpgsql;
+
 -- ============================================================
 -- FUNCIÓN: obtener_info_cursos
 -- USO:
@@ -2144,3 +2106,72 @@ VALUES ('F12345', 'ADSO', 2, TRUE);
 -- Si el curso tiene id=1
 INSERT INTO Tb_estudiante_curso (id_usuario, id_curso)
 VALUES (3, 1);
+
+-- ============================================================
+-- FUNCIÓN: get_instructores
+CREATE OR REPLACE FUNCTION get_instructores()
+RETURNS TABLE (
+    id_usuario INT,
+    nombre_completo VARCHAR
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        u.id_usuario,
+        (dp.nombre || ' ' || dp.apellido)::VARCHAR AS nombre_completo
+    FROM Tb_usuario u
+    JOIN Tb_datos_personales dp ON dp.id_usuario = u.id_usuario
+    WHERE u.id_rol = 2
+      AND u.activo = true;
+END;
+$$ LANGUAGE plpgsql;
+--
+-- ============================================================
+-- FUNCIÓN: get_curso_por_ficha
+
+CREATE OR REPLACE FUNCTION get_curso_por_ficha(_ficha VARCHAR)
+RETURNS TABLE (
+    id_curso INT,
+    nombre_curso VARCHAR,
+    fecha_inicio DATE,
+    fecha_fin DATE,
+    instructor_lider INT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        c.id_curso,
+        c.nombre_curso,
+        c.fecha_inicio,
+        c.fecha_fin,
+        C.id_profesor_lider
+    FROM Tb_curso c
+    WHERE c.ficha = _ficha;
+END;
+$$ LANGUAGE plpgsql;
+-- ============================================================
+-- PROCEDIMIENTO: desactivar_curso_y_log
+CREATE OR REPLACE PROCEDURE desactivar_curso_y_log (
+    in_ficha VARCHAR,
+    in_mensaje VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_id_usuario INTEGER;
+BEGIN
+    -- Actualiza el estado del curso a inactivo
+    UPDATE Tb_curso
+    SET ficha_activa = FALSE
+    WHERE ficha = in_ficha;
+
+    -- Busca el usuario líder del curso
+    SELECT id_profesor_lider INTO v_id_usuario
+      FROM Tb_curso
+      WHERE ficha = in_ficha;
+
+    -- Inserta el log de actividad
+    INSERT INTO Tb_log_actividades (actividad, id_usuario)
+    VALUES (in_mensaje, v_id_usuario);
+END;
+$$;
