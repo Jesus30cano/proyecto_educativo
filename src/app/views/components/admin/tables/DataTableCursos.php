@@ -9,13 +9,13 @@
           <table id="example" class="table table-striped data-table" style="width: 100%">
             <thead>
               <tr>
-                <th>id</th>
-                <th>Cursos</th>
-                <th>Descripción cursos</th>
-                <th>Fichas</th>
-                <th>Profesores</th>
-                <th>Estudiantes</th>
-                <th>Estado</th>
+                <th>FICHA</th>
+                <th>CURSO</th>
+                <th>INSTRUCTOR</th>
+                <th>FECHA INICIO</th>
+                <th>FECHA FIN</th>
+                <th>APRENDICES</th>
+                <th>ESTADO</th>
               </tr>
             </thead>
             <tbody>

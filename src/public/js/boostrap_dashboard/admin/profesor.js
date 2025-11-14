@@ -178,13 +178,15 @@ setupFormSubmissionDocente();
 async function buscarProfesor() {
   const id_profesor = document.getElementById("search_profesor_id").value;
   // Crea el FormData solo con el ID a buscar
-  const formData = new FormData();
-  formData.append("id_usuario", id_profesor);
+  
 
   try {
     const response = await fetch("/general/mostrarDatosPersonales", {
       method: "POST",
-      body: formData,
+      body: JSON.stringify({ id_user: id_profesor }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     // Puede que la respuesta no sea JSON si hay error: se intenta analizar como JSON
@@ -201,6 +203,7 @@ async function buscarProfesor() {
     // Si la búsqueda fue exitosa, llena el formulario de edición
     if (data.status === "success" && data.data) {
       // Valida que el rol sea de profesor
+      
       if (data.data.id_rol !== 2) {
         showToast("No se encontró el profesor.", "#e74c3c", 4000);
         return;
@@ -212,6 +215,7 @@ async function buscarProfesor() {
       document.getElementById("edit_profesor_direccion").value = data.data.direccion || "";
       document.getElementById("edit_profesor_genero").value = data.data.genero || "";
       showToast("Profesor encontrado", "#27ae60", 3000);
+      console.log("Datos recibidos para edición:", data.data);
     } else {
       showToast(data.message || "No se encontró el profesor.", "#e74c3c", 4000);
     }

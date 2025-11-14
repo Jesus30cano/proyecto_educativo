@@ -18,7 +18,11 @@ class GeneralController extends Controller
     public function mostrarDatosPersonales()
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $id_usuario = htmlspecialchars (trim($_POST['id_usuario'] ?? ''), ENT_QUOTES, 'UTF-8');
+            // Recibir el cuerpo JSON y decodificarlo
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            // Recibir el valor
+            $id_usuario = htmlspecialchars(trim($data['id_user'] ?? ''), ENT_QUOTES, 'UTF-8');
             // Validaciones
             $errors = [];
             if (empty($id_usuario)) $errors[] = "El ID de usuario es obligatorio.";
@@ -69,7 +73,11 @@ class GeneralController extends Controller
     {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $id_usuario = htmlspecialchars (trim($_POST['id_usuario'] ?? ''), ENT_QUOTES, 'UTF-8');
+            // Recibir el cuerpo JSON y decodificarlo
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            // Recibir el valor
+            $id_usuario = htmlspecialchars(trim($data['id_user'] ?? ''), ENT_QUOTES, 'UTF-8');
             // Validaciones
             $errors = [];
             if (empty($id_usuario)) $errors[] = "El ID de usuario es obligatorio.";
@@ -83,12 +91,12 @@ class GeneralController extends Controller
 
         try {
             $generalModel = $this->model('General');
-            $datos = $generalModel->mostar_datos_emergencia($id_usuario);
+            $datos = $generalModel->mostar_datos_emergencia((int) $id_usuario);
 
             if (!$datos) {
                 return $this->jsonResponse([
                     'status' => 'error',
-                    'message' => 'Datos de emergencia no encontrados.'
+                    'message' => 'Datos de emergencia no encontradoss.'.$id_usuario
                 ], 404);
             }
 
@@ -170,22 +178,12 @@ class GeneralController extends Controller
 
     public function mostrarLogGeneral()
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $pagina = htmlspecialchars (trim($_POST['pagina'] ?? ''), ENT_QUOTES, 'UTF-8');
-            $cantidad = htmlspecialchars (trim($_POST['cantidad'] ?? ''), ENT_QUOTES, 'UTF-8');
-            // Validaciones
-            $errors = [];
-            if (empty($pagina)) $errors[] = "La página es obligatoria.";
-            if (empty($cantidad)) $errors[] = "La cantidad es obligatoria.";
-            if (!empty($errors)) {
-                return $this->jsonResponse([
-                    'status' => 'error',
-                    'errors' => $errors
-                ], 400);
-            }
+        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+          
+
         try {
             $generalModel = $this->model('General');
-            $log = $generalModel->mostrar_log_general($pagina,$cantidad);
+            $log = $generalModel->mostrar_log_general();
             if (!$log) {
                 return $this->jsonResponse([
                     'status' => 'error',

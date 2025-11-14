@@ -12,9 +12,10 @@
   <div class="toolbar">
     <button class="btn btn-success" onclick="openCreateCursoModal()">➕ Crear Curso</button>
      <button class="btn btn-warning" onclick="openEditCursoModal()">✏️ Editar Curso</button>
+     <button class="btn btn-danger" onclick="openEliminarCursoModal()">🗑️ Eliminar Curso</button>
   </div>
 
-  <
+  
   <?php include __DIR__ . '/../modales/modal_create_curso.php'; ?>
   <?php include __DIR__ . '/../modales/modal_edit_curso.php'; ?>
 

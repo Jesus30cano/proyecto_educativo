@@ -1,5 +1,5 @@
 <?php
-class ProfileController extends Controller {
+class LogController extends Controller {
     
     public function __construct() {
        session_start();
@@ -17,7 +17,7 @@ class ProfileController extends Controller {
             header('Location: /auth/login');
             exit;
         }
-        $this->view('admin_panel/profile');
+        $this->view('admin_panel/log');
     }
 
 }
