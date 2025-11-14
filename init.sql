@@ -2093,7 +2093,8 @@ RETURNS TABLE (
     fecha_inicio DATE,
     fecha_fin DATE,
     nombre_profesor VARCHAR,         -- <--- mantiene VARCHAR
-    cantidad_estudiantes bigint
+    cantidad_estudiantes bigint,
+    ficha_activa BOOLEAN
 )
 AS $$
 BEGIN
@@ -2105,12 +2106,14 @@ BEGIN
         c.fecha_inicio,
         c.fecha_fin,
         (dp.nombre || ' ' || dp.apellido)::VARCHAR AS nombre_profesor,   -- <--- aquí el CAST
-        COUNT(ec.id_usuario) AS cantidad_estudiantes
+        COUNT(ec.id_usuario) AS cantidad_estudiantes,
+        c.ficha_activa
+
     FROM Tb_curso c
     INNER JOIN Tb_usuario u ON c.id_profesor_lider = u.id_usuario
     INNER JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
     LEFT JOIN Tb_estudiante_curso ec ON c.id_curso = ec.id_curso
-    GROUP BY c.id_curso, c.nombre_curso, c.ficha, c.fecha_inicio, c.fecha_fin, dp.nombre, dp.apellido;
+    GROUP BY c.id_curso, c.nombre_curso, c.ficha, c.fecha_inicio, c.fecha_fin, dp.nombre, dp.apellido, c.ficha_activa;
 END;
 $$ LANGUAGE plpgsql;
 -- =======================================================================================
