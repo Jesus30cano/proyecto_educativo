@@ -178,22 +178,12 @@ class GeneralController extends Controller
 
     public function mostrarLogGeneral()
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $pagina = htmlspecialchars (trim($_POST['pagina'] ?? ''), ENT_QUOTES, 'UTF-8');
-            $cantidad = htmlspecialchars (trim($_POST['cantidad'] ?? ''), ENT_QUOTES, 'UTF-8');
-            // Validaciones
-            $errors = [];
-            if (empty($pagina)) $errors[] = "La página es obligatoria.";
-            if (empty($cantidad)) $errors[] = "La cantidad es obligatoria.";
-            if (!empty($errors)) {
-                return $this->jsonResponse([
-                    'status' => 'error',
-                    'errors' => $errors
-                ], 400);
-            }
+        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+          
+
         try {
             $generalModel = $this->model('General');
-            $log = $generalModel->mostrar_log_general($pagina,$cantidad);
+            $log = $generalModel->mostrar_log_general();
             if (!$log) {
                 return $this->jsonResponse([
                     'status' => 'error',
