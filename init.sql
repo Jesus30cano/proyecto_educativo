@@ -659,30 +659,22 @@ $$ LANGUAGE plpgsql;
 -- retorna: id_log, actividad, fecha, id_usuario
 -- ============================================================
 
-CREATE OR REPLACE FUNCTION obtener_log_actividades_paginado(
-    p_pagina INT DEFAULT 1,        -- número de página (1, 2, 3, ...)
-    p_tamano_pagina INT DEFAULT 15 -- cantidad de registros por página
-)
-RETURNS TABLE (
-    id_log INT,
+CREATE OR REPLACE FUNCTION obtener_log_actividades()
+RETURNS TABLE(
+    nombre_completo VARCHAR,
+    id_usuario INT,
     actividad VARCHAR,
-    fecha TIMESTAMP,
-    id_usuario INT
+    fecha TIMESTAMP
 )
 AS $$
-BEGIN
-    RETURN QUERY
-    SELECT 
-        l.id_log,
-        l.actividad,
-        l.fecha,
-        l.id_usuario
-    FROM Tb_log_actividades l
-    ORDER BY l.fecha DESC
-    LIMIT p_tamano_pagina
-    OFFSET (p_pagina - 1) * p_tamano_pagina;
-END;
-$$ LANGUAGE plpgsql;
+    SELECT
+        dp.nombre || ' ' || dp.apellido AS nombre_completo,
+        dp.id_usuario,
+        log.actividad,
+        log.fecha
+    FROM Tb_log_actividades log
+    JOIN Tb_datos_personales dp ON log.id_usuario = dp.id_usuario
+$$ LANGUAGE sql;
 
 
 -- ======================================================================

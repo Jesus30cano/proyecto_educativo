@@ -8,7 +8,7 @@
       <input type="hidden" id="edit_curso_id" name="id_curso">
 
       <div class="form-group">
-        <label for="edit_codigo">Código del Curso</label>
+        <label for="edit_codigo">FICHA</label>
         <input type="text" id="edit_codigo" name="codigo" required>
       </div>
 

@@ -35,11 +35,9 @@ class General {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);   
    }
 
-   public function mostrar_log_general($pagina,$cantidad){
-    $query="SELECT * FROM obtener_log_actividades_paginado(:pagina,:cantidad)";
+   public function mostrar_log_general(){
+    $query="SELECT * FROM obtener_log_actividades()";
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(':pagina', $pagina, PDO::PARAM_INT);
-    $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
    }

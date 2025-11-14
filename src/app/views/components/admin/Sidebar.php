@@ -23,8 +23,8 @@
 
         <li class="text-muted small fw-bold text-uppercase px-3">PERSONALIZACIÓN</li>
 
-        <li><a href="#" class="nav-link px-3 load-view" data-view="historial"><i class="bi bi-clock-history me-2"></i> Historial</a></li>
-        <li><a href="#" class="nav-link px-3 load-view" data-view="configuracion"><i class="bi bi-gear me-2"></i> Configuración</a></li>
+        <li><a href="/admin/log/index" class="nav-link px-3 load-view" data-view="historial"><i class="bi bi-clock-history me-2"></i> Historial</a></li>
+        
 
       </ul>
     </nav>
