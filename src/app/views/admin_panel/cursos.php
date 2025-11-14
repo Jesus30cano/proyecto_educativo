@@ -45,6 +45,7 @@
   <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
   <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
   <script src="/public/js/boostrap_dashboard/script.js"></script>
+  <script src="/public/js/boostrap_dashboard/admin/curso.js"></script>
 </body>
 
 </html>

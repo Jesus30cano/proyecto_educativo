@@ -47,9 +47,9 @@ class CourseController extends Controller {
             $input['fecha_fin']
             );
 
-            $this->jsonResponse(['mensaje' => 'Curso creado correctamente.']);
+            $this->jsonResponse(["status" => "success","mensaje" => "Curso creado correctamente."]);
         } catch (PDOException $e) {
-            $this->jsonResponse(['error' => 'Error al crear curso: ' . $e->getMessage()], 500);
+            $this->jsonResponse(["status" => "error",'mensaje' => 'Error al crear curso: ' . $e->getMessage()], 500);
         }
     }
 

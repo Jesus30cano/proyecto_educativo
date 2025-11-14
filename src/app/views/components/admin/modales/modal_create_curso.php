@@ -3,12 +3,12 @@
     <span class="close" onclick="closeModal('create_curso')">&times;</span>
     
     <h2>Crear Curso</h2>
-    <form method="POST" action="">
+    <form id="createCursoForm">
       <input type="hidden" name="action" value="create">
       <input type="hidden" id="create_curso_id" name="id_curso">
 
       <div class="form-group">
-        <label for="create_codigo">Código del Curso</label>
+        <label for="create_codigo">Ficha</label>
         <input type="text" id="create_codigo" name="codigo" required>
       </div>
 
