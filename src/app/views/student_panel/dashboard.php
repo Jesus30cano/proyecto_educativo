@@ -42,9 +42,11 @@
         </div>
       </div>
 
-      <!-- Calendario. esto lo puse como diseño, podria tener color unos dias que avisen alguna actividad o evaluacion. si desean se puede borrar -->
+      <!-- Calendario y Mensaje Motivacional -->
       <div class="row">
-        <div class="col-md-12 mb-3">
+
+        <!-- Calendario -->
+        <div class="col-lg-6 mb-3">
           <div class="card h-100">
             <div class="card-header">
               <span class="me-2"><i class="bi bi-calendar3"></i></span>
@@ -55,6 +57,22 @@
             </div>
           </div>
         </div>
+
+        <!-- Mensaje Motivacional. idea de brayan -->
+        <div class="col-lg-6 mb-3">
+          <div class="card h-100 bg-light">
+            <div class="card-header bg-primary text-white">
+              <span class="me-2"><i class="bi bi-lightbulb"></i></span>
+              Mensaje del Día
+            </div>
+            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+              <i class="bi bi-emoji-smile text-warning mb-3" style="font-size: 60px;"></i>
+              <h5 class="text-primary mb-3">"El éxito es la suma de pequeños esfuerzos repetidos día tras día"</h5>
+              <p class="text-muted mb-0">¡Sigue adelante! Cada paso cuenta en tu camino al éxito académico.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div class="row">
@@ -64,7 +82,6 @@
         </div>
       </div>
 
-      <!-- NUEVO-->
       <!-- Tabla de datos. calificaciones recientes del estudiante sin importar que competencia es -->
       <div class="row">
         <div class="col-md-12 mb-3">
@@ -104,7 +121,6 @@
           </div>
         </div>
       </div>
-
 
     </div>
     </div>
