@@ -67,8 +67,8 @@
             </div>
             <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
               <i class="bi bi-emoji-smile text-warning mb-3" style="font-size: 60px;"></i>
-              <h5 class="text-primary mb-3">"El éxito es la suma de pequeños esfuerzos repetidos día tras día"</h5>
-              <p class="text-muted mb-0">¡Sigue adelante! Cada paso cuenta en tu camino al éxito académico.</p>
+              <h5 class="text-primary mb-3" id="frase"></h5> <!-- aqui se puede añadir el mensaje mostivacional que saldra en el js, la id es el que lo llama -->
+              <p class="text-muted mb-0">Cada paso cuenta en tu camino al éxito académico.</p>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@
   <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
   <script src="/public/js/boostrap_dashboard/script.js"></script>
   <script src="/public/js/boostrap_dashboard/student/script.calendar.js"></script>
+  <script src="/public/js/student/frases.js"></script>
 
 </body>
-
 </html>

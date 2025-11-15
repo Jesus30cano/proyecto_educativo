@@ -57,13 +57,13 @@
                         </div>
                         <div class="card-body">
                             <canvas id="gradeChart" class="chart" width="400" height="200"></canvas>
-                            <!-- He añadido un ID al canvas para que puedas inicializar, osea el grafico el js script.graphics -->
+                            <!-- He añadido un ID al canvas para que puedas inicializar Chart.js -->
                         </div>
                     </div>
                 </div>
 
 
-                <!-- COLUMNA DERECHA: PROMEDIO GENERAL (5 de 12 unidades) -->
+                <!-- COLUMNA DERECHA: RESUMEN ACADÉMICO -->
                 <div class="col-md-5 mb-3">
                     <div class="card h-100">
                         <div class="card-header bg-success text-white">
@@ -71,20 +71,48 @@
                             Resumen Académico
                         </div>
                         <div class="card-body">
+
+                            <!-- Estado del Estudiante -->
                             <div class="mb-4">
-                                <h5 class="text-muted mb-2">Promedio del estudiante</h5>
-                                <!-- Aquí colocamos el promedio -->
-                                <h1 class="display-3 text-success fw-bold">4.2</h1> <!-- Promedio de notas -->
-                                <p class="text-muted mb-0">de 5.0</p> <!-- Nota Maxima -->
+                                <h5 class="text-muted mb-2">Estado del Estudiante</h5>
+
+                                <!-- Aprobadas -->
+                                <div class="card bg-success bg-opacity-10 border-success mb-2">
+                                    <div class="card-body py-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <i class="bi bi-check-circle text-success me-2"></i>
+                                            <span class="fw-bold">Aprobadas</span>
+                                        </div>
+                                        <h3 class="fw-bold mb-0">17</h3>
+                                    </div>
+                                </div>
+
+                                <!-- No Aprobadas -->
+                                <div class="card bg-danger bg-opacity-10 border-danger mb-2">
+                                    <div class="card-body py-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <i class="bi bi-x-circle text-danger me-2"></i>
+                                            <span class="fw-bold">No Aprobadas</span>
+                                        </div>
+                                        <h3 class="fw-bold mb-0">3</h3>
+                                    </div>
+                                </div>
+
+                                <!-- Pendientes -->
+                                <div class="card bg-warning bg-opacity-10 border-warning">
+                                    <div class="card-body py-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <i class="bi bi-clock text-warning me-2"></i>
+                                            <span class="fw-bold">Pendientes</span>
+                                        </div>
+                                        <h3 class="fw-bold mb-0">2</h3>
+                                    </div>
+                                </div>
+
+                                <hr>
+
                             </div>
 
-                            <div class="mb-4">
-                                <h5 class="text-muted mb-2">Promedio del Curso</h5>
-                                <!-- Aquí colocamos el promedio -->
-                                <h1 class="display-3 text-success fw-bold">3.2</h1> <!-- Promedio del curso -->
-                                <p class="text-muted mb-0">de 5.0</p> <!-- Nota Maxima -->
-                            </div>
-                            
                         </div>
                     </div>
                 </div>

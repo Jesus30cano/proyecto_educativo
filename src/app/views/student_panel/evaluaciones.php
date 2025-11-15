@@ -94,12 +94,6 @@
                   <p class="card-text small">Evaluación sobre derivadas, límites y continuidad de funciones.</p>
                   <!-- Descripcion de la evaluacion -->
                   <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div>
-                      <span class="badge bg-info me-1"><i class="bi bi-clock"></i> 60 min</span>
-                      <!-- Minutos de la evaluacion -->
-                      <span class="badge bg-warning text-dark"><i class="bi bi-list-ol"></i> 15 preg.</span>
-                      <!-- Preguntas en la evaluacion -->
-                    </div>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalEvaluacion1">
                       <i class="bi bi-eye me-1"></i>Ver
                     </button>
@@ -126,10 +120,6 @@
                   <p class="text-muted mb-2"><small><i class="bi bi-bookmark me-1"></i>Cinemática</small></p>
                   <p class="card-text small">Evaluación sobre movimiento rectilíneo, velocidad y aceleración.</p>
                   <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div>
-                      <span class="badge bg-secondary me-1"><i class="bi bi-clock"></i> 50 min</span>
-                      <span class="badge bg-secondary"><i class="bi bi-list-ol"></i> 18 preg.</span>
-                    </div>
                     <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#modalEvaluacion2">
                       <i class="bi bi-eye me-1"></i>Ver
                     </button>
@@ -165,6 +155,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Las demas cartas de las evaluaciones seguiran aqui -->
 
           </div>
         </div>
