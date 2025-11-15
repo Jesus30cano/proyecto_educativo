@@ -254,9 +254,27 @@ public function obtener_total_cursos() {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
-
+public function obtener_instructores_disponibles() {
+    $sql = "SELECT * FROM get_instructores()";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+public function obtener_datos_curso($ficha) {
+    $sql = "SELECT * FROM get_curso_por_ficha(:ficha)";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':ficha', $ficha, PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+public function desactivarCursoYLog($ficha, $mensaje) {
+    $sql = "CALL desactivar_curso_y_log(:ficha, :mensaje)";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':ficha', $ficha, PDO::PARAM_STR);
+    $stmt->bindParam(':mensaje', $mensaje, PDO::PARAM_STR);
+    $stmt->execute();
+    
+}
 
 }
 ?>
