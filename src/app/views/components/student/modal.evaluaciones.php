@@ -27,12 +27,8 @@
 
         <div class="row mb-3">
           <div class="col-md-6">
-            <h6 class="text-primary"><i class="bi bi-clock me-2"></i>Duración:</h6>
-            <p class="text-info fw-bold">60 minutos</p> <!-- Duracion de la evaluacion -->
-          </div>
-          <div class="col-md-6">
             <h6 class="text-primary"><i class="bi bi-list-ol me-2"></i>Número de Preguntas:</h6>
-            <p class="text-warning fw-bold">15 preguntas</p> <!-- Numero de preguntas -->
+            <p class="text-warning fw-bold">15 preguntas</p> <!-- Numero de preguntas. lo pueden quitar si no esta en la base de datos -->
           </div>
         </div>
 
@@ -88,10 +84,6 @@
 
         <div class="row mb-3">
           <div class="col-md-6">
-            <h6 class="text-muted"><i class="bi bi-clock me-2"></i>Duración:</h6>
-            <p class="text-muted">50 minutos</p>
-          </div>
-          <div class="col-md-6">
             <h6 class="text-muted"><i class="bi bi-list-ol me-2"></i>Número de Preguntas:</h6>
             <p class="text-muted">18 preguntas</p>
           </div>
@@ -115,3 +107,4 @@
     </div>
   </div>
 </div>
+

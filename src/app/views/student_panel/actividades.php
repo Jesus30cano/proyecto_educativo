@@ -129,6 +129,8 @@
                             </div>
                         </div>
 
+                        <!-- las demas cartas de las actividades saldran aqui -->
+
                     </div>
                 </div>
             </div>
