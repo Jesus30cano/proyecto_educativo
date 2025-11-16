@@ -280,74 +280,53 @@ class ActivityController extends Controller
         ], 405);
     }
 
-    //de prueba descomentar el metodo que conecta con la bd
+    
 
     public function obtener_actividades()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $competencia_id = htmlspecialchars(trim($_GET['competencia'] ?? ''), ENT_QUOTES, 'UTF-8');
-
-            if (empty($competencia_id)) {
-                return $this->jsonResponse([
-                    'status' => 'error',
-                    'message' => 'ID de competencia no proporcionado.'
-                ], 400);
-            }
-
-            // Simulación de actividades por competencia
-            $actividadesPrueba = [
-                '1' => [
-                    [
-                        'id' => 101,
-                        'titulo' => 'Maquetación con Flexbox',
-                        'descripcion' => 'Crear una interfaz responsive usando Flexbox.',
-                        'fecha_entrega' => '2025-11-15',
-                        'archivo' => 'storage/documents/actividad_flexbox.pdf'
-                    ],
-                    [
-                        'id' => 102,
-                        'titulo' => 'Landing Page con Bootstrap',
-                        'descripcion' => 'Diseñar una landing page con componentes Bootstrap.',
-                        'fecha_entrega' => '2025-11-20',
-                        'archivo' => null
-                    ]
-                ],
-                '2' => [
-                    [
-                        'id' => 201,
-                        'titulo' => 'Modelo entidad-relación',
-                        'descripcion' => 'Diseñar un MER para una tienda online.',
-                        'fecha_entrega' => '2025-11-18',
-                        'archivo' => 'storage/documents/actividad_mer.docx'
-                    ],
-                    [
-                        'id' => 202,
-                        'titulo' => 'Consultas SQL básicas',
-                        'descripcion' => 'Escribir consultas SELECT, INSERT y DELETE.',
-                        'fecha_entrega' => '2025-11-22',
-                        'archivo' => null
-                    ]
-                ]
-            ];
-
-            if (!isset($actividadesPrueba[$competencia_id])) {
-                return $this->jsonResponse([
-                    'status' => 'success',
-                    'data' => []
-                ], 200);
-            }
-
-            return $this->jsonResponse([
-                'status' => 'success',
-                'data' => $actividadesPrueba[$competencia_id]
-            ], 200);
-        }
-
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         return $this->jsonResponse([
             'status' => 'error',
             'message' => 'Método no permitido.'
         ], 405);
     }
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $competencia_id = htmlspecialchars(trim($_GET['competencia'] ?? ''), ENT_QUOTES, 'UTF-8');
+    $curso_id = $_SESSION['curso_seleccionado'] ?? null;
+    $profesor_id = $_SESSION['user_id'] ?? null;
+
+    if (empty($competencia_id) || !$curso_id || !$profesor_id) {
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Datos insuficientes.'
+        ], 400);
+    }
+
+    try {
+        $teacherModel = $this->model('teacher/TeacherModel');
+
+        $actividades = $teacherModel->obtener_actividades(
+            $competencia_id,
+            $curso_id,
+            $profesor_id
+        );
+
+        return $this->jsonResponse([
+            'status' => 'success',
+            'data' => $actividades
+        ], 200);
+
+    } catch (PDOException $e) {
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Error al obtener actividades: ' . $e->getMessage()
+        ], 500);
+    }
 }
 
+}
 ?>
