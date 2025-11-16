@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursoHeader = document.getElementById("cursoHeader");
   const listaCompetencias = document.getElementById("listaCompetencias");
   const sinCompetencias = document.getElementById("sinCompetencias");
+  console.log("estos son los datos", competenciasData);
+  console.log("estos son los datos del curso", cursoData);
+  console.log("estos son los datos del profesor");
 
   const modal = new bootstrap.Modal(
     document.getElementById("modalCrearActividad")
@@ -63,6 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const formData = new FormData(form);
     mensaje.innerHTML = "";
+    for (const pair of formData.entries()) {
+  console.log(`${pair[0]}:`, pair[1]);
+}
 
     try {
       const res = await fetch("/teacher/activity/crear_actividad", {
@@ -117,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   listaCompetencias.querySelectorAll(".btn-ver").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const competenciaId = btn.dataset.id;
-      const id_curso= cursoData.id;
+      const id_curso = cursoData.id;
 
       try {
         const res = await fetch("/teacher/activity/seleccionar", {

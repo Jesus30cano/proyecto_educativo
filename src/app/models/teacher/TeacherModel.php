@@ -86,5 +86,22 @@ class TeacherModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function actualizar_actividad($id,$titulo,$descripcion,$fecha_entrega) {
+        $query ="CALL editar_actividad(:id,:titulo,:descripcion,:fecha_entrega)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':titulo', $titulo);
+        $stmt->bindParam(':descripcion', $descripcion);
+        $stmt->bindParam(':fecha_entrega', $fecha_entrega);
+        return $stmt->execute();
+
+    }
+    public function eliminar_actividad($id) {
+        $query ="DELETE from tb_actividad where id_actividad = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+
+    }
 }
 ?>

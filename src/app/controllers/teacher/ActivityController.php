@@ -259,6 +259,111 @@ class ActivityController extends Controller
             'message' => 'Método no permitido.'
         ], 405);
     }
+    public function editar_actividad()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $actividadEditada = json_decode(file_get_contents('php://input'), true);
+            // --- Sanitizar datos recibidos ---
+            $id = htmlspecialchars(trim($actividadEditada['id'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $titulo = htmlspecialchars(trim($actividadEditada['titulo'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $descripcion = htmlspecialchars(trim($actividadEditada['descripcion'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $fecha_entrega = htmlspecialchars(trim($actividadEditada['fecha_entrega'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+            // --- Validaciones ---
+            $errors = [];
+            if (empty($id))
+                $errors[] = "ID de la actividad es obligatorio.";
+            if (empty($titulo))
+                $errors[] = "El título es obligatorio.";
+            if (empty($fecha_entrega))
+                $errors[] = "Debe ingresar una fecha de entrega.";
+
+            if (!empty($errors)) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'errors' => $errors
+                ], 400);
+            }
+
+            // --- Actualizar en BD ---
+            try {
+                $actividadModel = $this->model('teacher/teacherModel'); // tu modelo
+                $resultado = $actividadModel->actualizar_actividad(
+                    $id,
+                    $titulo,
+                    $descripcion,
+                    $fecha_entrega
+                );
+
+                if ($resultado) {
+                    return $this->jsonResponse([
+                        'status' => 'success',
+                        'message' => 'Actividad actualizada correctamente.'
+                    ], 200);
+                } else {
+                    return $this->jsonResponse([
+                        'status' => 'error',
+                        'message' => 'No se pudo actualizar la actividad.'
+                    ], 500);
+                }
+            } catch (Exception $e) {
+                error_log("Error al actualizar actividad: " . $e->getMessage());
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'Error interno del servidor.'
+                ], 500);
+            }
+
+        } else {
+            // Método no permitido
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'Método no permitido.'
+            ], 405);
+        }
+    }
+    public function eliminar_actividad()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = json_decode(file_get_contents('php://input'), true);
+            $id = htmlspecialchars(trim($input['id'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+            if (empty($id)) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'ID de actividad no proporcionado.'
+                ], 400);
+            }
+
+            try {
+                $actividadModel = $this->model('teacher/teacherModel');
+                $resultado = $actividadModel->eliminar_actividad($id);
+
+                if ($resultado) {
+                    return $this->jsonResponse([
+                        'status' => 'success',
+                        'message' => 'Actividad eliminada correctamente.'
+                    ], 200);
+                } else {
+                    return $this->jsonResponse([
+                        'status' => 'error',
+                        'message' => 'No se pudo eliminar la actividad.'
+                    ], 500);
+                }
+            } catch (Exception $e) {
+                error_log("Error al eliminar actividad: " . $e->getMessage());
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'Error interno del servidorr.'
+                ], 500);
+            }
+        } else {
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'Método no permitido.'
+            ], 405);
+        }
+    }
 }
 
 ?>

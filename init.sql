@@ -291,7 +291,7 @@ CREATE TABLE Tb_entrega_actividad (
     id_actividad INT NOT NULL,
     id_profesor INT,
     id_estudiante INT NOT NULL,
-    FOREIGN KEY (id_actividad) REFERENCES Tb_actividad(id_actividad),
+    FOREIGN KEY (id_actividad) REFERENCES Tb_actividad(id_actividad) on DELETE CASCADE,
     FOREIGN KEY (id_estudiante) REFERENCES Tb_usuario(id_usuario),
     FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario),
     UNIQUE (id_actividad, id_estudiante) -- una sola entrega por estudiante por actividad
@@ -2327,7 +2327,7 @@ CREATE OR REPLACE FUNCTION fn_obtener_competencias_con_actividades(
 RETURNS TABLE (
     id INT,
     nombre VARCHAR(200),
-    descripciona TEXT,
+    descripcion TEXT,
     actividades BIGINT
 )
 LANGUAGE plpgsql
@@ -2392,3 +2392,54 @@ BEGIN
         a.id_actividad DESC;
 END;
 $$;
+-------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE editar_actividad(
+    p_id_actividad INT,
+    p_titulo VARCHAR,
+    p_descripcion TEXT,
+    p_fecha_entrega DATE
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Tb_actividad
+    SET titulo = p_titulo,
+        descripcion = p_descripcion,
+        fecha_entrega = p_fecha_entrega
+    WHERE id_actividad = p_id_actividad;
+END;
+$$;
+CREATE OR REPLACE FUNCTION crear_entregas_automatica()
+RETURNS TRIGGER AS $$
+DECLARE
+    estudiante RECORD;
+BEGIN
+    -- Para cada estudiante inscrito en el curso (accede a NEW.id_curso desde el insert)
+    FOR estudiante IN
+        SELECT ec.id_usuario AS id_estudiante
+        FROM Tb_estudiante_curso ec
+        WHERE ec.id_curso = NEW.id_curso
+    LOOP
+        INSERT INTO Tb_entrega_actividad (
+            titulo,
+            descripcion,
+            id_actividad,
+            id_profesor,
+            id_estudiante,
+            estado_entrega
+        ) VALUES (
+            NEW.titulo,
+            NEW.descripcion,
+            NEW.id_actividad,
+            NEW.id_profesor,
+            estudiante.id_estudiante,
+            FALSE
+        );
+    END LOOP;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trigger_crear_entregas
+AFTER INSERT ON Tb_actividad
+FOR EACH ROW
+EXECUTE PROCEDURE crear_entregas_automatica();

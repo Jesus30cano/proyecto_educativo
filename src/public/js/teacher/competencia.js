@@ -119,16 +119,58 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
-    // Botón eliminar
     container.querySelectorAll(".btn-eliminar").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = btn.dataset.id;
-        if (confirm("¿Estás segura de eliminar esta actividad?")) {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.id;
+
+    // Mostrar la caja de confirmación personalizada
+    const confirmacion = document.getElementById("confirmacion");
+    confirmacion.style.display = "block";
+
+    // Si el usuario acepta
+    const btnSi = document.getElementById("btnSiEliminar");
+    const btnNo = document.getElementById("btnNoEliminar");
+
+    // Elimina cualquier listener anterior
+    btnSi.replaceWith(btnSi.cloneNode(true));
+    btnNo.replaceWith(btnNo.cloneNode(true));
+    const nuevoBtnSi = document.getElementById("btnSiEliminar");
+    const nuevoBtnNo = document.getElementById("btnNoEliminar");
+
+    nuevoBtnSi.addEventListener("click", () => {
+      console.log("Eliminando actividad con ID:", id);
+      // Aquí se hace la petición al backend igual que antes
+      fetch("/teacher/activity/eliminar_actividad", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id })
+      })
+      .then(res => res.json())
+      .then(json => {
+        console.log("Respuesta del servidor:", json);
+        if (json.status === "success") {
           actividades = actividades.filter((a) => a.id != id);
           renderActividades();
+          mensaje.innerHTML = `<div class="alert alert-success">${json.message}</div>`;
+          console.log("Actividad eliminada correctamente");
+        } else {
+          console.log("Error al eliminar actividad:", json.message);
+          mensaje.innerHTML = `<div class="alert alert-danger">${json.message}</div>`;
         }
+        confirmacion.style.display = "none";
+      })
+      .catch(err => {
+        mensaje.innerHTML = `<div class="alert alert-danger">Error al eliminarr: ${err.message}</div>`;
+        confirmacion.style.display = "none";
       });
     });
+
+    // Cancelar
+    nuevoBtnNo.addEventListener("click", () => {
+      confirmacion.style.display = "none";
+    });
+  });
+});
   }
 
   // Guardar edición
@@ -142,15 +184,38 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!titulo || !fecha) {
       mensaje.innerHTML = `<div class="alert alert-danger">Título y fecha son obligatorios.</div>`;
       return;
-    }
+    } 
 
-    const index = actividades.findIndex((a) => a.id == id);
+    const actividadEditada = {
+    id: id,
+    titulo: titulo,
+    descripcion: descripcion,
+    fecha_entrega: fecha
+  };
+    fetch('/teacher/activity/editar_actividad', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(actividadEditada)
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Error al editar actividad");
+    
+    return response.json();
+  })
+  .then(data => {
+    modal.hide();
+    mensaje.innerHTML = `<div class="alert alert-success">Actividad editada correctamente.</div>`;
+    // Actualizar actividad en la lista
+    const index = actividades.findIndex(a => a.id == id);
     if (index !== -1) {
       actividades[index].titulo = titulo;
       actividades[index].descripcion = descripcion;
       actividades[index].fecha_entrega = fecha;
       renderActividades();
-      modal.hide();
     }
+  })
+  .catch(error => {
+    mensaje.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+  });
   });
 });

@@ -41,7 +41,8 @@
 <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
 <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
 <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-<script src="/public/js/boostrap_dashboard/teacher/dashboard.js"></script>
+
+<script src="/public/js/perfil.js"></script>
 
 </body>
 </html>
