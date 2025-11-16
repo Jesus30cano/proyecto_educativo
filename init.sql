@@ -981,7 +981,7 @@ $$;
 -- RETORNO: No retorna datos
 -- =======================================================================================
 
-CREATE OR REPL ACE PROCEDURE editar_curso(
+CREATE OR REPLACE PROCEDURE editar_curso(
     p_id_curso INT,
     p_ficha VARCHAR,
     p_nombre_curso VARCHAR,
@@ -2284,49 +2284,3 @@ BEGIN
     ORDER BY act.fecha_entrega ASC;
 END;
 $$ LANGUAGE plpgsql;
-
-
-
-
-
-
--- =======================================================================================
--- FUNCIÓN: fn_cursos_competencias_asignadas_profesor
--- USO:
---    SELECT * FROM fn_cursos_competencias_asignadas_profesor( ID_PROFESOR );
---
--- DESCRIPCIÓN:
---    Obtiene los cursos y las competencias asignadas al profesor.
--- =======================================================================================
-CREATE OR REPLACE FUNCTION fn_cursos_competencias_asignadas_profesor(p_id_profesor INT)
-RETURNS TABLE(
-    id_curso INT,
-    curso VARCHAR(100),
-    ficha VARCHAR(50),
-    ficha_activa BOOLEAN,
-    id_competencia INT,
-    codigo_competencia VARCHAR(50),
-    competencia VARCHAR(200),
-    descripcion_competencia TEXT
-) AS $$
-BEGIN
-    RETURN QUERY
-    SELECT DISTINCT
-        c.id_curso,
-        c.nombre_curso,
-        c.ficha,
-        c.ficha_activa,
-        comp.id_competencia,
-        comp.codigo AS codigo_competencia,
-        comp.nombre AS nombre_competencia,
-        comp.descripcion AS descripcion_competencia
-    FROM Tb_curso c
-    INNER JOIN Tb_profesor_curso pc  ON c.id_curso = pc.id_curso
-    INNER JOIN Tb_competencia_curso cc ON c.id_curso = cc.id_curso
-    INNER JOIN Tb_competencia comp ON cc.id_competencia = comp.id_competencia
-    WHERE pc.id_usuario = p_id_profesor
-      AND comp.id_profesor = p_id_profesor
-    ORDER BY c.nombre_curso, c.ficha, comp.nombre;
-END;
-$$ LANGUAGE plpgsql;
-

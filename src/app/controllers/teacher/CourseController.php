@@ -25,16 +25,37 @@ class CourseController extends Controller
 
     public function obtenerCursosProfesor()
     {
-        try {
-            $teacherModel = $this->model('teacher/TeacherModel');
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            $cursos = $teacherModel->obtener_cursos_por_profesor($_SESSION['user_id']);
-            
-            return $this->jsonResponse(['status' => 'success', 'data' => $cursos]);
+            // Datos de prueba
+            $cursos = [
+                [
+                    "id_curso" => 1,
+                    "nombre_curso" => "Desarrollo Web",
+                    "ficha" => "256789A",
+                    "estado" => "Activo" //sujeto a cambio
+                ],
+                [
+                    "id_curso" => 2,
+                    "nombre_curso" => "Base de Datos",
+                    "ficha" => "256789A",
+                    "estado" => "Activo" //sujeto a cambio
+                ],
+                [
+                    "id_curso" => 3,
+                    "nombre_curso" => "Ingeniería de Software",
+                    "ficha" => "246712B",
+                    "estado" => "Activo" //sujeto a cambio
+                ]
+            ];
 
-        } catch (PDOException $e) {
-            return $this -> jsonResponse(['status' => 'error', 'message' => 'Error al obtener cursos: ' . $e->getMessage()], 500);
+            return $this->jsonResponse(["status" => "success", "data" => $cursos]);
         }
+
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
     }
 
 
@@ -44,85 +65,50 @@ class CourseController extends Controller
     //valida que la solicitud sea valida
 
     public function seleccionar()
-{
-    // Validar método
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        return $this->jsonResponse([
-            'status' => 'error',
-            'message' => 'Método no permitido'
-        ], 405);
-    }
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return $this->jsonResponse(['status' => 'error', 'message' => 'Método no permitido'], 405);
+        }
 
-    
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-    // Validar que el intructor haya iniciado
-    if (!isset($_SESSION['user_id'])) {
-        return $this->jsonResponse([
-            'status' => 'error',
-            'message' => 'Sesión no válida'
-        ], 401);
-    }
+        $input = json_decode(file_get_contents('php://input'), true);
+        $idCurso = $input['id'] ?? null;
+        $profesorId = $_SESSION['user_id'] ?? null;
 
-    $input = json_decode(file_get_contents('php://input'), true);
-    $idCurso = $input['id'] ?? null;
-    $profesorId = $_SESSION['user_id'];
+        if (!$idCurso || !is_numeric($idCurso) || !$profesorId) {
+            return $this->jsonResponse(['status' => 'error', 'message' => 'Datos inválidos'], 400);
+        }
 
-    if (!$idCurso || !is_numeric($idCurso)) {
-        return $this->jsonResponse([
-            'status' => 'error',
-            'message' => 'ID de curso inválido'
-        ], 400);
-    }
+        // 🔹 Datos de prueba: cursos que imparte el profesor
+        $cursosDelProfesor = [
+            ["id" => 1, "nombre" => "Desarrollo Web", "ficha" => "256789A", "profesor_id" => 2],
+            ["id" => 2, "nombre" => "Base de Datos", "ficha" => "256789A", "profesor_id" => 2],
+            ["id" => 3, "nombre" => "Ingeniería de Software", "ficha" => "246712B", "profesor_id" => 2]
+        ];
 
-    try {
-
-        
-        $teacherModel = $this->model('teacher/TeacherModel');
-
-        // Obtener los cursos del profesor desde la DatraBase
-        $cursosDelProfesor = $teacherModel->obtener_cursos_por_profesor($profesorId);
-
-        // Validar que el curso que quiere seleccionar le pertenece al instructor
         $cursoValido = false;
-        foreach ($cursosDelProfesor as $curso) {
-            if ($curso['id_curso'] == $idCurso) {
+        foreach ($cursosDelProfesor as $c) {
+            if ($c['id'] == $idCurso && $c['profesor_id'] == $profesorId) {
                 $cursoValido = true;
                 break;
             }
         }
 
         if (!$cursoValido) {
-            return $this->jsonResponse([
-                'status' => 'error',
-                'message' => 'Acceso denegado: el curso no pertenece al profesor.'
-            ], 403);
+            return $this->jsonResponse(['status' => 'error', 'message' => 'Acceso denegado'], 403);
         }
 
-        // Guardmos el curso seleccionado en la sesión
         $_SESSION['curso_seleccionado'] = $idCurso;
-
-        return $this->jsonResponse([
-            'status' => 'success',
-            'message' => 'Curso seleccionado correctamente.'
-        ]);
-
-    } catch (PDOException $e) {
-
-        return $this->jsonResponse([
-            'status' => 'error',
-            'message' => 'Error al seleccionar curso: ' . $e->getMessage()
-        ], 500);
+        return $this->jsonResponse(['status' => 'success']);
     }
-}
 
-
-    
-public function ver()
-{
-    try {
+    // metodo para ver los detalles del curso seleccionado
+    //es de prueba recuerda cambiar por datos reales de la base de datos
+    public function ver()
+    {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -136,63 +122,37 @@ public function ver()
             return;
         }
 
-        
-        $teacherModel = $this->model('teacher/TeacherModel');
-        $cursos = $teacherModel->obtener_cursos_con_competencias_asignadas($profesorId);
+        // 🔹 Datos de prueba: cursos que imparte el profesor 2
+        $cursosDelProfesor = [
+            ["id" => 1, "nombre" => "Desarrollo Web", "ficha" => "256789A", "profesor_id" => 2],
+            ["id" => 2, "nombre" => "Base de Datos", "ficha" => "256789A", "profesor_id" => 2],
+            ["id" => 3, "nombre" => "Ingeniería de Software", "ficha" => "246712B", "profesor_id" => 2]
+        ];
 
-        if (!$cursos) {
-            http_response_code(403);
-            echo "No tienes cursos asignados.";
-            return;
-        }
-
-        
         $curso = null;
-        $competencias = [];
-
-        foreach ($cursos as $row) {
-
-            if ($row['id_curso'] == $idCurso) {
-
-                
-                if ($curso === null) {
-                    $curso = [
-                        'id' => $row['id_curso'],
-                        'nombre' => $row['curso'],
-                        'ficha' => $row['ficha'],
-                        'ficha_activa' => $row['ficha_activa']
-                    ];
-                }
-
-               
-                $competencias[] = [
-                    'id' => $row['id_competencia'],
-                    'codigo' => $row['codigo_competencia'],
-                    'nombre' => $row['competencia'],
-                    'descripcion' => $row['descripcion_competencia']
-                ];
+        foreach ($cursosDelProfesor as $c) {
+            if ($c['id'] == $idCurso && $c['profesor_id'] == $profesorId) {
+                $curso = $c;
+                break;
             }
         }
 
-        
-        if ($curso === null) {
+        if (!$curso) {
             http_response_code(403);
-            echo "No tienes permiso para ver este curso.";
+            echo "No tienes permiso para ver este curso";
             return;
         }
 
-        
+        // 🔹 Datos de prueba: competencias asociadas al curso
+        $competencias = [
+            ["id" => 1, "nombre" => "Desarrolla interfaces web", "descripcion" => "Construye interfaces responsivas con HTML, CSS y JS.", "actividades" => 5],
+            ["id" => 2, "nombre" => "Aplica bases de datos", "descripcion" => "Diseña y gestiona bases de datos relacionales.", "actividades" => 3]
+        ];
+
         $this->view('teacher_panel/View_course', [
             'curso' => $curso,
             'competencias' => $competencias
         ]);
-
-    } catch (PDOException $e) {
-        http_response_code(500);
-        echo "Error del servidor: " . $e->getMessage();
     }
-}
-
-
 
 }

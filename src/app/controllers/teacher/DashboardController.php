@@ -23,7 +23,9 @@ class DashboardController extends Controller
     }
 
 
-   
+    /* ================================
+   Todas estas funciones son de prueba, corregir luego
+================================ */
     public function obtenerResumenProfesor()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -90,7 +92,7 @@ class DashboardController extends Controller
 
             try {
 
-                
+                // Datos de prueba (luego reemplazar por una consulta real)
                 $model = $this->model('teacher/TeacherModel');
                 session_start();
                 $profesor_id = $_SESSION['user_id'];
