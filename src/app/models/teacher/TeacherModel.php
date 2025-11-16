@@ -53,6 +53,16 @@ class TeacherModel {
         $stmt->bindParam(':profesor_id', $profesor_id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }   
+    }
+    
+    
+    public function obtener_cursos_con_competencias_asignadas($profesor_id) {
+        $query = "SELECT * FROM fn_cursos_competencias_asignadas_profesor(:profesor_id)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':profesor_id', $profesor_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
 ?>
