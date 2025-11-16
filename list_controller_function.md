@@ -80,19 +80,26 @@
 + obtenerCalificacionesPorEstudiante
 + obtenerCalificacionesExamenes
 
+
+
+
+
 # controllers/teacher/dashboard
 + index
-+
-+
-+
-+
-+
-+
-+
++ obtenerResumenProfesor
++ obtenerActividadesPendientes
++ obtenerCursosProfesor
+
 # controllers/teacher/Activity
 + crear_actividad
 + obtener_actividades
-+
-+
-+
-+
++ seleccionar
++ crear_actividad
++ competencia
++ obtener_competencia
++ obtener_actividades
+
+# controllers/teacher/course
++ obtenerCursosProfesor
++ seleccionar
++ ver
