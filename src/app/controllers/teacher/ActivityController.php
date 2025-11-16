@@ -34,7 +34,9 @@ class ActivityController extends Controller
 
         $input = json_decode(file_get_contents('php://input'), true);
         $idCompetencia = $input['id'] ?? null;
+        $idCurso = $input['id_curso'] ?? null;
         $profesorId = $_SESSION['user_id'] ?? null;
+
 
         if (!$idCompetencia || !$profesorId) {
             return $this->jsonResponse(['status' => 'error', 'message' => 'Datos inválidos'], 400);
@@ -42,6 +44,7 @@ class ActivityController extends Controller
 
         // Validar que la competencia pertenece al profesor
         $_SESSION['competencia_seleccionada'] = $idCompetencia;
+        $_SESSION['curso_seleccionado'] = $idCurso;
         return $this->jsonResponse(['status' => 'success']);
     }
 
@@ -162,59 +165,7 @@ class ActivityController extends Controller
             ], 405);
         }
     }
-    /*
-        public function obtener_actividades()
-        {
-            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                // --- Sanitizar datos recibidos ---
-                $competencia_id = htmlspecialchars(trim($_GET['competencia'] ?? ''), ENT_QUOTES, 'UTF-8');
-                $curso_id = htmlspecialchars(trim($_GET['curso'] ?? ''), ENT_QUOTES, 'UTF-8');
-                $profesor_id = htmlspecialchars(trim($_GET['profesor'] ?? ''), ENT_QUOTES, 'UTF-8');
-
-                // --- Validaciones ---
-                $errors = [];
-                if (empty($competencia_id))
-                    $errors[] = "El ID de competencia es obligatorio.";
-                if (empty($curso_id))
-                    $errors[] = "El ID de curso es obligatorio.";
-                if (empty($profesor_id))
-                    $errors[] = "El ID de profesor es obligatorio.";
-
-                if (!empty($errors)) {
-                    return $this->jsonResponse([
-                        'status' => 'error',
-                        'errors' => $errors
-                    ], 400);
-                }
-
-                // --- Obtener actividades ---
-                try {
-                    $actividadModel = $this->model('teacher/teacherModel'); // tu modelo
-                    $actividades = $actividadModel->obtener_actividades($competencia_id, $curso_id, $profesor_id);
-
-                    return $this->jsonResponse([
-                        'status' => 'success',
-                        'data' => $actividades
-                    ], 200);
-
-                } catch (Exception $e) {
-                    error_log("Error al obtener actividades: " . $e->getMessage());
-                    return $this->jsonResponse([
-                        'status' => 'error',
-                        'message' => 'Error interno del servidor.'
-                    ], 500);
-                }
-
-            } else {
-                // Método no permitido
-                return $this->jsonResponse([
-                    'status' => 'error',
-                    'message' => 'Método no permitido.'
-                ], 405);
-            }
-        }
-
-    */
+   
 
     //carga la vista de actividades de la competencia
     public function competencia()
@@ -239,6 +190,7 @@ class ActivityController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $id = htmlspecialchars(trim($_GET['id'] ?? ''), ENT_QUOTES, 'UTF-8');
+           
 
             if (empty($id)) {
                 return $this->jsonResponse([
@@ -247,30 +199,20 @@ class ActivityController extends Controller
                 ], 400);
             }
 
-            // Simulación de datos de prueba
-            $datosPrueba = [
-                '1' => [
-                    'id' => 1,
-                    'nombre' => 'Desarrolla interfaces web',
-                    'descripcion' => 'Construye interfaces responsivas con HTML, CSS y JS.'
-                ],
-                '2' => [
-                    'id' => 2,
-                    'nombre' => 'Aplica bases de datos',
-                    'descripcion' => 'Diseña y gestiona bases de datos relacionales.'
-                ]
-            ];
-
-            if (!isset($datosPrueba[$id])) {
+            $model=$this->model('teacher/teacherModel');
+            $datosPrueba = $model->obtener_competencia_por_id($id);
+             
+            if (!$datosPrueba) {
                 return $this->jsonResponse([
                     'status' => 'error',
                     'message' => 'Competencia no encontrada.'
                 ], 404);
             }
+            
 
             return $this->jsonResponse([
                 'status' => 'success',
-                'data' => $datosPrueba[$id]
+                'data' => $datosPrueba
             ], 200);
         }
 
@@ -286,60 +228,29 @@ class ActivityController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $competencia_id = htmlspecialchars(trim($_GET['competencia'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $curso_id = htmlspecialchars(trim($_GET['curso'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $profesor_id = htmlspecialchars(trim($_GET['profesor'] ?? ''), ENT_QUOTES, 'UTF-8');
 
-            if (empty($competencia_id)) {
+            if (empty($competencia_id) || empty($curso_id) || empty($profesor_id)) {
                 return $this->jsonResponse([
                     'status' => 'error',
-                    'message' => 'ID de competencia no proporcionado.'
+                    'message' => 'Faltan parámetros obligatorios.'
                 ], 400);
             }
-
+            $model = $this->model('teacher/teacherModel');
             // Simulación de actividades por competencia
-            $actividadesPrueba = [
-                '1' => [
-                    [
-                        'id' => 101,
-                        'titulo' => 'Maquetación con Flexbox',
-                        'descripcion' => 'Crear una interfaz responsive usando Flexbox.',
-                        'fecha_entrega' => '2025-11-15',
-                        'archivo' => 'storage/documents/actividad_flexbox.pdf'
-                    ],
-                    [
-                        'id' => 102,
-                        'titulo' => 'Landing Page con Bootstrap',
-                        'descripcion' => 'Diseñar una landing page con componentes Bootstrap.',
-                        'fecha_entrega' => '2025-11-20',
-                        'archivo' => null
-                    ]
-                ],
-                '2' => [
-                    [
-                        'id' => 201,
-                        'titulo' => 'Modelo entidad-relación',
-                        'descripcion' => 'Diseñar un MER para una tienda online.',
-                        'fecha_entrega' => '2025-11-18',
-                        'archivo' => 'storage/documents/actividad_mer.docx'
-                    ],
-                    [
-                        'id' => 202,
-                        'titulo' => 'Consultas SQL básicas',
-                        'descripcion' => 'Escribir consultas SELECT, INSERT y DELETE.',
-                        'fecha_entrega' => '2025-11-22',
-                        'archivo' => null
-                    ]
-                ]
-            ];
+            $actividadesPrueba = $model->obtener_actividad_por_id($curso_id, $profesor_id, $competencia_id);
 
-            if (!isset($actividadesPrueba[$competencia_id])) {
+            if (!$actividadesPrueba) {
                 return $this->jsonResponse([
-                    'status' => 'success',
-                    'data' => []
-                ], 200);
+                    'status' => 'error',
+                    'message' => 'No se encontraron actividades para esta competencia.'
+                ], 404);
             }
 
             return $this->jsonResponse([
                 'status' => 'success',
-                'data' => $actividadesPrueba[$competencia_id]
+                'data' => $actividadesPrueba
             ], 200);
         }
 

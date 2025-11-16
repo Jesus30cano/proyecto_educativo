@@ -35,8 +35,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const resAct = await fetch(
       `/teacher/activity/obtener_actividades?competencia=${competenciaId}&curso=${cursoId}&profesor=${profesorId}`
     );
-    const jsonAct = await resAct.json();
-    actividades = jsonAct.data || [];
+    const jsonAct = await resAct.json()
+    if (jsonAct.status === "success") {
+      actividades = jsonAct.data || [];
+    } else {
+      console.error("Error al cargar actividades:", jsonAct.message);
+    }
   } catch (err) {
     console.error("Error al cargar actividades:", err);
   }
@@ -103,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       .join("");
 
     // Botón editar
-    container.querySelectorAll(".btn-editar").forEach((btn) => {
+    container.querySelectorAll(".btn-editar").forEach((btn) => { 
       btn.addEventListener("click", () => {
         const act = actividades.find((a) => a.id == btn.dataset.id);
         document.getElementById("editId").value = act.id;

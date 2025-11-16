@@ -2284,3 +2284,111 @@ BEGIN
     ORDER BY act.fecha_entrega ASC;
 END;
 $$ LANGUAGE plpgsql;
+--
+CREATE OR REPLACE FUNCTION fn_cursos_competencias_profesor_ver(p_id_profesor INT)
+RETURNS TABLE(
+    id INT,
+    nombre VARCHAR(100),
+    ficha VARCHAR(50),
+    ficha_activa BOOLEAN,
+    id_competencia INT,
+    codigo_competencia VARCHAR(50),
+    competencia VARCHAR(200),
+    descripcion_competencia TEXT,
+	profesor_id int
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT DISTINCT
+        c.id_curso,
+        c.nombre_curso,
+        c.ficha,
+        c.ficha_activa,
+        comp.id_competencia,
+        comp.codigo AS codigo_competencia,
+        comp.nombre AS nombre_competencia,
+        comp.descripcion AS descripcion_competencia,
+		comp.id_profesor
+    FROM Tb_curso c
+    INNER JOIN Tb_profesor_curso pc ON c.id_curso = pc.id_curso
+    INNER JOIN Tb_competencia_curso cc ON c.id_curso = cc.id_curso
+    INNER JOIN Tb_competencia comp ON cc.id_competencia = comp.id_competencia
+    WHERE pc.id_usuario = p_id_profesor
+    AND comp.id_profesor = p_id_profesor 
+    ORDER BY c.nombre_curso, c.ficha, comp.nombre;
+END;
+$$ LANGUAGE plpgsql;
+-- ============================================================
+-- FUNCIÓN: Obtener competencias con actividades por curso y profesor
+CREATE OR REPLACE FUNCTION fn_obtener_competencias_con_actividades(
+    p_id_curso INT,
+    p_id_profesor INT
+)
+RETURNS TABLE (
+    id INT,
+    nombre VARCHAR(200),
+    descripciona TEXT,
+    actividades BIGINT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        c.id_competencia,
+        c.nombre AS nombre_competencia,
+        c.descripcion AS descripcion_competencia,
+        COUNT(a.id_actividad) AS cantidad_actividades
+    FROM 
+        Tb_competencia c
+    INNER JOIN 
+        Tb_competencia_curso cc ON c.id_competencia = cc.id_competencia
+    LEFT JOIN 
+        Tb_actividad a ON c.id_competencia = a.id_competencia 
+                       AND a.id_curso = cc.id_curso
+    WHERE 
+        cc.id_curso = p_id_curso
+        AND c.id_profesor = p_id_profesor
+    GROUP BY 
+        c.id_competencia, 
+        c.nombre, 
+        c.descripcion
+    ORDER BY 
+        c.nombre;
+END;
+$$;
+-- ============================================================
+-- FUNCIÓN: Obtener actividades por curso, profesor y competencia
+CREATE OR REPLACE FUNCTION fn_obtener_actividades(
+    p_id_curso INT,
+    p_id_profesor INT,
+    p_id_competencia INT
+)
+RETURNS TABLE (
+    id INT,
+    titulo VARCHAR(200),
+    descripcion TEXT,
+    fecha_entrega DATE,
+    archivo VARCHAR(500)
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        a.id_actividad AS id,
+        a.titulo,
+        a.descripcion,
+        a.fecha_entrega,
+        a.ruta_archivo AS archivo
+    FROM 
+        Tb_actividad a
+    WHERE 
+        a.id_curso = p_id_curso
+        AND a.id_profesor = p_id_profesor
+        AND a.id_competencia = p_id_competencia
+    ORDER BY 
+        a.fecha_publicacion DESC,
+        a.id_actividad DESC;
+END;
+$$;

@@ -24,6 +24,8 @@
       </div>
 
       <h4 class="fw-bold mb-3">Competencias del Curso</h4>
+      <!-- boton para volver-->
+      <a href="/teacher/course" class="btn btn-secondary mb-3">Volver</a>
 
       <div id="listaCompetencias" class="competencias-container">
         <!-- JS inserta tarjetas -->
