@@ -1,0 +1,773 @@
+-- INSERT 10 PROFESORES
+INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
+('profesor1@ejemplo.com', 'cedula_de_ciudadania', '444444444', '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S', TRUE, 2),
+('profesor2@ejemplo.com', 'cedula_de_ciudadania', '10000002', '$2y$10$K64AhXDnqRQGQhj1r1BAFuIE5t5RXZPT4CDHiNiuzrAMNDKABFKsi', TRUE, 2),
+('profesor3@ejemplo.com', 'cedula_de_ciudadania', '10000003', '$2y$10$u2rfCw6f8BCHV2iMZnMSHeJY76MikdLSKZBJRcPLBlHxwM3zKjkTO', TRUE, 2),
+('profesor4@ejemplo.com', 'cedula_de_ciudadania', '10000004', '$2y$10$Jtr/wBcFcSmOgkokzw3Y3eBKIvbOz1/Y2VreUA0BfUVg2MGWfRfiS', TRUE, 2),
+('profesor5@ejemplo.com', 'cedula_de_ciudadania', '10000005', '$2y$10$.sdNkuOwmWZ64GRLI3vk5uBdWfB0adk5k9rSd6QdlAfGX6LS1TXSu', TRUE, 2),
+('profesor6@ejemplo.com', 'cedula_de_ciudadania', '10000006', '$2y$10$08QnkUNvzJztl2M6BtH4EuiNrtsZQLHHgAFKyIJoUs4d4Wit1PW3K', TRUE, 2),
+('profesor7@ejemplo.com', 'cedula_de_ciudadania', '10000007', '$2y$10$cT2ZnKgDqD4GPaBndy1Ceeqg70fK1bSW/sMZgjwKPBJEYlPUA2PRm', TRUE, 2),
+('profesor8@ejemplo.com', 'cedula_de_ciudadania', '10000008', '$2y$10$whqLia1EUSli4ICDQNCs9e0oaU6E7BOt2RV676BfKQlCeGjV/NlqO', TRUE, 2),
+('profesor9@ejemplo.com', 'cedula_de_ciudadania', '10000009', '$2y$10$ZvRisWnrKUSbWd4GsQl4peKx7mGHppiUcjneN1usm24MJhcbcmtV2', TRUE, 2),
+('profesor10@ejemplo.com', 'cedula_de_ciudadania', '10000010', '$2y$10$wxWVDH5ADoS01xPp4q2nYOIYmXYvElbFZJRDmZmib0J44ikFYCWOO', TRUE, 2);
+
+-- INSERT 30 ESTUDIANTES
+INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
+('estudiante1@ejemplo.com', 'tarjeta_identidad', '20000001', '$2y$10$9TrdgsJtsnMsPMZYVRCrvu664j84Tx2eF/jpvky7Iufaq72oandyO', TRUE, 3),
+('estudiante2@ejemplo.com', 'tarjeta_identidad', '20000002', '$2y$10$4/8ee9YzQDaDF/8oByHcM.RpADqCAMRGmVrThtJXM1mAKhMtSMbGa', TRUE, 3),
+('estudiante3@ejemplo.com', 'tarjeta_identidad', '20000003', '$2y$10$JZRjZwV6BqQnFWkMv3jODOrhYqKfXDLkDEvT4mrPvxZ1SEMhTe5p6', TRUE, 3),
+('estudiante4@ejemplo.com', 'tarjeta_identidad', '20000004', '$2y$10$WntAzq7FUnaGtg8t9IRMD.1YkJ9EC2zoykQRBpt8/OtTc8DLCWZ6G', TRUE, 3),
+('estudiante5@ejemplo.com', 'tarjeta_identidad', '20000005', '$2y$10$PDdv4tXvuNfTFe.aLfWR1OZlDmj6UnsbSkQrrEg/pPi6ROAwh.lKW', TRUE, 3),
+('estudiante6@ejemplo.com', 'tarjeta_identidad', '20000006', '$2y$10$PhMxHTFvNRX71XwExUe7z.VtjQbHYMBqKNAK6vOL7CRrruVW1Bt4G', TRUE, 3),
+('estudiante7@ejemplo.com', 'tarjeta_identidad', '20000007', '$2y$10$x0BCOHNhq.Rp4xQs8KH64uGsKLNYW/CAgvZwFzR9nAcxA3HBdG41O', TRUE, 3),
+('estudiante8@ejemplo.com', 'tarjeta_identidad', '20000008', '$2y$10$saE.7JkKpF3C1eQvJ/ASsOMbOjKUi8xUbFc5bW/YsAIsIf9opNwJK', TRUE, 3),
+('estudiante9@ejemplo.com', 'tarjeta_identidad', '20000009', '$2y$10$pxhNYR8wIXzJPKEjROGLPuUu7mMHi7SVC8k5p1w5JFOHqHnGgAm7i', TRUE, 3),
+('estudiante10@ejemplo.com', 'tarjeta_identidad', '20000010', '$2y$10$yb3aLkKLKvbr47M56xQwgeT34yjPBeqENoDjqb3FZLhmTBGb1bIKi', TRUE, 3),
+('estudiante11@ejemplo.com', 'tarjeta_identidad', '20000011', '$2y$10$8iMdW6Py0Hp0.QK/LuhTTuMnDZEmo22nOGhJvPHzkM4RQWBndxKFO', TRUE, 3),
+('estudiante12@ejemplo.com', 'tarjeta_identidad', '20000012', '$2y$10$kZPkq3HklxYc0mjumw2ZyOuXmQqt67DHECdwTqa64aPDItEVVEmzK', TRUE, 3),
+('estudiante13@ejemplo.com', 'tarjeta_identidad', '20000013', '$2y$10$yOCpVS8FRM7oANO1MOcEdOzL4qZHM2elSQksAwVJK1zXCEIeh12Bi', TRUE, 3),
+('estudiante14@ejemplo.com', 'tarjeta_identidad', '20000014', '$2y$10$vxWiedHYQ9TJazgJYo3T/u.9S/qkgjD3g1pGuvJ.thNRApyYlDbQe', TRUE, 3),
+('estudiante15@ejemplo.com', 'tarjeta_identidad', '20000015', '$2y$10$.GKIhuBlFwfYdXJ2uXnQWe4Midv7VqlNNzmEQQ8xUh0BeApsIhhS.', TRUE, 3),
+('estudiante16@ejemplo.com', 'tarjeta_identidad', '20000016', '$2y$10$23AEwQiN1VBrFyPAcWKwnulneK4YCmoOoNMuVhVkNwP6kDsSAYK/C', TRUE, 3),
+('estudiante17@ejemplo.com', 'tarjeta_identidad', '20000017', '$2y$10$SoGWchr6fcguWKl8aE3LCuFxR4DNikZ.yk0w0fGboshCg1pOw0ICW', TRUE, 3),
+('estudiante18@ejemplo.com', 'tarjeta_identidad', '20000018', '$2y$10$gfnbLKH2Q8lw4ySMmrBUK.Vv9Bqq7uxGPR6d1lTrkHcdxZ9QHzx8m', TRUE, 3),
+('estudiante19@ejemplo.com', 'tarjeta_identidad', '20000019', '$2y$10$KCoXkOXN6XXMYZpRVIUDPevPHeW9znYLtNWGVGOo3sH0o8ZLzn6XO', TRUE, 3),
+('estudiante20@ejemplo.com', 'tarjeta_identidad', '20000020', '$2y$10$HcTxhr2ulsXJR7OSp8w55.2uBqC/n3w_BGpYeuTzX8k2eoiMhpVqS', TRUE, 3),
+('estudiante21@ejemplo.com', 'tarjeta_identidad', '20000021', '$2y$10$oojUg8xRrERtt3cvbBcn.WdlF63N3WJzARKd7VSgj1lXP0evj2KBy', TRUE, 3),
+('estudiante22@ejemplo.com', 'tarjeta_identidad', '20000022', '$2y$10$BwXcv1cE8RKOeXliKvQq8Ocn9WoJUJI6JIzNBIs2q7xewy3faTt/W', TRUE, 3),
+('estudiante23@ejemplo.com', 'tarjeta_identidad', '20000023', '$2y$10$a3YM50gY9fqvDFnCobVZoOjbncZmcbTgWvNrz9F5D9aDbVJYwOm2y', TRUE, 3),
+('estudiante24@ejemplo.com', 'tarjeta_identidad', '20000024', '$2y$10$PuJlyTH6KC5NJ7aYBZFNm.pZ5Bis16oAjdPyUyrwA0ETTeQ9GkEll', TRUE, 3),
+('estudiante25@ejemplo.com', 'tarjeta_identidad', '20000025', '$2y$10$F9bmMODwMJhkVHTtW6tpEOCkQKqh96ZxNrQbykMyOoohaeIr7SYKa', TRUE, 3),
+('estudiante26@ejemplo.com', 'tarjeta_identidad', '20000026', '$2y$10$24LwSFZl1N4DjKIX6Jucv.TmjmAaxp9ePzC9McNL6AFB9EXEJYQwG', TRUE, 3),
+('estudiante27@ejemplo.com', 'tarjeta_identidad', '20000027', '$2y$10$Oz5A5vFZo5OvmPuZLaGkT.eBlbM9wGVE.jmc95uo6DiA.XeCgS4sO', TRUE, 3),
+('estudiante28@ejemplo.com', 'tarjeta_identidad', '20000028', '$2y$10$6Y0BoB6CIwNC0w1E16SwAuiu1umMA.KtnuvNlltc6k1HdZyqMd6fy', TRUE, 3),
+('estudiante29@ejemplo.com', 'tarjeta_identidad', '20000029', '$2y$10$FXei8jHD4/G5aCc6L/WyxuL0Ut9dgo9vmW1hzrF8YDuvr/yvkJiDS', TRUE, 3),
+('estudiante30@ejemplo.com', 'tarjeta_identidad', '20000030', '$2y$10$JJo3TNiNuLJZxIVgn6PGMuNmbM6ntJxQq06qKsCy.Mxrcbim1wMi6', TRUE, 3);
+-- INSERT Tb_datos_personales PROFESORES (id_usuario del 4 al 13)
+INSERT INTO Tb_datos_personales (nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario) VALUES
+('Juan', 'Perez', '1980-01-15', '3001110001', 'Calle 1', 'Masculino', 4),
+('Ana', 'Gomez', '1981-02-20', '3001110002', 'Calle 2', 'Femenino', 5),
+('Luis', 'Rojas', '1975-03-10', '3001110003', 'Calle 3', 'Masculino', 6),
+('Sofia', 'Vega', '1978-04-05', '3001110004', 'Calle 4', 'Femenino', 7),
+('Carlos', 'Diaz', '1982-06-18', '3001110005', 'Calle 5', 'Masculino', 8),
+('Maria', 'Luna', '1983-07-12', '3001110006', 'Calle 6', 'Femenino', 9),
+('Miguel', 'Santos', '1979-08-25', '3001110007', 'Calle 7', 'Masculino', 10),
+('Paula', 'Ramirez', '1985-09-30', '3001110008', 'Calle 8', 'Femenino', 11),
+('David', 'Torres', '1986-11-01', '3001110009', 'Calle 9', 'Masculino', 12),
+('Elena', 'Castro', '1984-12-15', '3001110010', 'Calle 10', 'Femenino', 13);
+
+-- INSERT Tb_datos_personales ESTUDIANTES (id_usuario del 14 al 43)
+INSERT INTO Tb_datos_personales (nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario) VALUES
+('Pedro', 'Martinez', '2003-05-15', '3010000001', 'Calle 21', 'Masculino', 14),
+('Juanita', 'Ruiz', '2004-06-20', '3010000002', 'Calle 22', 'Femenino', 15),
+('Manuel', 'Jimenez', '2005-07-18', '3010000003', 'Calle 23', 'Masculino', 16),
+('Lucia', 'Rodriguez', '2004-08-22', '3010000004', 'Calle 24', 'Femenino', 17),
+('Jose', 'Fernandez', '2003-11-14', '3010000005', 'Calle 25', 'Masculino', 18),
+('Cristina', 'Moreno', '2005-03-30', '3010000006', 'Calle 26', 'Femenino', 19),
+('Laura', 'Garcia', '2004-05-09', '3010000007', 'Calle 27', 'Femenino', 20),
+('Diego', 'Lopez', '2003-10-18', '3010000008', 'Calle 28', 'Masculino', 21),
+('Mario', 'Alvarez', '2004-01-23', '3010000009', 'Calle 29', 'Masculino', 22),
+('Sara', 'Mendez', '2005-02-12', '3010000010', 'Calle 30', 'Femenino', 23),
+('Rosa', 'Ortega', '2005-06-15', '3010000011', 'Calle 31', 'Femenino', 24),
+('Julian', 'Navarro', '2003-04-28', '3010000012', 'Calle 32', 'Masculino', 25),
+('Valeria', 'Herrera', '2005-08-19', '3010000013', 'Calle 33', 'Femenino', 26),
+('Clara', 'Pineda', '2004-03-17', '3010000014', 'Calle 34', 'Femenino', 27),
+('Ricardo', 'Salas', '2005-11-22', '3010000015', 'Calle 35', 'Masculino', 28),
+('Marta', 'Salgado', '2004-10-05', '3010000016', 'Calle 36', 'Femenino', 29),
+('Hugo', 'Acosta', '2005-01-04', '3010000017', 'Calle 37', 'Masculino', 30),
+('Carolina', 'Rivas', '2003-07-21', '3010000018', 'Calle 38', 'Femenino', 31),
+('Fernando', 'Benitez', '2004-09-06', '3010000019', 'Calle 39', 'Masculino', 32),
+('Isabel', 'Ramos', '2005-05-29', '3010000020', 'Calle 40', 'Femenino', 33),
+('Carmen', 'Villegas', '2003-02-07', '3010000021', 'Calle 41', 'Femenino', 34),
+('Pablo', 'Lara', '2004-11-14', '3010000022', 'Calle 42', 'Masculino', 35),
+('Victor', 'Leiva', '2005-09-10', '3010000023', 'Calle 43', 'Masculino', 36),
+('Angela', 'Rivera', '2004-12-13', '3010000024', 'Calle 44', 'Femenino', 37),
+('Andres', 'Guerrero', '2005-08-15', '3010000025', 'Calle 45', 'Masculino', 38),
+('Natalia', 'Delgado', '2003-04-09', '3010000026', 'Calle 46', 'Femenino', 39),
+('Estefania', 'Ponce', '2004-05-01', '3010000027', 'Calle 47', 'Femenino', 40),
+('Dario', 'Cuevas', '2005-07-30', '3010000028', 'Calle 48', 'Masculino', 41),
+('Andrea', 'Bautista', '2004-02-08', '3010000029', 'Calle 49', 'Femenino', 42),
+('Emilio', 'Parra', '2003-11-25', '3010000030', 'Calle 50', 'Masculino', 43);
+-- INSERT 10 CURSOS
+INSERT INTO Tb_curso (ficha, nombre_curso, id_profesor_lider) VALUES
+('20251001', 'ADSO', 4),
+('20251002', 'SST', 5),
+('20251003', 'Gestión Empresarial', 6),
+('20251004', 'Programación', 7),
+('20251005', 'Diseño Gráfico', 8),
+('20251006', 'Marketing Digital', 9),
+('20251007', 'Redes', 10),
+('20251008', 'Electrónica', 11),
+('20251009', 'Contabilidad', 12),
+('20251010', 'Matemáticas', 13);
+
+-- Curso existente (id_curso=1) recibe los primeros 3 estudiantes
+INSERT INTO Tb_estudiante_curso (id_usuario, id_curso) VALUES
+(14, 1),
+(15, 1),
+(16, 1),
+
+-- Curso 2
+(17, 2),
+(18, 2),
+(19, 2),
+
+-- Curso 3
+(20, 3),
+(21, 3),
+(22, 3),
+
+-- Curso 4
+(23, 4),
+(24, 4),
+(25, 4),
+
+-- Curso 5
+(26, 5),
+(27, 5),
+(28, 5),
+
+-- Curso 6
+(29, 6),
+(30, 6),
+(31, 6),
+
+-- Curso 7
+(32, 7),
+(33, 7),
+(34, 7),
+
+-- Curso 8
+(35, 8),
+(36, 8),
+(37, 8),
+
+-- Curso 9
+(38, 9),
+(39, 9),
+(40, 9),
+
+-- Curso 10
+(41, 10),
+(42, 10),
+(43, 10);
+-- Asignar profesores a los cursos correspondientes
+INSERT INTO Tb_profesor_curso (id_usuario, id_curso) VALUES
+(4, 2),
+(5, 3),
+(6, 4),
+(7, 5),
+(8, 6),
+(9, 7),
+(10, 8),
+(11, 9),
+(12, 10),
+(13, 11),
+(4, 3),
+(5, 4),
+(6, 5),
+(7, 6),
+(8, 7),
+(9, 8),
+(10, 9),
+(11, 10),
+(12, 11),
+(13, 2);
+ -- INSERT  CONTACTOS DE EMERGENCIA 
+INSERT INTO Tb_contacto_emergencia (nombre, apellido, telefono, parentesco, direccion, correo, observaciones, id_usuario) VALUES
+('Laura',    'Martinez',   '3201000001', 'Madre',    'Calle Sol 101',    'laura.martinez@gmail.com',    'Disponible en horario laboral', 14),
+('Carlos',   'Ruiz',       '3201000002', 'Padre',    'Calle Brisa 102',  'carlos.ruiz@gmail.com',       'Llamar antes de las 7pm',       15),
+('Ana',      'Jimenez',    '3201000003', 'Hermana',  'Calle Sur 103',    'ana.jimenez@gmail.com',       'Vive cerca',                    16),
+('Josefina', 'Rodriguez',  '3201000004', 'Madre',    'Calle Olivo 104',  'josefina.rodriguez@email.com','Urgencias médicas',             17),
+('Esteban',  'Fernandez',  '3201000005', 'Padre',    'Calle Norte 105',  'esteban.fernandez@yahoo.com', 'Contactar por WhatsApp',        18),
+('Victor',   'Moreno',     '3201000006', 'Tío',      'Calle Lago 106',   'victor.moreno@email.com',     NULL,                            19),
+('Jessica',  'Garcia',     '3201000007', 'Madre',    'Calle Central 107','jessica.garcia@gmail.com',    'Dispone de vehículo',           20),
+('Andres',   'Lopez',      '3201000008', 'Padre',    'Calle Este 108',   'andres.lopez@email.com',      NULL,                            21),
+('Maria',    'Alvarez',    '3201000009', 'Hermana',  'Calle Oeste 109',  'maria.alvarez@gmail.com',     'Habla inglés',                  22),
+('Sandra',   'Mendez',     '3201000010', 'Madre',    'Calle Plaza 110',  'sandra.mendez@email.com',     'Contactar después de las 6pm',  23),
+('Rosa',     'Ortega',     '3201000011', 'Tía',      'Calle Viña 111',   'rosa.ortega@hotmail.com',     NULL,                            24),
+('Julio',    'Navarro',    '3201000012', 'Padre',    'Calle Verde 112',  'julio.navarro@gmail.com',     NULL,                            25),
+('Sandra',   'Herrera',    '3201000013', 'Madre',    'Calle Limón 113',  'sandraherrera@email.com',     'Vecina cercana',                26),
+('Claudia',  'Pineda',     '3201000014', 'Hermana',  'Calle Mar 114',    'claudia.pineda@gmail.com',    NULL,                            27),
+('Raul',     'Salas',      '3201000015', 'Padre',    'Calle Agua 115',   'raul.salas@gmail.com',        'Trabaja cerca',                 28),
+('Marta',    'Salgado',    '3201000016', 'Madre',    'Calle Arena 116',  'marta.salgado@email.com',     NULL,                            29),
+('Pedro',    'Acosta',     '3201000017', 'Tío',      'Calle Nube 117',   'pedro.acosta@email.com',      NULL,                            30),
+('Clara',    'Rivas',      '3201000018', 'Madre',    'Calle Rosa 118',   'clara.rivas@gmail.com',       NULL,                            31),
+('Fernando', 'Benitez',    '3201000019', 'Padre',    'Calle Luna 119',   'fernando.benitez@gmail.com',  NULL,                            32),
+('Isabel',   'Ramos',      '3201000020', 'Madre',    'Calle Sol 120',    'isabel.ramos@email.com',      'Disponible fines de semana',    33),
+('Carmen',   'Villegas',   '3201000021', 'Amiga',    'Calle Palma 121',  'carmen.villegas@email.com',   NULL,                            34),
+('Pablo',    'Lara',       '3201000022', 'Padre',    'Calle Finca 122',  'pablo.lara@gmail.com',        NULL,                            35),
+('Victor',   'Leiva',      '3201000023', 'Hermano',  'Calle Delfín 123', 'victor.leiva@email.com',      NULL,                            36),
+('Angela',   'Rivera',     '3201000024', 'Madre',    'Calle Girasol 124','angela.rivera@gmail.com',     NULL,                            37),
+('Andres',   'Guerrero',   '3201000025', 'Padre',    'Calle Ceibo 125',  'andres.guerrero@email.com',   NULL,                            38),
+('Natalia',  'Delgado',    '3201000026', 'Tía',      'Calle Cereza 126', 'natalia.delgado@email.com',   NULL,                            39),
+('Estefania','Ponce',      '3201000027', 'Madre',    'Calle Azucena 127','estefania.ponce@email.com',   NULL,                            40),
+('Dario',    'Cuevas',     '3201000028', 'Hermano',  'Calle Coral 128',  'dario.cuevas@email.com',      NULL,                            41),
+('Andrea',   'Bautista',   '3201000029', 'Madre',    'Calle Ciprés 129', 'andrea.bautista@email.com',   NULL,                            42),
+('Emilio',   'Parra',      '3201000030', 'Tío',      'Calle Laurel 130', 'emilio.parra@email.com',      NULL,                            43),
+('Patricia', 'Perez',      '3101110001', 'Esposa',    'Av. Maestro 1',    'patricia.perez@gmail.com',     'Viaja frecuentemente',     4),
+('Jorge',    'Gomez',      '3101110002', 'Hermano',   'Av. Maestro 2',    'jorge.gomez@email.com',        NULL,                      5),
+('Cecilia',  'Rojas',      '3101110003', 'Madre',     'Av. Maestro 3',    'cecilia.rojas@gmail.com',      NULL,                      6),
+('Eduardo',  'Vega',       '3101110004', 'Padre',     'Av. Maestro 4',    'eduardo.vega@email.com',       'Atienden en horario nocturno', 7),
+('Vanesa',   'Diaz',       '3101110005', 'Esposa',    'Av. Maestro 5',    'vanesa.diaz@email.com',        NULL,                      8),
+('Santiago', 'Luna',       '3101110006', 'Hermano',   'Av. Maestro 6',    'santiago.luna@gmail.com',      NULL,                      9),
+('Tatiana',  'Santos',     '3101110007', 'Madre',     'Av. Maestro 7',    'tatiana.santos@email.com',     'Vecina cercana',          10),
+('Ruben',    'Ramirez',    '3101110008', 'Padre',     'Av. Maestro 8',    'ruben.ramirez@email.com',      NULL,                      11),
+('Lucia',    'Torres',     '3101110009', 'Esposa',    'Av. Maestro 9',    'lucia.torres@hotmail.com',     NULL,                      12),
+('Alfredo',  'Castro',     '3101110010', 'Hermano',   'Av. Maestro 10',   'alfredo.castro@gmail.com',     'Disponible solo sábados', 13),
+('Ruben',    'Ramirez',    '3101110008', 'Padre',     'Av. Maestro 8',    'ruben.ramirez@email.com',      NULL,                      1),
+('Lucia',    'Torres',     '3101110009', 'Esposa',    'Av. Maestro 9',    'lucia.torres@hotmail.com',     NULL,                      2),
+('Alfredo',  'Castro',     '3101110010', 'Hermano',   'Av. Maestro 10',   'alfredo.castro@gmail.com',     'Disponible solo sábados', 3);
+-- INSERTAR REGISTROS DE ASISTENCIA PARA LOS PRIMEROS 18 ESTUDIANTES EN SUS RESPECTIVOS CURSOS
+INSERT INTO Tb_asistencia (fecha, estado, observaciones, id_estudiante_curso, id_profesor) VALUES
+-- Curso 1 (estudiantes 1-3, profesor 4)
+('2025-11-10', 'presente', NULL, 1, 4),
+('2025-11-11', 'presente', NULL, 1, 4),
+('2025-11-12', 'presente', NULL, 1, 4),
+('2025-11-10', 'presente', NULL, 2, 4),
+('2025-11-11', 'presente', NULL, 2, 4),
+('2025-11-12', 'presente', NULL, 2, 4),
+('2025-11-10', 'presente', NULL, 3, 4),
+('2025-11-11', 'presente', NULL, 3, 4),
+('2025-11-12', 'presente', NULL, 3, 4),
+
+-- Curso 2 (estudiantes 4-6, profesor 5)
+('2025-11-10', 'presente', NULL, 4, 5),
+('2025-11-11', 'presente', NULL, 4, 5),
+('2025-11-12', 'presente', NULL, 4, 5),
+('2025-11-10', 'presente', NULL, 5, 5),
+('2025-11-11', 'presente', NULL, 5, 5),
+('2025-11-12', 'presente', NULL, 5, 5),
+('2025-11-10', 'presente', NULL, 6, 5),
+('2025-11-11', 'presente', NULL, 6, 5),
+('2025-11-12', 'presente', NULL, 6, 5),
+
+-- Curso 3 (estudiantes 7-9, profesor 6)
+('2025-11-10', 'presente', NULL, 7, 6),
+('2025-11-11', 'presente', NULL, 7, 6),
+('2025-11-12', 'presente', NULL, 7, 6),
+('2025-11-10', 'presente', NULL, 8, 6),
+('2025-11-11', 'presente', NULL, 8, 6),
+('2025-11-12', 'presente', NULL, 8, 6),
+('2025-11-10', 'presente', NULL, 9, 6),
+('2025-11-11', 'presente', NULL, 9, 6),
+('2025-11-12', 'presente', NULL, 9, 6),
+
+-- Curso 4 (estudiantes 10-12, profesor 7)
+('2025-11-10', 'presente', NULL, 10, 7),
+('2025-11-11', 'presente', NULL, 10, 7),
+('2025-11-12', 'presente', NULL, 10, 7),
+('2025-11-10', 'presente', NULL, 11, 7),
+('2025-11-11', 'presente', NULL, 11, 7),
+('2025-11-12', 'presente', NULL, 11, 7),
+('2025-11-10', 'presente', NULL, 12, 7),
+('2025-11-11', 'presente', NULL, 12, 7),
+('2025-11-12', 'presente', NULL, 12, 7),
+
+-- Curso 5 (estudiantes 13-15, profesor 8)
+('2025-11-10', 'presente', NULL, 13, 8),
+('2025-11-11', 'presente', NULL, 13, 8),
+('2025-11-12', 'presente', NULL, 13, 8),
+('2025-11-10', 'presente', NULL, 14, 8),
+('2025-11-11', 'presente', NULL, 14, 8),
+('2025-11-12', 'presente', NULL, 14, 8),
+('2025-11-10', 'presente', NULL, 15, 8),
+('2025-11-11', 'presente', NULL, 15, 8),
+('2025-11-12', 'presente', NULL, 15, 8),
+
+-- Curso 6 (estudiantes 16-18, profesor 9)
+('2025-11-10', 'presente', NULL, 16, 9),
+('2025-11-11', 'presente', NULL, 16, 9),
+('2025-11-12', 'presente', NULL, 16, 9),
+('2025-11-10', 'presente', NULL, 17, 9),
+('2025-11-11', 'presente', NULL, 17, 9),
+('2025-11-12', 'presente', NULL, 17, 9),
+('2025-11-10', 'presente', NULL, 18, 9),
+('2025-11-11', 'presente', NULL, 18, 9),
+('2025-11-12', 'presente', NULL, 18, 9),
+
+-- Curso 7 (estudiantes 19-21, profesor 10)
+('2025-11-10', 'presente', NULL, 19, 10),
+('2025-11-11', 'presente', NULL, 19, 10),
+('2025-11-12', 'presente', NULL, 19, 10),
+('2025-11-10', 'presente', NULL, 20, 10),
+('2025-11-11', 'presente', NULL, 20, 10),
+('2025-11-12', 'presente', NULL, 20, 10),
+('2025-11-10', 'presente', NULL, 21, 10),
+('2025-11-11', 'presente', NULL, 21, 10),
+('2025-11-12', 'presente', NULL, 21, 10),
+
+-- Curso 8 (estudiantes 22-24, profesor 11)
+('2025-11-10', 'presente', NULL, 22, 11),
+('2025-11-11', 'presente', NULL, 22, 11),
+('2025-11-12', 'presente', NULL, 22, 11),
+('2025-11-10', 'presente', NULL, 23, 11),
+('2025-11-11', 'presente', NULL, 23, 11),
+('2025-11-12', 'presente', NULL, 23, 11),
+('2025-11-10', 'presente', NULL, 24, 11),
+('2025-11-11', 'presente', NULL, 24, 11),
+('2025-11-12', 'presente', NULL, 24, 11),
+
+-- Curso 9 (estudiantes 25-27, profesor 12)
+('2025-11-10', 'presente', NULL, 25, 12),
+('2025-11-11', 'presente', NULL, 25, 12),
+('2025-11-12', 'presente', NULL, 25, 12),
+('2025-11-10', 'presente', NULL, 26, 12),
+('2025-11-11', 'presente', NULL, 26, 12),
+('2025-11-12', 'presente', NULL, 26, 12),
+('2025-11-10', 'presente', NULL, 27, 12),
+('2025-11-11', 'presente', NULL, 27, 12),
+('2025-11-12', 'presente', NULL, 27, 12),
+
+-- Curso 10 (estudiantes 28-30, profesor 13)
+('2025-11-10', 'presente', NULL, 28, 13),
+('2025-11-11', 'presente', NULL, 28, 13),
+('2025-11-12', 'presente', NULL, 28, 13),
+('2025-11-10', 'presente', NULL, 29, 13),
+('2025-11-11', 'presente', NULL, 29, 13),
+('2025-11-12', 'presente', NULL, 29, 13),
+('2025-11-10', 'presente', NULL, 30, 13),
+('2025-11-11', 'presente', NULL, 30, 13),
+('2025-11-12', 'presente', NULL, 30, 13);
+-- insertamos ruta de archivos de usuario
+-- Inserts para Tb_expediente_usuario, dos documentos para cada usuario excepto id=1 (admin)
+INSERT INTO Tb_expediente_usuario (nombre_documento, fecha_subida, descripcion, nombre_archivo, ruta_documento, id_usuario) VALUES
+('Acta de nacimiento', CURRENT_DATE, 'Documento original', 'acta_nacimiento_4.pdf', '/storage/documentos/acta_nacimiento_4.pdf', 4),
+('Identificación oficial', CURRENT_DATE, 'Documento vigente', 'id_oficial_4.pdf', '/storage/documentos/id_oficial_4.pdf', 4),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_5.pdf', '/storage/documentos/acta_nacimiento_5.pdf', 5),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_5.pdf', '/storage/documentos/id_oficial_5.pdf', 5),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_6.pdf', '/storage/documentos/acta_nacimiento_6.pdf', 6),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_6.pdf', '/storage/documentos/id_oficial_6.pdf', 6),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_7.pdf', '/storage/documentos/acta_nacimiento_7.pdf', 7),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_7.pdf', '/storage/documentos/id_oficial_7.pdf', 7),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_8.pdf', '/storage/documentos/acta_nacimiento_8.pdf', 8),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_8.pdf', '/storage/documentos/id_oficial_8.pdf', 8),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_9.pdf', '/storage/documentos/acta_nacimiento_9.pdf', 9),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_9.pdf', '/storage/documentos/id_oficial_9.pdf', 9),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_10.pdf', '/storage/documentos/acta_nacimiento_10.pdf', 10),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_10.pdf', '/storage/documentos/id_oficial_10.pdf', 10),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_11.pdf', '/storage/documentos/acta_nacimiento_11.pdf', 11),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_11.pdf', '/storage/documentos/id_oficial_11.pdf', 11),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_12.pdf', '/storage/documentos/acta_nacimiento_12.pdf', 12),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_12.pdf', '/storage/documentos/id_oficial_12.pdf', 12),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_13.pdf', '/storage/documentos/acta_nacimiento_13.pdf', 13),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_13.pdf', '/storage/documentos/id_oficial_13.pdf', 13),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_14.pdf', '/storage/documentos/acta_nacimiento_14.pdf', 14),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_14.pdf', '/storage/documentos/id_oficial_14.pdf', 14),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_15.pdf', '/storage/documentos/acta_nacimiento_15.pdf', 15),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_15.pdf', '/storage/documentos/id_oficial_15.pdf', 15),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_16.pdf', '/storage/documentos/acta_nacimiento_16.pdf', 16),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_16.pdf', '/storage/documentos/id_oficial_16.pdf', 16),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_17.pdf', '/storage/documentos/acta_nacimiento_17.pdf', 17),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_17.pdf', '/storage/documentos/id_oficial_17.pdf', 17),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_18.pdf', '/storage/documentos/acta_nacimiento_18.pdf', 18),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_18.pdf', '/storage/documentos/id_oficial_18.pdf', 18),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_19.pdf', '/storage/documentos/acta_nacimiento_19.pdf', 19),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_19.pdf', '/storage/documentos/id_oficial_19.pdf', 19),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_20.pdf', '/storage/documentos/acta_nacimiento_20.pdf', 20),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_20.pdf', '/storage/documentos/id_oficial_20.pdf', 20),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_21.pdf', '/storage/documentos/acta_nacimiento_21.pdf', 21),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_21.pdf', '/storage/documentos/id_oficial_21.pdf', 21),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_22.pdf', '/storage/documentos/acta_nacimiento_22.pdf', 22),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_22.pdf', '/storage/documentos/id_oficial_22.pdf', 22),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_23.pdf', '/storage/documentos/acta_nacimiento_23.pdf', 23),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_23.pdf', '/storage/documentos/id_oficial_23.pdf', 23),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_24.pdf', '/storage/documentos/acta_nacimiento_24.pdf', 24),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_24.pdf', '/storage/documentos/id_oficial_24.pdf', 24),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_25.pdf', '/storage/documentos/acta_nacimiento_25.pdf', 25),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_25.pdf', '/storage/documentos/id_oficial_25.pdf', 25),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_26.pdf', '/storage/documentos/acta_nacimiento_26.pdf', 26),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_26.pdf', '/storage/documentos/id_oficial_26.pdf', 26),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_27.pdf', '/storage/documentos/acta_nacimiento_27.pdf', 27),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_27.pdf', '/storage/documentos/id_oficial_27.pdf', 27),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_28.pdf', '/storage/documentos/acta_nacimiento_28.pdf', 28),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_28.pdf', '/storage/documentos/id_oficial_28.pdf', 28),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_29.pdf', '/storage/documentos/acta_nacimiento_29.pdf', 29),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_29.pdf', '/storage/documentos/id_oficial_29.pdf', 29),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_30.pdf', '/storage/documentos/acta_nacimiento_30.pdf', 30),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_30.pdf', '/storage/documentos/id_oficial_30.pdf', 30),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_31.pdf', '/storage/documentos/acta_nacimiento_31.pdf', 31),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_31.pdf', '/storage/documentos/id_oficial_31.pdf', 31),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_32.pdf', '/storage/documentos/acta_nacimiento_32.pdf', 32),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_32.pdf', '/storage/documentos/id_oficial_32.pdf', 32),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_33.pdf', '/storage/documentos/acta_nacimiento_33.pdf', 33),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_33.pdf', '/storage/documentos/id_oficial_33.pdf', 33),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_34.pdf', '/storage/documentos/acta_nacimiento_34.pdf', 34),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_34.pdf', '/storage/documentos/id_oficial_34.pdf', 34),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_35.pdf', '/storage/documentos/acta_nacimiento_35.pdf', 35),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_35.pdf', '/storage/documentos/id_oficial_35.pdf', 35),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_36.pdf', '/storage/documentos/acta_nacimiento_36.pdf', 36),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_36.pdf', '/storage/documentos/id_oficial_36.pdf', 36),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_37.pdf', '/storage/documentos/acta_nacimiento_37.pdf', 37),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_37.pdf', '/storage/documentos/id_oficial_37.pdf', 37),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_38.pdf', '/storage/documentos/acta_nacimiento_38.pdf', 38),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_38.pdf', '/storage/documentos/id_oficial_38.pdf', 38),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_39.pdf', '/storage/documentos/acta_nacimiento_39.pdf', 39),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_39.pdf', '/storage/documentos/id_oficial_39.pdf', 39),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_40.pdf', '/storage/documentos/acta_nacimiento_40.pdf', 40),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_40.pdf', '/storage/documentos/id_oficial_40.pdf', 40),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_41.pdf', '/storage/documentos/acta_nacimiento_41.pdf', 41),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_41.pdf', '/storage/documentos/id_oficial_41.pdf', 41),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_42.pdf', '/storage/documentos/acta_nacimiento_42.pdf', 42),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_42.pdf', '/storage/documentos/id_oficial_42.pdf', 42),
+('Acta de nacimiento', CURRENT_DATE, '', 'acta_nacimiento_43.pdf', '/storage/documentos/acta_nacimiento_43.pdf', 43),
+('Identificación oficial', CURRENT_DATE, '', 'id_oficial_43.pdf', '/storage/documentos/id_oficial_43.pdf', 43);
+-- Inserts para Tb_competencia (un registro por profesor)
+INSERT INTO Tb_competencia (codigo, nombre, descripcion, id_profesor) VALUES
+('COMP4',  'Matemáticas avanzadas',     'Dominio de resolución de problemas complejos.',         4),
+('COMP5',  'Ciencias básicas',          'Fundamentos en ciencias naturales y experimentales.',   5),
+('COMP6',  'Lengua y literatura',       'Comprensión crítica de textos y redacción avanzada.',   6),
+('COMP7',  'Educación física',          'Desarrollo de capacidades físicas y deportivas.',       7),
+('COMP8',  'Computación básica',        'Uso de tecnologías de información y comunicación.',     8),
+('COMP9',  'Historia mundial',          'Contextualización de eventos históricos globales.',     9),
+('COMP10', 'Geografía',                 'Localización y análisis de fenómenos geográficos.',     10),
+('COMP11', 'Química aplicada',          'Experimentación y análisis en química.',                11),
+('COMP12', 'Biología general',          'Conceptos básicos de biología y ecosistemas.',          12),
+('COMP13', 'Física experimental',       'Análisis y explicación de fenómenos físicos.',          13);
+
+-- Inserts para Tb_competencia_curso (asignando cada competencia al curso correspondiente)
+INSERT INTO Tb_competencia_curso (id_curso, id_competencia) VALUES
+(2, 1),  -- Matemáticas avanzadas al curso 2
+(3, 2),  -- Ciencias básicas al curso 3
+(4, 3),  -- Lengua y literatura al curso 4
+(5, 4),  -- Educación física al curso 5
+(6, 5),  -- Computación básica al curso 6
+(7, 6),  -- Historia mundial al curso 7
+(8, 7),  -- Geografía al curso 8
+(9, 8),  -- Química aplicada al curso 9
+(10, 9), -- Biología general al curso 10
+(11, 10),-- Física experimental al curso 11
+(1, 1),  
+(2, 2),  
+(3, 3),  
+(4, 4),  
+(5, 5),  
+(6, 6),  
+(7, 7),  
+(8, 8),  
+(9, 9), 
+(10, 10),
+(11, 1),  
+(10, 2),  
+(9, 3),  
+(8, 4),  
+(7, 5),  
+(1, 6),  
+(5, 7),  
+(4, 8),  
+(3, 9), 
+(2, 10);
+
+
+
+-- Tb_evaluacion (3 evaluaciones)
+
+INSERT INTO Tb_evaluacion (titulo, activa, descripcion, fecha, id_curso, id_competencia) VALUES
+('Evaluación Matemáticas', TRUE, 'Prueba de conocimientos fundamentales en matemáticas.', '2025-11-10', 2, 1),
+('Evaluación Ciencias', TRUE, 'Prueba de conocimientos generales de ciencias.', '2025-11-10', 3, 2),
+('Evaluación Lengua', TRUE, 'Prueba de comprensión lectora y gramática.', '2025-11-10', 4, 3);
+-- Tb_preguntas (5 preguntas x 3 evaluaciones)
+INSERT INTO Tb_preguntas (pregunta, id_evaluacion) VALUES
+('¿Cuánto es 2 + 2?', 1),
+('¿Cuál es el valor de π aproximado?', 1),
+('¿Cuál es la raíz cuadrada de 81?', 1),
+('¿Qué es un número primo?', 1),
+('¿Cuánto es 7 x 6?', 1),
+('¿Qué planeta es conocido como el planeta rojo?', 2),
+('¿En qué estado se encuentra el agua a 100°C?', 2),
+('¿Cuál es la unidad básica de la vida?', 2),
+('¿Qué gas respiramos principalmente?', 2),
+('¿Qué animal pone huevos?', 2),
+('¿Cuál es el sujeto en la oración: "Juan corre rápido"?', 3),
+('¿Qué significa la palabra "sílaba"?', 3),
+('¿Cuál es el plural de "lápiz"?', 3),
+('¿Cuál es el antónimo de "alto"?', 3),
+('¿Cuál es la función de un verbo?', 3);
+-- Tb_opciones_respuesta (4 por pregunta)
+-- Pregunta 1 (id_pregunta = 1)
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES 
+('a) 4', TRUE, 1), 
+('b) 5', FALSE, 1), 
+('c) 3', FALSE, 1), 
+('d) 22', FALSE, 1);
+-- Pregunta 2
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES 
+('a) 3.14', TRUE, 2),
+('b) 2.71', FALSE, 2),
+('c) 1.62', FALSE, 2),
+('d) 1.41', FALSE, 2);
+-- Pregunta 3
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES 
+('a) 9', FALSE, 3),
+('b) 81', FALSE, 3),
+('c) 8', FALSE, 3),
+('d) 9', TRUE, 3); -- Corrigiendo: la respuesta verdadera es la última (puedes ajustar según tus reglas)
+-- Pregunta 4
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES 
+('a) Número divisible solo por 1 y sí mismo', TRUE, 4),
+('b) Número divisible por 2', FALSE, 4),
+('c) Número par', FALSE, 4),
+('d) Número negativo', FALSE, 4);
+-- Pregunta 5
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) 42', FALSE, 5),
+('b) 13', FALSE, 5),
+('c) 36', FALSE, 5),
+('d) 42', TRUE, 5); -- Corrigiendo: la respuesta verdadera es la última
+
+-- Evaluación 2: preguntas 6 a 10
+-- Pregunta 6
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES 
+('a) Marte', TRUE, 6),
+('b) Venus', FALSE, 6),
+('c) Júpiter', FALSE, 6),
+('d) Saturno', FALSE, 6);
+-- Pregunta 7
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES 
+('a) Líquido', FALSE, 7),
+('b) Gaseoso', TRUE, 7),
+('c) Sólido', FALSE, 7),
+('d) Plasma', FALSE, 7);
+-- Pregunta 8
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Célula', TRUE, 8),
+('b) Átomo', FALSE, 8),
+('c) Tejido', FALSE, 8),
+('d) Órgano', FALSE, 8);
+-- Pregunta 9
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Oxígeno', TRUE, 9),
+('b) Dióxido de carbono', FALSE, 9),
+('c) Hidrógeno', FALSE, 9),
+('d) Nitrógeno', FALSE, 9);
+-- Pregunta 10
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Serpiente', TRUE, 10),
+('b) Gato', FALSE, 10),
+('c) Vaca', FALSE, 10),
+('d) Perro', FALSE, 10);
+
+-- Evaluación 3: preguntas 11 a 15
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Juan', TRUE, 11),
+('b) Corre', FALSE, 11),
+('c) Rápido', FALSE, 11),
+('d) La', FALSE, 11);
+
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Parte de palabra', TRUE, 12),
+('b) Frase', FALSE, 12),
+('c) Letra', FALSE, 12),
+('d) Estrofa', FALSE, 12);
+
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Lápices', TRUE, 13),
+('b) Lapiz', FALSE, 13),
+('c) Lapiceses', FALSE, 13),
+('d) Lapíz', FALSE, 13);
+
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Bajo', TRUE, 14),
+('b) Grande', FALSE, 14),
+('c) Delgado', FALSE, 14),
+('d) Rápido', FALSE, 14);
+
+INSERT INTO Tb_opciones_respuesta (opcion, es_correcta, id_pregunta) VALUES
+('a) Acción', TRUE, 15),
+('b) Lugar', FALSE, 15),
+('c) Persona', FALSE, 15),
+('d) Adjetivo', FALSE, 15);
+
+INSERT INTO Tb_calificacion (nota, id_profesor, id_competencia, id_usuario, id_evaluacion) VALUES
+('aprobado', 4, 1, 14, 1),
+('reprobado', 4, 1, 15, 1),
+('aprobado', 5, 2, 16, 2),
+('reprobado', 5, 2, 17, 2),
+('aprobado', 6, 3, 18, 3),
+('reprobado', 6, 3, 19, 3);
+
+INSERT INTO Tb_resultado_competencia (estado, observaciones, id_competencia, id_usuario, id_profesor) VALUES
+('aprobado', 'Excelente desempeño.', 1, 14, 4),
+('reprobado', 'Debe repasar los contenidos.', 1, 15, 4),
+('aprobado', 'Participación destacada.', 2, 16, 5),
+('reprobado', 'Debe estudiar más.', 2, 17, 5),
+('aprobado', 'Buen trabajo.', 3, 18, 6),
+('reprobado', 'Puede mejorar.', 3, 19, 6);
+
+-- Estudiante 14 responde preguntas 1-5 de evaluación 1, marcando siempre la opción 'a' (id_opcion: 1, 5, 9, 13, 17)
+INSERT INTO Tb_respuestas_estudiante (id_evaluacion, id_pregunta, id_opcion, id_usuario) VALUES
+(1, 1, 1, 14),
+(1, 2, 5, 14),
+(1, 3, 9, 14),
+(1, 4, 13, 14),
+(1, 5, 17, 14);
+
+-- Estudiante 15 responde igual pero elige la opción 'b' (id_opcion: 2, 6, 10, 14, 18)
+INSERT INTO Tb_respuestas_estudiante (id_evaluacion, id_pregunta, id_opcion, id_usuario) VALUES
+(1, 1, 2, 15),
+(1, 2, 6, 15),
+(1, 3, 10, 15),
+(1, 4, 14, 15),
+(1, 5, 18, 15);
+
+-- Estudiante 16 responde todas las de evaluación 2 (preguntas 6–10, opciones 'a': 21, 25, 29, 33, 37)
+INSERT INTO Tb_respuestas_estudiante (id_evaluacion, id_pregunta, id_opcion, id_usuario) VALUES
+(2, 6, 21, 16),
+(2, 7, 25, 16),
+(2, 8, 29, 16),
+(2, 9, 33, 16),
+(2, 10, 37, 16);
+
+-- Estudiante 17 responde las de evaluación 3 (preguntas 11–15, opciones 'a': 41, 45, 49, 53, 57)
+INSERT INTO Tb_respuestas_estudiante (id_evaluacion, id_pregunta, id_opcion, id_usuario) VALUES
+(3, 11, 41, 17),
+(3, 12, 45, 17),
+(3, 13, 49, 17),
+(3, 14, 53, 17),
+(3, 15, 57, 17);
+
+INSERT INTO Tb_notificaciones (tipo, titulo, mensaje, id_usuario, leida) VALUES
+('Sistema', 'Bienvenido al sistema', 'Has ingresado correctamente a la plataforma.', 14, FALSE),
+('Aviso', 'Entrega de Tarea', 'La tarea de matemáticas vence mañana.', 15, FALSE),
+('Alerta', 'Cambio de contraseña', 'Recuerda actualizar tu contraseña periódicamente.', 4, TRUE),
+('Academico', 'Calificación publicada', 'Tu calificación de Ciencias ha sido publicada.', 16, FALSE),
+('Evento', 'Nueva evaluación disponible', 'Ya puedes responder la evaluación de Lengua.', 17, FALSE),
+('Recordatorio', 'Reunión de padres', 'Tendrás reunión de padres el jueves.', 5, TRUE);
+
+INSERT INTO Tb_log_actividades (actividad, id_usuario) VALUES
+('Inicio de sesión', 14),
+('Visualizó la evaluación de matemáticas', 15),
+('Actualizó su contraseña', 4),
+('Descargó el informe de competencias', 16),
+('Respondió una encuesta académica', 17),
+('Realizó una consulta en biblioteca', 5);
+
+
+-- Actividad 1: Matemáticas avanzada, curso 2, profesor 4
+INSERT INTO Tb_actividad (
+    titulo, descripcion, fecha_publicacion, fecha_entrega, ruta_archivo, 
+    id_competencia, id_curso, id_profesor
+) VALUES (
+    'Ejercicio de fracciones',
+    'Resuelve los ejercicios sobre fracciones equivalentes y suma de fracciones.',
+    '2025-11-09',
+    '2025-11-16',
+    '/public/actividades/ejercicio_fracciones.pdf',
+    1,
+    2,
+    4
+);
+
+-- Actividad 2: Ciencias básicas, curso 3, profesor 5
+INSERT INTO Tb_actividad (
+    titulo, descripcion, fecha_publicacion, fecha_entrega, ruta_archivo, 
+    id_competencia, id_curso, id_profesor
+) VALUES (
+    'Práctica de laboratorio: Mezclas y soluciones',
+    'Completa el informe de laboratorio sobre mezclas homogéneas y heterogéneas.',
+    '2025-11-09',
+    '2025-11-17',
+    '/public/actividades/lab_mezclas.pdf',
+    2,
+    3,
+    5
+);
+
+-- Actividad 3: Lengua y literatura, curso 4, profesor 6
+INSERT INTO Tb_actividad (
+    titulo, descripcion, fecha_publicacion, fecha_entrega, ruta_archivo, 
+    id_competencia, id_curso, id_profesor
+) VALUES (
+    'Ensayo sobre valores en la literatura',
+    'Redacta un ensayo sobre los valores humanos presentes en la obra leída.',
+    '2025-11-09',
+    '2025-11-18',
+    '/public/actividades/ensayo_valores.pdf',
+    3,
+    4,
+    6
+);
+
+-- Estudiante 14 entrega la actividad 1
+INSERT INTO Tb_entrega_actividad (
+    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
+) VALUES (
+    'Ejercicio de fracciones (entrega)',
+    'Resolví todos los ejercicios correctamente.',
+    '/public/entregas/fracciones_est14.pdf',
+    'aprobado',
+    'Muy buen trabajo.',
+    1,
+    4,
+    14
+);
+
+-- Estudiante 15 entrega la actividad 1
+INSERT INTO Tb_entrega_actividad (
+    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
+) VALUES (
+    'Ejercicio de fracciones (entrega)',
+    'Algunos ejercicios tienen errores.',
+    '/public/entregas/fracciones_est15.pdf',
+    'reprobado',
+    'Debe repasar el tema de fracciones.',
+    1,
+    4,
+    15
+);
+
+-- Estudiante 16 entrega la actividad 2
+INSERT INTO Tb_entrega_actividad (
+    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
+) VALUES (
+    'Práctica de mezclas (entrega)',
+    'Informe completo y con buenas observaciones.',
+    '/public/entregas/mezclas_est16.pdf',
+    'aprobado',
+    'Participación destacada en el laboratorio.',
+    2,
+    5,
+    16
+);
+
+-- Estudiante 17 entrega la actividad 2
+INSERT INTO Tb_entrega_actividad (
+    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
+) VALUES (
+    'Práctica de mezclas (entrega)',
+    'Informe incompleto, falta conclusión.',
+    '/public/entregas/mezclas_est17.pdf',
+    'reprobado',
+    'Debe mejorar en redacción científica.',
+    2,
+    5,
+    17
+);
+
+-- Estudiante 18 entrega la actividad 3
+INSERT INTO Tb_entrega_actividad (
+    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
+) VALUES (
+    'Ensayo sobre valores (entrega)',
+    'Ensayo claro y bien estructurado.',
+    '/public/entregas/ensayo_est18.pdf',
+    'aprobado',
+    'Buen análisis de los valores humanos.',
+    3,
+    6,
+    18
+);
+INSERT INTO Tb_actividad (
+    titulo, descripcion, fecha_publicacion, fecha_entrega, ruta_archivo, 
+    id_competencia, id_curso, id_profesor
+) VALUES (
+    'prueba de fracciones',
+    'Resuelve los ejercicios sobre fracciones equivalentes y suma de fracciones.',
+    '2025-11-09',
+    '2025-11-16',
+    '/public/actividades/ejercicio_fraccionfes.pdf',
+    1,
+    2,
+    4
+);
+insert into Tb_entrega_actividad (titulo,ruta_archivo,id_actividad,id_profesor,id_estudiante)values ('ya esta','esta es la ruta','4','4','3');
