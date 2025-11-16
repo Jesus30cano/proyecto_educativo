@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.location.href = "/teacher/course/ver";
           } else {
             alert("No tienes permiso para ver este curso.");
+            console.error("Error al seleccionar curso:", json.message);
           }
         } catch (err) {
           console.error("Error al seleccionar curso:", err);

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css">
+  <link rel="stylesheet" href="/public/css/toast.css">
 
   <title>Panel del Profesor</title>
 </head>
@@ -38,7 +39,7 @@
       <div class="col-md-6 mb-3">
         <div class="card text-white bg-warning h-100">
           <div class="card-body">
-            <h5>Actividades Pendientes</h5>
+            <h5>Competencias Activas</h5>
             <h3 id="totalPendientes">0</h3>
           </div>
         </div>
@@ -88,6 +89,7 @@
 <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
 <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
 <script src="/public/js/boostrap_dashboard/teacher/dashboard.js"></script>
+<script src="/public/js/toast.js"></script>
 
 </body>
 </html>

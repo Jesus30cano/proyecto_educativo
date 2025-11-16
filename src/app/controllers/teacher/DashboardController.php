@@ -1,6 +1,7 @@
 <?php
 class DashboardController extends Controller
 {
+    
     private function jsonResponse($data, $statusCode = 200)
     {
         http_response_code($statusCode);
@@ -29,17 +30,23 @@ class DashboardController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            try {
-
+            try {   
+                $modelTeacher = $this->model('teacher/TeacherModel');
+                session_start();
+                $profesor_id = $_SESSION['user_id'];
+                $estadisticas = $modelTeacher->obtener_total_curso_competencias($profesor_id);
+                if (!$estadisticas) {
+                    return $this->jsonResponse(['status' => 'error', 'message' => 'No se encontraron estadísticas para el profesor.'], 404);
+                }   
                 $resumen = [
-                    "total_cursos" => 3,
-                    "total_actividades_pendientes" => 12
+                    'total_cursos' => $estadisticas['total_cursos_activos'],
+                    'total_competencias' => $estadisticas['total_competencias']
                 ];
 
                 $this->jsonResponse(["status" => "success", "data" => $resumen]);
 
             } catch (Exception $e) {
-                $this->jsonResponse(['error' => 'Error al obtener totales: ' . $e->getMessage()], 500);
+                $this->jsonResponse(['status' => 'error', 'message' => 'Error al obtener totales: ' . $e->getMessage()], 500);
             }
 
         } else {
@@ -58,24 +65,13 @@ class DashboardController extends Controller
 
             try {
 
-                // Datos de prueba (luego reemplazamos por modelo real)
-                $pendientes = [
-                    [
-                        'ficha' => '2080215',
-                        'curso' => 'Programación Web',
-                        'competencia' => 'Desarrollar aplicaciones cliente-servidor',
-                        'actividad' => 'Taller #3: CRUD',
-                        'fecha_entrega' => '2025-08-14'
-                    ],
-                    [
-                        'ficha' => '2567894',
-                        'curso' => 'Bases de Datos',
-                        'competencia' => 'Modelar estructuras de datos',
-                        'actividad' => 'Proyecto ER',
-                        'fecha_entrega' => '2025-08-20'
-                    ]
-                ];
-
+                $model = $this->model('teacher/TeacherModel');
+                session_start();
+                $profesor_id = $_SESSION['user_id'];
+                $pendientes = $model->obtener_actividades_pendientes_por_calificar($profesor_id);
+                if (!$pendientes) {
+                    return $this->jsonResponse(['status' => 'error', 'message' => 'No se encontraron actividades pendientes.'], 404);
+                }
                 $this->jsonResponse(["status" => "success", "data" => $pendientes]);
 
             } catch (Exception $e) {
@@ -97,23 +93,13 @@ class DashboardController extends Controller
             try {
 
                 // Datos de prueba (luego reemplazar por una consulta real)
-                $cursos = [
-                    [
-                        'curso' => 'Programación Web',
-                        'ficha' => '2080215',
-                        'competencia' => 'Aplicaciones Cliente-Servidor'
-                    ],
-                    [
-                        'curso' => 'Bases de Datos',
-                        'ficha' => '2567894',
-                        'competencia' => 'Modelado y Normalización de BD'
-                    ],
-                    [
-                        'curso' => 'Análisis de Sistemas',
-                        'ficha' => '2098874',
-                        'competencia' => 'Análisis y Diseño UML'
-                    ]
-                ];
+                $model = $this->model('teacher/TeacherModel');
+                session_start();
+                $profesor_id = $_SESSION['user_id'];
+                $cursos = $model->obtener_cursos_por_profesor($profesor_id);
+                if (!$cursos) {
+                    return $this->jsonResponse(['status' => 'error', 'message' => 'No se encontraron cursos para el profesor.'], 404);
+                }   
 
                 return $this->jsonResponse([
                     "status" => "success",
