@@ -42,7 +42,6 @@ function showToast(message, color = "#333", duration = 3000) {
         toast.textContent = message;
     }
 
-    console.log(toast)
 
     container.appendChild(toast);
 

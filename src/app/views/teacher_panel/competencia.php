@@ -50,6 +50,12 @@
             </div>
         </div>
     </main>
+    <div id="confirmacion" style="display:none; position:fixed; top:50%; left:60%; transform:translate(-50%, -50%);
+ background:#fff; box-shadow:0 5px 20px rgba(0,0,0,.3); padding:24px 32px; border-radius:10px; z-index:999;">
+  <p>¿Estás seguro de que deseas eliminar esta actividad?</p>
+  <button id="btnSiEliminar" style="margin-right:8px;">Sí, eliminar</button>
+  <button id="btnNoEliminar">Cancelar</button>
+</div>
 
     <!-- Modal de edición -->
     <div class="modal fade" id="modalEditarActividad" tabindex="-1" aria-hidden="true">

@@ -61,7 +61,7 @@
               <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
             </div>
             <div class="mb-3">
-              <label for="archivo" class="form-label">Archivo (opcional)</label>
+              <label for="archivo" class="form-label">Archivo </label>
               <input type="file" class="form-control" id="archivo" name="archivo">
             </div>
             <!-- Campos ocultos -->

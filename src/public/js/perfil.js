@@ -1,4 +1,5 @@
 const id_user = localStorage.getItem("id_user");
+
 document.addEventListener("DOMContentLoaded", () => {
     mostarDatosPersonales();
     mostarDatosEmergencia();
