@@ -17,7 +17,7 @@ class ActivitiesController extends Controller {
             header('Location: /auth/login');
             exit;
         }
-        $this->view('student_panel/activities');
+        $this->view('student_panel/actividades');
     }
 
 

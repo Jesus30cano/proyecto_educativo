@@ -17,7 +17,7 @@ class QualificationsController extends Controller {
             header('Location: /auth/login');
             exit;
         }
-        $this->view('student_panel/qualifications');
+        $this->view('student_panel/calificaciones');
     }
 
 

@@ -1,7 +1,4 @@
 <?php
-
-
-
 class DashboardController extends Controller
 {
     private $adminModel;

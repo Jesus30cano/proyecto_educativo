@@ -22,11 +22,11 @@ async function cargarTotales() {
       console.warn("⚠ Error en totales:", data.message);
       return;
     }
-
+    console.log("✅ Totales cargados:", data.data);
     document.getElementById("totalCursos").textContent =
       data.data.total_cursos ?? 0;
     document.getElementById("totalPendientes").textContent =
-      data.data.total_actividades_pendientes ?? 0;
+      data.data.total_competencias ?? 0;
   } catch (error) {
     console.error("❌ Error cargando totales:", error);
   }
@@ -96,9 +96,9 @@ async function cargarActividadesPendientes() {
         data: data.data,
         columns: [
           { data: "ficha" },
-          { data: "curso" },
-          { data: "competencia" },
-          { data: "actividad" },
+          { data: "nombre_curso" },
+          { data: "nombre_competencia" },
+          { data: "titulo_actividad" },
           { data: "fecha_entrega" },
         ],
         pageLength: 5,

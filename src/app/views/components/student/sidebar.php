@@ -30,21 +30,21 @@
         </li>
 
         <li>
-          <a href="#" class="nav-link px-3">
+          <a href="/student/qualifications/index" class="nav-link px-3">
             <span class="me-2"><i class="bi bi-book-fill"></i></span>
             <span>Calificaciones</span>
           </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link px-3">
+          <a href="/student/activities/index" class="nav-link px-3">
             <span class="me-2"><i class="bi bi-book-fill"></i></span>
             <span>Actividades</span>
           </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link px-3">
+          <a href="/student/assessment/index" class="nav-link px-3">
             <span class="me-2"><i class="bi bi-book-fill"></i></span>
             <span>Evaluaciones</span>
           </a>
@@ -55,7 +55,7 @@
         </li>
 
         <li>
-          <a href="#" class="nav-link px-3">
+          <a href="/student/profile/index" class="nav-link px-3">
             <span class="me-2"><i class="bi bi-book-fill"></i></span>
             <span>Perfil</span>
           </a>
