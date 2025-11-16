@@ -303,31 +303,6 @@ CREATE INDEX idx_competencia_profesor ON Tb_competencia(id_profesor);
 CREATE INDEX idx_entrega_estudiante ON Tb_entrega_actividad(id_estudiante);
 CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad(id_actividad);
 -- todos los tiggers deben ir al final del script
--- trigger para registrar en el log el registro de un nuevo curso   
--------------------------------------------------------------
-CREATE OR REPLACE FUNCTION log_creacion_competencia()
-RETURNS TRIGGER AS $$
-DECLARE
-    nombre_competencia VARCHAR(200);
-BEGIN
-    -- Guardar el nombre de la competencia creada
-    SELECT Tb_competencia.nombre INTO nombre_competencia
-    FROM Tb_competencia
-    WHERE Tb_competencia.id_competencia = NEW.id_competencia;
-
-    -- Registrar la actividad en el log
-    INSERT INTO Tb_log_actividades (actividad, id_usuario)
-    VALUES (
-        'Creación de competencia (' || nombre_competencia || ' - código: ' || NEW.codigo || ')',
-        NEW.id_profesor
-    );
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-CREATE TRIGGER trg_log_creacion_competencia
-AFTER INSERT ON Tb_competencia
-FOR EACH ROW
-EXECUTE FUNCTION log_creacion_competencia();
 --------------------------------------------------------------
 CREATE OR REPLACE FUNCTION log_competencia_curso()
 RETURNS TRIGGER AS $$

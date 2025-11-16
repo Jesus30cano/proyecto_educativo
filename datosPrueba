@@ -1,6 +1,6 @@
 -- INSERT 10 PROFESORES
 INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
-('profesor1@ejemplo.com', 'cedula_de_ciudadania', '10000001', '$2y$10$7WdTBLqaf0b3a3FV7XNuaO0CYkujKcSFFNmJ/8TgxiA08mBWIldqu', TRUE, 2),
+('profesor1@ejemplo.com', 'cedula_de_ciudadania', '444444444', '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S', TRUE, 2),
 ('profesor2@ejemplo.com', 'cedula_de_ciudadania', '10000002', '$2y$10$K64AhXDnqRQGQhj1r1BAFuIE5t5RXZPT4CDHiNiuzrAMNDKABFKsi', TRUE, 2),
 ('profesor3@ejemplo.com', 'cedula_de_ciudadania', '10000003', '$2y$10$u2rfCw6f8BCHV2iMZnMSHeJY76MikdLSKZBJRcPLBlHxwM3zKjkTO', TRUE, 2),
 ('profesor4@ejemplo.com', 'cedula_de_ciudadania', '10000004', '$2y$10$Jtr/wBcFcSmOgkokzw3Y3eBKIvbOz1/Y2VreUA0BfUVg2MGWfRfiS', TRUE, 2),
@@ -757,3 +757,17 @@ INSERT INTO Tb_entrega_actividad (
     6,
     18
 );
+INSERT INTO Tb_actividad (
+    titulo, descripcion, fecha_publicacion, fecha_entrega, ruta_archivo, 
+    id_competencia, id_curso, id_profesor
+) VALUES (
+    'prueba de fracciones',
+    'Resuelve los ejercicios sobre fracciones equivalentes y suma de fracciones.',
+    '2025-11-09',
+    '2025-11-16',
+    '/public/actividades/ejercicio_fraccionfes.pdf',
+    1,
+    2,
+    4
+);
+insert into Tb_entrega_actividad (titulo,ruta_archivo,id_actividad,id_profesor,id_estudiante)values ('ya esta','esta es la ruta','4','4','3');
