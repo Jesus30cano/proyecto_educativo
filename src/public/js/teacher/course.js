@@ -15,9 +15,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     contenedor.innerHTML = lista
       .map((curso) => {
         const id = curso.id_curso ?? "";
-        const nombre = curso.nombre_curso ?? "Sin nombre";
+        console.log("Renderizando curso:", curso.id_curso, curso.curso);
+        const nombre = curso.curso ?? "Sin nombre";
         const ficha = curso.ficha ?? "Sin ficha";
-        const estado = curso.estado ?? "Activo";
+        const estado = curso.ficha_activa ? "Activo" : "Inactivo";
 
         return `
           <div class="course-card" role="button" tabindex="0" data-id="${id}">
@@ -49,7 +50,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.location.href = "/teacher/course/ver";
           } else {
             alert("No tienes permiso para ver este curso.");
-            console.error("Error al seleccionar curso:", json.message);
           }
         } catch (err) {
           console.error("Error al seleccionar curso:", err);
@@ -71,6 +71,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       cache: "no-store",
     });
     const json = await res.json();
+    console.log("Cursos obtenidos:", json);
+                  
     cursos = json.data || [];
   } catch (err) {
     console.error("Error al obtener cursos:", err);

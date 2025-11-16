@@ -9,10 +9,15 @@ class CourseController extends Controller
         echo json_encode($data);
         exit;
     }
+    public function __construct()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
 
     public function index()
     {
-        session_start();
 
         if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 2) {
             // Redirigir si no está autenticado o no es teacher
@@ -28,26 +33,14 @@ class CourseController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             // Datos de prueba
-            $cursos = [
-                [
-                    "id_curso" => 1,
-                    "nombre_curso" => "Desarrollo Web",
-                    "ficha" => "256789A",
-                    "estado" => "Activo" //sujeto a cambio
-                ],
-                [
-                    "id_curso" => 2,
-                    "nombre_curso" => "Base de Datos",
-                    "ficha" => "256789A",
-                    "estado" => "Activo" //sujeto a cambio
-                ],
-                [
-                    "id_curso" => 3,
-                    "nombre_curso" => "Ingeniería de Software",
-                    "ficha" => "246712B",
-                    "estado" => "Activo" //sujeto a cambio
-                ]
-            ];
+            $model = $this->model('teacher/TeacherModel');
+
+            $profesor_id = $_SESSION['user_id'];
+            $cursos = $model->obtener_cursos_por_profesor($profesor_id);
+            if (!$cursos) {
+                return $this->jsonResponse(["status" => "error", "message" => "No se encontraron cursos para el profesor."]);
+            }
+        
 
             return $this->jsonResponse(["status" => "success", "data" => $cursos]);
         }
@@ -82,25 +75,7 @@ class CourseController extends Controller
             return $this->jsonResponse(['status' => 'error', 'message' => 'Datos inválidos'], 400);
         }
 
-        // 🔹 Datos de prueba: cursos que imparte el profesor
-        $cursosDelProfesor = [
-            ["id" => 1, "nombre" => "Desarrollo Web", "ficha" => "256789A", "profesor_id" => 2],
-            ["id" => 2, "nombre" => "Base de Datos", "ficha" => "256789A", "profesor_id" => 2],
-            ["id" => 3, "nombre" => "Ingeniería de Software", "ficha" => "246712B", "profesor_id" => 2]
-        ];
-
-        $cursoValido = false;
-        foreach ($cursosDelProfesor as $c) {
-            if ($c['id'] == $idCurso && $c['profesor_id'] == $profesorId) {
-                $cursoValido = true;
-                break;
-            }
-        }
-
-        if (!$cursoValido) {
-            return $this->jsonResponse(['status' => 'error', 'message' => 'Acceso denegado'], 403);
-        }
-
+        
         $_SESSION['curso_seleccionado'] = $idCurso;
         return $this->jsonResponse(['status' => 'success']);
     }
@@ -109,6 +84,7 @@ class CourseController extends Controller
     //es de prueba recuerda cambiar por datos reales de la base de datos
     public function ver()
     {
+        
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -123,11 +99,8 @@ class CourseController extends Controller
         }
 
         // 🔹 Datos de prueba: cursos que imparte el profesor 2
-        $cursosDelProfesor = [
-            ["id" => 1, "nombre" => "Desarrollo Web", "ficha" => "256789A", "profesor_id" => 2],
-            ["id" => 2, "nombre" => "Base de Datos", "ficha" => "256789A", "profesor_id" => 2],
-            ["id" => 3, "nombre" => "Ingeniería de Software", "ficha" => "246712B", "profesor_id" => 2]
-        ];
+        $model = $this->model('teacher/TeacherModel');
+        $cursosDelProfesor = $model->obtener_cursos_por_profesor_ver($profesorId);
 
         $curso = null;
         foreach ($cursosDelProfesor as $c) {
@@ -144,11 +117,7 @@ class CourseController extends Controller
         }
 
         // 🔹 Datos de prueba: competencias asociadas al curso
-        $competencias = [
-            ["id" => 1, "nombre" => "Desarrolla interfaces web", "descripcion" => "Construye interfaces responsivas con HTML, CSS y JS.", "actividades" => 5],
-            ["id" => 2, "nombre" => "Aplica bases de datos", "descripcion" => "Diseña y gestiona bases de datos relacionales.", "actividades" => 3]
-        ];
-
+        $competencias = $model->obtener_actividades_competencia($idCurso, $profesorId);
         $this->view('teacher_panel/View_course', [
             'curso' => $curso,
             'competencias' => $competencias

@@ -117,12 +117,13 @@ document.addEventListener("DOMContentLoaded", () => {
   listaCompetencias.querySelectorAll(".btn-ver").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const competenciaId = btn.dataset.id;
+      const id_curso= cursoData.id;
 
       try {
         const res = await fetch("/teacher/activity/seleccionar", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: competenciaId }),
+          body: JSON.stringify({ id: competenciaId, id_curso: id_curso }),
         });
 
         const json = await res.json();
