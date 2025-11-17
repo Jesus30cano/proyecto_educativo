@@ -22,23 +22,26 @@
 /* ========== GRID COMPETENCIAS ========== */
 .competencias-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 280px));
     gap: 24px;
+    justify-content: center;
+    /* Centra las tarjetas si sobran espacios */
 }
 
 /* ========== TARJETAS COMPETENCIAS ========== */
 .competencia-card {
     background: #FFF8E1;
     border: 1px solid #E1E1E1;
-    padding: 22px;
-    border-radius: 16px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
-    transition: transform .25s, box-shadow .25s;
+    padding: 18px;
+    border-radius: 14px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: .25s;
 }
 
 .competencia-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Textos */
@@ -113,15 +116,14 @@
 /* ----- Grid de competencias ----- */
 @media (max-width: 768px) {
     .competencias-container {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 }
 
 /* ----- Tarjetas de competencias ----- */
 @media (max-width: 768px) {
     .competencia-card {
-        padding: 16px !important;
+        padding: 14px;
     }
 
     .title {

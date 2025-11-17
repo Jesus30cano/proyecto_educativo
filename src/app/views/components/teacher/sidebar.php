@@ -37,8 +37,8 @@ $currentRoute = $_SERVER['REQUEST_URI'];
         </li>
 
         <li>
-          <a href="/teacher/Evaluation/index"
-            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/evaluaciones') !== false) ? 'active' : '' ?>">
+          <a href="/teacher/evaluations/index"
+            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/evaluations') !== false) ? 'active' : '' ?>">
             <i class="bi bi-pencil-square me-2"></i>Evaluaciones
           </a>
         </li>
