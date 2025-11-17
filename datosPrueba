@@ -688,75 +688,8 @@ INSERT INTO Tb_actividad (
     6
 );
 
--- Estudiante 14 entrega la actividad 1
-INSERT INTO Tb_entrega_actividad (
-    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
-) VALUES (
-    'Ejercicio de fracciones (entrega)',
-    'Resolví todos los ejercicios correctamente.',
-    '/public/entregas/fracciones_est14.pdf',
-    'aprobado',
-    'Muy buen trabajo.',
-    1,
-    4,
-    14
-);
 
--- Estudiante 15 entrega la actividad 1
-INSERT INTO Tb_entrega_actividad (
-    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
-) VALUES (
-    'Ejercicio de fracciones (entrega)',
-    'Algunos ejercicios tienen errores.',
-    '/public/entregas/fracciones_est15.pdf',
-    'reprobado',
-    'Debe repasar el tema de fracciones.',
-    1,
-    4,
-    15
-);
 
--- Estudiante 16 entrega la actividad 2
-INSERT INTO Tb_entrega_actividad (
-    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
-) VALUES (
-    'Práctica de mezclas (entrega)',
-    'Informe completo y con buenas observaciones.',
-    '/public/entregas/mezclas_est16.pdf',
-    'aprobado',
-    'Participación destacada en el laboratorio.',
-    2,
-    5,
-    16
-);
-
--- Estudiante 17 entrega la actividad 2
-INSERT INTO Tb_entrega_actividad (
-    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
-) VALUES (
-    'Práctica de mezclas (entrega)',
-    'Informe incompleto, falta conclusión.',
-    '/public/entregas/mezclas_est17.pdf',
-    'reprobado',
-    'Debe mejorar en redacción científica.',
-    2,
-    5,
-    17
-);
-
--- Estudiante 18 entrega la actividad 3
-INSERT INTO Tb_entrega_actividad (
-    titulo, descripcion, ruta_archivo, calificacion, observaciones, id_actividad, id_profesor, id_estudiante
-) VALUES (
-    'Ensayo sobre valores (entrega)',
-    'Ensayo claro y bien estructurado.',
-    '/public/entregas/ensayo_est18.pdf',
-    'aprobado',
-    'Buen análisis de los valores humanos.',
-    3,
-    6,
-    18
-);
 INSERT INTO Tb_actividad (
     titulo, descripcion, fecha_publicacion, fecha_entrega, ruta_archivo, 
     id_competencia, id_curso, id_profesor
@@ -770,4 +703,3 @@ INSERT INTO Tb_actividad (
     2,
     4
 );
-insert into Tb_entrega_actividad (titulo,ruta_archivo,id_actividad,id_profesor,id_estudiante)values ('ya esta','esta es la ruta','4','4','3');

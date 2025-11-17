@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/public/css/boostrap_dashboard/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css">
     <link rel="stylesheet" href="/public/css/teacher_courses/activities.css">
+    <link rel="stylesheet" href="/public/css/toast.css" />
 </head>
 
 <body>
@@ -57,7 +58,7 @@
     </main>
 
     <!-- Modal de seguimiento de estudiantes -->
-    <div class="modal fade" id="modalSeguimiento" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalSeguimiento" tabindex="-1" aria-hidden="inert">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
@@ -105,7 +106,7 @@
 
 
     <!-- MODAL CALIFICAR -->
-    <div class="modal fade" id="modalCalificar" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalCalificar" tabindex="-1" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -121,8 +122,8 @@
                     <label class="form-label fw-bold">Seleccione la calificación:</label>
                     <select id="selectCalificacion" class="form-select">
                         <option value="">Seleccione...</option>
-                        <option value="Aprobado">Aprobado</option>
-                        <option value="No aprobado">No aprobado</option>
+                        <option value="aprobado">Aprobado</option>
+                        <option value="reprobado">No aprobado</option>
                     </select>
 
                 </div>
@@ -147,8 +148,9 @@
     <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
     <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
     <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-
+    <script src="/public/js/toast.js"></script>
     <script src="/public/js/teacher/activities.js"></script>
+    
 
 </body>
 

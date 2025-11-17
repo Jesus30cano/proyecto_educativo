@@ -283,11 +283,11 @@ CREATE TABLE Tb_entrega_actividad (
     titulo VARCHAR(200) NOT NULL,
     descripcion TEXT,
     estado_entrega BOOLEAN DEFAULT FALSE, -- entregado o no
-    fecha_entrega TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_entrega DATE ,
     ruta_archivo VARCHAR(500),  -- archivo entregado por el estudiante
     calificacion calificacion ,
     fecha_calificacion DATE,
-    observaciones TEXT,
+    observaciones TEXT DEFAULT 'sin observaciones',
     id_actividad INT NOT NULL,
     id_profesor INT,
     id_estudiante INT NOT NULL,
@@ -2443,3 +2443,69 @@ CREATE TRIGGER trigger_crear_entregas
 AFTER INSERT ON Tb_actividad
 FOR EACH ROW
 EXECUTE PROCEDURE crear_entregas_automatica();
+-- ============================================================
+CREATE OR REPLACE FUNCTION fn_actividades_profesor_resumen(p_id_profesor INT)
+RETURNS TABLE (
+    id INT,
+    titulo VARCHAR,
+    curso VARCHAR,
+    ficha VARCHAR,
+    competencia VARCHAR,
+    fecha_entrega DATE,
+    estado_general TEXT
+)
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT
+        a.id_actividad,
+        a.titulo,
+        c.nombre_curso,
+        c.ficha,
+        comp.nombre AS nombre_competencia,
+        a.fecha_entrega,
+        CONCAT(
+            COALESCE(SUM(CASE WHEN ea.estado_entrega = TRUE THEN 1 ELSE 0 END), 0), 
+            ' entregas / ', 
+            COUNT(ea.id_entrega), 
+            ' estudiantes'
+        ) AS estado_entregas
+    FROM Tb_actividad a
+    INNER JOIN Tb_curso c ON a.id_curso = c.id_curso
+    INNER JOIN Tb_competencia comp ON a.id_competencia = comp.id_competencia
+    INNER JOIN Tb_entrega_actividad ea ON ea.id_actividad = a.id_actividad
+    WHERE a.id_profesor = p_id_profesor
+    GROUP BY a.id_actividad, a.titulo, c.nombre_curso, c.ficha, comp.nombre, a.fecha_entrega;
+END;
+$$;
+-- ============================================================
+    CREATE OR REPLACE FUNCTION fn_entregas_por_actividad(p_id_actividad INT)
+    RETURNS TABLE (
+        id INT,
+        estudiante TEXT,
+        estado BOOLEAN,
+        fecha_entrega DATE,
+        archivo VARCHAR,
+        calificacion calificacion  -- Usa el tipo correcto según tu base, cámbialo si no aplica
+    )
+    LANGUAGE plpgsql
+    AS
+    $$
+    BEGIN
+        RETURN QUERY
+    SELECT
+        dp.id_datos_personales,
+        dp.nombre || ' ' || dp.apellido AS nombre_completo,
+        ea.estado_entrega,
+        ea.fecha_entrega,
+        ea.ruta_archivo,
+        ea.calificacion
+    FROM Tb_entrega_actividad ea
+    INNER JOIN Tb_usuario u ON ea.id_estudiante = u.id_usuario
+    INNER JOIN Tb_datos_personales dp ON u.id_usuario = dp.id_usuario
+    WHERE ea.id_actividad = p_id_actividad;
+END;
+$$;
+-- ============================================================
