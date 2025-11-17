@@ -22,35 +22,33 @@
     <main class="main-content p-4">
         <div class="container">
 
-            <!-- Título -->
-            <h2 class="fw-bold mb-3">Mis Cursos</h2>
+            <!-- 🔵 TÍTULO PRINCIPAL -->
+            <h2 class="fw-bold mb-4 titulo-panel">Mis Cursos</h2>
 
-            <!-- Buscador debajo del título -->
-            <div class="mb-4" style="max-width: 320px;">
+            <!-- 🔍 BUSCADOR -->
+            <div class="mb-4 search-box" style="max-width: 320px;">
                 <input type="text" id="buscarCurso" class="form-control" placeholder="Buscar por ficha o nombre...">
             </div>
 
-            <!-- Contenedor de cursos -->
-            <div id="contenedorCursos" class="">
-                <!-- Se insertan cards con JS -->
+            <!-- 🟦 CONTENEDOR DE CURSOS -->
+            <div id="contenedorCursos">
+                <!-- Se insertan las cards por JS -->
             </div>
 
-            <!-- Mensaje cuando no hay cursos filtrados -->
-            <div id="sinResultados" class="mt-4" style="display:none;">
-                <div class="alert alert-info">No se encontraron cursos.</div>
-            </div>
-
+            <!-- 📌 SIN RESULTADOS -->
+            <p id="sinResultados" class="text-center text-muted mt-4 d-none">
+                No se encontraron cursos.
+            </p>
 
         </div>
     </main>
 
-
+    <!-- JS -->
     <script src="/public/js/boostrap_dashboard/jquery-3.5.1.js"></script>
     <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
     <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
     <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-
-    <!-- Archivo JS específico para esta vista -->
+    
     <script src="/public/js/teacher/course.js"></script>
 
 </body>

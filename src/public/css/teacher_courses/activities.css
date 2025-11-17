@@ -1,0 +1,204 @@
+/* ============================
+   ESPACIADO DEL CONTENIDO
+============================= */
+.main-content {
+    margin-top: 110px !important;
+    position: relative;
+    z-index: 5;
+}
+
+/* ============================
+   TÍTULO PRINCIPAL
+============================= */
+.titulo-panel {
+    color: #1565C0 !important;
+    font-size: 1.8rem;
+    background: #E3F2FD;
+    padding: 14px 22px;
+    border-radius: 12px;
+    border-left: 6px solid #1565C0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+/* ============================
+   BARRA DE BÚSQUEDA
+============================= */
+.search-box input {
+    border-radius: 10px;
+    border: 1px solid #64B5F6;
+    padding: 10px 14px;
+    transition: .2s;
+}
+
+.search-box input:focus {
+    border-color: #1565C0;
+    box-shadow: 0 0 6px rgba(21, 101, 192, 0.45);
+}
+
+/* ============================
+   TARJETA CONTENEDORA
+============================= */
+.card {
+    border-radius: 14px;
+    border: 1px solid #DCE2EB;
+    background: #ffffff;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================
+   TABLAS PRINCIPALES
+============================= */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* CABECERA */
+table.dataTable thead {
+    background-color: #1565C0 !important;
+}
+
+table.dataTable thead th {
+    background-color: #1565C0 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* FILAS ALTERNAS CON MÁS CONTRASTE */
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #D7E8FB !important; /* azul MÁS oscuro */
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #EBEEF3 !important; /* gris medio */
+}
+
+/* CELDAS */
+table.dataTable tbody td {
+    color: #263238;
+}
+
+/* BORDES */
+table.dataTable {
+    border: 1px solid #90CAF9 !important;
+}
+
+/* HOVER */
+table.dataTable tbody tr:hover {
+    background-color: #FFF3CD !important; /* amarillo claro */
+    transition: .2s ease-in-out;
+}
+
+/* ============================
+   BOTONES
+============================= */
+.btn-primary {
+    background: #1565C0 !important;
+    border-color: #1565C0 !important;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background: #0d4791 !important;
+    border-color: #0d4791 !important;
+}
+
+.btn-outline-primary {
+    color: #1565C0 !important;
+    border-color: #1565C0 !important;
+    border-radius: 8px;
+}
+
+.btn-outline-primary:hover {
+    background: #1565C0 !important;
+    color: white !important;
+}
+
+/* Botón pequeño dentro de tablas */
+.btn-sm {
+    padding: 4px 8px !important;
+}
+
+/* ============================
+   TEXTO "SIN DATOS"
+============================= */
+#sinDatos,
+#sinEntregas {
+    color: #37474F;
+    font-size: 1rem;
+}
+
+/* ============================
+   MODAL DE SEGUIMIENTO
+============================= */
+.info-actividad {
+    background: #E8F1FC;
+    border-left: 5px solid #1565C0;
+    font-size: 0.95rem;
+}
+
+/* Tablas dentro del modal */
+#tablaEntregas thead {
+    background-color: #0D47A1 !important;
+    color: #fff !important;
+}
+
+#tablaEntregas tbody tr:nth-of-type(odd) {
+    background-color: #DDE7F7 !important;
+}
+
+#tablaEntregas tbody tr:nth-of-type(even) {
+    background-color: #F1F3F6 !important;
+}
+
+/* =====================================
+   RESPONSIVE GENERAL PARA ACTIVITIES
+===================================== */
+@media (max-width: 991px) {
+
+    /* Ajustar margen por navbar en móvil */
+    .main-content {
+        margin-top: 80px !important;
+        padding: 15px !important;
+    }
+
+    /* Títulos más pequeños */
+    .titulo-panel {
+        font-size: 1.4rem !important;
+        padding: 12px 16px !important;
+    }
+
+    /* Contenedor de tarjeta más compacto */
+    .card {
+        padding: 10px !important;
+    }
+
+    /* Scroll horizontal en tablas */
+    .table-responsive {
+        overflow-x: auto !important;
+    }
+
+    table.dataTable {
+        width: 900px !important; /* evita que la tabla se aplaste */
+    }
+}
+
+/* Extra para pantallas muy pequeñas (teléfonos) */
+@media (max-width: 576px) {
+
+    /* Reducir aún más márgenes */
+    .main-content {
+        margin-top: 70px !important;
+        padding: 10px !important;
+    }
+
+    .titulo-panel {
+        font-size: 1.2rem !important;
+    }
+
+    /* Ajustar celdas y texto */
+    table.dataTable tbody td {
+        font-size: 0.8rem !important;
+        padding: 6px !important;
+    }
+}

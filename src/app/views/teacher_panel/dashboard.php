@@ -22,6 +22,7 @@
 
     <!-- TÍTULO -->
     <div class="row mb-4">
+      <h1></h1>
       <h3 class="text-dark">Panel del Profesor</h3>
       <hr>
     </div>

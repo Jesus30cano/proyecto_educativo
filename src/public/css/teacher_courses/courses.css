@@ -1,74 +1,179 @@
-/* Grid moderno tipo Classroom */
+/* ============================
+   GRID DE CURSOS
+============================= */
 #contenedorCursos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 
+/* Ajuste extra para pantallas pequeñas */
+@media (max-width: 500px) {
+  #contenedorCursos {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* ============================
+   TÍTULO PRINCIPAL
+============================= */
+.titulo-panel {
+  color: #1565C0 !important;
+  font-size: 1.7rem;
+  background: #E3F2FD;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border-left: 6px solid #1565C0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  text-transform: capitalize;
+}
+
+/* Más compacto en móvil */
+@media (max-width: 576px) {
+  .titulo-panel {
+    font-size: 1.4rem;
+    padding: 12px 16px;
+  }
+}
+
+/* ============================
+   TARJETAS DE CURSO
+============================= */
 .course-card {
   cursor: pointer;
   border-radius: 14px;
   padding: 18px;
-  background: #fff;
-  border: 1px solid #e6e6e6;
+  background: #ffffff;
+  border: 1px solid #DCE2EB;
   transition: 0.25s ease;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .course-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  border-color: #007bff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: #1565C0;
 }
 
+/* ÍCONO */
 .course-card .course-icon i {
   font-size: 2.6rem;
-  color: #0066ff;
+  color: #1565C0;
   margin-bottom: 10px;
 }
 
+/* TEXTOS */
 .course-title {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 6px;
+  color: #263238;
 }
 
 .course-info {
-  font-size: .85rem;
+  font-size: .9rem;
   margin: 0;
+  color: #455A64;
 }
 
+/* CARD MÁS COMPACTA EN MÓVIL */
 @media (max-width: 576px) {
   .course-card {
     padding: 14px;
   }
+
+  .course-card .course-icon i {
+    font-size: 2.2rem;
+  }
+
+  .course-title {
+    font-size: .95rem;
+  }
+
+  .course-info {
+    font-size: .85rem;
+  }
 }
 
-/* Botón ver curso */
+/* ============================
+   BOTÓN
+============================= */
 .course-card button {
   margin-top: 1rem;
-  width: 100%;
-  padding: 0.5rem;
+  padding: 0.55rem;
   border-radius: 8px;
   font-weight: 600;
+  background: #1565C0;
+  color: white;
+  border: none;
+  width: 100%;
 }
 
+.course-card button:hover {
+  background: #0d4791;
+}
 
+/* Más pequeño en móvil */
+@media (max-width: 576px) {
+  .course-card button {
+    padding: 0.45rem;
+    font-size: .9rem;
+  }
+}
+
+/* ============================
+   BUSCADOR
+============================= */
+.search-box input {
+  border-radius: 10px;
+  border: 1px solid #64B5F6;
+  padding: 10px 14px;
+  transition: .2s;
+}
+
+.search-box input:focus {
+  border-color: #1565C0;
+  box-shadow: 0 0 6px rgba(21, 101, 192, 0.45);
+}
+
+/* Centrar buscador en móvil */
+@media (max-width: 576px) {
+  .search-box {
+    width: 100%;
+  }
+}
+
+/* ============================
+   LAYOUT GENERAL
+============================= */
 :root {
   --offcanvas-width: 270px;
   --topNavbarHeight: 56px;
 }
 
-/* Ajuste correcto para el contenido */
 .main-content {
   margin-top: var(--topNavbarHeight) !important;
   margin-left: var(--offcanvas-width) !important;
   padding: 24px;
+  position: relative;
+  z-index: 5;
 }
 
+/* Pantallas medianas y móviles */
 @media (max-width: 991px) {
   .main-content {
     margin-left: 0 !important;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-content {
+    padding: 14px;
   }
 }
