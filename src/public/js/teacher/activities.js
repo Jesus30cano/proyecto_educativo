@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const modalSeguimiento = new bootstrap.Modal(document.getElementById("modalSeguimiento"));
   const tituloActividadModal = document.getElementById("tituloActividadModal");
-  const infoActividad = document.getElementById("infoActividad");
+  
   const tablaEntregas = document.getElementById("tablaEntregas").querySelector("tbody");
   const sinEntregas = document.getElementById("sinEntregas");
 
@@ -14,9 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnGuardarCalificacion = document.getElementById("btnGuardarCalificacion");
 
   let actividades = [];
+  let actividadActual = null; // guarda la actividad de seguimiento actual
 
   // 🔄 Cargar actividades globales del docente
-  (async () => {
+  (async function cargarActividades() {
     try {
       const res = await fetch("/teacher/activity/obtener_actividades_globales");
       const json = await res.json();
@@ -25,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       console.error("Error al cargar actividades globales:", err);
       sinDatos.classList.remove("d-none");
-      showToast("❌ Error al cargar actividades.", "#d9534f");
     }
   })();
 
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         searching: true,
         ordering: true,
         language: {
-          url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+          url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
         }
       });
     }
@@ -77,12 +77,13 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", () => {
         const actividadId = btn.dataset.id;
         const actividad = actividades.find(a => a.id == actividadId);
+        actividadActual = actividad; // guarda la referencia
         abrirModalSeguimiento(actividad);
       });
     });
   }
 
-  // 👁️ Abrir modal de seguimiento
+  // 👁️ Abrir modal de seguimiento de actividad
   async function abrirModalSeguimiento(actividad) {
     tituloActividadModal.textContent = actividad.titulo;
     infoActividad.innerHTML = `
@@ -91,7 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><strong>Competencia:</strong> ${actividad.competencia}</p>
       <p><strong>Fecha límite:</strong> ${actividad.fecha_entrega}</p>
     `;
+    await refrescarEntregas(actividad);
+    modalSeguimiento.show();
+  }
 
+  // 🔃 Refresca SOLO la tabla de entregas, y actualiza resumen
+  async function refrescarEntregas(actividad) {
     tablaEntregas.innerHTML = "";
     sinEntregas.classList.add("d-none");
 
@@ -101,25 +107,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (json.status === "success" && json.data.length > 0) {
         const totalEstudiantes = actividad.total_estudiantes || json.data.length;
-        const entregados = json.data.filter(e => e.estado === "Entregado").length;
+        const entregados = json.data.filter(e => e.estado === "Entregado" || e.estado === true).length;
         const pendientes = totalEstudiantes - entregados;
 
-        infoActividad.innerHTML += `
-          <div class="alert alert-info mt-3">
-            <strong>Resumen:</strong> ${entregados} entregas registradas, ${pendientes} pendientes, total ${totalEstudiantes} estudiantes.
-          </div>
-        `;
-
+        
+        // Actualiza el estado general en la tabla principal
         const nuevoEstado = `${entregados} entregas / ${totalEstudiantes} estudiantes`;
         const filaTabla = tablaBody.querySelector(`tr[data-id="${actividad.id}"] .estado-general`);
         if (filaTabla) filaTabla.textContent = nuevoEstado;
         actividad.estado_general = nuevoEstado;
 
+        // Renderizar entregas
         json.data.forEach((e) => {
           const fila = document.createElement("tr");
           fila.innerHTML = `
             <td>${e.estudiante}</td>
-            <td>${e.estado}</td>
+            <td>${e.estado ? "entregado" : "—"}</td>
             <td>${e.fecha_entrega || "—"}</td>
             <td>${e.archivo ? `<a href="/${e.archivo}" target="_blank">Ver</a>` : "—"}</td>
             <td>${e.calificacion || "Sin calificar"}</td>
@@ -141,26 +144,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       } else {
         sinEntregas.classList.remove("d-none");
-        showToast("⚠️ No hay entregas registradas.", "#0275d8");
+        showToast("⚠️ No hay entregas registradas.", "#0275d8", 3000);
       }
 
     } catch (err) {
       console.error("Error al cargar entregas:", err);
       sinEntregas.classList.remove("d-none");
-      showToast("❌ Error al cargar entregas.", "#d9534f");
+      showToast("❌ Error al cargar entregas.", "#d9534f", 3000);
     }
-
-    modalSeguimiento.show();
   }
 
-  // 📝 Guardar calificación
+  // 📝 Guardar calificación y refrescar tabla entregas en el modal principal
   btnGuardarCalificacion.addEventListener("click", async () => {
     const id = idEntregaCalificar.value;
     const calificacion = selectCalificacion.value;
     const actividadId = btnGuardarCalificacion.dataset.actividad;
 
     if (!calificacion) {
-      showToast("⚠️ Debes seleccionar una calificación.", "#d9534f");
+      showToast("⚠️ Debes seleccionar una calificación.", "#d9534f", 3000);
       return;
     }
 
@@ -174,15 +175,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const json = await res.json();
       if (json.status === "success") {
         modalCalificar.hide();
-        showToast("✅ Calificación guardada correctamente.", "#5cb85c");
-        abrirModalSeguimiento(actividades.find(a => a.id == actividadId));
+        showToast("✅ Calificación guardada correctamente.", "#5cb85c", 750);
+        // Refresca la tabla de entregas ¡sin cerrar el modal de seguimiento!
+        const actividad = actividades.find(a => a.id == actividadId);
+        await refrescarEntregas(actividad);
       } else {
-        showToast("❌ No se pudo guardar la calificación.", "#d9534f");
+        showToast("❌ No se pudo guardar la calificación.", "#d9534f", 3000);
       }
 
     } catch (err) {
       console.error("Error al calificar:", err);
-      showToast("❌ Error inesperado al guardar.", "#d9534f");
+      showToast("❌ Error inesperado al guardar.", "#d9534f", 3000);
     }
   });
+
+  
+  
 });

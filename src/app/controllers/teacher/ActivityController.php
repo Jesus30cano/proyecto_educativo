@@ -381,10 +381,10 @@ class ActivityController extends Controller
             $model = $this->model('teacher/teacherModel');
             $actividades = $model->obtener_actividades_del_profesor($profesor_id);
 
-            if (!$actividades || count($actividades) === 0) {
+            if (!$actividades ) {
                 return $this->jsonResponse([
-                    'status' => 'success',
-                    'data' => []
+                    'status' => 'error',
+                    'message' => 'No se encontraron actividades para este profesor.'
                 ], 200);
             }
 
@@ -443,8 +443,18 @@ class ActivityController extends Controller
 
             $model = $this->model('teacher/teacherModel');
             $resultado = $model->calificar_entrega($idEntrega, $calificacion);
+            if ($resultado) {
+                
+                return $this->jsonResponse([
+                    'status' => 'success',
+                    'message' => 'Entrega calificada correctamente.'.$resultado
+                ], 200);
+            }
 
-            return $this->jsonResponse($resultado, 200);
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'No se pudo calificar la entrega.'
+            ], 500);
         }
 
         return $this->jsonResponse([
