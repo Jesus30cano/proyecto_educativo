@@ -8,49 +8,47 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css">
-  <link rel="stylesheet" href="/public/css/toast.css">
+
+  <!-- NUEVO CSS -->
+  <link rel="stylesheet" href="/public/css/teacher_courses/dashboard.css">
 
   <title>Panel del Profesor</title>
 </head>
+
 <body>
 
 <?php include __DIR__ . '/../components/teacher/navbar.php'; ?>
 <?php include __DIR__ . '/../components/teacher/sidebar.php'; ?>
 
-<main class="mt-5 pt-3">
+<main class="main-content">
   <div class="container-fluid">
 
-    <!-- TÍTULO -->
-    <div class="row mb-4">
-      <h1></h1>
-      <h3 class="text-dark">Panel del Profesor</h3>
-      <hr>
-    </div>
+    <!-- 🔵 TÍTULO -->
+    <h2 class="titulo-panel">Panel del Profesor</h2>
 
-    <!-- CARDS -->
+    <!-- 🔹 CARDS INFORMACIÓN -->
     <div class="row">
       <div class="col-md-6 mb-3">
-        <div class="card text-white bg-primary h-100">
-          <div class="card-body">
-            <h5>Total Cursos</h5>
-            <h3 id="totalCursos">0</h3>
-          </div>
+        <div class="card-custom card-blue p-3">
+          <h5>Total Cursos</h5>
+          <div class="card-number" id="totalCursos">0</div>
         </div>
       </div>
+
       <div class="col-md-6 mb-3">
-        <div class="card text-white bg-warning h-100">
-          <div class="card-body">
-            <h5>Competencias Activas</h5>
-            <h3 id="totalPendientes">0</h3>
-          </div>
+        <div class="card-custom card-yellow p-3">
+          <h5>Competencias Activas</h5>
+          <div class="card-number" id="totalPendientes">0</div>
         </div>
       </div>
     </div>
 
-    <!-- TABLA CURSOS -->
-    <div class="card mb-4">
-      <div class="card-header"><i class="bi bi-journal-bookmark"></i> Mis Cursos</div>
-      <div class="card-body">
+    <!-- 🔹 TABLA CURSOS -->
+    <div class="card-table mb-4">
+      <div class="card-header">
+        <i class="bi bi-journal-bookmark"></i> Mis Cursos
+      </div>
+      <div class="card-body table-responsive">
         <table id="tablaCursos" class="table table-striped w-100">
           <thead>
             <tr>
@@ -63,16 +61,18 @@
       </div>
     </div>
 
-    <!-- TABLA ACTIVIDADES PENDIENTES -->
-    <div class="card mb-4">
-      <div class="card-header"><i class="bi bi-hourglass-split"></i> Actividades Pendientes por Calificar</div>
-      <div class="card-body">
+    <!-- 🔹 TABLA ACTIVIDADES -->
+    <div class="card-table mb-4">
+      <div class="card-header">
+        <i class="bi bi-hourglass-split"></i> Actividades Pendientes por Calificar
+      </div>
+      <div class="card-body table-responsive">
         <table id="tablaActividades" class="table table-striped w-100">
           <thead>
             <tr>
-              <th>ficha</th>
+              <th>Ficha</th>
               <th>Curso</th>
-              <th>competencia</th>
+              <th>Competencia</th>
               <th>Actividad</th>
               <th>Fecha entrega</th>
             </tr>
@@ -84,13 +84,11 @@
   </div>
 </main>
 
-
 <script src="/public/js/boostrap_dashboard/jquery-3.5.1.js"></script>
 <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
 <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
 <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
 <script src="/public/js/boostrap_dashboard/teacher/dashboard.js"></script>
-<script src="/public/js/toast.js"></script>
 
 </body>
 </html>

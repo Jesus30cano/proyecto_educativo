@@ -1,0 +1,215 @@
+/* ============================
+   ESPACIADO DEL CONTENIDO
+============================= */
+.main-content {
+    margin-top: 110px !important;
+    position: relative;
+    z-index: 5;
+}
+
+/* ============================
+   TÍTULO PRINCIPAL
+============================= */
+.titulo-panel {
+    color: #1565C0 !important;
+    font-size: 1.8rem;
+    background: #E3F2FD;
+    padding: 14px 22px;
+    border-radius: 12px;
+    border-left: 6px solid #1565C0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+/* ============================
+   TARJETA CONTENEDORA
+============================= */
+.card {
+    border-radius: 14px;
+    border: 1px solid #DCE2EB;
+    background: #ffffff;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================
+   TABLAS PRINCIPALES
+============================= */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* CABECERA */
+table.dataTable thead,
+.table-header {
+    background-color: #1565C0 !important;
+}
+
+table.dataTable thead th,
+.table-header th {
+    background-color: #1565C0 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* FILAS ALTERNAS */
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #D7E8FB !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #EBEEF3 !important;
+}
+
+/* CELDAS */
+table.dataTable tbody td {
+    color: #263238;
+}
+
+/* BORDES */
+table.dataTable {
+    border: 1px solid #90CAF9 !important;
+}
+
+/* HOVER */
+table.dataTable tbody tr:hover {
+    background-color: #FFF3CD !important;
+    transition: .2s ease-in-out;
+}
+
+/* ============================
+   BOTONES
+============================= */
+.btn-primary {
+    background: #1565C0 !important;
+    border-color: #1565C0 !important;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background: #0d4791 !important;
+    border-color: #0d4791 !important;
+}
+
+.btn-outline-primary {
+    color: #1565C0 !important;
+    border-color: #1565C0 !important;
+    border-radius: 8px;
+}
+
+.btn-outline-primary:hover {
+    background: #1565C0 !important;
+    color: white !important;
+}
+
+/* Botón pequeño dentro de tablas y modales */
+.btn-sm {
+    padding: 4px 8px !important;
+}
+
+/* ============================
+   TEXTO "SIN DATOS"
+============================= */
+#sinDatos {
+    color: #37474F;
+    font-size: 1rem;
+}
+
+/* ============================
+   MODALES
+============================= */
+.modal-content {
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.modal-header {
+    border-bottom: 1px solid #DCE2EB;
+}
+
+.modal-footer {
+    border-top: 1px solid #DCE2EB;
+}
+
+/* ============================
+   FORMULARIOS EN MODALES
+============================= */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #90CAF9;
+    padding: 8px 12px;
+}
+
+.form-control:focus {
+    border-color: #1565C0;
+    box-shadow: 0 0 6px rgba(21,101,192,0.45);
+}
+
+/* ============================
+   SECCIÓN DE PREGUNTAS
+============================= */
+#preguntas-lista,
+#preguntasAgregadas ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.opcion-grupo {
+    border: 1px solid #90CAF9;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.opcion-texto {
+    border: none;
+    flex: 1;
+}
+
+.correcta-radio {
+    accent-color: #1565C0;
+}
+
+/* ============================
+   RESPONSIVE GENERAL
+============================= */
+@media (max-width: 991px) {
+    .main-content {
+        margin-top: 80px !important;
+        padding: 15px !important;
+    }
+
+    .titulo-panel {
+        font-size: 1.4rem !important;
+        padding: 12px 16px !important;
+    }
+
+    .card {
+        padding: 10px !important;
+    }
+
+    .table-responsive {
+        overflow-x: auto !important;
+    }
+
+    table.dataTable {
+        width: 900px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content {
+        margin-top: 70px !important;
+        padding: 10px !important;
+    }
+
+    .titulo-panel {
+        font-size: 1.2rem !important;
+    }
+
+    table.dataTable tbody td {
+        font-size: 0.8rem !important;
+        padding: 6px !important;
+    }
+}
