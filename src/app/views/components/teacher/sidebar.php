@@ -31,22 +31,15 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 
         <li>
           <a href="/teacher/activity/index"
-            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/actividades') !== false) ? 'active' : '' ?>">
+            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/activity') !== false) ? 'active' : '' ?>">
             <i class="bi bi-clipboard-check me-2"></i>Actividades
           </a>
         </li>
 
         <li>
-          <a href="/teacher/evaluaciones"
+          <a href="/teacher/Evaluation/index"
             class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/evaluaciones') !== false) ? 'active' : '' ?>">
             <i class="bi bi-pencil-square me-2"></i>Evaluaciones
-          </a>
-        </li>
-
-        <li>
-          <a href="/teacher/calificar"
-            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/calificar') !== false) ? 'active' : '' ?>">
-            <i class="bi bi-pen me-2"></i>Registrar Notas
           </a>
         </li>
 

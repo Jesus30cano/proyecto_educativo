@@ -165,7 +165,7 @@ class ActivityController extends Controller
             ], 405);
         }
     }
-   
+
 
     //carga la vista de actividades de la competencia
     public function competencia()
@@ -190,7 +190,7 @@ class ActivityController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $id = htmlspecialchars(trim($_GET['id'] ?? ''), ENT_QUOTES, 'UTF-8');
-           
+
 
             if (empty($id)) {
                 return $this->jsonResponse([
@@ -199,16 +199,16 @@ class ActivityController extends Controller
                 ], 400);
             }
 
-            $model=$this->model('teacher/teacherModel');
+            $model = $this->model('teacher/teacherModel');
             $datosPrueba = $model->obtener_competencia_por_id($id);
-             
+
             if (!$datosPrueba) {
                 return $this->jsonResponse([
                     'status' => 'error',
                     'message' => 'Competencia no encontrada.'
                 ], 404);
             }
-            
+
 
             return $this->jsonResponse([
                 'status' => 'success',
@@ -261,7 +261,7 @@ class ActivityController extends Controller
     }
     public function editar_actividad()
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $actividadEditada = json_decode(file_get_contents('php://input'), true);
             // --- Sanitizar datos recibidos ---
             $id = htmlspecialchars(trim($actividadEditada['id'] ?? ''), ENT_QUOTES, 'UTF-8');
@@ -364,6 +364,95 @@ class ActivityController extends Controller
             ], 405);
         }
     }
+
+    public function obtener_actividades_globales()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            session_start();
+            $profesor_id = $_SESSION['user_id'] ?? null;
+
+            if (!$profesor_id) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'No se detectó el profesor.'
+                ], 403);
+            }
+
+            $model = $this->model('teacher/teacherModel');
+            $actividades = $model->obtener_actividades_del_profesor($profesor_id);
+
+            if (!$actividades || count($actividades) === 0) {
+                return $this->jsonResponse([
+                    'status' => 'success',
+                    'data' => []
+                ], 200);
+            }
+
+            return $this->jsonResponse([
+                'status' => 'success',
+                'data' => $actividades
+            ], 200);
+        }
+
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
+
+    public function entregas()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $idActividad = htmlspecialchars(trim($_GET['id'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+            if (empty($idActividad)) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'ID de actividad no proporcionado.'
+                ], 400);
+            }
+
+            $model = $this->model('teacher/teacherModel');
+            $entregas = $model->obtener_entregas_por_actividad($idActividad);
+
+            return $this->jsonResponse([
+                'status' => 'success',
+                'data' => $entregas
+            ], 200);
+        }
+
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
+
+    public function calificar_entrega()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = json_decode(file_get_contents('php://input'), true);
+            $idEntrega = $input['id'] ?? null;
+            $calificacion = $input['calificacion'] ?? null;
+
+            if (!$idEntrega || !$calificacion) {
+                return $this->jsonResponse([
+                    'status' => 'error',
+                    'message' => 'Datos incompletos para calificar.'
+                ], 400);
+            }
+
+            $model = $this->model('teacher/teacherModel');
+            $resultado = $model->calificar_entrega($idEntrega, $calificacion);
+
+            return $this->jsonResponse($resultado, 200);
+        }
+
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
+
 }
 
 ?>
