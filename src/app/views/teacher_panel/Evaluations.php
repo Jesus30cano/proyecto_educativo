@@ -230,20 +230,7 @@
     <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
     <script src="/public/js/teacher/evaluations.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('#tablaEvaluaciones').DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
-                },
-                pageLength: 5,
-                lengthMenu: [5, 10, 20],
-                responsive: true,
-                autoWidth: false
-            });
-        });
-    </script>
-
+    
 </body>
 
 </html>

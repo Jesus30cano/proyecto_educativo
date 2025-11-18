@@ -167,8 +167,10 @@ CREATE TABLE Tb_evaluacion (
     fecha DATE DEFAULT CURRENT_DATE,
     id_curso INT,
     id_competencia INT,
+    id_profesor INT NOT NULL,
     FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
-    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia)
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
 );
 
 CREATE TABLE Tb_preguntas (
@@ -2509,3 +2511,31 @@ $$;
 END;
 $$;
 -- ============================================================
+CREATE OR REPLACE FUNCTION obtener_evaluaciones_por_profesor(p_id_profesor INT)
+RETURNS TABLE (
+    id_evaluacion INT,
+    titulo VARCHAR,
+	ficha VARCHAR,
+    nombre_curso VARCHAR,
+    nombre_competencia VARCHAR,
+    fecha DATE,
+    estado BOOLEAN
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        e.id_evaluacion,
+        e.titulo,
+		c.ficha,
+        c.nombre_curso,
+        comp.nombre,
+        e.fecha,
+        e.activa AS estado
+    FROM Tb_evaluacion e
+    JOIN Tb_curso c ON e.id_curso = c.id_curso
+    JOIN Tb_competencia comp ON e.id_competencia = comp.id_competencia
+    WHERE e.id_profesor = p_id_profesor;
+END;
+$$ LANGUAGE plpgsql;
+-- =======================================================================================
