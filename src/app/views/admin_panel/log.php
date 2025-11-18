@@ -33,7 +33,7 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/admin/topnav.php'; ?>
 
 
         <!-- Contenido de la página de inicio -->
@@ -116,7 +116,7 @@
 
   <!-- script de funcionalidad -->
   <script src="/public/js/boostrap_dashboard/admin/sidebar.js"></script>
-  <script src="/public/js/boostrap_dashboard/admin/log.js"></script>
+  <script src="/public/js/admin/log.js"></script>
 
 
 </body>

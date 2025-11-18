@@ -36,36 +36,13 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/teacher/topnav.php'; ?>
 
 
         <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-          <!-- TITULO -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Contenido Principal</h1>
-          </div>
-
-
-          <!-- Ejemplo de tarjeta normal -->
-          <div class="col-xl-12 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Bienvenido Profesor</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">Este es su apartado de Cursos.</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          
           <!-- 🔵 TÍTULO PRINCIPAL -->
           <h2 class="fw-bold mb-4 titulo-panel">Mis Cursos</h2>
 

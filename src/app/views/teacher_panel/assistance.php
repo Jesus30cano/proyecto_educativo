@@ -36,31 +36,13 @@
             <!-- inicia el contenido principal -->
             <div id="content">
                 <!-- topnav -->
-                <?php include __DIR__ . '/../components/topnav.php'; ?>
+                <?php include __DIR__ . '/../components/teacher/topnav.php'; ?>
 
 
                 <!-- Contenido de la página de inicio -->
                 <div class="container-fluid">
 
-                    <!-- Ejemplo de tarjeta normal -->
-                    <div class="col-xl-12 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Bienvenido Profesor</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Este es su apartado de
-                                            Asistencias</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                     <h2 class="fw-bold mb-4 titulo-panel">Gestión de Asistencias</h2>
 
                     <div class="row">
@@ -192,9 +174,9 @@
             <script>
                 $(document).ready(function () {
                     // Inicializar DataTable para la tabla de asistencias
-                    $('#tablaAsistencias').DataTable({
+                    $('#dataTable').DataTable({
                         language: {
-                            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
+                            url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
                         },
                         pageLength: 10,
                         order: [[3, 'desc']] // Ordenar por fecha descendente

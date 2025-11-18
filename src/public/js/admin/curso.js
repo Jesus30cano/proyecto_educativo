@@ -30,7 +30,7 @@ function actualizarTabla(data) {
   }
 
   if (!tablaInicializada) {
-    $("#example").DataTable({
+    $("#dataTable").DataTable({
       data: data,
       columns: [
         { data: "ficha" },
@@ -51,7 +51,7 @@ function actualizarTabla(data) {
     tablaInicializada = true;
     console.log("✅ DataTable inicializado con:", data);
   } else {
-    let table = $("#example").DataTable();
+    let table = $("#dataTable").DataTable();
     table.clear();
     table.rows.add(data);
     table.draw();

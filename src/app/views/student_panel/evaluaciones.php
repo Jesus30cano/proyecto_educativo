@@ -32,7 +32,7 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/student/topnav.php'; ?>
 
         <!-- Contenido de la página de inicio -->
         <div class="container-fluid">

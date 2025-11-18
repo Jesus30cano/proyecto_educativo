@@ -33,7 +33,7 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/student/topnav.php'; ?>
 
 
         <!-- Contenido de la página de inicio -->
@@ -101,8 +101,8 @@
   <!-- Page level custom scripts -->
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="/public/js/student/script.contactos.js"></script>
+  
+  <script src="/public/js/perfil.js"></script>
 
 </body>
 </html>

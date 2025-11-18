@@ -5,7 +5,7 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/student/dashboard/index">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/teacher/dashboard">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -36,7 +36,7 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 
     <!-- Nav Item - Calificaciones -->
     <li class="nav-item">
-        <a href="/teacher/course/index"
+        <a href="/teacher/course"
             class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/course') !== false) ? 'active' : '' ?>">
             <i class="fas fa-fw fa-star"></i>
             <span>Mis Cursos </span>
@@ -45,7 +45,7 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 
     <!-- Nav Item - Actividades -->
     <li class="nav-item">
-        <a href="/teacher/activity/index"
+        <a href="/teacher/activity"
             class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/activity') !== false) ? 'active' : '' ?>">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Actividades</span>
@@ -54,7 +54,7 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 
     <!-- Nav Item - Evaluaciones -->
     <li class="nav-item">
-        <a href="/teacher/evaluations/index"
+        <a href="/teacher/evaluations"
             class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/evaluations') !== false) ? 'active' : '' ?>">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Evaluaciones</span>

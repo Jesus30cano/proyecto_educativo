@@ -85,7 +85,7 @@ function actualizarTabla(data) {
 
   // Inicializa la tabla si no está inicializada, si ya está inicializada solo actualiza los datos
   if (!tablaInicializada) {
-    $("#example").DataTable({
+    $("#dataTable").DataTable({
       data: data,
       columns: [
         { data: "id_usuario" },
@@ -102,7 +102,7 @@ function actualizarTabla(data) {
     });
     tablaInicializada = true;
   } else {
-    let table = $("#example").DataTable();
+    let table = $("#dataTable").DataTable();
     table.clear();
     table.rows.add(data);
     table.draw();

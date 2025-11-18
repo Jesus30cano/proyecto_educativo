@@ -34,15 +34,15 @@
       <div id="content">
 
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/student/topnav.php'; ?>
 
         <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-          <!-- TITULO -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Actividades</h1>
-          </div>
+            <!-- TITULO -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">Actividades</h1>
+            </div>
 
           <!-- fila de contenido-->
           <div class="row">

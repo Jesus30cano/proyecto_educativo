@@ -34,15 +34,12 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/student/topnav.php'; ?>
 
         <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-          <!-- TITULO -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Calificaciones</h1>
-          </div>
+         
 
           <!-- Tarjeta de Bienvenida -->
           <div class="row">
@@ -51,11 +48,9 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Bienvenido estudiante
-                      </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        Este es su apartado de Calificaciones
+                      
+                      <div class="h3 mb-0 font-weight-bold text-gray-800">
+                        Calificaciones
                       </div>
                     </div>
                     <div class="col-auto">

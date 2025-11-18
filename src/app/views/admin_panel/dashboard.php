@@ -35,7 +35,7 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/admin/topnav.php'; ?>
 
 
         <!-- Contenido de la página de inicio -->
@@ -112,6 +112,7 @@
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
   <!-- script de funcionalidad -->
+  <script src="/public/js/admin/dashboard.js"></script>
 
 
 </body>

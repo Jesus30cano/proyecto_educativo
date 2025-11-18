@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
   <link rel="stylesheet" href="/public/css/admin/ModalRegistro.css">
   <link rel="stylesheet" href="/public/css/admin/styles_modal_cursoCR.css">
+  <link rel="stylesheet" href="/public/css/toast.css">
+
 </head>
 
 <body id="page-top">
@@ -31,7 +33,7 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/admin/topnav.php'; ?>
 
 
         <!-- Contenido de la página de inicio -->

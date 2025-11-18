@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/student/dashboard/index">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -16,7 +16,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a href="/admin/dashboard/index" class="nav-link" data-view="dashboard">
+        <a href="/admin/dashboard" class="nav-link" data-view="dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Inicio</span>
         </a>
@@ -32,7 +32,7 @@
 
     <!-- Nav Item - Calificaciones -->
     <li class="nav-item">
-        <a class="nav-link" href="/admin/teacher/index" data-view="profesores">
+        <a class="nav-link" href="/admin/teacher" data-view="profesores">
             <i class="fas fa-fw fa-star"></i>
             <span>Profesores</span>
         </a>
@@ -40,7 +40,7 @@
 
     <!-- Nav Item - Estudiantes -->
     <li class="nav-item">
-        <a class="nav-link" href="/admin/student/index" data-view="estudiantes">
+        <a class="nav-link" href="/admin/student" data-view="estudiantes">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Estudiantes</span>
         </a>
@@ -48,7 +48,7 @@
 
     <!-- Nav Item - Cursos-->
     <li class="nav-item">
-        <a href="/admin/course/index" class="nav-link" data-view="cursos">
+        <a href="/admin/course" class="nav-link" data-view="cursos">
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Cursos</span>
         </a>
@@ -56,7 +56,7 @@
 
     <!-- Nav Item - Asistencias-->
     <li class="nav-item">
-        <a href="/admin/attendance/index" class="nav-link" data-view="asistencias">
+        <a href="/admin/attendance" class="nav-link" data-view="asistencias">
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Asistencias</span>
         </a>
@@ -80,7 +80,7 @@
 
     <!-- Nav Item - Perfil -->
     <li class="nav-item">
-        <a href="/admin/log/index" class="nav-link load-view" data-view="historial">
+        <a href="/admin/log" class="nav-link load-view" data-view="historial">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Historial</span>
         </a>

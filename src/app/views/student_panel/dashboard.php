@@ -42,7 +42,7 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/student/topnav.php'; ?>
         <?php // viejo include __DIR__ . '/../components/student/navbar.php'; ?>
 
 

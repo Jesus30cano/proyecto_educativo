@@ -33,38 +33,13 @@
       <!-- inicia el contenido principal -->
       <div id="content">
         <!-- topnav -->
-        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php include __DIR__ . '/../components/admin/topnav.php'; ?>
 
 
           <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-          <!-- TITULO -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Perfil estudiante</h1>
-          </div>
-
-          <!-- Fila de contenido -->
-          <div class="row">
-
-            <!-- Ejemplo de tarjeta normal -->
-            <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Bienvenido estudiante</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Este es su apartado de perfil y sus datos personales</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      
 
           <!-- Datos personales -->
           <?php include __DIR__ . '/../components/perfil.php'; ?>
@@ -104,7 +79,7 @@
   <!-- Page level custom scripts -->
   <script src="/public/js/script.js"></script>
   <script src="/public/js/perfil.js"></script>
-  <script src="/public/js/boostrap_dashboard/admin/sidebar.js"></script>
+  
 
 </body>
 </html>
