@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gestión de Usuarios</title>
-  <link href="/public/css/boostrap_dashboard/admin/styles_modal_cursoCR.css" rel="stylesheet" />
+  <link href="/public/css/admin/styles_modal_cursoCR.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -146,6 +146,6 @@
   </div>
 </div>
 
-  <script src="/public/js/boostrap_dashboard/admin/modal_curso.js"></script>
+  <script src="/public/js/admin/modal_curso.js"></script>
 </body>
 </html>

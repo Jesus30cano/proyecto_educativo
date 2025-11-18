@@ -6,7 +6,7 @@
                     <h5 class="modal-title" id="modalRegistrarAsistenciaLabel">
                         <i class="bi bi-calendar-check me-2"></i>Registrar Asistencia del Día
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Información de la clase -->
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         <i class="bi bi-x-circle me-1"></i>Cancelar
                     </button>
                     <button type="button" class="btn btn-success">

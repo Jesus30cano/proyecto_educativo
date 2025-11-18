@@ -5,93 +5,151 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/public/css/boostrap_dashboard/dataTables.bootstrap5.min.css" />
-  <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css" />
+  <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css" /> -->
+
+  <!-- archivos del css y diseño -->
+
+  <!-- Fuentes personalizadas para esta plantilla -->
+  <link href="/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- Estilos personalizados para esta plantilla-->
+  <link href="/public/css/styles2.css" rel="stylesheet">
+  <!-- Estilos personalizados para esta página -->
+  <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
+  
 
   <title>Contenido Principal</title>
 </head>
 
-<body>
-  <!-- Navbar -->
-  <?php include __DIR__ . '/../components/student/navbar.php'; ?>
+<body id="page-top">
+  <!-- esto inicia todo el contenido -->
+  <div id="wrapper">
+    <!-- sidenav -->
+    <?php include __DIR__ . '/../components/student/sidenav.php'; ?>
+    <?php // viejo include __DIR__ . '/../components/student/sidebar.php'; ?>
 
 
-  <!-- Sidebar -->
-  <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
+    <!-- contenido del contenido -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-  <main class="mt-5 pt-3">
-    <div class="container-fluid">
-      <!-- Bienvenida al estudiante -->
-      <div class="row">
-        <div class="col-md-12 mb-4">
-          <div class="card bg-primary text-white">
-            <div class="card-body">
-              <h3 class="mb-2"><i class="bi bi-emoji-smile me-2"></i>¡Bienvenido de nuevo, Estudiante!</h3>
-              <p class="mb-0">Este es tu apartado principal</p>
-            </div>
+      <!-- inicia el contenido principal -->
+      <div id="content">
+        <!-- topnav -->
+        <?php include __DIR__ . '/../components/topnav.php'; ?>
+        <?php // viejo include __DIR__ . '/../components/student/navbar.php'; ?>
+
+
+        <!-- Contenido de la página de inicio -->
+        <div class="container-fluid">
+
+          <!-- TITULO -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Contenido Principal</h1>
           </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <h4>Contenido principal</h4>
-          <hr>
-        </div>
-      </div>
+          <!-- Fila de contenido -->
+          <div class="row">
 
-      <!-- Calendario y Mensaje Motivacional -->
-      <div class="row">
-
-        <!-- Calendario -->
-        <div class="col-lg-6 mb-3">
-          <div class="card h-100">
-            <div class="card-header">
-              <span class="me-2"><i class="bi bi-calendar3"></i></span>
-              Calendario
+            <!-- Ejemplo de tarjeta normal -->
+            <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Bienvenido estudiante</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Este es su contenido principal.</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <div id="calendar"></div> <!-- El calendario es manejado por un script en js -->
+
+            <!-- Calendario -->
+            <div class="col-lg-8 mb-3">
+              <div class="card h-100 shadow">
+                <div class="card-header d-flex align-items-center">
+                  <i class="bi bi-calendar3 me-2"></i>
+                  <span>Calendario</span>
+                </div>
+
+                <div class="card-body">
+                  <div id="calendar"></div> <!-- Tu script de calendario lo controla -->
+                </div>
+              </div>
             </div>
+
+
+            <!-- Mensaje Motivacional -->
+            <div class="col-xl-4 col-md-6 mb-4"> <!-- Más ancho para combinar con el calendario -->
+              <div class="card border-bottom-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-2">
+                        Mensaje motivacional
+                      </div>
+
+                      <!-- Frase que se llena desde JS -->
+                      <h5 class="font-weight-bold text-gray-800 mb-0" id="frase">
+                        <!-- Aquí aparece la frase -->
+                      </h5>
+                    </div>
+
+                    <!-- Ícono a la derecha -->
+                    <div class="col-auto">
+                      <i class="fas fa-smile-beam fa-2x text-gray-300"></i>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </div>
 
-        <!-- Mensaje Motivacional. idea de brayan -->
-        <div class="col-lg-6 mb-3">
-          <div class="card h-100 bg-light">
-            <div class="card-header bg-primary text-white">
-              <span class="me-2"><i class="bi bi-lightbulb"></i></span>
-              Mensaje del Día
+          <!-- otra fila decontenido -->
+          <div class="row">
+
+            <!-- Ejemplo de tarjeta normal.  -->
+            <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Bienvenido estudiante</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Calificaciones recientes</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-              <i class="bi bi-emoji-smile text-warning mb-3" style="font-size: 60px;"></i>
-              <h5 class="text-primary mb-3" id="frase"></h5> <!-- aqui se puede añadir el mensaje mostivacional que saldra en el js, la id es el que lo llama -->
-              <p class="text-muted mb-0">Cada paso cuenta en tu camino al éxito académico.</p>
-            </div>
+
           </div>
-        </div>
 
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <h4>Calificaciones recientes</h4>
-          <hr>
-        </div>
-      </div>
-
-      <!-- Tabla de datos. calificaciones recientes del estudiante sin importar que competencia es -->
-      <div class="row">
-        <div class="col-md-12 mb-3">
-          <div class="card">
-            <div class="card-header">
-              <span><i class="bi bi-table me-2"></i></span> Calificaciones recientes del estudiante
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Calificaciones recientes</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table id="example" class="table table-striped data-table" style="width: 100%">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <!-- datos que mostrara la tabla. el js de esto ya esta modificado para que trabaje con los datos -->
@@ -114,26 +172,48 @@
                       <td>AAAAAAAAAAAAAAAAA</td>
                     </tr>
                   </tbody>
-                  <!-- aqui estaba el tfoot (lo mismo del thead, pero, abajo)-->
                 </table>
               </div>
             </div>
           </div>
+
+          <!-- topnav -->
+          <?php include __DIR__ . '/../components/footer.php'; ?>
+
         </div>
+
       </div>
 
     </div>
-    </div>
-  </main>
 
-  <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/jquery-3.5.1.js"></script>
-  <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/script.js"></script>
-  <script src="/public/js/boostrap_dashboard/student/script.calendar.js"></script>
+  </div>
+  </div>
+
+  <!-- scroll -->
+  <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
+
+
+  <!-- apartado de script, BOOSTRAP -->
+  <!-- Bootstrap core JavaScript-->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/public/js/styles/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/public/js/styles/demo/datatables-demo.js"></script>
+
+  <!-- script de funcionalidad -->
+  <script src="/public/js/student/script.calendar.js"></script>
   <script src="/public/js/student/frases.js"></script>
-
+  <script src="/public/js/script.js"></script>
 </body>
 </html>

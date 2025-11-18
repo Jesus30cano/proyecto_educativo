@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/public/css/boostrap_dashboard/admin/styles_modal_estuCR.css" rel="stylesheet" />
+    <link href="/public/css/admin/styles_modal_estuCR.css" rel="stylesheet" />
     <title>Document</title>
 </head>
 
@@ -18,7 +18,7 @@
 
     <?php include __DIR__ . '/../modales/modal_create_estudiante.php'; ?>
 
-    <script src="/public/js/boostrap_dashboard/admin/modal_create_estu.js"></script>
+    <script src="/public/js/admin/modal_create_estu.js"></script>
 
 </body>
 

@@ -10,7 +10,7 @@
                     <h5 class="modal-title" id="modalActividad1Label">
                         <i class="bi bi-file-earmark-text me-2"></i>Diseño de Diagramas UML
                     </h5> <!-- Nombre de la actividad -->
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    <button type="button" class="btn-close btn-close-white" data-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body"> 
@@ -59,7 +59,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         <i class="bi bi-x-circle me-1"></i>Cancelar
                     </button> <!-- botom cancelar -->
                     <button type="button" class="btn btn-success">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         <i class="bi bi-x-circle me-1"></i>Cerrar
                     </button> <!-- Salir del modal -->
                 </div>

@@ -9,7 +9,7 @@
           <h5 class="modal-title" id="modalEditarPersonalLabel">
             <i class="bi bi-pencil-square me-2"></i>Editar Información Personal
           </h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
