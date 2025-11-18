@@ -6,7 +6,7 @@
         <h5 class="modal-title" id="modalEvaluacion1Label">
           <i class="bi bi-clipboard-check me-2"></i>Evaluación de Matemáticas
         </h5>  <!-- Nombre de la ebaluacion -->
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button> <!-- Boton de cerrar el modal -->
+        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button> <!-- Boton de cerrar el modal -->
       </div>
       <div class="modal-body">
         <div class="alert alert-info">
@@ -44,7 +44,7 @@
         </div> <!-- El strong y el texto avisa sobre la evaluacion, se puede quedar asi o quitarse. -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
           <i class="bi bi-x-circle me-1"></i>Cancelar
         </button> <!-- Boton de cancelar -->
         <button type="button" class="btn btn-success">
@@ -100,7 +100,7 @@
         </div> <!-- Aviso de la nota -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
           <i class="bi bi-x-circle me-1"></i>Cerrar
         </button> <!-- Boton de cerrar modal -->
       </div>

@@ -6,46 +6,114 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/boostrap_dashboard/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="/public/css/boostrap_dashboard/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css">
+  <!-- archivos del css y diseño -->
 
-  <title>Bootstrap 5 Admin Dashboard</title>
+  <!-- Fuentes personalizadas para esta plantilla -->
+  <link href="/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- Estilos personalizados para esta plantilla-->
+  <link href="/public/css/styles2.css" rel="stylesheet">
+  <!-- Estilos personalizados para esta página -->
+  <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
+
+  <title>Contenido principal</title>
 </head>
 
-<body>
-  <!-- Navbar -->
-  <?php include __DIR__ . '/../components/admin/Navbar.php'; ?>
+<body id="page-top">
+  <!-- esto inicia todo el contenido -->
+  <div id="wrapper">
+    <!-- sidenav -->
+    <?php include __DIR__ . '/../components/admin/sidenav.php'; ?>
 
-  <!-- Sidebar -->
-  <?php include __DIR__ . '/../components/admin/Sidebar.php'; ?>
 
-  <!-- Main Content -->
-  <main class="mt-5 pt-3">
-    <div class="container-fluid">
+    <!-- contenido del contenido -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-      <h4 class="mb-4">INICIO</h4>
+      <!-- inicia el contenido principal -->
+      <div id="content">
+        <!-- topnav -->
+        <?php include __DIR__ . '/../components/admin/topnav.php'; ?>
 
-      <!-- Dashboard Cards -->
-      <?php include __DIR__ . '/../components/admin/cards/Cards.php'; ?>
-      
-      <!-- Data Table -->
-      <?php include __DIR__ . '/../components/admin/tables/DataTableIndex.php'; ?>
-      
+
+        <!-- Contenido de la página de inicio -->
+        <div class="container-fluid">
+
+          <!-- TITULO -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Contenido Principal</h1>
+          </div>
+
+
+          <!-- Ejemplo de tarjeta normal -->
+          <div class="col-xl-12 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                      Bienvenido Administrador</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">Este es su contenido principal.</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Dashboard Cards -->
+          <?php include __DIR__ . '/../components/admin/cards/Cards.php'; ?>
+
+          <!-- Data Table -->
+          <?php include __DIR__ . '/../components/admin/tables/DataTableIndex.php'; ?>
+
+        </div>
+
+
+
+
+      </div>
+      <!-- topnav -->
+    <?php include __DIR__ . '/../components/footer.php'; ?>
+
+
     </div>
-  </main>
+    
 
-  <!-- JavaScript -->
-  <script src="/public/js/boostrap_dashboard/jquery-3.5.1.js"></script>
-  <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/script.js"></script>
-  <script src="/public/js/boostrap_dashboard/admin/dashboard.js"></script>
-  <script src="/public/js/boostrap_dashboard/admin/sidebar.js"></script>
+  </div>
+
+
+  </div>
+  </div>
+
+  <!-- scroll -->
+  <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
+
+
+  <!-- apartado de script, BOOSTRAP -->
+  <!-- Bootstrap core JavaScript-->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/public/js/styles/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/public/js/styles/demo/datatables-demo.js"></script>
+
+  <!-- script de funcionalidad -->
+  <script src="/public/js/admin/dashboard.js"></script>
+
 
 </body>
 

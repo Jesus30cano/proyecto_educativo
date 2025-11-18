@@ -5,51 +5,104 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/dataTables.bootstrap5.min.css" />
-  <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/style.css" />
+
+  <!-- archivos del css y diseño -->
+
+  <!-- Fuentes personalizadas para esta plantilla -->
+  <link href="/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- Estilos personalizados para esta plantilla-->
+  <link href="/public/css/styles2.css" rel="stylesheet">
+  <!-- Estilos personalizados para esta página -->
+  <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <title>Perfil</title>
 </head>
 
-<body>
-  <!-- navbar -->
-      <?php include __DIR__ . '/../components/student/navbar.php'; ?>
+<body id="page-top">
+  <!-- esto inicia todo el contenido -->
+  <div id="wrapper">
+    <!-- sidenav -->
+    <?php include __DIR__ . '/../components/student/sidenav.php'; ?>
 
-    <!-- sidebar -->
-      <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
+
+    <!-- contenido del contenido -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- inicia el contenido principal -->
+      <div id="content">
+        <!-- topnav -->
+        <?php include __DIR__ . '/../components/student/topnav.php'; ?>
 
 
-  <main class="mt-5 pt-3">
-    <div class="container-fluid">
+        <!-- Contenido de la página de inicio -->
+        <div class="container-fluid">
 
-      <!-- Bienvenida al estudiante -->
-      <div class="row">
-        <div class="col-md-12 mb-4">
-          <div class="card bg-primary text-white">
-            <div class="card-body">
-              <h3 class="mb-2"><i class="bi me-2"></i>Perfil Estudiante</h3>
+          <!-- TITULO -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Perfil estudiante</h1>
+          </div>
+
+          <!-- Fila de contenido -->
+          <div class="row">
+
+            <!-- Ejemplo de tarjeta normal -->
+            <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Bienvenido estudiante</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Este es su apartado de perfil y sus datos personales</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Datos personales -->
+          <?php include __DIR__ . '/../components/perfil.php'; ?>
         </div>
+
+        <!-- topnav -->
+        <?php include __DIR__ . '/../components/footer.php'; ?>
       </div>
 
-      <?php include __DIR__ . '/../components/perfil.php'; ?>
-
-             
-             
-
-
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </main>
 
-  <script src="./../../public/js/boostrap_dashboard/student/script.contactos.js"></script>
-  <script src="./../../public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-  <script src="./../../public/js/boostrap_dashboard/script.js"></script>
+  </div>
+  </div>
+
+  <!-- scroll -->
+  <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
+
+
+  <!-- apartado de script, BOOSTRAP -->
+  <!-- Bootstrap core JavaScript-->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/public/js/styles/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/public/js/styles/demo/datatables-demo.js"></script>
+
+  
+  <script src="/public/js/perfil.js"></script>
+
 </body>
-
 </html>

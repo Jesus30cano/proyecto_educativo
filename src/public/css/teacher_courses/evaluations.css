@@ -136,7 +136,7 @@ table.dataTable tbody tr:hover {
 .form-control {
     border-radius: 8px;
     border: 1px solid #90CAF9;
-    padding: 8px 12px;
+    /* padding: 8px 12px; lo hice para ampliar cuanto registro se mostrara en la tabla*/
 }
 
 .form-control:focus {

@@ -6,7 +6,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table id="example" class="table table-striped data-table" style="width: 100%">
+          <table id="dataTable" class="table table-striped data-table" style="width: 100%">
             <thead>
               <tr>
                 <th>ID</th>

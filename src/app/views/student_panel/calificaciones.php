@@ -1,214 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/bootstrap.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/dataTables.bootstrap5.min.css" />
-    <link rel="stylesheet" href="/../../../public/css/boostrap_dashboard/style.css" />
-    <title>Calificaciones</title>
-  </head>
-  <body>
-    <!-- navbar -->
-      <?php include __DIR__ . '/../components/student/navbar.php'; ?>
 
-    <!-- sidebar -->
-      <?php include __DIR__ . '/../components/student/sidebar.php'; ?>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- archivos del css y diseño -->
+
+  <!-- Fuentes personalizadas para esta plantilla -->
+  <link href="/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- Estilos personalizados para esta plantilla-->
+  <link href="/public/css/styles2.css" rel="stylesheet">
+  <!-- Estilos personalizados para esta página -->
+  <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
 
 
-    <main class="mt-5 pt-3">
+  <title>Calificaciones</title>
+</head>
+
+<body id="page-top">
+  <!-- esto inicia todo el contenido -->
+  <div id="wrapper">
+    <!-- sidenav -->
+    <?php include __DIR__ . '/../components/student/sidenav.php'; ?>
+
+    <!-- contenido del contenido -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- inicia el contenido principal -->
+      <div id="content">
+        <!-- topnav -->
+        <?php include __DIR__ . '/../components/student/topnav.php'; ?>
+
+        <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-            <!-- Bienvenida al estudiante -->
-            <div class="row">
-                <div class="col-md-12 mb-4">
-                    <div class="card bg-primary text-white">
-                        <div class="card-body">
-                            <h3 class="mb-2"><i class="bi me-2"></i>Session de Calificaciones</h3>
-                        </div>
+         
+
+          <!-- Tarjeta de Bienvenida -->
+          <div class="row">
+            <div class="col-xl-12 col-md-12 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      
+                      <div class="h3 mb-0 font-weight-bold text-gray-800">
+                        Calificaciones
+                      </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Título para la sección de calificaciones -->
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Calificaciones y Resumen</h4>
-                    <hr>
-                </div>
-            </div>
-
-
-            <!-- ************************************ -->
-            <!-- * FILA SUPERIOR: Gráfico y Resumen * -->
-            <!-- ************************************ -->
-            <div class="row">
-                <!-- COLUMNA IZQUIERDA: GRÁFICO (7 de 12 unidades) -->
-                <div class="col-md-7 mb-3">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                            Promedio de Calificaciones por competencias
-                        </div>
-                        <div class="card-body">
-                            <canvas id="gradeChart" class="chart" width="400" height="200"></canvas>
-                            <!-- He añadido un ID al canvas para que puedas inicializar Chart.js -->
-                        </div>
+                    <div class="col-auto">
+                      <i class="fas fa-star fa-2x text-gray-300"></i>
                     </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
 
+          <!-- FILA SUPERIOR: Gráfico y Resumen -->
+          <div class="row">
 
-                <!-- COLUMNA DERECHA: RESUMEN ACADÉMICO -->
-                <div class="col-md-5 mb-3">
-                    <div class="card h-100">
-                        <div class="card-header bg-success text-white">
-                            <span class="me-2"><i class="bi bi-award"></i></span>
-                            Resumen Académico
+            <!-- COLUMNA IZQUIERDA: GRÁFICO -->
+            <div class="col-xl-7 col-lg-7 mb-4">
+              <div class="card shadow h-100">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="fas fa-chart-bar mr-2"></i>
+                    Promedio de Calificaciones por Competencias
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <canvas id="gradeChart" width="400" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: RESUMEN ACADÉMICO -->
+            <div class="col-xl-5 col-lg-5 mb-4">
+              <div class="card shadow h-100">
+                <div class="card-header py-3 bg-success">
+                  <h6 class="m-0 font-weight-bold text-white">
+                    <i class="fas fa-award mr-2"></i>
+                    Resumen Académico
+                  </h6>
+                </div>
+                <div class="card-body">
+
+                  <h6 class="text-gray-600 mb-3">Estado del Estudiante</h6>
+
+                  <!-- Aprobadas -->
+                  <div class="card border-left-success shadow mb-3">
+                    <div class="card-body py-3">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            <i class="fas fa-check-circle mr-1"></i>Aprobadas
+                          </div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800">17</div>
                         </div>
-                        <div class="card-body">
-
-                            <!-- Estado del Estudiante -->
-                            <div class="mb-4">
-                                <h5 class="text-muted mb-2">Estado del Estudiante</h5>
-
-                                <!-- Aprobadas -->
-                                <div class="card bg-success bg-opacity-10 border-success mb-2">
-                                    <div class="card-body py-2 d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <i class="bi bi-check-circle text-success me-2"></i>
-                                            <span class="fw-bold">Aprobadas</span>
-                                        </div>
-                                        <h3 class="fw-bold mb-0">17</h3>
-                                    </div>
-                                </div>
-
-                                <!-- No Aprobadas -->
-                                <div class="card bg-danger bg-opacity-10 border-danger mb-2">
-                                    <div class="card-body py-2 d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <i class="bi bi-x-circle text-danger me-2"></i>
-                                            <span class="fw-bold">No Aprobadas</span>
-                                        </div>
-                                        <h3 class="fw-bold mb-0">3</h3>
-                                    </div>
-                                </div>
-
-                                <!-- Pendientes -->
-                                <div class="card bg-warning bg-opacity-10 border-warning">
-                                    <div class="card-body py-2 d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <i class="bi bi-clock text-warning me-2"></i>
-                                            <span class="fw-bold">Pendientes</span>
-                                        </div>
-                                        <h3 class="fw-bold mb-0">2</h3>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                            </div>
-
+                        <div class="col-auto">
+                          <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
                         </div>
+                      </div>
                     </div>
-                </div>
-            </div>
-            <!-- FIN DE FILA SUPERIOR -->
+                  </div>
 
-
-            <!-- ************************************* -->
-            <!-- * FILA INFERIOR: Título y Lista/Tabla * -->
-            <!-- ************************************* -->
-
-            <!-- Título para la lista -->
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <h4>Lista de Calificaciones</h4>
-                    <hr>
-                </div>
-            </div>
-
-
-            <!-- NUEVO Filtro de Competencias -->
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <span><i class="bi bi-filter me-2"></i></span> Filtrar Calificaciones por Competencia
+                  <!-- No Aprobadas -->
+                  <div class="card border-left-danger shadow mb-3">
+                    <div class="card-body py-3">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            <i class="fas fa-times-circle mr-1"></i>No Aprobadas
+                          </div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800">3</div>
                         </div>
-                        <div class="card-body">
-                            <div class="row align-items-end">
-                                <div class="col-md-8 mb-3 mb-md-0">
-                                    <label for="selectCompetencia" class="form-label fw-bold">Selecciona una
-                                        competencia:</label>
-                                    <select class="form-select form-select-lg" id="selectCompetencia"> <!-- Opcion de selecionar una competencia -->
-                                        <option value="todas" selected>Todas las Competencias</option>
-                                        <option value="matematicas">Matemáticas</option> <!-- Opciones -->
-                                        <option value="programacion">Programación</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary w-100">
-                                        <i class="bi bi-funnel me-2"></i>Aplicar Filtro
-                                    </button> <!-- Boton para buscar calificacioes segun la competencia -->
-                                </div>
-                            </div>
+                        <div class="col-auto">
+                          <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
                         </div>
+                      </div>
                     </div>
+                  </div>
+
+                  <!-- Pendientes -->
+                  <div class="card border-left-warning shadow">
+                    <div class="card-body py-3">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <i class="fas fa-clock mr-1"></i>Pendientes
+                          </div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800">2</div>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+              </div>
             </div>
 
-            <!-- Tabla de datos -->
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <span><i class="bi bi-table me-2"></i></span> Calificaciones
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped data-table" style="width: 100%">
-                                    <thead>
-                                        <tr> <!-- datos que mostrara la tabla. el js de esto ya esta modificado para que trabaje con los datos -->
-                                            <th>Profesor</th>
-                                            <th>Competencia</th>
-                                            <th>Evaluacion</th>
-                                            <th>Fecha Evaluacion</th>
-                                            <th>nota de calificacion</th>
-                                            <th>Observacion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Aqui se ingresan los datos en el tr (esto es un ejemplo)-->
-                                        <tr>
-                                            <td>hola</td>
-                                            <td>Sistema</td>
-                                            <td>Tarea</td>
-                                            <td>2025-01-01</td>
-                                            <td>5.0</td>
-                                            <td>AAAAAAAAAAAAAAAAA</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+          </div>
+
+          <!-- Filtro de Competencias -->
+          <div class="row">
+            <div class="col-xl-12 mb-4">
+              <div class="card shadow">
+                <div class="card-header py-3 bg-primary">
+                  <h6 class="m-0 font-weight-bold text-white">
+                    <i class="fas fa-filter mr-2"></i>
+                    Filtrar Calificaciones por Competencia
+                  </h6>
                 </div>
+                <div class="card-body">
+                  <div class="row align-items-end">
+                    <div class="col-md-8 mb-3 mb-md-0">
+                      <label for="selectCompetencia" class="font-weight-bold text-gray-700">
+                        Selecciona una competencia:
+                      </label>
+                      <select class="form-control form-control-lg" id="selectCompetencia">
+                        <option value="todas" selected>Todas las Competencias</option>
+                        <option value="matematicas">Matemáticas</option>
+                        <option value="programacion">Programación</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-primary btn-block">
+                        <i class="fas fa-search mr-2"></i>Aplicar Filtro
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- DataTales Example Adaptado -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">
+                <i class="fas fa-table mr-2"></i>
+                Calificaciones
+              </h6>
+            </div>
+
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Profesor</th>
+                      <th>Competencia</th>
+                      <th>Evaluación</th>
+                      <th>Fecha Evaluación</th>
+                      <th>Nota de Calificación</th>
+                      <th>Observación</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>hola</td>
+                      <td>Sistema</td>
+                      <td>Tarea</td>
+                      <td>2025-01-01</td>
+                      <td><span class="badge badge-success">5.0</span></td>
+                      <td>AAAAAAAAAAAAAAAAA</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+
         </div>
-    </main>
-    
+        <!-- /.container-fluid -->
 
-    <script src="./../../public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="./../../public/js/boostrap_dashboard/jquery-3.5.1.js"></script>
-    <script src="./../../public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
-    <script src="./../../public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
-    <script src="./../../public/js/boostrap_dashboard/script.js"></script>
-    <script src="./../../public/js/boostrap_dashboard/student/script.calendar.js"></script>
-  </body>
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- topnav -->
+      <?php include __DIR__ . '/../components/footer.php'; ?>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- scroll -->
+  <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
+
+  
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/public/js/styles/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/public/vendor/chart.js/Chart.min.js"></script>
+  <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/public/js/styles/demo/datatables-demo.js"></script>
+
+  <!-- script de funcionalidad -->
+  <script src="/public/js/student/script.calendar.js"></script>
+  <script src="/public/js/student/frases.js"></script>
+</body>
+
 </html>

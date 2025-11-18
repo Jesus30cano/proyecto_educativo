@@ -6,54 +6,80 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/boostrap_dashboard/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-  
-  <link rel="stylesheet" href="/public/css/boostrap_dashboard/style.css">
-  
+  <!-- archivos del css y diseño -->
 
-  <title>Bootstrap 5 Admin Profile</title>
+  <!-- Fuentes personalizadas para esta plantilla -->
+  <link href="/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- Estilos personalizados para esta plantilla-->
+  <link href="/public/css/styles2.css" rel="stylesheet">
+  <!-- Estilos personalizados para esta página -->
+  <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <title>Perfil</title>
 </head>
 
-<body>
-  <!-- Navbar -->
-  <?php include __DIR__ . '/../components/admin/Navbar.php'; ?>
+<body id="page-top">
+  <!-- esto inicia todo el contenido -->
+  <div id="wrapper">
+    <!-- sidenav -->
+    <?php include __DIR__ . '/../components/admin/sidenav.php'; ?>
 
-  <!-- Sidebar -->
-  <?php include __DIR__ . '/../components/admin/Sidebar.php'; ?>
 
-  <!-- Main Content -->
-  <main class="mt-5 pt-3">
-    <div class="container-fluid">
+    <!-- contenido del contenido -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-      <h4 class="mb-4"></h4>
-      <!-- Bienvenida al administrador -->
-      <div class="row">
-        <div class="col-md-12 mb-4">
-          <div class="card bg-primary text-white">
-            <div class="card-body">
-              <h3 class="mb-2"><i class="bi me-2"></i>Perfil Administrador</h3>
-            </div>
-          </div>
+      <!-- inicia el contenido principal -->
+      <div id="content">
+        <!-- topnav -->
+        <?php include __DIR__ . '/../components/admin/topnav.php'; ?>
+
+
+          <!-- Contenido de la página de inicio -->
+        <div class="container-fluid">
+
+      
+
+          <!-- Datos personales -->
+          <?php include __DIR__ . '/../components/perfil.php'; ?>
         </div>
+          
+        </div>
+        <!-- footer -->
+          <?php include __DIR__ . '/../components/footer.php'; ?>
+
       </div>
 
-        <!-- Profile Content -->
-      <?php include __DIR__ . '/../components/perfil.php'; ?>
     </div>
-  </main>
+  </div>
 
-  <!-- JavaScript -->
-  <script src="/public/js/boostrap_dashboard/jquery-3.5.1.js"></script>
-  <script src="/public/js/boostrap_dashboard/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/jquery.dataTables.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/dataTables.bootstrap5.min.js"></script>
-  <script src="/public/js/boostrap_dashboard/script.js"></script>
+  <!-- scroll -->
+  <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
+
+
+  <!-- apartado de script, BOOSTRAP -->
+  <!-- Bootstrap core JavaScript-->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/public/js/styles/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/public/js/styles/demo/datatables-demo.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/public/js/script.js"></script>
   <script src="/public/js/perfil.js"></script>
-  <script src="/public/js/boostrap_dashboard/admin/sidebar.js"></script>
+  
 
 </body>
-
 </html>

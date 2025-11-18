@@ -1,14 +1,12 @@
-
-
 <div class="row">
   <div class="col-md-12 mb-3">
     <div class="card">
       <div class="card-header">
-        <span><i class="bi bi-table me-2"></i></span> Data Table
+        <span><i class="bi bi-table me-2"></i></span>Un vistazo a las fichas
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table id="example" class="table table-striped data-table" style="width: 100%">
+          <table id="dataTable" class="table table-striped data-table" style="width: 100%">
             <thead>
               <tr>
                 <th>FICHA</th>
