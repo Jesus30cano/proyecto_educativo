@@ -147,6 +147,14 @@ class TeacherModel
         return $stmt->execute();
     
     }
+    public function obtener_evaluaciones($profesor_id)
+    {
+        $query = "SELECT * FROM obtener_evaluaciones_por_profesor(:profesor_id)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':profesor_id', $profesor_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
 }

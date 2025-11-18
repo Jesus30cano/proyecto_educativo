@@ -268,9 +268,6 @@
 
                         </div>
 
-
-
-
                     </div>
 
 
@@ -284,14 +281,6 @@
 
     </div>
     </div>
-
-    <!-- scroll -->
-    <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
-
-    <!-- JS -->
-    <script>
-        const profesorId = <?= json_encode($_SESSION['user_id'] ?? null) ?>;
-    </script>
 
 
     <!-- apartado de script, BOOSTRAP -->
@@ -316,5 +305,4 @@
     <script src="/public/js/teacher/evaluations.js"></script>
 
 </body>
-
 </html>

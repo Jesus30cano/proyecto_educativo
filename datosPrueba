@@ -462,10 +462,10 @@ INSERT INTO Tb_competencia_curso (id_curso, id_competencia) VALUES
 
 -- Tb_evaluacion (3 evaluaciones)
 
-INSERT INTO Tb_evaluacion (titulo, activa, descripcion, fecha, id_curso, id_competencia) VALUES
-('Evaluación Matemáticas', TRUE, 'Prueba de conocimientos fundamentales en matemáticas.', '2025-11-10', 2, 1),
-('Evaluación Ciencias', TRUE, 'Prueba de conocimientos generales de ciencias.', '2025-11-10', 3, 2),
-('Evaluación Lengua', TRUE, 'Prueba de comprensión lectora y gramática.', '2025-11-10', 4, 3);
+INSERT INTO Tb_evaluacion (titulo, activa, descripcion, fecha, id_curso, id_competencia,id_profesor) VALUES
+('Evaluación Matemáticas', TRUE, 'Prueba de conocimientos fundamentales en matemáticas.', '2025-11-10', 2, 1, 4),
+('Evaluación Ciencias', TRUE, 'Prueba de conocimientos generales de ciencias.', '2025-11-10', 3, 2, 5),
+('Evaluación Lengua', TRUE, 'Prueba de comprensión lectora y gramática.', '2025-11-10', 4, 3, 6);
 -- Tb_preguntas (5 preguntas x 3 evaluaciones)
 INSERT INTO Tb_preguntas (pregunta, id_evaluacion) VALUES
 ('¿Cuánto es 2 + 2?', 1),
