@@ -1,3 +1,4 @@
+//actividades.js - Gestión de actividades y entregas para docentes
 document.addEventListener("DOMContentLoaded", () => {
   const tablaBody = document.getElementById("tablaActividades").querySelector("tbody");
   const sinDatos = document.getElementById("sinDatos");
