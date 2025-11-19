@@ -39,59 +39,62 @@
         <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-         
-
-          <!-- Tarjeta de Bienvenida -->
-          <div class="row">
-            <div class="col-xl-12 col-md-12 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      
-                      <div class="h3 mb-0 font-weight-bold text-gray-800">
-                        Calificaciones
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-star fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <!-- TITULO -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Calificaciones</h1>
           </div>
 
           <!-- FILA SUPERIOR: Gráfico y Resumen -->
           <div class="row">
 
-            <!-- COLUMNA IZQUIERDA: GRÁFICO -->
+            <!-- COLUMNA IZQUIERDA: Lista de competencias con scroll -->
             <div class="col-xl-7 col-lg-7 mb-4">
               <div class="card shadow h-100">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    <i class="fas fa-chart-bar mr-2"></i>
-                    Promedio de Calificaciones por Competencias
-                  </h6>
+                <div class="card-header py-3 bg-success">
+                  <h6 class="m-0 font-weight-bold text-white">Lista de aprobación de competencias</h6>
                 </div>
-                <div class="card-body">
-                  <canvas id="gradeChart" width="400" height="200"></canvas>
+                <div class="card-body" style="max-height: 500px; overflow-y: auto;">
+
+                  <!-- Competencia: Programación -->
+                  <div class="card mb-3 shadow-sm border-left-danger">
+                    <!-- Un borde boder-left-danger que muestra rojo, osea, un no aprobado-->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                      <span>Programación</span> <!-- Nombre de competencia-->
+                      <span class="badge badge-danger text-white" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">No
+                        aprobado</span> <!-- Si es aprobado o no-->
+                    </div>
+                  </div>
+
+                  <!-- Competencia: Matemáticas -->
+                  <div class="card mb-3 shadow-sm border-left-success">
+                    <!-- Un border border-left-success que muestra el verde, osea, aprobado-->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                      <span>Matemáticas</span>
+                      <span class="badge badge-success text-white"
+                        style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">Aprobado</span>
+                    </div>
+                  </div>
+
+                  <!-- Competencia: Ciencias -->
+                  <div class="card mb-3 shadow-sm border-left-warning">
+                    <!-- un borde border-left-warning que muestra el color amarillo, osea, pendiente-->
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                      <span>Ciencias</span>
+                      <span class="badge badge-warning text-white"
+                        style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">Pendiente</span>
+                    </div>
+                  </div>
+
+
+                  <!-- Más competencias aquí -->
                 </div>
               </div>
             </div>
 
             <!-- COLUMNA DERECHA: RESUMEN ACADÉMICO -->
             <div class="col-xl-5 col-lg-5 mb-4">
-              <div class="card shadow h-100">
-                <div class="card-header py-3 bg-success">
-                  <h6 class="m-0 font-weight-bold text-white">
-                    <i class="fas fa-award mr-2"></i>
-                    Resumen Académico
-                  </h6>
-                </div>
+              <div class="h-100">
                 <div class="card-body">
-
-                  <h6 class="text-gray-600 mb-3">Estado del Estudiante</h6>
 
                   <!-- Aprobadas -->
                   <div class="card border-left-success shadow mb-3">
@@ -99,9 +102,10 @@
                       <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                           <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <i class="fas fa-check-circle mr-1"></i>Aprobadas
+                            <i class="fas fa-check-circle mr-1"></i>Aprobadas <!-- competencias aprobadas-->
                           </div>
                           <div class="h3 mb-0 font-weight-bold text-gray-800">17</div>
+                          <!-- Numero de competencias aprobadas-->
                         </div>
                         <div class="col-auto">
                           <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
@@ -149,6 +153,7 @@
             </div>
 
           </div>
+
 
           <!-- Filtro de Competencias -->
           <div class="row">
@@ -242,7 +247,7 @@
   <!-- scroll -->
   <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
 
-  
+
 
 
   <!-- Bootstrap core JavaScript-->
@@ -264,8 +269,6 @@
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
   <!-- script de funcionalidad -->
-  <script src="/public/js/student/script.calendar.js"></script>
-  <script src="/public/js/student/frases.js"></script>
 </body>
 
 </html>
