@@ -65,7 +65,7 @@
                                     <div class="row align-items-end">
                                         <div class="col-md-4 mb-3 mb-md-0">
                                             <label for="selectGrupo" class="form-label fw-bold">Grupo/Curso:</label>
-                                            <select class="form-select" id="selectGrupo">
+                                            <select class="form-control" id="selectGrupo">
                                                 <option value="todos" selected>Todos los Grupos</option>
                                                 <option value="grupo1">Grupo A - Ingeniería de Software</option>
                                                 <option value="grupo2">Grupo B - Seguridad Informática</option>

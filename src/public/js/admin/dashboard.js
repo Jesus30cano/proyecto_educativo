@@ -22,14 +22,11 @@ async function cargarDatosDashboardCard() {
     const data = await response.json();
 
     if (data.status !== "success") {
-      console.error(
-        "❌ Error en la respuesta del servidor:", data.message 
-      );
+      console.error("❌ Error en la respuesta del servidor:", data.message);
       return;
     }
-    
+
     actualizarContadores(data.data);
-    
   } catch (error) {
     console.error("❌ Error cargando dashboard:", error);
   }
@@ -39,9 +36,7 @@ async function cargarDatosDashboardTabla() {
     const response = await fetch("/admin/dashboard/obtenerTotalesCursos"); // Asegúrate de que esta ruta coincida con la del backend
     const data = await response.json();
     if (data.status !== "success") {
-      console.error(
-        "❌ Error en la respuesta del servidor:", data.message 
-      );
+      console.error("❌ Error en la respuesta del servidor:", data.message);
       return;
     }
     console.log("✅ Datos del dashboard cargados:", data.data);
@@ -55,9 +50,11 @@ async function cargarDatosDashboardTabla() {
 function actualizarContadores(info) {
   document.getElementById("totalEstudiantes").textContent =
     info.total_estudiantes;
-  document.getElementById("totalProfesores").textContent = info.total_profesores;
-  
-  document.getElementById("totalCursos").textContent = info.total_cursos_activos;
+  document.getElementById("totalProfesores").textContent =
+    info.total_profesores;
+
+  document.getElementById("totalCursos").textContent =
+    info.total_cursos_activos;
 }
 
 let tablaInicializada = false;
@@ -82,10 +79,13 @@ function actualizarTabla(data) {
         { data: "nombre_curso" },
         { data: "nombre_profesor" },
         { data: "fecha_inicio" },
-        { data: "fecha_fin" }, 
-        { data: "cantidad_estudiantes" }
+        { data: "fecha_fin" },
+        { data: "cantidad_estudiantes" },
       ],
-      destroy: true
+      destroy: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+      },
     });
     tablaInicializada = true;
     console.log("✅ DataTable inicializado con:", data);
@@ -97,4 +97,3 @@ function actualizarTabla(data) {
     console.log("🔄 DataTable actualizado con:", data);
   }
 }
-
