@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <!-- Modal seguimiento -->
+                <!-- Modal de seguimiento de estudiantes -->
                 <div class="modal fade" id="modalSeguimiento" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
@@ -80,8 +80,7 @@
                                 <h5 class="modal-title fw-bold">
                                     Seguimiento de Entregas – <span id="tituloActividadModal"></span>
                                 </h5>
-                                <button type="button" class="btn-close" data-dismiss="modal"
-                                    aria-label="Cerrar"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
                             <div class="modal-body">

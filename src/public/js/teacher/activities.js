@@ -95,6 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     await refrescarEntregas(actividad);
     modalSeguimiento.show();
+    
+    
   }
 
   // 🔃 Refresca SOLO la tabla de entregas, y actualiza resumen
