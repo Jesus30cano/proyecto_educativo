@@ -56,9 +56,16 @@ async function cargarCursos() {
     if (!tablaCursosIniciada) {
       $("#tablaCursos").DataTable({
         data: data.data,
-        columns: [{ data: "curso" }, { data: "ficha" }, { data: "competencia" }],
+        columns: [
+          { data: "curso" },
+          { data: "ficha" },
+          { data: "competencia" },
+        ],
         pageLength: 5,
         destroy: true,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+        },
       });
       tablaCursosIniciada = true;
     } else {
@@ -77,7 +84,9 @@ let tablaActividadesIniciada = false;
 
 async function cargarActividadesPendientes() {
   try {
-    const response = await fetch("/teacher/dashboard/obtenerActividadesPendientes");
+    const response = await fetch(
+      "/teacher/dashboard/obtenerActividadesPendientes"
+    );
 
     const contentType = response.headers.get("content-type") || "";
     if (!contentType.includes("application/json")) {
@@ -103,6 +112,9 @@ async function cargarActividadesPendientes() {
         ],
         pageLength: 5,
         destroy: true,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+        },
       });
       tablaActividadesIniciada = true;
     } else {

@@ -135,7 +135,11 @@ class TeacherModel
 
     public function calificar_entrega($idEntrega, $calificacion)
     {
+<<<<<<< HEAD
         $query = " UPDATE Tb_entrega_actividad SET calificacion = :calificacion, estado_entrega = TRUE,
+=======
+        $query=" UPDATE Tb_entrega_actividad SET calificacion = :calificacion,
+>>>>>>> df62143986557d4d390342956e3e33daf4c9a015
             fecha_calificacion = NOW()
             WHERE id_estudiante = :idEntrega";
         $stmt = $this->conn->prepare($query);
@@ -151,6 +155,71 @@ class TeacherModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function obtener_examen_por_id($id) {
+    // 1. Obtener datos principales del examen, curso, competencia y profesor
+    $stmt1 = $this->conn->prepare("
+        SELECT 
+            e.titulo,
+            e.descripcion,
+            e.fecha,
+            c.nombre_curso AS courseName,
+            c.ficha AS ficha,
+            cmp.nombre AS competenceName,
+            cmp.codigo AS competenciaCodigo,
+            u.id_usuario AS idProfesor,
+            dp.nombre AS teacherName,
+            dp.apellido AS teacherApellido
+        FROM Tb_evaluacion e
+        LEFT JOIN Tb_curso c ON e.id_curso = c.id_curso
+        LEFT JOIN Tb_competencia cmp ON e.id_competencia = cmp.id_competencia
+        LEFT JOIN Tb_usuario u ON e.id_profesor = u.id_usuario
+        LEFT JOIN Tb_datos_personales dp ON dp.id_usuario = u.id_usuario
+        WHERE e.id_evaluacion = ?
+    ");
+    $stmt1->execute([$id]);
+    $examData = $stmt1->fetch(PDO::FETCH_ASSOC);
+
+    if (!$examData) return null;
+
+    // 2. Preguntas
+    $stmt2 = $this->conn->prepare("
+        SELECT p.id_pregunta, p.pregunta as text
+        FROM Tb_preguntas p
+        JOIN Tb_evaluacion_pregunta ep ON ep.id_pregunta = p.id_pregunta
+        WHERE ep.id_evaluacion = ?
+        ORDER BY p.id_pregunta
+    ");
+    $stmt2->execute([$id]);
+    $questions = [];
+    while ($q = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+        // Opciones (solo texto, sin id)
+        $stmt3 = $this->conn->prepare("SELECT opcion as text FROM Tb_opciones_respuesta WHERE id_pregunta = ? ORDER BY id_opcion");
+        $stmt3->execute([$q['id_pregunta']]);
+        $options = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+        $questions[] = [
+            'id' => $q['id_pregunta'],
+            'text' => $q['text'],
+            'options' => $options
+        ];
+    }
+
+    // 3. Armar nombre completo de profesor
+    $teacherName = trim($examData['teachername'] . " " . $examData['teacherapellido']);
+
+    // 4. Estructura final para el frontend
+    return [
+        'title' => $examData['titulo'],
+        'teacherName' => $teacherName,
+        'date' => $examData['fecha'],
+        'courseName' => $examData['coursename'],
+        'ficha' => $examData['ficha'],
+        'competenceName' => $examData['competencename'],
+        'competenceCode' => $examData['competenciacodigo'],
+        'description' => $examData['descripcion'],
+        'questions' => $questions
+    ];
+}
 
 
     // TeacherModel.php

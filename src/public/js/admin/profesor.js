@@ -65,7 +65,8 @@ async function cargarDatosTabla() {
 
 // Actualiza los valores de las tarjetas (contadores) en el dashboard
 function actualizarContadores(info) {
-  document.getElementById("totalProfesores2").textContent = info.total_profesores;
+  document.getElementById("totalProfesores2").textContent =
+    info.total_profesores;
 }
 
 let tablaInicializada = false;
@@ -99,6 +100,9 @@ function actualizarTabla(data) {
         { data: "genero" },
       ],
       destroy: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+      },
     });
     tablaInicializada = true;
   } else {
@@ -118,7 +122,9 @@ async function registrarDocente() {
   const cedula = document.getElementById("create_cedula").value;
   const nombre = document.getElementById("create_nombre").value;
   const apellido = document.getElementById("create_apellido").value;
-  const fecha_nacimiento = document.getElementById("create_fecha_nacimiento").value;
+  const fecha_nacimiento = document.getElementById(
+    "create_fecha_nacimiento"
+  ).value;
   const telefono = document.getElementById("create_telefono").value;
   const direccion = document.getElementById("create_direccion").value;
   const genero = document.getElementById("create_genero").value;
@@ -178,7 +184,6 @@ setupFormSubmissionDocente();
 async function buscarProfesor() {
   const id_profesor = document.getElementById("search_profesor_id").value;
   // Crea el FormData solo con el ID a buscar
-  
 
   try {
     const response = await fetch("/general/mostrarDatosPersonales", {
@@ -203,17 +208,23 @@ async function buscarProfesor() {
     // Si la búsqueda fue exitosa, llena el formulario de edición
     if (data.status === "success" && data.data) {
       // Valida que el rol sea de profesor
-      
+
       if (data.data.id_rol !== 2) {
         showToast("No se encontró el profesor.", "#e74c3c", 4000);
         return;
       }
-      document.getElementById("edit_profesor_nombre").value = data.data.nombre || "";
-      document.getElementById("edit_profesor_apellido").value = data.data.apellido || "";
-      document.getElementById("edit_profesor_fecha_nacimiento").value = data.data.fecha_nacimiento || "";
-      document.getElementById("edit_profesor_telefono").value = data.data.telefono || "";
-      document.getElementById("edit_profesor_direccion").value = data.data.direccion || "";
-      document.getElementById("edit_profesor_genero").value = data.data.genero || "";
+      document.getElementById("edit_profesor_nombre").value =
+        data.data.nombre || "";
+      document.getElementById("edit_profesor_apellido").value =
+        data.data.apellido || "";
+      document.getElementById("edit_profesor_fecha_nacimiento").value =
+        data.data.fecha_nacimiento || "";
+      document.getElementById("edit_profesor_telefono").value =
+        data.data.telefono || "";
+      document.getElementById("edit_profesor_direccion").value =
+        data.data.direccion || "";
+      document.getElementById("edit_profesor_genero").value =
+        data.data.genero || "";
       showToast("Profesor encontrado", "#27ae60", 3000);
       console.log("Datos recibidos para edición:", data.data);
     } else {
@@ -231,7 +242,9 @@ async function actualizarProfesor() {
   const id_profesor = document.getElementById("search_profesor_id").value;
   const nombre = document.getElementById("edit_profesor_nombre").value;
   const apellido = document.getElementById("edit_profesor_apellido").value;
-  const fecha_nacimiento = document.getElementById("edit_profesor_fecha_nacimiento").value;
+  const fecha_nacimiento = document.getElementById(
+    "edit_profesor_fecha_nacimiento"
+  ).value;
   const telefono = document.getElementById("edit_profesor_telefono").value;
   const direccion = document.getElementById("edit_profesor_direccion").value;
   const genero = document.getElementById("edit_profesor_genero").value;
@@ -262,7 +275,7 @@ async function actualizarProfesor() {
     console.error("Error al actualizar profesor:", error);
     showToast("Error de red o servidor", "#e74c3c", 4000);
   }
-} 
+}
 
 // Configura el evento submit del formulario de edición de profesor
 function setupFormSubmissionActualizarProfesor() {
@@ -277,42 +290,42 @@ function setupFormSubmissionActualizarProfesor() {
 setupFormSubmissionActualizarProfesor();
 
 // Hace que los campos de teléfono y cédula en edición solo permitan números
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Función que filtra el input para solo números
   function soloNumeros(event) {
     // Remueve cualquier carácter que no sea número, permite copiar-pegar
-    event.target.value = event.target.value.replace(/\D/g, '');
+    event.target.value = event.target.value.replace(/\D/g, "");
   }
 
   // Para el campo teléfono de edición
-  const telefonoInput = document.getElementById('edit_profesor_telefono');
+  const telefonoInput = document.getElementById("edit_profesor_telefono");
   if (telefonoInput) {
-    telefonoInput.addEventListener('input', soloNumeros);
+    telefonoInput.addEventListener("input", soloNumeros);
   }
 
   // Para el campo cédula de edición (si existe en tu formulario)
-  const cedulaInput = document.getElementById('edit_profesor_cedula');
+  const cedulaInput = document.getElementById("edit_profesor_cedula");
   if (cedulaInput) {
-    cedulaInput.addEventListener('input', soloNumeros);
+    cedulaInput.addEventListener("input", soloNumeros);
   }
 });
 
 // Hace que los campos de teléfono y cédula en el formulario de creación solo permitan números
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Función para permitir solo números
   function soloNumeros(event) {
-    event.target.value = event.target.value.replace(/\D/g, '');
+    event.target.value = event.target.value.replace(/\D/g, "");
   }
 
   // Campo cédula en creación (solo números)
-  const cedulaInput = document.getElementById('create_cedula');
+  const cedulaInput = document.getElementById("create_cedula");
   if (cedulaInput) {
-    cedulaInput.addEventListener('input', soloNumeros);
+    cedulaInput.addEventListener("input", soloNumeros);
   }
 
   // Campo teléfono en creación (solo números)
-  const telefonoInput = document.getElementById('create_telefono');
+  const telefonoInput = document.getElementById("create_telefono");
   if (telefonoInput) {
-    telefonoInput.addEventListener('input', soloNumeros);
+    telefonoInput.addEventListener("input", soloNumeros);
   }
 });

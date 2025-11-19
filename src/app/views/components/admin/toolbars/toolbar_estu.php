@@ -17,8 +17,12 @@
 
 
     <?php include __DIR__ . '/../modales/modal_create_estudiante.php'; ?>
+    <?php include __DIR__ . '/../modales/modal_editar_estu.php'; ?>
+    <?php include __DIR__ . '/../modales/modal_borrar_estu.php'; ?>
 
     <script src="/public/js/admin/modal_create_estu.js"></script>
+    <script src="/public/js/admin/modal_edit_estu.js"></script>
+    <script src="/public/js/admin/modal_borrar_estu.js"></script>
 
 </body>
 
