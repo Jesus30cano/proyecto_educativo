@@ -13,7 +13,7 @@
                 <th>NOMBRE</th>
                 <th>APELLIDO </th>
                 <th>ESTADO</th>
-                <th>FECHA DE NACIMIENTO</th>
+                <th>EDAD</th>
                 <th>TELEFONO</th>
                 <th>CORREO</th>
                 <th>DIRECCION</th>
