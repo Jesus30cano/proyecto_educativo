@@ -9,17 +9,21 @@
           <table id="dataTable" class="table table-striped data-table" style="width: 100%">
             <thead>
               <tr>
-                <th>T.DOCUMENTO</th>
-                <th>N.DOCUMENTO</th>
+                <th>ID </th>
                 <th>NOMBRE</th>
                 <th>APELLIDO</th>
+                <th>ESTADO</th>
                 <th>EDAD</th>
-                <th>CORREO ELECTRONICO</th>
-                <th>CONTRASEÑA</th>
+                <th>CORREO</th>
+                <th>TELEFONO</th>
+                <th>DIRECCION</th>
+                <th>GENERO</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <th>A</th>
+                <th>A</th>
                 <th>A</th>
                 <th>A</th>
                 <th>A</th>
