@@ -42,7 +42,7 @@
                 <!-- Contenido de la página de inicio -->
                 <div class="container-fluid">
 
-                    
+
                     <h2 class="fw-bold mb-4 titulo-panel">Gestión de Asistencias</h2>
 
                     <div class="row">
@@ -66,9 +66,7 @@
                                         <div class="col-md-4 mb-3 mb-md-0">
                                             <label for="selectGrupo" class="form-label fw-bold">Grupo/Curso:</label>
                                             <select class="form-select" id="selectGrupo">
-                                                <option value="todos" selected>Todos los Grupos</option>
-                                                <option value="grupo1">Grupo A - Ingeniería de Software</option>
-                                                <option value="grupo2">Grupo B - Seguridad Informática</option>
+                                                <option>Cargando cursos...</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3 mb-md-0">
@@ -76,7 +74,7 @@
                                             <input type="date" class="form-control" id="fecha">
                                         </div>
                                         <div class="col-md-2">
-                                            <button class="btn btn-primary w-100">
+                                            <button class="btn btn-primary w-100" id="btnBuscarAsistencias">
                                                 <i class="bi bi-search me-2"></i>Buscar
                                             </button>
                                         </div>
@@ -106,40 +104,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <!-- Asistencia 1 - PRESENTE -->
-                                                    <tr>
-                                                        <td>001</td>
-                                                        <td>Juan Pérez García</td>
-                                                        <td>Grupo A</td>
-                                                        <td>11 Nov 2025</td>
-                                                        <td><span class="badge bg-success"><i
-                                                        class="bi bi-check-circle"></i> Presente</span></td>
-                                                        <td>-</td>
-                                                        <td>
-                                                            <button class="btn btn-primary btn-sm shadow-sm" title="Editar"
-                                                                data-toggle="modal"
-                                                                data-target="#modalEditarAsistencia">
-                                                                <i class="bi bi-pencil"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Asistencia 2 - AUSENTE -->
-                                                    <tr>
-                                                        <td>002</td>
-                                                        <td>María López Sánchez</td>
-                                                        <td>Grupo A</td>
-                                                        <td>11 Nov 2025</td>
-                                                        <td><span class="badge bg-danger"><i class="bi bi-x-circle"></i>
-                                                                Ausente</span></td>
-                                                        <td>Sin justificación</td>
-                                                        <td>
-                                                            <button class="btn btn-primary btn-sm shadow-sm" title="Editar"
-                                                                data-toggle="modal"
-                                                                data-target="#modalEditarAsistencia">
-                                                                <i class="bi bi-pencil"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                    
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -172,14 +138,16 @@
 
             <!-- Script para inicializar DataTables. Esto aparece lo dema de la tabla como la busqueda, cuanto registro quiere aparecer, pasar a la otral ista de la tabla y demas -->
             <script>
-                $(document).ready(function () {
+                $(document).ready(function() {
                     // Inicializar DataTable para la tabla de asistencias
                     $('#dataTable').DataTable({
                         language: {
                             url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
                         },
                         pageLength: 10,
-                        order: [[3, 'desc']] // Ordenar por fecha descendente
+                        order: [
+                            [3, 'desc']
+                        ] // Ordenar por fecha descendente
                     });
                 });
             </script>
@@ -203,6 +171,7 @@
             <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
             <!-- script de funcionalidad -->
+            <script src="/public/js/teacher/assistance.js"></script>
 
 </body>
 
