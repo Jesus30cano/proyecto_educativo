@@ -47,6 +47,9 @@ function actualizarTabla(data) {
         },
       ],
       destroy: true,
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+      },
     });
     tablaInicializada = true;
     console.log("✅ DataTable inicializado con:", data);

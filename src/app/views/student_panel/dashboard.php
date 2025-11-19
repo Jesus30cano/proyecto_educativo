@@ -82,7 +82,6 @@
                   <i class="bi bi-calendar3 me-2"></i>
                   <span>Calendario</span>
                 </div>
-
                 <div class="card-body">
                   <div id="calendar"></div> <!-- Tu script de calendario lo controla -->
                 </div>
