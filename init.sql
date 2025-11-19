@@ -2538,7 +2538,8 @@ BEGIN
     WHERE e.id_profesor = p_id_profesor;
 END;
 $$ LANGUAGE plpgsql;
--- =======================================================================================
+
+
 
 
 CREATE OR REPLACE FUNCTION fn_estudiantes_por_curso(p_id_curso INT)
@@ -2650,3 +2651,32 @@ BEGIN
     ORDER BY a.fecha DESC, c.nombre_curso, dp.apellido, dp.nombre;
 END;
 $$ LANGUAGE plpgsql;
+=======
+CREATE OR REPLACE FUNCTION obtener_examen_completo(id_evaluacion_param INT)
+RETURNS TABLE (
+    id_evaluacion INT,
+    titulo VARCHAR,
+    activa BOOLEAN,
+    descripcion VARCHAR,
+    fecha DATE,
+    id_pregunta INT,
+    pregunta TEXT,
+    id_opcion INT,
+    opcion TEXT,
+    es_correcta BOOLEAN
+) AS $$
+BEGIN
+  RETURN QUERY
+    SELECT 
+      e.id_evaluacion, e.titulo, e.activa, e.descripcion, e.fecha,
+      p.id_pregunta, p.pregunta,
+      o.id_opcion, o.opcion, o.es_correcta
+    FROM Tb_evaluacion e
+    JOIN Tb_evaluacion_pregunta ep ON ep.id_evaluacion = e.id_evaluacion
+    JOIN Tb_preguntas p ON p.id_pregunta = ep.id_pregunta
+    JOIN Tb_opciones_respuesta o ON o.id_pregunta = p.id_pregunta
+    WHERE e.id_evaluacion = id_evaluacion_param
+    ORDER BY p.id_pregunta, o.id_opcion;
+END;
+$$ LANGUAGE plpgsql;
+

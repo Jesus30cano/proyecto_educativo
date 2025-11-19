@@ -65,15 +65,16 @@
                                     <div class="row align-items-end">
                                         <div class="col-md-4 mb-3 mb-md-0">
                                             <label for="selectGrupo" class="form-label fw-bold">Grupo/Curso:</label>
-<<<<<<< HEAD
+
+
                                             <select class="form-select" id="selectGrupo">
                                                 <option>Cargando cursos...</option>
-=======
+
                                             <select class="form-control" id="selectGrupo">
                                                 <option value="todos" selected>Todos los Grupos</option>
                                                 <option value="grupo1">Grupo A - Ingeniería de Software</option>
                                                 <option value="grupo2">Grupo B - Seguridad Informática</option>
->>>>>>> df62143986557d4d390342956e3e33daf4c9a015
+
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3 mb-md-0">
