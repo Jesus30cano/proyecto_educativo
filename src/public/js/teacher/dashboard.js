@@ -64,7 +64,7 @@ async function cargarCursos() {
         pageLength: 5,
         destroy: true,
         language: {
-          url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+          url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
         },
       });
       tablaCursosIniciada = true;
@@ -113,7 +113,7 @@ async function cargarActividadesPendientes() {
         pageLength: 5,
         destroy: true,
         language: {
-          url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+          url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
         },
       });
       tablaActividadesIniciada = true;

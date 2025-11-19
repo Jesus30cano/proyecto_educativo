@@ -135,15 +135,8 @@ class TeacherModel
 
     public function calificar_entrega($idEntrega, $calificacion)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $query = " UPDATE Tb_entrega_actividad SET calificacion = :calificacion, estado_entrega = TRUE,
-=======
         $query=" UPDATE Tb_entrega_actividad SET calificacion = :calificacion,
->>>>>>> df62143986557d4d390342956e3e33daf4c9a015
-=======
-        $query=" UPDATE Tb_entrega_actividad SET calificacion = :calificacion,
->>>>>>> 98472cebbe585704dd65216f4aa66577a521407e
+
             fecha_calificacion = NOW()
             WHERE id_estudiante = :idEntrega";
         $stmt = $this->conn->prepare($query);
