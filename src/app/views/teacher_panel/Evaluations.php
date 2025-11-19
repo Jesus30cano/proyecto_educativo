@@ -15,6 +15,8 @@
 
     <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
+    <link rel="stylesheet" href="/public/css/toast.css" />
+
 
 
 </head>
@@ -368,6 +370,7 @@
     <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
+    <script src="/public/js/toast.js"></script>
  
     <script src="/public/js/teacher/evaluations.js"></script>
 </body>

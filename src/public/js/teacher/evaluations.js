@@ -1,19 +1,19 @@
-// evaluations.js - Gestión de evaluaciones para docentes
-
 document.addEventListener("DOMContentLoaded", () => {
   // Elementos DOM principales
   const tablaBody = document.getElementById("tabla-evaluaciones");
   const sinDatos = document.getElementById("sinDatos");
 
-  // Variables para almacenar evaluaciones y la evaluación actual seleccionada
   let evaluaciones = [];
   let evaluacionActual = null;
 
-  // 🔄 Cargar evaluaciones del docente
   cargarEvaluaciones();
 
-  // 🧩 Renderizar la tabla principal
   function renderTabla(lista) {
+    // 1. Si DataTable está inicializado, destrúyelo primero
+    if ($.fn.DataTable.isDataTable("#dataTable")) {
+      $('#dataTable').DataTable().destroy();
+    }
+
     tablaBody.innerHTML = "";
 
     if (lista.length === 0) {
@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lista.forEach(ev => {
       const fila = document.createElement("tr");
       fila.setAttribute("data-id", ev.id_evaluacion);
-
       fila.innerHTML = `
         <td>${ev.titulo}</td>
         <td>${ev.ficha || "-"}</td>
@@ -45,24 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
           </button>
         </td>
       `;
-
       tablaBody.appendChild(fila);
     });
 
-    // Initialize DataTable solo una vez
-    if (!$.fn.DataTable.isDataTable("#tablaEvaluaciones")) {
-      $("#tablaEvaluaciones").DataTable({
-        pageLength: 10,
-        lengthMenu: [10, 25, 50, 100],
-        searching: true,
-        ordering: true,
-        language: {
-          url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
-        }
-      });
-    }
+    // 2. Siempre inicializa DataTable después de pintar las filas
+    $("#dataTable").DataTable({
+      pageLength: 10,
+      lengthMenu: [10, 25, 50, 100],
+      searching: true,
+      ordering: true,
+      language: {
+        url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+      }
+    });
 
-    // Enganche de eventos a los botones de acción
+    // Engancha los eventos a botones
     tablaBody.querySelectorAll(".btn-ver").forEach(btn => {
       btn.addEventListener("click", () => {
         const id = btn.dataset.id;
@@ -89,6 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Resto igual…
+
+
   // 🔃 Obtiene las evaluaciones por fetch y llama a renderTabla
   async function cargarEvaluaciones() {
     try {
@@ -107,14 +106,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Aquí llamas tu modal para ver entregas, ejemplo:
     // setea datos, refresca tabla de entregas y muestra el modal correspondiente
     // modalEntregasEvaluacion.show();
-    alert("Función para ver entregas (implementar modal)");
+    localStorage.setItem("id_evaluacion", evaluacion.id_evaluacion);
+    window.open("/teacher/evaluations/ver_examen", "_blank");
+    showToast('Abriendo examen...', "#3ce783ff", 3000);
   }
 
   // 📝 Abre el modal para editar la evaluación
-  function abrirModalEditarEvaluacion(evaluacion) {
+  function abrirModalEditarEvaluacion(evaluacion) { 
     // Setea datos actuales y abre el modal de edición
     // modalEvaluacion.show();
-    alert("Función para editar evaluación (implementar modal)");
+    alert("Función para editar evaluación (implementar modal) " + evaluacion.id_evaluacion);
   }
 
   // ❌ Eliminar la evaluación
@@ -134,6 +135,4 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Error inesperado al eliminar");
     }
   }
-});
-document.addEventListener("click", async () => {
 });
