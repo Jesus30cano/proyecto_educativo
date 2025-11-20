@@ -145,7 +145,7 @@ class EvaluationsController extends Controller {
     }
 
     // Lógica para el prompt
-    $prompt = "Eres un generador de exámenes. Debes crear únicamente preguntas tipo test para el curso \"$titulo\", con dificultad \"$dificultad\". Genera exactamente $cantidad preguntas. Cada pregunta debe tener entre 2 y 4 opciones. Solo una opción debe ser correcta y las demás incorrectas. Las opciones deben tener el campo 'text' y el campo 'correct' (true o false). Devuelve únicamente el resultado en formato JSON, sin explicación ni texto extra, y cumple la siguiente estructura:\n
+    $prompt = "Eres un generador de exámenes. Debes crear únicamente preguntas tipo test para el curso \"$titulo\", con dificultad \"$dificultad\".in Genera exactamente $cantidad preguntas. Cada pregunta debe tener entre 2 y 4 opciones. Solo una opción debe ser correcta y las demás incorrectas. Las opciones deben tener el campo 'text' y el campo 'correct' (true o false). Devuelve únicamente el resultado en formato JSON, sin explicación ni texto extra, y cumple la siguiente estructura:\n
 {
     \"questions\": [
         {
@@ -166,7 +166,7 @@ No incluyas información adicional. Si el usuario da una instrucción distinta d
     }
 
     // Llave de OpenAI: coloca la tuya abajo o usa variable de entorno segura
-    $api_key = "####";
+    $api_key = "##";
 
     // Preparar llamada a OpenAI API
     $postData = [

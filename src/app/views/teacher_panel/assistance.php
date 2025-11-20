@@ -77,10 +77,8 @@
                                                 <option>Cargando cursos...</option>
 
                                             <select class="form-control" id="selectGrupo">
-                                                <option value="todos" selected>Todos los Grupos</option>
-                                                <option value="grupo1">Grupo A - Ingeniería de Software</option>
-                                                <option value="grupo2">Grupo B - Seguridad Informática</option>
-
+                                                
+                                                
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3 mb-md-0">
