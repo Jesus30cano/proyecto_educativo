@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="grupoAsistencia" class="form-label fw-bold">Grupo/Curso:</label>
-                        <select class="form-select" id="grupoAsistencia">
+                        <select class="form-control" id="grupoAsistencia">
                             <option>Cargando cursos...</option>
                         </select>
                     </div>

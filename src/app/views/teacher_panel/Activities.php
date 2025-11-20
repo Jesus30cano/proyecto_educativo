@@ -10,9 +10,8 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <!-- Estilos principales -->
-    <link href="/public/css/styles2.css" rel="stylesheet">
+    <link href="/public/css/styles.css" rel="stylesheet">
 
     <!-- DataTables con Bootstrap 5 -->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
@@ -21,7 +20,10 @@
     <link rel="stylesheet" href="/public/css/teacher_courses/dashboard.css">
     <link rel="stylesheet" href="/public/css/teacher_courses/courses.css">
     <link rel="stylesheet" href="/public/css/teacher_courses/activities.css">
+    <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
     <link rel="stylesheet" href="/public/css/toast.css" />
+    <!-- carta azul -->
+  <link rel="stylesheet" href="/public/css/card.blue.css">
 </head>
 
 <body id="page-top">
@@ -37,8 +39,11 @@
                 <!-- Contenido principal -->
                 <div class="container-fluid">
 
-                    <!-- Título -->
-                    <h2 class="fw-bold mb-4 titulo-panel">Panel de Seguimiento de Actividades</h2>
+                    <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card-header">
+                <h4 class="fw-bold mb-1">Panel de seguimiento de actividades</h4>
+              </div>
+            </div>
 
                     <!-- Card contenedora -->
                     <div class="card shadow-sm border-0">
