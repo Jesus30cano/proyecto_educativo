@@ -55,34 +55,14 @@
                 </div>
                 <div class="card-body" style="max-height: 500px; overflow-y: auto;">
 
-                  <!-- Competencia: Programación -->
-                  <div class="card mb-3 shadow-sm border-left-danger">
-                    <!-- Un borde boder-left-danger que muestra rojo, osea, un no aprobado-->
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                      <span>Programación</span> <!-- Nombre de competencia-->
-                      <span class="badge badge-danger text-white" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">No
-                        aprobado</span> <!-- Si es aprobado o no-->
-                    </div>
-                  </div>
+                  <div class="card-body" style="max-height: 500px; overflow-y: auto;">
 
-                  <!-- Competencia: Matemáticas -->
-                  <div class="card mb-3 shadow-sm border-left-success">
-                    <!-- Un border border-left-success que muestra el verde, osea, aprobado-->
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                      <span>Matemáticas</span>
-                      <span class="badge badge-success text-white"
-                        style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">Aprobado</span>
+                    <!-- AQUÍ SE RENDERIZARÁN LAS COMPETENCIAS DESDE JS -->
+                    <div id="lista-competencias">
+                      <!-- Opcional: Puedes dejar un loader o mensaje inicial -->
+                      <p class="text-muted">Cargando competencias...</p>
                     </div>
-                  </div>
 
-                  <!-- Competencia: Ciencias -->
-                  <div class="card mb-3 shadow-sm border-left-warning">
-                    <!-- un borde border-left-warning que muestra el color amarillo, osea, pendiente-->
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                      <span>Ciencias</span>
-                      <span class="badge badge-warning text-white"
-                        style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">Pendiente</span>
-                    </div>
                   </div>
 
 
@@ -102,10 +82,9 @@
                       <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                           <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            <i class="fas fa-check-circle mr-1"></i>Aprobadas <!-- competencias aprobadas-->
+                            <i class="fas fa-check-circle mr-1"></i>Aprobadas
                           </div>
-                          <div class="h3 mb-0 font-weight-bold text-gray-800">17</div>
-                          <!-- Numero de competencias aprobadas-->
+                          <div class="h3 mb-0 font-weight-bold text-gray-800" id="count-aprobadas">0</div>
                         </div>
                         <div class="col-auto">
                           <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
@@ -122,7 +101,7 @@
                           <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                             <i class="fas fa-times-circle mr-1"></i>No Aprobadas
                           </div>
-                          <div class="h3 mb-0 font-weight-bold text-gray-800">3</div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800" id="count-no-aprobadas">0</div>
                         </div>
                         <div class="col-auto">
                           <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
@@ -139,7 +118,7 @@
                           <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             <i class="fas fa-clock mr-1"></i>Pendientes
                           </div>
-                          <div class="h3 mb-0 font-weight-bold text-gray-800">2</div>
+                          <div class="h3 mb-0 font-weight-bold text-gray-800" id="count-pendientes">0</div>
                         </div>
                         <div class="col-auto">
                           <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
@@ -147,128 +126,120 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
+
             </div>
 
-          </div>
 
-
-          <!-- Filtro de Competencias -->
-          <div class="row">
-            <div class="col-xl-12 mb-4">
-              <div class="card shadow">
-                <div class="card-header py-3 bg-primary">
-                  <h6 class="m-0 font-weight-bold text-white">
-                    <i class="fas fa-filter mr-2"></i>
-                    Filtrar Calificaciones por Competencia
-                  </h6>
-                </div>
-                <div class="card-body">
-                  <div class="row align-items-end">
-                    <div class="col-md-8 mb-3 mb-md-0">
-                      <label for="selectCompetencia" class="font-weight-bold text-gray-700">
-                        Selecciona una competencia:
-                      </label>
-                      <select class="form-control form-control-lg" id="selectCompetencia">
-                        <option value="todas" selected>Todas las Competencias</option>
-                        <option value="matematicas">Matemáticas</option>
-                        <option value="programacion">Programación</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <button class="btn btn-primary btn-block">
-                        <i class="fas fa-search mr-2"></i>Aplicar Filtro
-                      </button>
+            <!-- Filtro de Competencias -->
+            <div class="row">
+              <div class="col-xl-12 mb-4">
+                <div class="card shadow">
+                  <div class="card-header py-3 bg-primary">
+                    <h6 class="m-0 font-weight-bold text-white">
+                      <i class="fas fa-filter mr-2"></i>
+                      Filtrar Calificaciones por Competencia
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="row align-items-end">
+                      <div class="col-md-8 mb-3 mb-md-0">
+                        <label for="selectCompetencia" class="font-weight-bold text-gray-700">
+                          Selecciona una competencia:
+                        </label>
+                        <select class="form-control form-control-lg" id="selectCompetencia">
+                          <option value="todas" selected>Todas las Competencias</option>
+                          <option value="matematicas">Matemáticas</option>
+                          <option value="programacion">Programación</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block">
+                          <i class="fas fa-search mr-2"></i>Aplicar Filtro
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- DataTales Example Adaptado -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">
-                <i class="fas fa-table mr-2"></i>
-                Calificaciones
-              </h6>
-            </div>
+            <!-- DataTales Example Adaptado -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                  <i class="fas fa-table mr-2"></i>
+                  Calificaciones
+                </h6>
+              </div>
 
-            <div class="card-body">
-              <div class="table-responsive">
+              <div class="card-body">
+                <div class="table-responsive">
 
-                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Profesor</th>
-                      <th>Competencia</th>
-                      <th>Evaluación</th>
-                      <th>Fecha Evaluación</th>
-                      <th>Nota de Calificación</th>
-                      <th>Observación</th>
-                    </tr>
-                  </thead>
+                  <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Profesor</th>
+                        <th>Competencia</th>
+                        <th>Evaluación</th>
+                        <th>Fecha Evaluación</th>
+                        <th>Nota de Calificación</th>
+                        <th>Observación</th>
+                      </tr>
+                    </thead>
 
-                  <tbody>
-                    <tr>
-                      <td>hola</td>
-                      <td>Sistema</td>
-                      <td>Tarea</td>
-                      <td>2025-01-01</td>
-                      <td><span class="badge badge-success">5.0</span></td>
-                      <td>AAAAAAAAAAAAAAAAA</td>
-                    </tr>
-                  </tbody>
-                </table>
+                    <tbody id = "tbody-calificaciones">
+                      
+                    </tbody>
+                  </table>
 
+                </div>
               </div>
             </div>
-          </div>
 
+
+          </div>
+          <!-- /.container-fluid -->
 
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Main Content -->
+
+        <!-- topnav -->
+        <?php include __DIR__ . '/../components/footer.php'; ?>
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- topnav -->
-      <?php include __DIR__ . '/../components/footer.php'; ?>
+      <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- scroll -->
-  <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
+    <!-- scroll -->
+    <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
 
 
 
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="/public/vendor/jquery/jquery.min.js"></script>
-  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/public/vendor/jquery/jquery.min.js"></script>
+    <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="/public/js/styles/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/public/js/styles/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="/public/vendor/chart.js/Chart.min.js"></script>
-  <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="/public/vendor/chart.js/Chart.min.js"></script>
+    <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="/public/js/styles/demo/datatables-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
-  <!-- script de funcionalidad -->
+    <!-- script de funcionalidad -->
+     <script src="/public/js/student/qualifications.js"></script>
 </body>
 
 </html>
