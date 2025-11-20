@@ -14,11 +14,13 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Estilos personalizados para esta plantilla-->
-    <link href="/public/css/styles2.css" rel="stylesheet">
+    <link href="/public/css/styles.css" rel="stylesheet">
     <!-- Estilos personalizados para esta página -->
     <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- carta azul -->
+  <link rel="stylesheet" href="/public/css/card.blue.css">
 
 
 </head>
@@ -43,7 +45,11 @@
                 <div class="container-fluid">
 
 
-                    <h2 class="fw-bold mb-4 titulo-panel">Gestión de Asistencias</h2>
+                    <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card-header">
+                <h4 class="fw-bold mb-1">Gestion de asistencias</h4>
+              </div>
+            </div>
 
                     <div class="row">
                         <div class="col-12">
@@ -67,11 +73,16 @@
                                             <label for="selectGrupo" class="form-label fw-bold">Grupo/Curso:</label>
 
 
-                                            <select class="form-select" id="selectGrupo">
+                                            <select class="form-control" id="selectGrupo">
                                                 <option>Cargando cursos...</option>
 
                                             <select class="form-control" id="selectGrupo">
+<<<<<<< HEAD
                                                     
+=======
+                                                
+                                                
+>>>>>>> 07280d24d0a9f90df3e679e5c5268a78cf0e1e09
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3 mb-md-0">
@@ -109,8 +120,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    
-                                                    
+                                                
                                                 </tbody>
                                             </table>
                                         </div>

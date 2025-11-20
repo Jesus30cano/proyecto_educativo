@@ -12,10 +12,12 @@
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
   <!-- Estilos personalizados para esta plantilla-->
-  <link href="/public/css/styles2.css" rel="stylesheet">
+  <link href="/public/css/styles.css" rel="stylesheet">
   <!-- Estilos personalizados para esta página -->
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
+  <!-- carta azul -->
+  <link rel="stylesheet" href="/public/css/card.blue.css">
 
   <title>Hisotiral</title>
 </head>
@@ -41,8 +43,14 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Estudiantes</h1>
+            <h1 class="h3 mb-0 text-gray-800">Historial</h1>
           </div>
+
+          <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card-header">
+                <h4 class="fw-bold mb-1">Apartado de Historial</h4>
+              </div>
+            </div>
 
 
            <div class="col-md-12 mb-3">

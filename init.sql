@@ -2651,7 +2651,11 @@ BEGIN
     ORDER BY a.fecha DESC, c.nombre_curso, dp.apellido, dp.nombre;
 END;
 $$ LANGUAGE plpgsql;
+<<<<<<< HEAD
 
+=======
+--============================================================
+>>>>>>> 07280d24d0a9f90df3e679e5c5268a78cf0e1e09
 CREATE OR REPLACE FUNCTION obtener_examen_completo(id_evaluacion_param INT)
 RETURNS TABLE (
     id_evaluacion INT,
@@ -2680,3 +2684,34 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--============================================================
+CREATE OR REPLACE FUNCTION insertar_evaluacion(
+    p_titulo VARCHAR,
+    p_descripcion VARCHAR,
+    p_fecha DATE,
+    p_id_curso INT,
+    p_id_competencia INT,
+    p_id_profesor INT
+) RETURNS INT AS $$
+DECLARE
+    v_id_evaluacion INT;
+BEGIN
+    INSERT INTO Tb_evaluacion (
+        titulo,
+        descripcion,
+        fecha,
+        id_curso,
+        id_competencia,
+        id_profesor
+    ) VALUES (
+        p_titulo,
+        p_descripcion,
+        p_fecha,
+        p_id_curso,
+        p_id_competencia,
+        p_id_profesor
+    ) RETURNING id_evaluacion INTO v_id_evaluacion;
+
+    RETURN v_id_evaluacion;
+END;
+$$ LANGUAGE plpgsql;
