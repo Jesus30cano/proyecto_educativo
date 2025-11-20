@@ -10,15 +10,14 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <link href="/public/css/styles2.css" rel="stylesheet">
+    <link href="/public/css/styles.css" rel="stylesheet">
 
     <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
     <link rel="stylesheet" href="/public/css/toast.css" />
 
-
-
+    <!-- carta azul -->
+   <link rel="stylesheet" href="/public/css/card.blue.css">
 </head>
 
 <body id="page-top">
@@ -36,7 +35,11 @@
 
                 <div class="container-fluid">
 
-                    <h2 class="fw-bold mb-4 titulo-panel">Gestión de Evaluaciones</h2>
+                    <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card-header">
+                <h4 class="fw-bold mb-1">Gestion de evaluaciones</h4>
+              </div>
+            </div>
 
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
@@ -101,7 +104,7 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Curso</label>
-                                            <select class="form-select" name="id_curso" id="man_curso">
+                                            <select class="form-control" name="id_curso" id="man_curso">
                                                 <option value="">Seleccionar curso</option>
                                                 
                                             </select>
@@ -109,7 +112,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Competencia</label>
-                                            <select class="form-select" name="id_competencia" id="man_competencia">
+                                            <select class="form-control" name="id_competencia" id="man_competencia">
                                                 <option value="">Seleccionar competencia</option>
                                                 <option value="1">Competencia 1</option>
                                                 <option value="2">Competencia 2</option>
@@ -118,7 +121,7 @@
                                     </div>
 
                                     <div class="row">
-                                    
+                                        
 
                                         <div class="col-md-8 mb-3">
                                             <label class="form-label">Título</label>
@@ -185,7 +188,7 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Curso</label>
-                                            <select class="form-select" name="ia_id_curso" id="ia_curso">
+                                            <select class="form-control" name="ia_id_curso" id="ia_curso">
                                                 <option value="">Seleccionar curso</option>
                                                 
                                             </select>
@@ -193,7 +196,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Competencia</label>
-                                            <select class="form-select" name="ia_id_competencia" id="ia_competencia">
+                                            <select class="form-control" name="ia_id_competencia" id="ia_competencia">
                                                 <option value="">Seleccionar competencia</option>
                                                
                                             </select>
@@ -240,7 +243,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">Dificultad</label>
-                                            <select class="form-select" id="ia_dificultad">
+                                            <select class="form-control" id="ia_dificultad">
                                                 <option value="">Seleccionar dificultad</option>
                                                 <option value="facil">Fácil</option>
                                                 <option value="media">Media</option>

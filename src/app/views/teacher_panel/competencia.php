@@ -10,11 +10,12 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Estilos personalizados para esta plantilla-->
-    <link href="/public/css/styles2.css" rel="stylesheet">
+    <link href="/public/css/styles.css" rel="stylesheet">
     <!-- Estilos personalizados para esta página -->
     <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/teacher_courses/dashboard.css">
     <link rel="stylesheet" href="/public/css/teacher_courses/competencia.css">
+    <!-- carta azul -->
     <title>Actividades de la Competencia</title>
 
 </head>

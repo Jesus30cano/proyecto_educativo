@@ -3,10 +3,13 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="logo-container p-1">
+            <div class="sidebar-brand-icon rotate-n-15 text-center">
+                <img src="/public/img/gchghc.png" alt="icono" style="width: 40px; height: 40px;">
+            </div>
         </div>
-        <div class="sidebar-brand-text mx-3">COGNIA<sup></sup></div>
+        <div class="sidebar-brand-text mx-3" style="font-size: 24px;">COGNIA</div>
+        <!-- un logo mas grande style="font-size: 24px; -->
     </a>
 
     <!-- Heading -->

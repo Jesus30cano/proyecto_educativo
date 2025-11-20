@@ -6,11 +6,17 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/teacher/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="logo-container p-1">
+            <div class="sidebar-brand-icon rotate-n-15 text-center">
+                <img src="/public/img/gchghc.png" alt="icono" style="width: 40px; height: 40px;">
+            </div>
         </div>
-        <div class="sidebar-brand-text mx-3">COGNIA<sup></sup></div>
+        <div class="sidebar-brand-text mx-3" style="font-size: 24px;">COGNIA</div>
+        <!-- un logo mas grande style="font-size: 24px; -->
     </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
@@ -63,7 +69,7 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 
     <!-- Nav Item - Asistencias-->
     <li class="nav-item">
-         <a href="/teacher/assistance"
+        <a href="/teacher/assistance"
             class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/assistances') !== false) ? 'active' : '' ?>">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Asistencias</span>
