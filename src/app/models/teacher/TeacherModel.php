@@ -299,6 +299,65 @@ class TeacherModel
         }
         $stmt->execute();
     }
+    public function insertar_evaluacion($titulo, $descripcion, $fecha, $curso_id, $competencia_id, $profesor_id)
+    {
+        $query = "SELECT * FROM insertar_evaluacion(:titulo, :descripcion, :fecha, :curso_id, :competencia_id, :profesor_id)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':titulo', $titulo);
+        $stmt->bindParam(':descripcion', $descripcion);
+        $stmt->bindParam(':fecha', $fecha);
+        $stmt->bindParam(':curso_id', $curso_id);
+        $stmt->bindParam(':competencia_id', $competencia_id);
+        $stmt->bindParam(':profesor_id', $profesor_id);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+
+    }
+    
+    public function insertarPregunta($pregunta, $id_evaluacion) {
+    try {
+        // 1. Insertar la pregunta y obtener su id
+        $query = "
+            INSERT INTO Tb_preguntas (pregunta) 
+            VALUES (:pregunta) 
+            RETURNING id_pregunta
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':pregunta', $pregunta, PDO::PARAM_STR);
+        $stmt->execute();
+        $id_pregunta = $stmt->fetchColumn();
+
+        // Validación: checa que sí se insertó la pregunta
+        if (!$id_pregunta) {
+            throw new Exception("No se pudo insertar la pregunta.");
+        }
+
+        // 2. Insertar el vínculo con la evaluación
+        $query2 = "
+            INSERT INTO Tb_evaluacion_pregunta (id_evaluacion, id_pregunta) 
+            VALUES (:id_evaluacion, :id_pregunta)
+        ";
+        $stmt2 = $this->conn->prepare($query2);
+        $stmt2->bindParam(':id_evaluacion', $id_evaluacion, PDO::PARAM_INT);
+        $stmt2->bindParam(':id_pregunta', $id_pregunta, PDO::PARAM_INT);
+        $stmt2->execute();
+
+        // 3. Retorna el id de la pregunta insertada
+        return $id_pregunta;
+    } catch (Exception $e) {
+        // Si hay error, puedes loguearlo y devolver false/null
+        error_log('Error en insertarPregunta: ' . $e->getMessage());
+        return false;
+    }
+}
+    public function insertarOpcion($opcion,$es_correcta,$id_pregunta){
+        $query="INSERT INTO Tb_opciones_respuesta (opcion,es_correcta,id_pregunta) VALUES (:opcion,:es_correcta,:id_pregunta)";
+        $stmt=$this->conn->prepare($query);
+        $stmt->bindParam(':opcion',$opcion, PDO::PARAM_STR);
+        $stmt->bindParam(':es_correcta',$es_correcta, PDO::PARAM_BOOL);
+        $stmt->bindParam(':id_pregunta',$id_pregunta, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 
     
 }
