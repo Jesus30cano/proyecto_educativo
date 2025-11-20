@@ -1897,7 +1897,7 @@ BEGIN
         c.nombre AS nombre_competencia,
         cu.nombre_curso,
         ea.calificacion::TEXT,
-        ea.fecha_entrega,
+        ea.fecha_entrega::TIMESTAMP,
         CASE
             WHEN ea.id_entrega IS NULL THEN 'Sin entregar'
             WHEN ea.calificacion IS NULL THEN 'Entregado, sin calificar'
@@ -2651,7 +2651,11 @@ BEGIN
     ORDER BY a.fecha DESC, c.nombre_curso, dp.apellido, dp.nombre;
 END;
 $$ LANGUAGE plpgsql;
+<<<<<<< HEAD
+
+=======
 --============================================================
+>>>>>>> 07280d24d0a9f90df3e679e5c5268a78cf0e1e09
 CREATE OR REPLACE FUNCTION obtener_examen_completo(id_evaluacion_param INT)
 RETURNS TABLE (
     id_evaluacion INT,
