@@ -10,15 +10,14 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <link href="/public/css/styles2.css" rel="stylesheet">
+    <link href="/public/css/styles.css" rel="stylesheet">
 
     <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
     <link rel="stylesheet" href="/public/css/toast.css" />
 
-
-
+    <!-- carta azul -->
+   <link rel="stylesheet" href="/public/css/card.blue.css">
 </head>
 
 <body id="page-top">
@@ -36,7 +35,11 @@
 
                 <div class="container-fluid">
 
-                    <h2 class="fw-bold mb-4 titulo-panel">Gestión de Evaluaciones</h2>
+                    <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card-header">
+                <h4 class="fw-bold mb-1">Gestion de evaluaciones</h4>
+              </div>
+            </div>
 
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
@@ -44,12 +47,12 @@
                             <!-- === BOTONES: crear manual / crear con IA === -->
                             <div class="mb-3 d-flex gap-2">
                                 <!-- Botón crea el modal MANUAL -->
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#modalEvalManual">
+                                <button class="btn btn-primary" id="btnCrearEvaluacionManual" data-toggle="modal" data-target="#modalEvalManual">
                                     Crear Evaluación
                                 </button>
 
                                 <!-- Botón crea el modal IA (separado) -->
-                                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalEvalIA">
+                                <button class="btn btn-outline-primary" id="btnCrearEvaluacionIA" data-toggle="modal" data-target="#modalEvalIA">
                                     Crear Evaluación con IA
                                 </button>
                             </div>
@@ -92,7 +95,7 @@
 
                             <div class="modal-header">
                                 <h5 class="modal-title fw-bold">Crear Evaluación</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal"></button>
+                                <button type="button" class="btn-close"  data-dismiss="modal"></button>
                             </div>
 
                             <div class="modal-body">
@@ -101,16 +104,15 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Curso</label>
-                                            <select class="form-select" name="id_curso" id="man_curso">
+                                            <select class="form-control" name="id_curso" id="man_curso">
                                                 <option value="">Seleccionar curso</option>
-                                                <option value="1">Curso A</option>
-                                                <option value="2">Curso B</option>
+                                                
                                             </select>
                                         </div>
 
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Competencia</label>
-                                            <select class="form-select" name="id_competencia" id="man_competencia">
+                                            <select class="form-control" name="id_competencia" id="man_competencia">
                                                 <option value="">Seleccionar competencia</option>
                                                 <option value="1">Competencia 1</option>
                                                 <option value="2">Competencia 2</option>
@@ -119,13 +121,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">Estado</label>
-                                            <select class="form-select" name="activa" id="man_activa">
-                                                <option value="true" selected>Activa</option>
-                                                <option value="false">Inactiva</option>
-                                            </select>
-                                        </div>
+                                        
 
                                         <div class="col-md-8 mb-3">
                                             <label class="form-label">Título</label>
@@ -150,57 +146,15 @@
 
                                     <div id="man_contenedor_preguntas">
 
-                                        <!-- ===== EJEMPLO DE UNA PREGUNTA ===== -->
-                                        <div class="pregunta-card question position-relative">
-
-                                            <!-- X para eliminar pregunta -->
-                                            <span class="delete-question">✖</span>
-
-                                            <label class="fw-bold">Pregunta 1</label>
-                                            <input type="text" class="form-control mb-3"
-                                                placeholder="Escribe la pregunta">
-
-                                            <!-- Opción 1 -->
-                                            <div class="opcion d-flex align-items-center gap-2 position-relative">
-                                                <input type="radio" id="m1o1" name="m1" value="0">
-                                                <label for="m1o1" class="mb-0">Opción correcta</label>
-
-                                                <!-- X para eliminar esta opción -->
-                                                <span class="delete-option">✖</span>
-                                            </div>
-
-                                            <!-- Opción 2 -->
-                                            <div class="opcion d-flex align-items-center gap-2 position-relative">
-                                                <input type="radio" id="m1o2" name="m1" value="1">
-                                                <label for="m1o2" class="mb-0">Opción incorrecta A</label>
-
-                                                <!-- X -->
-                                                <span class="delete-option">✖</span>
-                                            </div>
-
-                                            <!-- Opción 3 -->
-                                            <div class="opcion d-flex align-items-center gap-2 position-relative">
-                                                <input type="radio" id="m1o3" name="m1" value="2">
-                                                <label for="m1o3" class="mb-0">Opción incorrecta B</label>
-
-                                                <!-- X -->
-                                                <span class="delete-option">✖</span>
-                                            </div>
-
-                                            <!-- botón visual agregar opción -->
-                                            <div class="mt-2">
-                                                <button type="button" class="btn btn-outline-primary btn-sm">
-                                                    + Agregar opción
-                                                </button>
-                                            </div>
-                                        </div>
+                                       
+                                        
                                         <!-- / EJEMPLO PREGUNTA -->
 
                                     </div>
 
                                     <!-- botón agregar otra pregunta -->
                                     <div class="mt-2">
-                                        <button type="button" class="btn btn-outline-primary btn-sm btn-add-question">
+                                        <button type="button" class="btn btn-outline-primary btn-sm btn-add-question" id="aggPreguntaBtn">
                                             + Agregar otra pregunta
                                         </button>
                                     </div>
@@ -234,31 +188,23 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Curso</label>
-                                            <select class="form-select" name="ia_id_curso" id="ia_curso">
+                                            <select class="form-control" name="ia_id_curso" id="ia_curso">
                                                 <option value="">Seleccionar curso</option>
-                                                <option value="1">Curso A</option>
-                                                <option value="2">Curso B</option>
+                                                
                                             </select>
                                         </div>
 
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Competencia</label>
-                                            <select class="form-select" name="ia_id_competencia" id="ia_competencia">
+                                            <select class="form-control" name="ia_id_competencia" id="ia_competencia">
                                                 <option value="">Seleccionar competencia</option>
-                                                <option value="1">Competencia 1</option>
-                                                <option value="2">Competencia 2</option>
+                                               
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">Estado</label>
-                                            <select class="form-select" name="ia_activa" id="ia_activa">
-                                                <option value="true" selected>Activa</option>
-                                                <option value="false">Inactiva</option>
-                                            </select>
-                                        </div>
+                                        
 
                                         <div class="col-md-8 mb-3">
                                             <label class="form-label">Título</label>
@@ -297,7 +243,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">Dificultad</label>
-                                            <select class="form-select" id="ia_dificultad">
+                                            <select class="form-control" id="ia_dificultad">
                                                 <option value="">Seleccionar dificultad</option>
                                                 <option value="facil">Fácil</option>
                                                 <option value="media">Media</option>
@@ -369,10 +315,11 @@
     <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="/public/js/styles/demo/datatables-demo.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/public/js/toast.js"></script>
  
     <script src="/public/js/teacher/evaluations.js"></script>
+    <script src="/public/js/teacher/evaluations_modal.js"></script>
 </body>
 
 </html>

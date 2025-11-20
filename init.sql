@@ -2538,7 +2538,120 @@ BEGIN
     WHERE e.id_profesor = p_id_profesor;
 END;
 $$ LANGUAGE plpgsql;
--- =======================================================================================
+
+
+
+
+CREATE OR REPLACE FUNCTION fn_estudiantes_por_curso(p_id_curso INT)
+RETURNS TABLE (
+    id_estudiante_curso INT,
+    id_usuario INT,
+    nombre VARCHAR,
+    apellido VARCHAR,
+    email VARCHAR
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        ec.id_estudiante_curso,
+        u.id_usuario,
+        dp.nombre,
+        dp.apellido,
+        u.email
+    FROM Tb_estudiante_curso ec
+    INNER JOIN Tb_usuario u
+        ON u.id_usuario = ec.id_usuario
+    INNER JOIN Tb_datos_personales dp
+        ON dp.id_usuario = u.id_usuario
+    WHERE ec.id_curso = p_id_curso
+    ORDER BY dp.apellido, dp.nombre;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+CREATE OR REPLACE FUNCTION fn_registrar_asistencia(
+    p_id_profesor INT,
+    p_id_estudiante_curso INT,
+    p_estado estado_asistencia,
+    p_observaciones TEXT DEFAULT NULL
+)
+RETURNS VOID
+AS $$
+BEGIN
+    INSERT INTO Tb_asistencia (
+        fecha,
+        estado,
+        observaciones,
+        id_estudiante_curso,
+        id_profesor
+    )
+    VALUES (
+        CURRENT_DATE,
+        p_estado,
+        p_observaciones,
+        p_id_estudiante_curso,
+        p_id_profesor
+    )
+    ON CONFLICT (fecha, id_estudiante_curso) DO UPDATE
+    SET estado = EXCLUDED.estado,
+        observaciones = EXCLUDED.observaciones,
+        id_profesor = EXCLUDED.id_profesor;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+CREATE OR REPLACE FUNCTION fn_asistencias_profesor(
+    p_id_profesor INT,
+    p_id_curso INT DEFAULT NULL,
+    p_fecha DATE DEFAULT NULL
+)
+RETURNS TABLE (
+    id_asistencia INT,
+    id_estudiante_curso INT,
+    id_usuario INT,
+    nombre VARCHAR,
+    apellido VARCHAR,
+    nombre_curso VARCHAR,
+    ficha VARCHAR,
+    fecha DATE,
+    estado estado_asistencia,
+    observaciones TEXT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        a.id_asistencia,
+        ec.id_estudiante_curso,
+        u.id_usuario,
+        dp.nombre,
+        dp.apellido,
+        c.nombre_curso,
+        c.ficha,
+        a.fecha,
+        a.estado,
+        a.observaciones
+    FROM Tb_asistencia a
+    INNER JOIN Tb_estudiante_curso ec
+        ON a.id_estudiante_curso = ec.id_estudiante_curso
+    INNER JOIN Tb_curso c
+        ON ec.id_curso = c.id_curso
+    INNER JOIN Tb_usuario u
+        ON ec.id_usuario = u.id_usuario
+    INNER JOIN Tb_datos_personales dp
+        ON dp.id_usuario = u.id_usuario
+    WHERE a.id_profesor = p_id_profesor
+      AND (p_id_curso IS NULL OR ec.id_curso = p_id_curso)
+      AND (p_fecha    IS NULL OR a.fecha    = p_fecha)
+    ORDER BY a.fecha DESC, c.nombre_curso, dp.apellido, dp.nombre;
+END;
+$$ LANGUAGE plpgsql;
+--============================================================
 CREATE OR REPLACE FUNCTION obtener_examen_completo(id_evaluacion_param INT)
 RETURNS TABLE (
     id_evaluacion INT,
@@ -2564,5 +2677,37 @@ BEGIN
     JOIN Tb_opciones_respuesta o ON o.id_pregunta = p.id_pregunta
     WHERE e.id_evaluacion = id_evaluacion_param
     ORDER BY p.id_pregunta, o.id_opcion;
+END;
+$$ LANGUAGE plpgsql;
+
+--============================================================
+CREATE OR REPLACE FUNCTION insertar_evaluacion(
+    p_titulo VARCHAR,
+    p_descripcion VARCHAR,
+    p_fecha DATE,
+    p_id_curso INT,
+    p_id_competencia INT,
+    p_id_profesor INT
+) RETURNS INT AS $$
+DECLARE
+    v_id_evaluacion INT;
+BEGIN
+    INSERT INTO Tb_evaluacion (
+        titulo,
+        descripcion,
+        fecha,
+        id_curso,
+        id_competencia,
+        id_profesor
+    ) VALUES (
+        p_titulo,
+        p_descripcion,
+        p_fecha,
+        p_id_curso,
+        p_id_competencia,
+        p_id_profesor
+    ) RETURNING id_evaluacion INTO v_id_evaluacion;
+
+    RETURN v_id_evaluacion;
 END;
 $$ LANGUAGE plpgsql;

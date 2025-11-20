@@ -6490,9 +6490,52 @@ button.bg-dark:focus {
   background-color: #42444e !important;
 }
 
+/* estilo personalizado para fondo blanco con degradado azul */
 .bg-white {
+  /* background: linear-gradient(
+    110deg,
+    #1E88E5 0%,
+    #42A5F5 15%,
+    #90CAF9 35%,
+    #E3F2FD 60%,
+    #F5F5F5 85%,
+    #FFFFFF 100%
+  ) !important; */
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.08);
+  border-bottom: 1px solid rgba(30, 136, 229, 0.1);
+}
+
+.bg-white2 {
   background-color: #fff !important;
 }
+
+/* estilo para el perfil (el diseño) */
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #1E88E5 0%, #6EB5FF 100%); /* azul degradado suave */
+  border-radius: 12px; /* bordes redondeados tipo “carta” */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* borde sutil */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* sombra ligera */
+  transition: transform 0.2s;
+}
+
+.user-card:hover {
+  transform: translateY(-2px); /* pequeño efecto al pasar el mouse */
+}
+
+.user-card .img-profile {
+  width: 40px;
+  height: 40px;
+  margin-left: 0.5rem;
+  border: 2px solid white; /* borde blanco alrededor del avatar */
+}
+
+
 
 .bg-transparent {
   background-color: transparent !important;
@@ -9899,12 +9942,17 @@ a:focus {
   animation-timing-function: opacity cubic-bezier(0, 1, 0.4, 1);
 }
 
-.bg-gradient-primary {
-  background-color: #4e73df;
-  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+.bg-gradient-primary { 
+  background: linear-gradient(
+    180deg,
+    #1C4C77 0%,
+    #1976D2 50%,
+    #1565C0 100%
+  ) !important;
+  
   background-size: cover;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
-
 .bg-gradient-secondary {
   background-color: #858796;
   background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
@@ -10201,7 +10249,7 @@ a:focus {
 }
 
 .topbar .nav-item .nav-link {
-  height: 4.375rem;
+  height: 3.375rem; /* estaba el primer numero en 4 y lo cambie a tres */
   display: flex;
   align-items: center;
   padding: 0 0.75rem;
@@ -10543,7 +10591,7 @@ a:focus {
     margin-right: 0.25rem;
   }
   .sidebar .nav-item .nav-link span {
-    font-size: 0.85rem;
+    font-size: 0.95rem; /* aumente las letras colocando un 9, estaba un 8 (0.85rem) */
     display: inline;
   }
   .sidebar .nav-item .nav-link[data-toggle="collapse"]::after {
@@ -10605,7 +10653,7 @@ a:focus {
     width: 6.5rem;
   }
   .sidebar.toggled .nav-item .nav-link span {
-    font-size: 0.65rem;
+    font-size: 0.75rem; /* se aumento a un 7(estaba en 6) */
     display: block;
   }
   .sidebar.toggled .nav-item .nav-link i {
