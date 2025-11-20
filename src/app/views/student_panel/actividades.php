@@ -13,9 +13,11 @@
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
   <!-- Estilos personalizados para esta plantilla-->
-  <link href="/public/css/styles2.css" rel="stylesheet">
+  <link href="/public/css/styles.css" rel="stylesheet">
   <!-- Estilos personalizados para esta página -->
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- carta azul -->
+  <link rel="stylesheet" href="/public/css/card.blue.css">
   <title>Actividades</title>
 </head>
 
@@ -39,9 +41,15 @@
         <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-            <!-- TITULO -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Actividades</h1>
+          <!-- TITULO -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mt-4 mb-0 text-gray-800">Actividades</h1>
+          </div>
+
+            <div class="col-xl-12 col-md-6 mb-4">
+              <div class="card-header">
+                <h4 class="fw-bold mb-1">Apartado de Actividades</h4>
+              </div>
             </div>
 
           <!-- fila de contenido-->
@@ -53,7 +61,7 @@
               <!-- Filtro de competencias -->
               <div class="card mb-4">
                 <div class="card-header bg-light">
-                  <h6 class="m-0 font-weight-bold text-primary">Filtro de actividades</h6>
+                  <h6 class="m-0 font-weight-bold text-white">Filtro de actividades</h6>
                 </div>
                 <div class="card-body">
                   <div class="row align-items-end">
