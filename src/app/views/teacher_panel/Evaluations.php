@@ -36,11 +36,10 @@
 
                 <div class="container-fluid">
 
-                    <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Gestion de evaluaciones</h4>
-              </div>
-            </div>
+                <!-- TITULO -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mt-4 mb-0 text-gray-800">Gestion de Evaluaciones</h1>
+                </div>
 
                     <div class="card shadow-sm border-0">
                         <div class="card-body">

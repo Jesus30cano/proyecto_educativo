@@ -2,7 +2,7 @@
 <div class="modal fade" id="modalEvaluacion1" tabindex="-1" aria-labelledby="modalEvaluacion1Label" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
+      <div class="modal-header blue-claro text-white">
         <h5 class="modal-title" id="modalEvaluacion1Label">
           <i class="bi bi-clipboard-check me-2"></i>Evaluación de Matemáticas
         </h5>  <!-- Nombre de la ebaluacion -->

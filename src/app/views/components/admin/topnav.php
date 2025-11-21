@@ -59,9 +59,10 @@
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
+                <h6 class="dropdown-header blue-claro text-white">
                     Notificaciones
                 </h6>
+                <!-- Notificación 1: Profesor -->
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
                         <div class="icon-circle bg-primary">
@@ -69,24 +70,34 @@
                         </div>
                     </div>
                     <div>
-                        <div class="font-weight-bold text-primary">nombre_usuario</div>
-                        <div class="small text-gray-800">December 12, 2019</div>
-                        <span>A new monthly report is ready to download!</span>
+                        <div class="font-weight-bold text-primary">Profesor Juan Pérez</div>
+                        <div class="small text-gray-800">Hoy, 09:15 AM</div>
+                        <span>Se ha publicado un nuevo reporte de asistencia para tu grupo.</span>
                     </div>
                 </a>
+
+                <!-- Notificación 2: Estudiante -->
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
                         <div class="icon-circle bg-success">
-                            <i class="fas fa-donate text-white"></i>
+                            <i class="fas fa-file-alt text-white"></i>
                         </div>
                     </div>
                     <div>
-                        <div class="font-weight-bold text-success">nombre_usuario</div>
-                        <div class="small text-gray-800">December 7, 2019</div>
-                        <span>$290.29 has been deposited into your account!</span>
+                        <div class="font-weight-bold text-success">Estudiante Ana Gómez</div>
+                        <div class="small text-gray-800">Hoy, 08:45 AM</div>
+                        <span>Tu calificación en Matemáticas ha sido actualizada.</span>
                     </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+
+                <!-- Mostrar más notificaciones -->
+                <a class="dropdown-item text-center small text-gray-500" href="#" data-toggle="modal"
+                    data-target="#modalMostrarNotificaciones">
+                    Mostrar más notificaciones
+                </a>
+
+                
+
             </div>
         </li>
 
@@ -161,8 +172,8 @@
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle user-card" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle user-card" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-white" id="nombre_usuario"></span>
                 <img class="img-profile rounded-circle" src="/public/img/undraw_profile_2.svg">
             </a>
@@ -182,6 +193,8 @@
 
     </ul>
 
+    <!-- Datos personales -->
+    <?php include __DIR__ . '/showNotifications.php'; ?>
 </nav>
 <!-- End of Topbar -->
-    <script src="/public/js/top_nav.js"></script>
+<script src="/public/js/top_nav.js"></script>

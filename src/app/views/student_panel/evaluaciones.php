@@ -44,12 +44,6 @@
             <h1 class="h3 mt-4 mb-0 text-gray-800">Evaluaciones</h1>
           </div>
 
-          <div class="col-xl-12 col-md-6 mb-4">
-            <div class="card-header">
-              <h4 class="fw-bold mb-1">Apartado de Evaluaciones</h4>
-            </div>
-          </div>
-
           <!-- Fila de contenido -->
           <div class="row">
             <!-- Columna principal de evaluaciones -->

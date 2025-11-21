@@ -1,11 +1,11 @@
 <!-- Modal para REGISTRAR ASISTENCIA DEL DÍA -->
 <div class="modal fade" id="modalRegistrarAsistencia" tabindex="-1"
-     aria-labelledby="modalRegistrarAsistenciaLabel" aria-hidden="true">
+    aria-labelledby="modalRegistrarAsistenciaLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="modal-header text-dark">
                 <h5 class="modal-title" id="modalRegistrarAsistenciaLabel">
-                    <i class="bi bi-calendar-check me-2"></i>Registrar Asistencia del Día
+                    <i class="bi me-2"></i>Registrar Asistencia del Día
                 </h5>
                 <button type="button" class="btn-close btn-close-white"
                         data-dismiss="modal" aria-label="Close"></button>
@@ -14,10 +14,7 @@
             <div class="modal-body">
                 
                 <div class="row mb-4">
-                    <div class="col-md-6">
                        
-                    
-                    </div>
                     <div class="col-md-6">
                         <label for="grupoAsistencia" class="form-label fw-bold">Grupo/Curso:</label>
                         <select class="form-control" id="grupoAsistencia">

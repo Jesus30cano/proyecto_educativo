@@ -46,15 +46,7 @@
             <h1 class="h3 mt-4 mb-0 text-gray-800">Perfil estudiante</h1>
           </div>
 
-          <!-- Fila de contenido -->
-          <div class="row">
-
-            <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Apartado de perfil y datos personales</h4>
-              </div>
-            </div>
-          </div>
+          
           <!-- Datos personales -->
           <?php include __DIR__ . '/../components/perfil.php'; ?>
         </div>

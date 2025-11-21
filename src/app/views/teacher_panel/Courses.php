@@ -44,10 +44,9 @@
         <div class="container-fluid">
 
           
-          <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Mis cursos</h4>
-              </div>
+          <!-- Título -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Mis Cursos</h1>
           </div>
 
           <!-- 🔍 BUSCADOR -->
