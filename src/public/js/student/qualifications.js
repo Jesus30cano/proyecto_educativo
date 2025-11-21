@@ -1,15 +1,22 @@
+const URL_CALIFICACIONES = '/student/qualifications/obtenerCalificacionesPorEstudiante';
 
-const URL_CALIFICACIONES = '/qualifications/obtenerCalificacionesPorEstudiante';
+// Guardamos todas las calificaciones para poder filtrar
+let calificacionesGlobal = [];
 
 document.addEventListener('DOMContentLoaded', function () {
     cargarCalificaciones();
+
+    // Botón "Aplicar filtro"
+    const btnFiltro = document.getElementById('btnAplicarFiltro');
+    if (btnFiltro) {
+        btnFiltro.addEventListener('click', aplicarFiltroCompetencia);
+    }
 });
 
 
-// =========================
-//   LLAMADA AL CONTROLADOR
-// =========================
-
+// =============================
+//   CARGA INICIAL DE DATOS
+// =============================
 async function cargarCalificaciones() {
     try {
         const response = await fetch(URL_CALIFICACIONES, {
@@ -19,26 +26,81 @@ async function cargarCalificaciones() {
             }
         });
 
+        if (!response.ok) {
+            mostrarErrorEnPantalla('Error al comunicarse con el servidor.');
+            return;
+        }
+
         const result = await response.json();
 
         if (result.status !== 'success') {
-            console.error('Error desde el servidor:', result.message);
+            mostrarErrorEnPantalla(result.message || 'Error al obtener calificaciones.');
             return;
         }
 
         const calificaciones = result.data || [];
+        calificacionesGlobal = calificaciones; 
 
-        console.log('Calificaciones recibidas:', calificaciones);
-
-        // 1) Resumen por competencia (tarjetas Programación / Matemáticas / etc.)
+        // Render general (todas las competencias)
         renderizarCompetencias(calificaciones);
-
-        // 2) Tabla detalle
         renderizarTabla(calificaciones);
+        llenarSelectCompetencias(calificaciones);
 
     } catch (error) {
         console.error('Error al cargar calificaciones:', error);
+        mostrarErrorEnPantalla('Error al cargar calificaciones.');
     }
+}
+
+function mostrarErrorEnPantalla(mensaje) {
+    const cont = document.getElementById('lista-competencias');
+    if (cont) {
+        cont.innerHTML = `<p class="text-danger mb-0">${mensaje}</p>`;
+    }
+}
+
+
+// =============================
+//   FILTRO POR COMPETENCIA
+// =============================
+function llenarSelectCompetencias(calificaciones) {
+    const select = document.getElementById('selectCompetencia');
+    if (!select) return;
+
+    // Siempre dejamos la opción "todas" al inicio
+    select.innerHTML = `<option value="todas" selected>Todas las Competencias</option>`;
+
+    const competenciasSet = new Set();
+
+    calificaciones.forEach(item => {
+        if (item.nombre_competencia) {
+            competenciasSet.add(item.nombre_competencia);
+        }
+    });
+
+    competenciasSet.forEach(nombre => {
+        // value = nombre tal cual para comparar fácil
+        select.innerHTML += `<option value="${nombre}">${nombre}</option>`;
+    });
+}
+
+function aplicarFiltroCompetencia() {
+    const select = document.getElementById('selectCompetencia');
+    if (!select) return;
+
+    const seleccion = select.value;
+
+    let filtradas = calificacionesGlobal;
+
+    if (seleccion && seleccion !== 'todas') {
+        filtradas = calificacionesGlobal.filter(item =>
+            item.nombre_competencia === seleccion
+        );
+    }
+
+    // Render solo con las filtradas
+    renderizarCompetencias(filtradas);
+    renderizarTabla(filtradas);
 }
 
 
