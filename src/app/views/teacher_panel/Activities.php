@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
     <link rel="stylesheet" href="/public/css/toast.css" />
     <!-- carta azul -->
-  <link rel="stylesheet" href="/public/css/card.blue.css">
+    <link rel="stylesheet" href="/public/css/card.blue.css">
 </head>
 
 <body id="page-top">
@@ -39,14 +39,19 @@
                 <!-- Contenido principal -->
                 <div class="container-fluid">
 
-                    <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Panel de seguimiento de actividades</h4>
-              </div>
-            </div>
+                    <!-- Título -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Actividades</h1>
+                    </div>
 
                     <!-- Card contenedora -->
                     <div class="card shadow-sm border-0">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-white">
+                                <i class="fas fa-table mr-2"></i>
+                                Seguimiento de Actividades
+                            </h6>
+                        </div>
                         <div class="card-body">
                             <!-- Tabla principal -->
                             <div class="table-responsive">
@@ -85,7 +90,8 @@
                                 <h5 class="modal-title fw-bold">
                                     Seguimiento de Entregas – <span id="tituloActividadModal"></span>
                                 </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
 
                             <div class="modal-body">
@@ -145,8 +151,7 @@
 
                             <div class="modal-footer">
                                 <button class="btn btn-primary" id="btnGuardarCalificacion">Guardar</button>
-                                <button type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             </div>
 
                         </div>

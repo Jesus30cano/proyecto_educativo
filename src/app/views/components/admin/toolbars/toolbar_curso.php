@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <div class="toolbar">
+  <div class="toolbar mb-3">
     <button class="btn btn-success" onclick="openCreateCursoModal()">➕ Crear Curso</button>
     <button class="btn btn-warning" onclick="openEditCursoModal()">✏️ Editar Curso</button>
     <button class="btn btn-danger" onclick="openEliminarCursoModal()">🗑️ Eliminar Curso</button>

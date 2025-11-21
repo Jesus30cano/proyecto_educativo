@@ -38,11 +38,10 @@
           <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
-          <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Perfil docente</h4>
-              </div>
-            </div>
+          <!-- Título -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Perfil docente</h1>
+                </div>
 
           
 

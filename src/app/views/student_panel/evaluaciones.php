@@ -44,12 +44,6 @@
             <h1 class="h3 mt-4 mb-0 text-gray-800">Evaluaciones</h1>
           </div>
 
-          <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Apartado de Evaluaciones</h4>
-              </div>
-          </div>
-
           <!-- Fila de contenido -->
           <div class="row">
             <!-- Columna principal de evaluaciones -->
@@ -80,7 +74,7 @@
                       </select>
                     </div>
                     <div class="col-md-3">
-                      <button class="btn btn-primary btn-block">
+                      <button class="btn blue-claro text-white btn-block">
                         <i class="fas fa-search mr-2"></i>Buscar
                       </button>
                     </div>
@@ -112,7 +106,7 @@
                       </p>
                       <p class="card-text small">Evaluación sobre derivadas, límites y continuidad de funciones.</p>
                       <div class="d-flex justify-content-between align-items-center mt-3">
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalEvaluacion1">
+                        <button class="btn btn-sm blue-claro text-white" data-toggle="modal" data-target="#modalEvaluacion1">
                           <i class="fas fa-eye mr-1"></i>Detalles
                         </button>
                       </div>
@@ -170,7 +164,7 @@
                       <div class="d-flex justify-content-between align-items-center mt-3">
                         <div>
                           <span class="badge badge-success">
-                            <i class="fas fa-star"></i> Nota: 4.5/5.0
+                            <i class="fas fa-star"></i> APROBADO
                           </span>
                         </div>
                       </div>

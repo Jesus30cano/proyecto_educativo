@@ -6,7 +6,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
+                <div class="modal-header blue-claro text-white">
                     <h5 class="modal-title" id="modalActividad1Label">
                         <i class="bi bi-file-earmark-text me-2"></i>Diseño de Diagramas UML
                     </h5> <!-- Nombre de la actividad -->
@@ -75,11 +75,11 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-success text-white"> <!-- bg-succces a verde cuando es entregada la actividad -->
+                <div class="modal-header blue-claro text-white"> <!-- bg-succces a verde cuando es entregada la actividad -->
                     <h5 class="modal-title" id="modalActividad2Label">
                         <i class="bi bi-file-earmark-check me-2"></i>Informe de Penetración de Sistemas
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    <button type="button" class="btn-close btn-close-white" data-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -104,8 +104,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <h6 class="text-success"><i class="bi bi-star-fill me-2"></i>Calificación Obtenida:</h6>
-                        <h4 class="text-success">4.8 / 5.0</h4> <!-- Calificacion de la actividad -->
+                        <h6 class="text-success"><i class="bi bi-star-fill me-2"></i>Resultado Obtenido:</h6>
+                        <h4 class="text-success">Aprobado</h4> <!-- Calificacion de la actividad -->
                     </div>
 
                     <div class="mb-3">

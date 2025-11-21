@@ -46,12 +46,6 @@
             <h1 class="h3 mb-0 text-gray-800">Cursos</h1>
           </div>
 
-          <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Apartado de cursos</h4>
-              </div>
-            </div>
-
 
            <!-- Dashboard Cards -->
             <?php include __DIR__ . '/../components/admin/cards/Cards_cursos.php'; ?>

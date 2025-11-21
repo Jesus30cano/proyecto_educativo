@@ -45,11 +45,10 @@
                 <div class="container-fluid">
 
 
-                    <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Gestion de asistencias</h4>
-              </div>
-            </div>
+                  <!-- Título -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Asistencias</h1>
+                </div>
 
                     <div class="row">
                         <div class="col-12">
@@ -86,7 +85,7 @@
                                             <input type="date" class="form-control" id="fecha">
                                         </div>
                                         <div class="col-md-2">
-                                            <button class="btn btn-primary w-100" id="btnBuscarAsistencias">
+                                            <button class="btn blue-claro text-white w-100" id="btnBuscarAsistencias">
                                                 <i class="bi bi-search me-2"></i>Buscar
                                             </button>
                                         </div>

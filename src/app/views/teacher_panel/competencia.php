@@ -38,6 +38,12 @@
 
                 <!-- Contenido de la página de inicio -->
                 <div class="container-fluid">
+
+                <!-- Título -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Competencias</h1>
+                </div>
+
                     <!-- 🔵 Encabezado Competencia -->
                     <div class="competencia-header mb-4 shadow-sm">
                         <h4 id="tituloCompetencia" class="fw-bold mb-1">Competencia</h4>
@@ -46,8 +52,8 @@
 
                     <!-- Filtro por fecha -->
                     <div class="card mb-4">
-                        <div class="card-header bg-light">
-                            <h6 class="m-0 font-weight-bold text-primary">Filtrar por fecha</h6>
+                        <div class="card-header blue-claro text-white">
+                            <h6 class="m-0 font-weight-bold">Filtrar por fecha</h6>
                         </div>
 
                         <div class="card-body">

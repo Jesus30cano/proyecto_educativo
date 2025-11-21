@@ -44,6 +44,11 @@
         <!-- Contenido de la página de inicio -->
         <div class="container-fluid">
 
+        <!-- Título -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Contenido principal</h1>
+          </div>
+
           
 
           <!-- Ejemplo de tarjeta normal -->

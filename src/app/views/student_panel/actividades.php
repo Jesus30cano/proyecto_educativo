@@ -46,12 +46,6 @@
             <h1 class="h3 mt-4 mb-0 text-gray-800">Actividades</h1>
           </div>
 
-            <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Apartado de Actividades</h4>
-              </div>
-            </div>
-
           <!-- fila de contenido-->
           <div class="row">
 
@@ -73,7 +67,7 @@
                       </select>
                     </div>
                     <div class="col-md-4">
-                      <button class="btn btn-primary w-100">
+                      <button class="btn blue-claro text-white w-100">
                         <i class="bi bi-search me-2"></i>Buscar
                       </button>
                     </div>
@@ -88,15 +82,15 @@
               <!-- Grid de tarjetas de actividades -->
               <div class="row">
 
-                <!-- Actividad 1 - PENDIENTE -->
+                <!-- Actividad 1 -->
                 <div class="col-md-6 mb-3">
-                  <div class="card h-100 border-warning shadow-sm">
-                    <div class="card-header bg-warning text-white">
+                  <div class="card h-100 shadow-sm">
+                    <div class="card-header text-white">
                       <div class="d-flex justify-content-between align-items-center">
                         <h6 class="mb-0">Diseño de Diagramas UML</h6>
                         <span class="badge bg-light text-dark">
                           <i class="bi bi-exclamation-circle"></i> Pendiente
-                        </span>
+                        </span> <!-- Esto informa cuando la actividad esta en pendiente (la i) -->
                       </div>
                     </div>
                     <div class="card-body">
@@ -107,23 +101,23 @@
                       <div class="d-flex justify-content-between align-items-center mt-3">
                         <span class="text-danger"><i class="bi bi-calendar-x me-1"></i><small>Vence: 15
                             Nov 2025</small></span>
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalActividad1">
+                        <button class="btn btn-sm blue-claro text-white" data-toggle="modal" data-target="#modalActividad1">
                           <i class="bi bi-eye me-1"></i>Ver Detalles
-                        </button>
+                        </button> 
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Actividad 2 - ENTREGADA -->
+                <!-- Actividad 2 -->
                 <div class="col-md-6 mb-3">
-                  <div class="card h-100 border-success shadow-sm">
-                    <div class="card-header bg-success text-white">
+                  <div class="card h-100 shadow-sm">
+                    <div class="card-header text-white">
                       <div class="d-flex justify-content-between align-items-center">
                         <h6 class="mb-0">Informe de Penetración</h6>
                         <span class="badge bg-light text-success">
                           <i class="bi bi-check-circle"></i> Entregada
-                        </span>
+                        </span> <!-- Esto informa cuando la actividad esta en entregada (la i) -->
                       </div>
                     </div>
                     <div class="card-body">

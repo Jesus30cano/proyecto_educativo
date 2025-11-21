@@ -1,10 +1,3 @@
-<div class="row">
-  <div class="col-md-12 mb-3">
-    <h4><i class="bi bi-person-badge me-2"></i>Datos Personales</h4>
-    <hr>
-  </div>
-</div>
-
 <!-- Datos Personales -->
 <div class="row">
   <div class="col-md-12 mb-4">
@@ -112,9 +105,9 @@
 <div class="row">
   <div class="col-md-12 mb-4">
     <div class="card shadow-sm border-0">
-      <div class="card-header bg-warning text-dark">
+      <div class="card-header bg-warning">
         <h5 class="mb-0">
-          <i class="bi bi-person-fill-exclamation me-2"></i>Contacto de Emergencia
+          <i class="bi bi-person-fill-exclamation me-2 text-white"></i>Contacto de Emergencia
         </h5>
       </div>
       

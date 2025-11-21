@@ -46,12 +46,6 @@
             <h1 class="h3 mt-4 mb-0 text-gray-800">Calificaciones</h1>
           </div>
 
-          <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Apartado de Calificaciones</h4>
-              </div>
-            </div>
-
           <!-- FILA SUPERIOR: Gráfico y Resumen -->
           <div class="row">
 
@@ -141,113 +135,113 @@
 
 
             <!-- Filtro de Competencias -->
-            <div class="row">
-              <div class="col-xl-12 mb-4">
-                <div class="card shadow">
-                  <div class="card-header py-3 bg-primary">
-                    <h6 class="m-0 font-weight-bold text-white">
-                      <i class="fas fa-filter mr-2"></i>
-                      Filtrar Calificaciones por Competencia
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="row align-items-end">
-                      <div class="col-md-8 mb-3 mb-md-0">
-                        <label for="selectCompetencia" class="font-weight-bold text-gray-700">
-                          Selecciona una competencia:
-                        </label>
-                        <select class="form-control form-control-lg" id="selectCompetencia">
-                          <option value="todas" selected>Todas las Competencias</option>
-                          <option value="matematicas">Matemáticas</option>
-                          <option value="programacion">Programación</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-primary btn-block">
-                          <i class="fas fa-search mr-2"></i>Aplicar Filtro
-                        </button>
-                      </div>
+            <div class="col-xl-12 mb-4">
+              <div class="card shadow">
+                <div class="card-header py-3 bg-primary">
+                  <h6 class="m-0 font-weight-bold text-white">
+                    <i class="fas fa-filter mr-2"></i>
+                    Filtrar Calificaciones por Competencia
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <div class="row align-items-end">
+                    <div class="col-md-8 mb-3 mb-md-0">
+                      <label for="selectCompetencia" class="font-weight-bold text-gray-700">
+                        Selecciona una competencia:
+                      </label>
+                      <select class="form-control form-control-lg" id="selectCompetencia">
+                        <option value="todas" selected>Todas las Competencias</option>
+                        <option value="matematicas">Matemáticas</option>
+                        <option value="programacion">Programación</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn blue-claro text-white btn-block">
+                        <i class="fas fa-search mr-2"></i>Aplicar Filtro
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-          <!-- DataTales Example Adaptado -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-white">
-                <i class="fas fa-table mr-2"></i>
-                Calificaciones
-              </h6>
-            </div>
 
-              <div class="card-body">
-                <div class="table-responsive">
+            <!-- DataTales Example Adaptado -->
+            <div class="col-12"> <!-- 🔧 CAMBIO 2: Agregué col-12 -->
 
-                  <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>Profesor</th>
-                        <th>Competencia</th>
-                        <th>Evaluación</th>
-                        <th>Fecha Evaluación</th>
-                        <th>Nota de Calificación</th>
-                        <th>Observación</th>
-                      </tr>
-                    </thead>
+              <!-- DataTales Example Adaptado -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-white">
+                    <i class="fas fa-table mr-2"></i>
+                    Calificaciones
+                  </h6>
+                </div>
 
-                    <tbody id = "tbody-calificaciones">
-                      
-                    </tbody>
-                  </table>
+                <div class="card-body">
+                  <div class="table-responsive">
 
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Profesor</th>
+                          <th>Competencia</th>
+                          <th>Evaluación</th>
+                          <th>Fecha Evaluación</th>
+                          <th>Nota de Calificación</th>
+                          <th>Observación</th>
+                        </tr>
+                      </thead>
+
+                      <tbody id="tbody-calificaciones">
+
+                      </tbody>
+                    </table>
+
+                  </div>
                 </div>
               </div>
-            </div>
 
+            </div> <!-- fin col-12 -->
 
           </div>
-          <!-- /.container-fluid -->
+          <!-- End of Main Content -->
+
+          <!-- topnav -->
+          <?php include __DIR__ . '/../components/footer.php'; ?>
 
         </div>
-        <!-- End of Main Content -->
-
-        <!-- topnav -->
-        <?php include __DIR__ . '/../components/footer.php'; ?>
+        <!-- End of Content Wrapper -->
 
       </div>
-      <!-- End of Content Wrapper -->
+      <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- scroll -->
-    <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
+      <!-- scroll -->
+      <?php include __DIR__ . '/../components/scroll.topnav.php'; ?>
 
 
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/public/vendor/jquery/jquery.min.js"></script>
-    <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Bootstrap core JavaScript-->
+      <script src="/public/vendor/jquery/jquery.min.js"></script>
+      <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/public/js/styles/sb-admin-2.min.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="/public/js/styles/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/public/vendor/chart.js/Chart.min.js"></script>
-    <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      <!-- Page level plugins -->
+      <script src="/public/vendor/chart.js/Chart.min.js"></script>
+      <script src="/public/vendor/datatables/jquery.dataTables.min.js"></script>
+      <script src="/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/public/js/styles/demo/datatables-demo.js"></script>
+      <!-- Page level custom scripts -->
+      <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
-    <!-- script de funcionalidad -->
-     <script src="/public/js/student/qualifications.js"></script>
+      <!-- script de funcionalidad -->
+      <script src="/public/js/student/qualifications.js"></script>
 </body>
 
 </html>

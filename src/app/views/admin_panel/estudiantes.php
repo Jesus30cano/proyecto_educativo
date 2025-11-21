@@ -47,12 +47,6 @@
             <h1 class="h3 mb-0 text-gray-800">Estudiantes</h1>
           </div>
 
-          <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1"> Apartado de estudiantes</h4>
-              </div>
-            </div>
-
 
           <!-- Dashboard Cards -->
           <?php include __DIR__ . '/../components/admin/cards/Card_estu.php'; ?>

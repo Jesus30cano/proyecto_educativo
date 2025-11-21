@@ -46,40 +46,34 @@
             <h1 class="h3 mb-0 text-gray-800">Historial</h1>
           </div>
 
-          <div class="col-xl-12 col-md-6 mb-4">
+
+          <div class="col-md-12 mb-3">
+            <div class="card">
               <div class="card-header">
-                <h4 class="fw-bold mb-1">Apartado de Historial</h4>
+                <span><i class="bi bi-table me-2"></i></span>Historial de cambios
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table id="dataTable" class="table table-striped data-table" style="width: 100%">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>ACTIVIDAD</th>
+                        <th>FECHA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <th>a</th>
+                      <th>a</th>
+                      <th>a</th>
+                      <th>a</th>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-
-
-           <div class="col-md-12 mb-3">
-    <div class="card">
-      <div class="card-header">
-        <span><i class="bi bi-table me-2"></i></span>Historial de cambios
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table id="dataTable" class="table table-striped data-table" style="width: 100%">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NOMBRE</th>
-                <th>ACTIVIDAD</th>
-                <th>FECHA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div>
 
         </div>
 
@@ -88,11 +82,11 @@
 
       </div>
       <!-- topnav -->
-    <?php include __DIR__ . '/../components/footer.php'; ?>
+      <?php include __DIR__ . '/../components/footer.php'; ?>
 
 
     </div>
-    
+
 
   </div>
 
@@ -128,4 +122,5 @@
 
 
 </body>
+
 </html>
