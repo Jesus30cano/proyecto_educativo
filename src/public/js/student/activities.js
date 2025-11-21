@@ -40,7 +40,10 @@ async function cargarActividades() {
 
         const actividades = result.data || [];
         actividadesGlobal = actividades;
-
+        if (!actividades.length) {
+            mostrarMensajeActividades('No tienes actividades asignadas por el momento.');
+            return;
+        }
         llenarSelectCompetencias(actividades);
         renderizarActividades(actividades);
 
@@ -53,7 +56,7 @@ async function cargarActividades() {
 function mostrarMensajeActividades(mensaje, esError = false) {
     const cont = document.getElementById('contenedor-actividades');
     if (!cont) return;
-x
+
     cont.innerHTML = `
         <div class="col-12">
             <p class="${esError ? 'text-danger' : 'text-muted'} mb-0">${mensaje}</p>
