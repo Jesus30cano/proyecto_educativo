@@ -2651,11 +2651,7 @@ BEGIN
     ORDER BY a.fecha DESC, c.nombre_curso, dp.apellido, dp.nombre;
 END;
 $$ LANGUAGE plpgsql;
-<<<<<<< HEAD
-
-=======
 --============================================================
->>>>>>> 07280d24d0a9f90df3e679e5c5268a78cf0e1e09
 CREATE OR REPLACE FUNCTION obtener_examen_completo(id_evaluacion_param INT)
 RETURNS TABLE (
     id_evaluacion INT,

@@ -173,16 +173,6 @@
               </div>
             </div>
 
-<<<<<<< HEAD
-            <!-- DataTales Example Adaptado -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                  <i class="fas fa-table mr-2"></i>
-                  Calificaciones
-                </h6>
-              </div>
-=======
           <!-- DataTales Example Adaptado -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -191,7 +181,6 @@
                 Calificaciones
               </h6>
             </div>
->>>>>>> 07280d24d0a9f90df3e679e5c5268a78cf0e1e09
 
               <div class="card-body">
                 <div class="table-responsive">
