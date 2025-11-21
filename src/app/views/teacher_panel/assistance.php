@@ -77,12 +77,8 @@
                                                 <option>Cargando cursos...</option>
 
                                             <select class="form-control" id="selectGrupo">
-<<<<<<< HEAD
                                                     
-=======
                                                 
-                                                
->>>>>>> 07280d24d0a9f90df3e679e5c5268a78cf0e1e09
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3 mb-md-0">
