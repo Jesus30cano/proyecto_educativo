@@ -17,7 +17,7 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f4c81 0%, #1e88e5 100%);
+            background: #E3F2FD;
             min-height: 100vh;
             padding: 40px 20px;
         }
@@ -32,10 +32,10 @@
         }
         
         .exam-header {
-            background: linear-gradient(135deg, #1565c0 0%, #1e88e5 100%);
+            background: #1565C0 ;
             color: white;
             padding: 40px;
-            text-align: center;
+            text-align: left; 
             position: relative;
         }
         
@@ -130,7 +130,7 @@
             color: white;
             margin-bottom: 30px;
             padding: 15px 20px;
-            background: linear-gradient(135deg, #1565c0 0%, #1e88e5 100%);
+            background: #1565c0;
             border-radius: 6px;
             box-shadow: 0 2px 10px rgba(30,136,229,0.25);
         }
@@ -175,7 +175,7 @@
             display: inline-block;
             font-weight: 600;
             color: white;
-            background: linear-gradient(135deg, #1565c0 0%, #1e88e5 100%);
+            background: #1565c0;
             padding: 6px 14px;
             border-radius: 6px;
             margin-bottom: 15px;

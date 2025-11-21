@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const ia_cantidad = document.getElementById("ia_cantidad");
+  ia_cantidad.addEventListener("input", () => {
+    let val = parseInt(ia_cantidad.value);
+    if (isNaN(val) || val < 1) val = 1;
+    if (val > 15) val = 15;
+    ia_cantidad.value = val;
+  });
   const evaluacionModal = new bootstrap.Modal(
     document.getElementById("modalEvalManual")
   );
@@ -164,6 +171,12 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   fomGuardarEvalManual.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const id_curso = document.getElementById("man_curso").value;
+    const id_competencia = document.getElementById("man_competencia").value;
+    if (!id_curso || !id_competencia) {
+      showToast("Por favor selecciona curso y competencia.", "#e74c3c", 3000);
+      return;
+    }
 
     const data = {
       id_curso: document.getElementById("man_curso").value,
@@ -178,6 +191,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const preguntaCards = document.querySelectorAll(
       "#man_contenedor_preguntas .pregunta-card"
     );
+    if (preguntaCards.length === 0) {
+      showToast("Agrega al menos una pregunta.", "#e74c3c", 3000);
+      return;
+    }
     preguntaCards.forEach((card) => {
       const preguntaText = card.querySelector(
         'input[type="text"]:not(.opcion-texto)'
@@ -275,13 +292,16 @@ document.addEventListener("DOMContentLoaded", () => {
     contenedorResultados.innerHTML = `<div class="text-center mb-3"><span>Generando preguntas...</span></div>`;
 
     try {
-      const response = await fetch("/teacher/evaluations/generar_preguntas_ia", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "/teacher/evaluations/generar_preguntas_ia",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       const result = await response.json();
-        console.log("Resultado IA:", result);
+      console.log("Resultado IA:", result);
 
       if (
         !result.questions ||
@@ -327,25 +347,78 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Error al generar preguntas! " + err);
     }
   });
+  const formEvalIA = document.getElementById("form-evaluacion-ia");
+
+  formEvalIA.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Aquí puedes manejar el envío del formulario de evaluación IA
+    const id_curso = document.getElementById("ia_curso").value;
+    const id_competencia = document.getElementById("ia_competencia").value;
+    if (!id_curso || !id_competencia) {
+      showToast("Por favor selecciona curso y competencia.", "#e74c3c", 3000);
+      return;
+    }
+
+    const data = {
+      id_curso: document.getElementById("ia_curso").value,
+      id_competencia: document.getElementById("ia_competencia").value,
+      titulo: document.getElementById("ia_titulo").value,
+      descripcion: document.getElementById("ia_descripcion").value,
+      fecha: document.getElementById("ia_fecha").value,
+      questions: [],
+    };
+    const preguntasCards = document.querySelectorAll(
+      "#ia_preguntas_resultado .pregunta-card.ia-generated"
+    );
+    if (preguntasCards.length === 0) {
+      showToast("No hay preguntas generadas para guardar.", "#e74c3c", 3000);
+      return;
+    }
+    preguntasCards.forEach((card) => {
+      const preguntaText = card.querySelector('input[type="text"]').value;
+      const opcionesDivs = card.querySelectorAll(".opcion");
+      const opciones = [];
+      opcionesDivs.forEach((opcionDiv) => {
+        const opcionText = opcionDiv.querySelector("label").innerText;
+        const radio = opcionDiv.querySelector('input[type="radio"]');
+        const isCorrect = radio.getAttribute("data-ia-correct") === "true";
+        opciones.push({
+          text: opcionText,
+          correct: isCorrect,
+        });
+      });
+
+      data.questions.push({
+        text: preguntaText,
+        opciones: opciones,
+      });
+    });
+
+    console.log("Datos de evaluación IA a guardar:", data);
+    try {
+      const response = await fetch("/teacher/evaluations/guardar_evaluacion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log(result);
+      if (result.status === "success") {
+        showToast(result.message, "#3ce783ff", 3000);
+        document.getElementById("ia_titulo").value = "";
+        document.getElementById("ia_descripcion").value = "";
+        document.getElementById("ia_fecha").value = "";
+        document.getElementById("ia_preguntas_resultado").innerHTML = "";
+        cargarComboBox("ia_curso", "", "ia_competencia", "");
+        document.getElementById("ia_cantidad").value = "5";
+        document.getElementById("ia_instrucciones").value = "";
+        document.getElementById("ia_dificultad").value = "seleccionar";
+      } else {
+        showToast("Error al guardar la evaluación IA", "#ff4c4c", 3000);
+      }
+    } catch (error) {
+      showToast("Error al guardar la evaluación IA2", "#ff4c4c", 3000);
+      console.error("Error al guardar la evaluación IA:", error);
+    }
+  });
 });
-// Ejemplo de estructura JSON generada por IA
-const ejemploIAJSON = {
-  questions: [
-    {
-      text: "¿Cuál es la capital de Francia?",
-      opciones: [
-        { text: "París", correct: true },
-        { text: "Londres", correct: false },
-        { text: "Roma", correct: false },
-      ],
-    },
-    {
-      text: "¿Cuál es el planeta más grande?",
-      opciones: [
-        { text: "Júpiter", correct: true },
-        { text: "Mercurio", correct: false },
-        { text: "Venus", correct: false },
-      ],
-    },
-  ],
-};
