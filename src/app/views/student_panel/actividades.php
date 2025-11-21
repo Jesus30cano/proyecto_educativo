@@ -63,11 +63,11 @@
                       <label for="selectCompetencia" class="font-weight-bold">Selecciona una competencia:</label>
                       <select class="form-control" id="selectCompetencia">
                         <option value="todas" selected>Todas las Competencias</option>
-                        <option value="desarrollo-software">Desarrollo de Software Seguro</option>
+
                       </select>
                     </div>
                     <div class="col-md-4">
-                      <button class="btn blue-claro text-white w-100">
+                      <button class="btn btn-primary w-100" id="btnBuscarActividades">
                         <i class="bi bi-search me-2"></i>Buscar
                       </button>
                     </div>
@@ -80,66 +80,11 @@
               <hr>
 
               <!-- Grid de tarjetas de actividades -->
-              <div class="row">
-
-                <!-- Actividad 1 -->
-                <div class="col-md-6 mb-3">
-                  <div class="card h-100 shadow-sm">
-                    <div class="card-header text-white">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">Diseño de Diagramas UML</h6>
-                        <span class="badge bg-light text-dark">
-                          <i class="bi bi-exclamation-circle"></i> Pendiente
-                        </span> <!-- Esto informa cuando la actividad esta en pendiente (la i) -->
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p class="text-muted mb-2"><small><i class="bi bi-bookmark me-1"></i>Desarrollo de
-                          Software Seguro</small></p>
-                      <p class="card-text small">Desarrollar un software seguro aplicando patrones de
-                        diseño...</p>
-                      <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="text-danger"><i class="bi bi-calendar-x me-1"></i><small>Vence: 15
-                            Nov 2025</small></span>
-                        <button class="btn btn-sm blue-claro text-white" data-toggle="modal" data-target="#modalActividad1">
-                          <i class="bi bi-eye me-1"></i>Ver Detalles
-                        </button> 
-                      </div>
-                    </div>
-                  </div>
+              <div class="row" id="contenedor-actividades">
+                <div class="col-12">
+                  <p class="text-muted mb-0">Cargando actividades...</p>
                 </div>
-
-                <!-- Actividad 2 -->
-                <div class="col-md-6 mb-3">
-                  <div class="card h-100 shadow-sm">
-                    <div class="card-header text-white">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">Informe de Penetración</h6>
-                        <span class="badge bg-light text-success">
-                          <i class="bi bi-check-circle"></i> Entregada
-                        </span> <!-- Esto informa cuando la actividad esta en entregada (la i) -->
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p class="text-muted mb-2"><small><i class="bi bi-bookmark me-1"></i>Seguridad
-                          Informática Avanzada</small></p>
-                      <p class="card-text small">Crear un informe detallado sobre penetración de
-                        sistemas...</p>
-                      <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="text-success"><i class="bi bi-star-fill me-1"></i><small>Nota:
-                            4.8/5.0</small></span>
-                        <button class="btn btn-sm btn-outline-success" data-toggle="modal"
-                          data-target="#modalActividad2">
-                          <i class="bi bi-eye me-1"></i>Ver Detalles
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <!-- AQUI SIGUEN LAS DEMAS CARTAS DE ACTIVIDADES -->
-              </div> <!-- FIN GRID ACTIVIDADES -->
+              </div>
 
             </div>
 
@@ -184,6 +129,8 @@
   <script src="/public/js/student/script.calendar.js"></script>
   <script src="/public/js/student/frases.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+  <script src="/public/js/student/activities.js"></script>
+
 </body>
 
 </html>

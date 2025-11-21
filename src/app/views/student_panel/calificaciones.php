@@ -135,35 +135,34 @@
 
 
             <!-- Filtro de Competencias -->
-            <div class="col-xl-12 mb-4">
-              <div class="card shadow">
-                <div class="card-header py-3 bg-primary">
-                  <h6 class="m-0 font-weight-bold text-white">
-                    <i class="fas fa-filter mr-2"></i>
-                    Filtrar Calificaciones por Competencia
-                  </h6>
-                </div>
-                <div class="card-body">
-                  <div class="row align-items-end">
-                    <div class="col-md-8 mb-3 mb-md-0">
-                      <label for="selectCompetencia" class="font-weight-bold text-gray-700">
-                        Selecciona una competencia:
-                      </label>
-                      <select class="form-control form-control-lg" id="selectCompetencia">
-                        <option value="todas" selected>Todas las Competencias</option>
-                        <option value="matematicas">Matemáticas</option>
-                        <option value="programacion">Programación</option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <button class="btn blue-claro text-white btn-block">
-                        <i class="fas fa-search mr-2"></i>Aplicar Filtro
-                      </button>
+              <div class="col-xl-12 mb-4">
+                <div class="card shadow">
+                  <div class="card-header py-3 bg-primary">
+                    <h6 class="m-0 font-weight-bold text-white">
+                      <i class="fas fa-filter mr-2"></i>
+                      Filtrar Calificaciones por Competencia
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="row align-items-end">
+                      <div class="col-md-8 mb-3 mb-md-0">
+                        <label for="selectCompetencia" class="font-weight-bold text-gray-700">
+                          Selecciona una competencia:
+                        </label>
+                        <select class="form-control form-control-lg" id="selectCompetencia">
+                          <option value="todas" selected>Todas las Competencias</option>
+                          
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" id="btnAplicarFiltro">
+                          <i class="fas fa-search mr-2"></i>Aplicar Filtro
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
 
             <!-- DataTales Example Adaptado -->
