@@ -1820,14 +1820,16 @@ $$;
 --   id_actividad, titulo, descripcion, fecha_entrega, nombre_curso, nombre_profesor
 -- =======================================================================================
 
-   CREATE OR REPLACE FUNCTION obtener_actividades_pendientes(p_id_estudiante INT)
+  CREATE OR REPLACE FUNCTION obtener_actividades_estudiante(p_id_estudiante INT)
 RETURNS TABLE (
     id_actividad INT,
-    titulo VARCHAR,
+    titulo_actividad VARCHAR,
     descripcion TEXT,
     fecha_entrega DATE,
-    nombre_curso VARCHAR,
-    nombre_profesor TEXT
+    nombre_competencia VARCHAR,
+    nombre_profesor TEXT,
+    estado_entrega TEXT,
+    calificacion TEXT
 )
 AS $$
 BEGIN
@@ -1837,22 +1839,31 @@ BEGIN
         a.titulo,
         a.descripcion,
         a.fecha_entrega,
-        c.nombre_curso,
-        CONCAT(dp.nombre, ' ', dp.apellido) AS nombre_profesor
+        comp.nombre AS nombre_competencia,
+        CONCAT(dp.nombre, ' ', dp.apellido) AS nombre_profesor,
+
+        CASE 
+            WHEN ea.id_actividad IS NULL THEN 'pendiente'
+            WHEN ea.calificacion IS NOT NULL THEN 'calificada'
+            ELSE 'entregada'
+        END AS estado_entrega,
+
+        ea.calificacion::TEXT
+
     FROM Tb_actividad a
-    INNER JOIN Tb_curso c ON a.id_curso = c.id_curso
-    INNER JOIN Tb_datos_personales dp ON a.id_profesor = dp.id_usuario
+    INNER JOIN Tb_competencia comp ON comp.id_competencia = a.id_competencia
+    INNER JOIN Tb_datos_personales dp ON dp.id_usuario = a.id_profesor
+    INNER JOIN Tb_curso c ON c.id_curso = a.id_curso
     INNER JOIN Tb_estudiante_curso ec ON ec.id_curso = c.id_curso
+    LEFT JOIN Tb_entrega_actividad ea 
+           ON ea.id_actividad = a.id_actividad
+          AND ea.id_estudiante = p_id_estudiante
+
     WHERE ec.id_usuario = p_id_estudiante
-      AND a.fecha_entrega >= CURRENT_DATE
-      AND a.id_actividad NOT IN (
-          SELECT ea.id_actividad
-          FROM Tb_entrega_actividad ea
-          WHERE ea.id_estudiante = p_id_estudiante
-      )
+
     ORDER BY a.fecha_entrega ASC;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;        
 
 
 
@@ -2709,5 +2720,63 @@ BEGIN
     ) RETURNING id_evaluacion INTO v_id_evaluacion;
 
     RETURN v_id_evaluacion;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+CREATE OR REPLACE FUNCTION obtener_evaluaciones_por_estudiante(p_id_estudiante INT)
+RETURNS TABLE (
+    id_evaluacion      INT,
+    titulo_evaluacion  VARCHAR,
+    descripcion        TEXT,
+    fecha_limite       DATE,
+    nombre_competencia VARCHAR,
+    nombre_curso       VARCHAR,
+    activa             BOOLEAN,
+    estado             TEXT,   
+    nota               TEXT    
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        e.id_evaluacion,
+        e.titulo AS titulo_evaluacion,
+        e.descripcion::TEXT,
+        e.fecha       AS fecha_limite,
+        comp.nombre   AS nombre_competencia,
+        c.nombre_curso,
+        e.activa,
+
+        
+        CASE
+            WHEN e.activa = FALSE THEN 'inactiva'
+            WHEN cal.id_calificacion IS NOT NULL THEN 'finalizada'
+            WHEN EXISTS (
+                SELECT 1
+                FROM Tb_respuestas_estudiante r
+                WHERE r.id_evaluacion = e.id_evaluacion
+                  AND r.id_usuario   = p_id_estudiante
+            ) THEN 'finalizada'
+            ELSE 'disponible'
+        END AS estado,
+
+        cal.nota::TEXT AS nota
+
+    FROM Tb_evaluacion e
+    INNER JOIN Tb_curso c 
+            ON c.id_curso = e.id_curso
+    INNER JOIN Tb_estudiante_curso ec
+            ON ec.id_curso  = c.id_curso
+           AND ec.id_usuario = p_id_estudiante
+    LEFT JOIN Tb_competencia comp
+           ON comp.id_competencia = e.id_competencia
+    LEFT JOIN Tb_calificacion cal
+           ON cal.id_evaluacion = e.id_evaluacion
+          AND cal.id_usuario    = p_id_estudiante
+    ORDER BY e.fecha ASC;
 END;
 $$ LANGUAGE plpgsql;

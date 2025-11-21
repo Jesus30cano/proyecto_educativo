@@ -158,12 +158,11 @@
                         </label>
                         <select class="form-control form-control-lg" id="selectCompetencia">
                           <option value="todas" selected>Todas las Competencias</option>
-                          <option value="matematicas">Matemáticas</option>
-                          <option value="programacion">Programación</option>
+                          
                         </select>
                       </div>
                       <div class="col-md-4">
-                        <button class="btn btn-primary btn-block">
+                        <button class="btn btn-primary btn-block" id="btnAplicarFiltro">
                           <i class="fas fa-search mr-2"></i>Aplicar Filtro
                         </button>
                       </div>
