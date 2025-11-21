@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="/public/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
@@ -237,7 +238,7 @@
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">Cantidad</label>
-                                            <input type="number" class="form-control" id="ia_cantidad" min="1"
+                                            <input type="number" class="form-control" id="ia_cantidad" min="1" max="15"
                                                 value="5">
                                         </div>
 
@@ -262,35 +263,7 @@
 
                                     <!-- Zona donde aparecerán las preguntas generadas (visual) -->
                                     <div id="ia_preguntas_resultado" class="mt-3">
-                                        <!-- Ejemplo visual: pregunta generada -->
-                                        <div class="pregunta-card question ia-generated" data-ia="true">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <label class="fw-bold mb-0">Pregunta generada por IA</label>
-                                                <span class="badge-ia">IA: respuesta marcada</span>
-                                            </div>
-
-                                            <input type="text" class="form-control mb-3"
-                                                value="¿Cuál es la capital de Francia?">
-
-                                            <div class="opcion">
-                                                <!-- IA marcó esta opción como correcta -->
-                                                <input type="radio" id="ia_q1o1" name="ia_q1" value="0" checked
-                                                    data-ia-correct="true" disabled>
-                                                <label for="ia_q1o1">París</label>
-                                            </div>
-
-                                            <div class="opcion">
-                                                <input type="radio" id="ia_q1o2" name="ia_q1" value="1"
-                                                    data-ia-correct="false" disabled>
-                                                <label for="ia_q1o2">Londres</label>
-                                            </div>
-
-                                            <div class="opcion">
-                                                <input type="radio" id="ia_q1o3" name="ia_q1" value="2"
-                                                    data-ia-correct="false" disabled>
-                                                <label for="ia_q1o3">Roma</label>
-                                            </div>
-                                        </div>
+                                  <!-- preguntas generadas por IA se muestran aquí -->
                                     </div>
 
                                     <div class="mt-4 d-flex justify-content-end">
