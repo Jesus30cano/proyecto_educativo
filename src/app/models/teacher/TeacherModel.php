@@ -190,7 +190,7 @@ class TeacherModel
     $questions = [];
     while ($q = $stmt2->fetch(PDO::FETCH_ASSOC)) {
         // Opciones (solo texto, sin id)
-        $stmt3 = $this->conn->prepare("SELECT opcion as text FROM Tb_opciones_respuesta WHERE id_pregunta = ? ORDER BY id_opcion");
+        $stmt3 = $this->conn->prepare("SELECT id_opcion,opcion as text FROM Tb_opciones_respuesta WHERE id_pregunta = ? ORDER BY id_opcion");
         $stmt3->execute([$q['id_pregunta']]);
         $options = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
@@ -214,6 +214,7 @@ class TeacherModel
         'competenceName' => $examData['competencename'],
         'competenceCode' => $examData['competenciacodigo'],
         'description' => $examData['descripcion'],
+        'id_evaluacion'=>$id,
         'questions' => $questions
     ];
 }
