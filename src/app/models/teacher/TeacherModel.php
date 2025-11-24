@@ -60,6 +60,14 @@ class TeacherModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function fn_cursos_competencias_profesor_sin_repetir($profesor_id)
+    {
+        $query = "SELECT * FROM fn_cursos_competencias_profesor_sin_repetir(:profesor_id)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':profesor_id', $profesor_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function obtener_actividades_pendientes_por_calificar($profesor_id)
     {

@@ -16,7 +16,7 @@
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.4s ease, transform 0.4s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   pointer-events: none; /* No bloquea clics en otros elementos */
   position: relative;
 }

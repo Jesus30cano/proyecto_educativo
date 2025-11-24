@@ -19,12 +19,12 @@
    TÍTULO PRINCIPAL
 ============================= */
 .titulo-panel {
-  color: #1565C0 !important;
+  color: #1565c0 !important;
   font-size: 1.7rem;
-  background: #E3F2FD;
+  background: #e3f2fd;
   padding: 14px 18px;
   border-radius: 12px;
-  border-left: 6px solid #1565C0;
+  border-left: 6px solid #1565c0;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
   text-transform: capitalize;
 }
@@ -45,7 +45,7 @@
   border-radius: 14px;
   padding: 18px;
   background: #ffffff;
-  border: 1px solid #DCE2EB;
+  border: 1px solid #dce2eb;
   transition: 0.25s ease;
   text-align: center;
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
@@ -57,13 +57,13 @@
 .course-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-color: #1565C0;
+  border-color: #1565c0;
 }
 
 /* ÍCONO */
 .course-card .course-icon i {
   font-size: 2.6rem;
-  color: #1565C0;
+  color: #1565c0;
   margin-bottom: 10px;
 }
 
@@ -76,9 +76,9 @@
 }
 
 .course-info {
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin: 0;
-  color: #455A64;
+  color: #455a64;
 }
 
 /* CARD MÁS COMPACTA EN MÓVIL */
@@ -92,11 +92,11 @@
   }
 
   .course-title {
-    font-size: .95rem;
+    font-size: 0.95rem;
   }
 
   .course-info {
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -108,7 +108,7 @@
   padding: 0.55rem;
   border-radius: 8px;
   font-weight: 600;
-  background: #1565C0;
+  background: #1565c0;
   color: white;
   border: none;
   width: 100%;
@@ -122,7 +122,7 @@
 @media (max-width: 576px) {
   .course-card button {
     padding: 0.45rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -131,13 +131,13 @@
 ============================= */
 .search-box input {
   border-radius: 10px;
-  border: 1px solid #64B5F6;
+  border: 1px solid #64b5f6;
   padding: 10px 14px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .search-box input:focus {
-  border-color: #1565C0;
+  border-color: #1565c0;
   box-shadow: 0 0 6px rgba(21, 101, 192, 0.45);
 }
 

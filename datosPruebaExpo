@@ -1,0 +1,6386 @@
+--insertamos administrador
+INSERT INTO
+    Tb_usuario (
+        email,
+        tipo_documento,
+        no_documento,
+        password,
+        activo,
+        id_rol
+    )
+VALUES (
+        'admin@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134246',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        1
+    );
+
+insert into
+    Tb_datos_personales (
+        nombre,
+        apellido,
+        fecha_nacimiento,
+        telefono,
+        direccion,
+        genero,
+        id_usuario
+    )
+VALUES (
+        'Brallan',
+        'Echeverria',
+        '1990-01-01',
+        '3001234567',
+        'Calle 123 #45-67',
+        'Masculino',
+        1
+    );
+-- insertar datos de prueba entrega de proyecto
+-- insertar profesores 10
+INSERT INTO
+    Tb_usuario (
+        email,
+        tipo_documento,
+        no_documento,
+        password,
+        activo,
+        id_rol
+    )
+VALUES (
+        'jcano2620k1@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134247',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'juan@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134248',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'pedro@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134249',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'maria@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134250',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'kelly@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134251',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'andres@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134252',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'katia@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134253',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'jorge@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134254',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'paco@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134255',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    ),
+    (
+        'andrea@gmail.com',
+        'cedula_de_ciudadania',
+        '1002134256',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        2
+    );
+
+-- insertamos datos personales
+INSERT INTO
+    Tb_datos_personales (
+        nombre,
+        apellido,
+        fecha_nacimiento,
+        telefono,
+        direccion,
+        genero,
+        id_usuario
+    )
+VALUES (
+        'jesus',
+        'cano',
+        '1985-05-10',
+        '3002152461',
+        'Calle 234 #56-78',
+        'Masculino',
+        2
+    ),
+    (
+        'juan',
+        'perez',
+        '1992-07-15',
+        '3003456789',
+        'Calle 345 #67-89',
+        'Masculino',
+        3
+    ),
+    (
+        'pedro',
+        'lopez',
+        '1988-03-22',
+        '3004567890',
+        'Calle 456 #78-90',
+        'Masculino',
+        4
+    ),
+    (
+        'maria',
+        'gomez',
+        '1995-11-30',
+        '3005678901',
+        'Calle 567 #89-01',
+        'Femenino',
+        5
+    ),
+    (
+        'kelly',
+        'ramirez',
+        '1991-09-18',
+        '3006789012',
+        'Calle 678 #90-12',
+        'Femenino',
+        6
+    ),
+    (
+        'andres',
+        'torres',
+        '1987-12-05',
+        '3007890123',
+        'Calle 789 #01-23',
+        'Masculino',
+        7
+    ),
+    (
+        'katia',
+        'suarez',
+        '1993-04-25',
+        '3008901234',
+        'Calle 890 #12-34',
+        'Femenino',
+        8
+    ),
+    (
+        'jorge',
+        'diaz',
+        '1989-08-14',
+        '3009012345',
+        'Calle 901 #23-45',
+        'Masculino',
+        9
+    ),
+    (
+        'paco',
+        'morales',
+        '1994-02-28',
+        '3010123456',
+        'Calle 012 #34-56',
+        'Masculino',
+        10
+    ),
+    (
+        'andrea',
+        'castillo',
+        '1990-06-06',
+        '3011234567',
+        'Calle 123 #45-67',
+        'Femenino',
+        11
+    );
+-- insertar estudiantes 80
+-- id de 12 a 92
+INSERT INTO
+    Tb_usuario (
+        email,
+        tipo_documento,
+        no_documento,
+        password,
+        activo,
+        id_rol
+    )
+VALUES (
+        'keyner@gmail.com',
+        'cedula_de_ciudadania',
+        '32776429',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776430',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776431',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776432',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776433',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776434',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa@gmail.com',
+        'cedula_de_ciudadania',
+        '32776435',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776436',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana@gmail.com',
+        'cedula_de_ciudadania',
+        '32776437',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario@gmail.com',
+        'cedula_de_ciudadania',
+        '32776438',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin@gmail.com',
+        'cedula_de_ciudadania',
+        '32776439',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea3@gmail.com',
+        'cedula_de_ciudadania',
+        '32776440',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro3@gmail.com',
+        'cedula_de_ciudadania',
+        '32776441',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan3@gmail.com',
+        'cedula_de_ciudadania',
+        '32776442',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana3@gmail.com',
+        'cedula_de_ciudadania',
+        '32776443',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla3@gmail.com',
+        'cedula_de_ciudadania',
+        '32776444',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa90@gmail.com',
+        'cedula_de_ciudadania',
+        '32776445',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa3@gmail.com',
+        'cedula_de_ciudadania',
+        '32776446',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776447',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776448',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin2@gmail.com',
+        'cedula_de_ciudadania',
+        '32776449',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776450',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776451',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776452',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776453',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776454',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776455',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776456',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776457',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin5@gmail.com',
+        'cedula_de_ciudadania',
+        '32776458',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776459',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776460',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776461',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776462',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776463',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776464',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776465',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776466',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin6@gmail.com',
+        'cedula_de_ciudadania',
+        '32776467',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776468',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776469',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776470',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776471',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776472',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776473',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776474',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776475',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin7@gmail.com',
+        'cedula_de_ciudadania',
+        '32776476',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776477',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776478',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776479',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776480',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776481',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776482',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776483',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776484',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin8@gmail.com',
+        'cedula_de_ciudadania',
+        '32776485',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776486',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776487',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776488',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776489',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776490',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776491',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776492',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776493',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin9@gmail.com',
+        'cedula_de_ciudadania',
+        '32776494',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andrea10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776495',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedro10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776496',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776497',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776498',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776499',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'marquesa10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776500',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'silvana10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776501',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'mario10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776502',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'kevin10@gmail.com',
+        'cedula_de_ciudadania',
+        '32776503',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'andre11@gmail.com',
+        'cedula_de_ciudadania',
+        '32776504',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'pedr11@gmail.com',
+        'cedula_de_ciudadania',
+        '32776505',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juan11@gmail.com',
+        'cedula_de_ciudadania',
+        '32776506',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'juana11@gmail.com',
+        'cedula_de_ciudadania',
+        '32776507',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carla11@gmail.com',
+        'cedula_de_ciudadania',
+        '32776508',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    ),
+    (
+        'carlos12@gmail.com',
+        'cedula_de_ciudadania',
+        '32776509',
+        '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S',
+        TRUE,
+        3
+    );
+-- insertamos datos personales estudiantes
+INSERT INTO
+    Tb_datos_personales (
+        nombre,
+        apellido,
+        fecha_nacimiento,
+        telefono,
+        direccion,
+        genero,
+        id_usuario
+    )
+VALUES (
+        'Keiner',
+        'Cardenas',
+        '1980-01-15',
+        '3001110001',
+        'Calle 1',
+        'Masculino',
+        12
+    ),
+    (
+        'Ana',
+        'Gomez',
+        '1990-02-20',
+        '3001110002',
+        'Calle 2',
+        'Femenino',
+        13
+    ),
+    (
+        'Jorge',
+        'Lopez',
+        '1985-03-10',
+        '3001110003',
+        'Calle 3',
+        'Masculino',
+        14
+    ),
+    (
+        'Sofia',
+        'Hernandez',
+        '1992-04-05',
+        '3001110004',
+        'Calle 4',
+        'Femenino',
+        15
+    ),
+    (
+        'Luis',
+        'Martinez',
+        '1988-05-22',
+        '3001110005',
+        'Calle 5',
+        'Masculino',
+        16
+    ),
+    (
+        'Carla',
+        'Ramirez',
+        '1991-06-30',
+        '3001110006',
+        'Calle 6',
+        'Femenino',
+        17
+    ),
+    (
+        'Andres',
+        'Vargas',
+        '1983-07-18',
+        '3001110007',
+        'Calle 7',
+        'Masculino',
+        18
+    ),
+    (
+        'Lucia',
+        'Fernandez',
+        '1994-08-25',
+        '3001110008',
+        'Calle 8',
+        'Femenino',
+        19
+    ),
+    (
+        'Diego',
+        'Sanchez',
+        '1987-09-12',
+        '3001110009',
+        'Calle 9',
+        'Masculino',
+        20
+    ),
+    (
+        'Valentina',
+        'Diaz',
+        '1993-10-15',
+        '3001110010',
+        'Calle 10',
+        'Femenino',
+        21
+    ),
+    (
+        'Javier',
+        'Mendoza',
+        '1984-11-05',
+        '3001110011',
+        'Calle 11',
+        'Masculino',
+        22
+    ),
+    (
+        'Natalia',
+        'Rojas',
+        '1995-12-20',
+        '3001110012',
+        'Calle 12',
+        'Femenino',
+        23
+    ),
+    (
+        'Fernando',
+        'Castro',
+        '1982-01-30',
+        '3001110013',
+        'Calle 13',
+        'Masculino',
+        24
+    ),
+    (
+        'Isabella',
+        'Ortiz',
+        '1990-02-14',
+        '3001110014',
+        'Calle 14',
+        'Femenino',
+        25
+    ),
+    (
+        'Ricardo',
+        'Silva',
+        '1986-03-22',
+        '3001110015',
+        'Calle 15',
+        'Masculino',
+        26
+    ),
+    (
+        'Camila',
+        'Gutierrez',
+        '1991-04-18',
+        '3001110016',
+        'Calle 16',
+        'Femenino',
+        27
+    ),
+    (
+        'Santiago',
+        'Alvarez',
+        '1989-05-27',
+        '3001110017',
+        'Calle 17',
+        'Masculino',
+        28
+    ),
+    (
+        'Daniela',
+        'Torres',
+        '1992-06-09',
+        '3001110018',
+        'Calle 18',
+        'Femenino',
+        29
+    ),
+    (
+        'Alejandro',
+        'Ramos',
+        '1983-07-16',
+        '3001110019',
+        'Calle 19',
+        'Masculino',
+        30
+    ),
+    (
+        'Gabriela',
+        'Vega',
+        '1994-08-23',
+        '3001110020',
+        'Calle 20',
+        'Femenino',
+        31
+    ),
+    (
+        'Sebastian',
+        'Cruz',
+        '1987-09-11',
+        '3001110021',
+        'Calle 21',
+        'Masculino',
+        32
+    ),
+    (
+        'Mariana',
+        'Flores',
+        '1993-10-29',
+        '3001110022',
+        'Calle 22',
+        'Femenino',
+        33
+    ),
+    (
+        'Andres2',
+        'Morales',
+        '1985-11-07',
+        '3001110023',
+        'Calle 23',
+        'Masculino',
+        34
+    ),
+    (
+        'Daniela2',
+        'Jimenez',
+        '1991-12-19',
+        '3001110024',
+        'Calle 24',
+        'Femenino',
+        35
+    ),
+    (
+        'Jorge2',
+        'Suarez',
+        '1984-01-25',
+        '3001110025',
+        'Calle 25',
+        'Masculino',
+        36
+    ),
+    (
+        'Sofia2',
+        'Castillo',
+        '1990-02-13',
+        '3001110026',
+        'Calle 26',
+        'Femenino',
+        37
+    ),
+    (
+        'Luis2',
+        'Ortiz',
+        '1988-03-30',
+        '3001110027',
+        'Calle 27',
+        'Masculino',
+        38
+    ),
+    (
+        'Ana2',
+        'Silva',
+        '1992-04-17',
+        '3001110028',
+        'Calle 28',
+        'Femenino',
+        39
+    ),
+    (
+        'Diego2',
+        'Fernandez',
+        '1986-05-24',
+        '3001110029',
+        'Calle 29',
+        'Masculino',
+        40
+    ),
+    (
+        'Valentina2',
+        'Sanchez',
+        '1993-06-08',
+        '3001110030',
+        'Calle 30',
+        'Femenino',
+        41
+    ),
+    (
+        'Javier2',
+        'Diaz',
+        '1985-07-15',
+        '3001110031',
+        'Calle 31',
+        'Masculino',
+        42
+    ),
+    (
+        'Natalia2',
+        'Mendoza',
+        '1991-08-27',
+        '3001110032',
+        'Calle 32',
+        'Femenino',
+        43
+    ),
+    (
+        'Fernando2',
+        'Rojas',
+        '1983-09-10',
+        '3001110033',
+        'Calle 33',
+        'Masculino',
+        44
+    ),
+    (
+        'Isabella2',
+        'Castro',
+        '1990-10-22',
+        '3001110034',
+        'Calle 34',
+        'Femenino',
+        45
+    ),
+    (
+        'Ricardo2',
+        'Ortiz',
+        '1987-11-06',
+        '3001110035',
+        'Calle 35',
+        'Masculino',
+        46
+    ),
+    (
+        'Camila2',
+        'Silva',
+        '1992-12-18',
+        '3001110036',
+        'Calle 36',
+        'Femenino',
+        47
+    ),
+    (
+        'Santiago2',
+        'Gutierrez',
+        '1984-01-29',
+        '3001110037',
+        'Calle 37',
+        'Masculino',
+        48
+    ),
+    (
+        'Daniela3',
+        'Alvarez',
+        '1991-02-15',
+        '3001110038',
+        'Calle 38',
+        'Femenino',
+        49
+    ),
+    (
+        'Alejandro2',
+        'Torres',
+        '1986-03-23',
+        '3001110039',
+        'Calle 39',
+        'Masculino',
+        50
+    ),
+    (
+        'Gabriela2',
+        'Ramos',
+        '1993-04-11',
+        '3001110040',
+        'Calle 40',
+        'Femenino',
+        51
+    ),
+    (
+        'Sebastian2',
+        'Vega',
+        '1985-05-28',
+        '3001110041',
+        'Calle 41',
+        'Masculino',
+        52
+    ),
+    (
+        'Mariana2',
+        'Cruz',
+        '1990-06-09',
+        '3001110042',
+        'Calle 42',
+        'Femenino',
+        53
+    ),
+    (
+        'Andres3',
+        'Flores',
+        '1988-07-17',
+        '3001110043',
+        'Calle 43',
+        'Masculino',
+        54
+    ),
+    (
+        'Daniela4',
+        'Morales',
+        '1992-08-26',
+        '3001110044',
+        'Calle 44',
+        'Femenino',
+        55
+    ),
+    (
+        'Jorge3',
+        'Jimenez',
+        '1984-09-12',
+        '3001110045',
+        'Calle 45',
+        'Masculino',
+        56
+    ),
+    (
+        'Sofia3',
+        'Suarez',
+        '1991-10-20',
+        '3001110046',
+        'Calle 46',
+        'Femenino',
+        57
+    ),
+    (
+        'Luis3',
+        'Castillo',
+        '1987-11-04',
+        '3001110047',
+        'Calle 47',
+        'Masculino',
+        58
+    ),
+    (
+        'Ana3',
+        'Ortiz',
+        '1993-12-16',
+        '3001110048',
+        'Calle 48',
+        'Femenino',
+        59
+    ),
+    (
+        'Diego3',
+        'Silva',
+        '1985-01-27',
+        '3001110049',
+        'Calle 49',
+        'Masculino',
+        60
+    ),
+    (
+        'Valentina3',
+        'Fernandez',
+        '1990-02-14',
+        '3001110050',
+        'Calle 50',
+        'Femenino',
+        61
+    ),
+    (
+        'Javier3',
+        'Sanchez',
+        '1986-03-21',
+        '3001110051',
+        'Calle 51',
+        'Masculino',
+        62
+    ),
+    (
+        'Natalia3',
+        'Diaz',
+        '1992-04-30',
+        '3001110052',
+        'Calle 52',
+        'Femenino',
+        63
+    ),
+    (
+        'Fernando3',
+        'Mendoza',
+        '1983-05-12',
+        '3001110053',
+        'Calle 53',
+        'Masculino',
+        64
+    ),
+    (
+        'Isabella3',
+        'Rojas',
+        '1991-06-25',
+        '3001110054',
+        'Calle 54',
+        'Femenino',
+        65
+    ),
+    (
+        'Ricardo3',
+        'Castro',
+        '1987-07-09',
+        '3001110055',
+        'Calle 55',
+        'Masculino',
+        66
+    ),
+    (
+        'Camila3',
+        'Ortiz',
+        '1993-08-18',
+        '3001110056',
+        'Calle 56',
+        'Femenino',
+        67
+    ),
+    (
+        'Santiago3',
+        'Silva',
+        '1985-09-29',
+        '3001110057',
+        'Calle 57',
+        'Masculino',
+        68
+    ),
+    (
+        'Daniela5',
+        'Gutierrez',
+        '1990-10-13',
+        '3001110058',
+        'Calle 58',
+        'Femenino',
+        69
+    ),
+    (
+        'Alejandro3',
+        'Alvarez',
+        '1988-11-22',
+        '3001110059',
+        'Calle 59',
+        'Masculino',
+        70
+    ),
+    (
+        'Gabriela3',
+        'Torres',
+        '1992-12-05',
+        '3001110060',
+        'Calle 60',
+        'Femenino',
+        71
+    ),
+    (
+        'Sebastian3',
+        'Ramos',
+        '1984-01-16',
+        '3001110061',
+        'Calle 61',
+        'Masculino',
+        72
+    ),
+    (
+        'Mariana3',
+        'Vega',
+        '1991-02-28',
+        '3001110062',
+        'Calle 62',
+        'Femenino',
+        73
+    ),
+    (
+        'Andres4',
+        'Cruz',
+        '1986-03-11',
+        '3001110063',
+        'Calle 63',
+        'Masculino',
+        74
+    ),
+    (
+        'Daniela6',
+        'Flores',
+        '1993-04-24',
+        '3001110064',
+        'Calle 64',
+        'Femenino',
+        75
+    ),
+    (
+        'Jorge4',
+        'Morales',
+        '1985-05-08',
+        '3001110065',
+        'Calle 65',
+        'Masculino',
+        76
+    ),
+    (
+        'Sofia4',
+        'Jimenez',
+        '1990-06-19',
+        '3001110066',
+        'Calle 66',
+        'Femenino',
+        77
+    ),
+    (
+        'Luis4',
+        'Suarez',
+        '1988-07-27',
+        '3001110067',
+        'Calle 67',
+        'Masculino',
+        78
+    ),
+    (
+        'Ana4',
+        'Castillo',
+        '1992-08-10',
+        '3001110068',
+        'Calle 68',
+        'Femenino',
+        79
+    ),
+    (
+        'Diego4',
+        'Ortiz',
+        '1984-09-21',
+        '3001110069',
+        'Calle 69',
+        'Masculino',
+        80
+    ),
+    (
+        'Valentina4',
+        'Silva',
+        '1991-10-04',
+        '3001110070',
+        'Calle 70',
+        'Femenino',
+        81
+    ),
+    (
+        'Javier4',
+        'Fernandez',
+        '1987-11-15',
+        '3001110071',
+        'Calle 71',
+        'Masculino',
+        82
+    ),
+    (
+        'Natalia4',
+        'Sanchez',
+        '1993-12-29',
+        '3001110072',
+        'Calle 72',
+        'Femenino',
+        83
+    ),
+    (
+        'Fernando4',
+        'Diaz',
+        '1986-01-13',
+        '3001110073',
+        'Calle 73',
+        'Masculino',
+        84
+    ),
+    (
+        'Isabella4',
+        'Mendoza',
+        '1990-02-26',
+        '3001110074',
+        'Calle 74',
+        'Femenino',
+        85
+    ),
+    (
+        'Ricardo4',
+        'Rojas',
+        '1985-03-09',
+        '3001110075',
+        'Calle 75',
+        'Masculino',
+        86
+    ),
+    (
+        'Camila4',
+        'Castro',
+        '1992-04-20',
+        '3001110076',
+        'Calle 76',
+        'Femenino',
+        87
+    ),
+    (
+        'Santiago4',
+        'Ortiz',
+        '1988-05-31',
+        '3001110077',
+        'Calle 77',
+        'Masculino',
+        88
+    ),
+    (
+        'Daniela7',
+        'Silva',
+        '1991-06-14',
+        '3001110078',
+        'Calle 78',
+        'Femenino',
+        89
+    ),
+    (
+        'Alejandro4',
+        'Gutierrez',
+        '1984-07-25',
+        '3001110079',
+        'Calle 79',
+        'Masculino',
+        90
+    ),
+    (
+        'Gabriela4',
+        'Alvarez',
+        '1990-08-08',
+        '3001110080',
+        'Calle 80',
+        'Femenino',
+        91
+    ),
+    (
+        'Sebastian4',
+        'Torres',
+        '1987-09-19',
+        '3001110081',
+        'Calle 81',
+        'Masculino',
+        92
+    );
+
+--insertamos cursos 5
+INSERT INTO
+    Tb_curso (
+        ficha,
+        nombre_curso,
+        id_profesor_lider
+    )
+VALUES ('2933470', 'ADSO', 2),
+    ('2933471', 'Contabilidad', 3),
+    (
+        '2933472',
+        'Gestion empresarial',
+        4
+    ),
+    ('2933473', 'Redes', 5),
+    ('2933474', 'Electricidad', 6);
+-- insertamos estudiantes a los cursos
+-- 16 estudiantes por curso
+INSERT INTO
+    Tb_estudiante_curso (id_usuario, id_curso)
+VALUES (12, 1),
+    (13, 1),
+    (14, 1),
+    (15, 1),
+    (16, 1),
+    (17, 1),
+    (18, 1),
+    (19, 1),
+    (20, 1),
+    (21, 1),
+    (22, 1),
+    (23, 1),
+    (24, 1),
+    (25, 1),
+    (26, 1),
+    (27, 1),
+    (28, 2),
+    (29, 2),
+    (30, 2),
+    (31, 2),
+    (32, 2),
+    (33, 2),
+    (34, 2),
+    (35, 2),
+    (36, 2),
+    (37, 2),
+    (38, 2),
+    (39, 2),
+    (40, 2),
+    (41, 2),
+    (42, 2),
+    (43, 2),
+    (44, 3),
+    (45, 3),
+    (46, 3),
+    (47, 3),
+    (48, 3),
+    (49, 3),
+    (50, 3),
+    (51, 3),
+    (52, 3),
+    (53, 3),
+    (54, 3),
+    (55, 3),
+    (56, 3),
+    (57, 3),
+    (58, 3),
+    (59, 3),
+    (60, 4),
+    (61, 4),
+    (62, 4),
+    (63, 4),
+    (64, 4),
+    (65, 4),
+    (66, 4),
+    (67, 4),
+    (68, 4),
+    (69, 4),
+    (70, 4),
+    (71, 4),
+    (72, 4),
+    (73, 4),
+    (74, 4),
+    (75, 4),
+    (76, 5),
+    (77, 5),
+    (78, 5),
+    (79, 5),
+    (80, 5),
+    (81, 5),
+    (82, 5),
+    (83, 5),
+    (84, 5),
+    (85, 5),
+    (86, 5),
+    (87, 5),
+    (88, 5),
+    (89, 5),
+    (90, 5),
+    (91, 5);
+-- asignamos profesores a los cursos
+INSERT INTO
+    Tb_profesor_curso (id_usuario, id_curso)
+VALUES (2, 1),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1),
+    (7, 1),
+    (8, 1),
+    (9, 1),
+    (10, 1),
+    (11, 1),
+    (2, 2),
+    (3, 2),
+    (4, 2),
+    (5, 2),
+    (6, 2),
+    (7, 2),
+    (8, 2),
+    (9, 2),
+    (10, 2),
+    (11, 2),
+    (2, 3),
+    (3, 3),
+    (4, 3),
+    (5, 3),
+    (6, 3),
+    (7, 4),
+    (8, 4),
+    (9, 4),
+    (10, 4),
+    (11, 4),
+    (2, 5),
+    (3, 5),
+    (4, 5),
+    (5, 5),
+    (6, 5),
+    (7, 5),
+    (8, 5),
+    (9, 5),
+    (10, 5),
+    (11, 5);
+-- INSERT  CONTACTOS DE EMERGENCIA
+INSERT INTO
+    Tb_contacto_emergencia (
+        nombre,
+        apellido,
+        telefono,
+        parentesco,
+        direccion,
+        correo,
+        observaciones,
+        id_usuario
+    )
+VALUES (
+        'Laura',
+        'Martinez',
+        '3201000001',
+        'Madre',
+        'Calle Sol 101',
+        'laura.martinez@gmail.com',
+        'Disponible en horario laboral',
+        1
+    ),
+    (
+        'Carlos',
+        'Ruiz',
+        '3201000002',
+        'Padre',
+        'Calle Brisa 102',
+        'carlos.ruiz@gmail.com',
+        'Llamar antes de las 7pm',
+        2
+    ),
+    (
+        'Ana',
+        'Jimenez',
+        '3201000003',
+        'Hermana',
+        'Calle Sur 103',
+        'ana.jimenez@gmail.com',
+        'Vive cerca',
+        3
+    ),
+    (
+        'Josefina',
+        'Rodriguez',
+        '3201000004',
+        'Madre',
+        'Calle Olivo 104',
+        'josefina.rodriguez@email.com',
+        'Urgencias médicas',
+        4
+    ),
+    (
+        'Esteban',
+        'Fernandez',
+        '3201000005',
+        'Padre',
+        'Calle Norte 105',
+        'esteban.fernandez@yahoo.com',
+        'Contactar por WhatsApp',
+        5
+    ),
+    (
+        'Victor',
+        'Moreno',
+        '3201000006',
+        'Tío',
+        'Calle Lago 106',
+        'victor.moreno@email.com',
+        NULL,
+        6
+    ),
+    (
+        'Jessica',
+        'Garcia',
+        '3201000007',
+        'Madre',
+        'Calle Central 107',
+        'jessica.garcia@gmail.com',
+        'Dispone de vehículo',
+        7
+    ),
+    (
+        'Andres',
+        'Lopez',
+        '3201000008',
+        'Padre',
+        'Calle Este 108',
+        'andres.lopez@email.com',
+        NULL,
+        8
+    ),
+    (
+        'Maria',
+        'Alvarez',
+        '3201000009',
+        'Hermana',
+        'Calle Oeste 109',
+        'maria.alvarez@gmail.com',
+        'Habla inglés',
+        9
+    ),
+    (
+        'Sandra',
+        'Mendez',
+        '3201000010',
+        'Madre',
+        'Calle Plaza 110',
+        'sandra.mendez@email.com',
+        'Contactar después de las 6pm',
+        10
+    ),
+    (
+        'Rosa',
+        'Ortega',
+        '3201000011',
+        'Tía',
+        'Calle Viña 111',
+        'rosa.ortega@hotmail.com',
+        NULL,
+        11
+    ),
+    (
+        'Julio',
+        'Navarro',
+        '3201000012',
+        'Padre',
+        'Calle Verde 112',
+        'julio.navarro@gmail.com',
+        NULL,
+        12
+    ),
+    (
+        'Sandra',
+        'Herrera',
+        '3201000013',
+        'Madre',
+        'Calle Limón 113',
+        'sandraherrera@email.com',
+        'Vecina cercana',
+        13
+    ),
+    (
+        'Claudia',
+        'Pineda',
+        '3201000014',
+        'Hermana',
+        'Calle Mar 114',
+        'claudia.pineda@gmail.com',
+        NULL,
+        14
+    ),
+    (
+        'Raul',
+        'Salas',
+        '3201000015',
+        'Padre',
+        'Calle Agua 115',
+        'raul.salas@gmail.com',
+        'Trabaja cerca',
+        15
+    ),
+    (
+        'Marta',
+        'Salgado',
+        '3201000016',
+        'Madre',
+        'Calle Arena 116',
+        'marta.salgado@email.com',
+        NULL,
+        16
+    ),
+    (
+        'Pedro',
+        'Acosta',
+        '3201000017',
+        'Tío',
+        'Calle Nube 117',
+        'pedro.acosta@email.com',
+        NULL,
+        17
+    ),
+    (
+        'Clara',
+        'Rivas',
+        '3201000018',
+        'Madre',
+        'Calle Rosa 118',
+        'clara.rivas@gmail.com',
+        NULL,
+        18
+    ),
+    (
+        'Fernando',
+        'Benitez',
+        '3201000019',
+        'Padre',
+        'Calle Luna 119',
+        'fernando.benitez@gmail.com',
+        NULL,
+        19
+    ),
+    (
+        'Isabel',
+        'Ramos',
+        '3201000020',
+        'Madre',
+        'Calle Sol 120',
+        'isabel.ramos@email.com',
+        'Disponible fines de semana',
+        20
+    ),
+    (
+        'Carmen',
+        'Villegas',
+        '3201000021',
+        'Amiga',
+        'Calle Palma 121',
+        'carmen.villegas@email.com',
+        NULL,
+        21
+    ),
+    (
+        'Pablo',
+        'Lara',
+        '3201000022',
+        'Padre',
+        'Calle Finca 122',
+        'pablo.lara@gmail.com',
+        NULL,
+        22
+    ),
+    (
+        'Victor',
+        'Leiva',
+        '3201000023',
+        'Hermano',
+        'Calle Delfín 123',
+        'victor.leiva@email.com',
+        NULL,
+        23
+    ),
+    (
+        'Angela',
+        'Rivera',
+        '3201000024',
+        'Madre',
+        'Calle Girasol 124',
+        'angela.rivera@gmail.com',
+        NULL,
+        24
+    ),
+    (
+        'Andres',
+        'Guerrero',
+        '3201000025',
+        'Padre',
+        'Calle Ceibo 125',
+        'andres.guerrero@email.com',
+        NULL,
+        25
+    ),
+    (
+        'Natalia',
+        'Delgado',
+        '3201000026',
+        'Tía',
+        'Calle Cereza 126',
+        'natalia.delgado@email.com',
+        NULL,
+        26
+    ),
+    (
+        'Estefania',
+        'Ponce',
+        '3201000027',
+        'Madre',
+        'Calle Azucena 127',
+        'estefania.ponce@email.com',
+        NULL,
+        27
+    ),
+    (
+        'Dario',
+        'Cuevas',
+        '3201000028',
+        'Hermano',
+        'Calle Coral 128',
+        'dario.cuevas@email.com',
+        NULL,
+        28
+    ),
+    (
+        'Andrea',
+        'Bautista',
+        '3201000029',
+        'Madre',
+        'Calle Ciprés 129',
+        'andrea.bautista@email.com',
+        NULL,
+        29
+    ),
+    (
+        'Emilio',
+        'Parra',
+        '3201000030',
+        'Tío',
+        'Calle Laurel 130',
+        'emilio.parra@email.com',
+        NULL,
+        30
+    ),
+    (
+        'Patricia',
+        'Perez',
+        '3101110001',
+        'Esposa',
+        'Av. Maestro 1',
+        'patricia.perez@gmail.com',
+        'Viaja frecuentemente',
+        31
+    ),
+    (
+        'Jorge',
+        'Gomez',
+        '3101110002',
+        'Hermano',
+        'Av. Maestro 2',
+        'jorge.gomez@email.com',
+        NULL,
+        32
+    ),
+    (
+        'Cecilia',
+        'Rojas',
+        '3101110003',
+        'Madre',
+        'Av. Maestro 3',
+        'cecilia.rojas@gmail.com',
+        NULL,
+        33
+    ),
+    (
+        'Eduardo',
+        'Vega',
+        '3101110004',
+        'Padre',
+        'Av. Maestro 4',
+        'eduardo.vega@email.com',
+        'Atienden en horario nocturno',
+        34
+    ),
+    (
+        'Vanesa',
+        'Diaz',
+        '3101110005',
+        'Esposa',
+        'Av. Maestro 5',
+        'vanesa.diaz@email.com',
+        NULL,
+        35
+    ),
+    (
+        'Santiago',
+        'Luna',
+        '3101110006',
+        'Hermano',
+        'Av. Maestro 6',
+        'santiago.luna@gmail.com',
+        NULL,
+        36
+    ),
+    (
+        'Tatiana',
+        'Santos',
+        '3101110007',
+        'Madre',
+        'Av. Maestro 7',
+        'tatiana.santos@email.com',
+        'Vecina cercana',
+        37
+    ),
+    (
+        'Ruben',
+        'Ramirez',
+        '3101110008',
+        'Padre',
+        'Av. Maestro 8',
+        'ruben.ramirez@email.com',
+        NULL,
+        38
+    ),
+    (
+        'Lucia',
+        'Torres',
+        '3101110009',
+        'Esposa',
+        'Av. Maestro 9',
+        'lucia.torres@hotmail.com',
+        NULL,
+        39
+    ),
+    (
+        'Alfredo',
+        'Castro',
+        '3101110010',
+        'Hermano',
+        'Av. Maestro 10',
+        'alfredo.castro@gmail.com',
+        'Disponible solo sábados',
+        40
+    ),
+    (
+        'Ruben',
+        'Ramirez',
+        '3101110008',
+        'Padre',
+        'Av. Maestro 8',
+        'ruben.ramirez@email.com',
+        NULL,
+        41
+    ),
+    (
+        'Lucia',
+        'Torres',
+        '3101110009',
+        'Esposa',
+        'Av. Maestro 9',
+        'lucia.torres@hotmail.com',
+        NULL,
+        42
+    ),
+    (
+        'Alfredo',
+        'Castro',
+        '3101110010',
+        'Hermano',
+        'Av. Maestro 10',
+        'alfredo.castro@gmail.com',
+        'Disponible solo sábados',
+        43
+    ),
+    (
+        'Laura',
+        'Martinez',
+        '3201000001',
+        'Madre',
+        'Calle Sol 101',
+        'laura.martinez@gmail.com',
+        'Disponible en horario laboral',
+        44
+    ),
+    (
+        'Carlos',
+        'Ruiz',
+        '3201000002',
+        'Padre',
+        'Calle Brisa 102',
+        'carlos.ruiz@gmail.com',
+        'Llamar antes de las 7pm',
+        45
+    ),
+    (
+        'Ana',
+        'Jimenez',
+        '3201000003',
+        'Hermana',
+        'Calle Sur 103',
+        'ana.jimenez@gmail.com',
+        'Vive cerca',
+        46
+    ),
+    (
+        'Josefina',
+        'Rodriguez',
+        '3201000004',
+        'Madre',
+        'Calle Olivo 104',
+        'josefina.rodriguez@email.com',
+        'Urgencias médicas',
+        47
+    ),
+    (
+        'Esteban',
+        'Fernandez',
+        '3201000005',
+        'Padre',
+        'Calle Norte 105',
+        'esteban.fernandez@yahoo.com',
+        'Contactar por WhatsApp',
+        48
+    ),
+    (
+        'Victor',
+        'Moreno',
+        '3201000006',
+        'Tío',
+        'Calle Lago 106',
+        'victor.moreno@email.com',
+        NULL,
+        49
+    ),
+    (
+        'Jessica',
+        'Garcia',
+        '3201000007',
+        'Madre',
+        'Calle Central 107',
+        'jessica.garcia@gmail.com',
+        'Dispone de vehículo',
+        50
+    ),
+    (
+        'Andres',
+        'Lopez',
+        '3201000008',
+        'Padre',
+        'Calle Este 108',
+        'andres.lopez@email.com',
+        NULL,
+        51
+    ),
+    (
+        'Maria',
+        'Alvarez',
+        '3201000009',
+        'Hermana',
+        'Calle Oeste 109',
+        'maria.alvarez@gmail.com',
+        'Habla inglés',
+        52
+    ),
+    (
+        'Sandra',
+        'Mendez',
+        '3201000010',
+        'Madre',
+        'Calle Plaza 110',
+        'sandra.mendez@email.com',
+        'Contactar después de las 6pm',
+        53
+    ),
+    (
+        'Rosa',
+        'Ortega',
+        '3201000011',
+        'Tía',
+        'Calle Viña 111',
+        'rosa.ortega@hotmail.com',
+        NULL,
+        54
+    ),
+    (
+        'Julio',
+        'Navarro',
+        '3201000012',
+        'Padre',
+        'Calle Verde 112',
+        'julio.navarro@gmail.com',
+        NULL,
+        55
+    ),
+    (
+        'Sandra',
+        'Herrera',
+        '3201000013',
+        'Madre',
+        'Calle Limón 113',
+        'sandraherrera@email.com',
+        'Vecina cercana',
+        56
+    ),
+    (
+        'Claudia',
+        'Pineda',
+        '3201000014',
+        'Hermana',
+        'Calle Mar 114',
+        'claudia.pineda@gmail.com',
+        NULL,
+        57
+    ),
+    (
+        'Raul',
+        'Salas',
+        '3201000015',
+        'Padre',
+        'Calle Agua 115',
+        'raul.salas@gmail.com',
+        'Trabaja cerca',
+        58
+    ),
+    (
+        'Marta',
+        'Salgado',
+        '3201000016',
+        'Madre',
+        'Calle Arena 116',
+        'marta.salgado@email.com',
+        NULL,
+        59
+    ),
+    (
+        'Pedro',
+        'Acosta',
+        '3201000017',
+        'Tío',
+        'Calle Nube 117',
+        'pedro.acosta@email.com',
+        NULL,
+        60
+    ),
+    (
+        'Clara',
+        'Rivas',
+        '3201000018',
+        'Madre',
+        'Calle Rosa 118',
+        'clara.rivas@gmail.com',
+        NULL,
+        61
+    ),
+    (
+        'Fernando',
+        'Benitez',
+        '3201000019',
+        'Padre',
+        'Calle Luna 119',
+        'fernando.benitez@gmail.com',
+        NULL,
+        62
+    ),
+    (
+        'Isabel',
+        'Ramos',
+        '3201000020',
+        'Madre',
+        'Calle Sol 120',
+        'isabel.ramos@email.com',
+        'Disponible fines de semana',
+        63
+    ),
+    (
+        'Carmen',
+        'Villegas',
+        '3201000021',
+        'Amiga',
+        'Calle Palma 121',
+        'carmen.villegas@email.com',
+        NULL,
+        64
+    ),
+    (
+        'Pablo',
+        'Lara',
+        '3201000022',
+        'Padre',
+        'Calle Finca 122',
+        'pablo.lara@gmail.com',
+        NULL,
+        65
+    ),
+    (
+        'Victor',
+        'Leiva',
+        '3201000023',
+        'Hermano',
+        'Calle Delfín 123',
+        'victor.leiva@email.com',
+        NULL,
+        66
+    ),
+    (
+        'Angela',
+        'Rivera',
+        '3201000024',
+        'Madre',
+        'Calle Girasol 124',
+        'angela.rivera@gmail.com',
+        NULL,
+        67
+    ),
+    (
+        'Andres',
+        'Guerrero',
+        '3201000025',
+        'Padre',
+        'Calle Ceibo 125',
+        'andres.guerrero@email.com',
+        NULL,
+        68
+    ),
+    (
+        'Natalia',
+        'Delgado',
+        '3201000026',
+        'Tía',
+        'Calle Cereza 126',
+        'natalia.delgado@email.com',
+        NULL,
+        69
+    ),
+    (
+        'Estefania',
+        'Ponce',
+        '3201000027',
+        'Madre',
+        'Calle Azucena 127',
+        'estefania.ponce@email.com',
+        NULL,
+        70
+    ),
+    (
+        'Dario',
+        'Cuevas',
+        '3201000028',
+        'Hermano',
+        'Calle Coral 128',
+        'dario.cuevas@email.com',
+        NULL,
+        71
+    ),
+    (
+        'Andrea',
+        'Bautista',
+        '3201000029',
+        'Madre',
+        'Calle Ciprés 129',
+        'andrea.bautista@email.com',
+        NULL,
+        72
+    ),
+    (
+        'Emilio',
+        'Parra',
+        '3201000030',
+        'Tío',
+        'Calle Laurel 130',
+        'emilio.parra@email.com',
+        NULL,
+        73
+    ),
+    (
+        'Laura',
+        'Martinez',
+        '3201000001',
+        'Madre',
+        'Calle Sol 101',
+        'laura.martinez@gmail.com',
+        'Disponible en horario laboral',
+        74
+    ),
+    (
+        'Carlos',
+        'Ruiz',
+        '3201000002',
+        'Padre',
+        'Calle Brisa 102',
+        'carlos.ruiz@gmail.com',
+        'Llamar antes de las 7pm',
+        75
+    ),
+    (
+        'Ana',
+        'Jimenez',
+        '3201000003',
+        'Hermana',
+        'Calle Sur 103',
+        'ana.jimenez@gmail.com',
+        'Vive cerca',
+        76
+    ),
+    (
+        'Josefina',
+        'Rodriguez',
+        '3201000004',
+        'Madre',
+        'Calle Olivo 104',
+        'josefina.rodriguez@email.com',
+        'Urgencias médicas',
+        77
+    ),
+    (
+        'Esteban',
+        'Fernandez',
+        '3201000005',
+        'Padre',
+        'Calle Norte 105',
+        'esteban.fernandez@yahoo.com',
+        'Contactar por WhatsApp',
+        78
+    ),
+    (
+        'Victor',
+        'Moreno',
+        '3201000006',
+        'Tío',
+        'Calle Lago 106',
+        'victor.moreno@email.com',
+        NULL,
+        79
+    ),
+    (
+        'Jessica',
+        'Garcia',
+        '3201000007',
+        'Madre',
+        'Calle Central 107',
+        'jessica.garcia@gmail.com',
+        'Dispone de vehículo',
+        80
+    ),
+    (
+        'Andres',
+        'Lopez',
+        '3201000008',
+        'Padre',
+        'Calle Este 108',
+        'andres.lopez@email.com',
+        NULL,
+        81
+    ),
+    (
+        'Maria',
+        'Alvarez',
+        '3201000009',
+        'Hermana',
+        'Calle Oeste 109',
+        'maria.alvarez@gmail.com',
+        'Habla inglés',
+        82
+    ),
+    (
+        'Sandra',
+        'Mendez',
+        '3201000010',
+        'Madre',
+        'Calle Plaza 110',
+        'sandra.mendez@email.com',
+        'Contactar después de las 6pm',
+        83
+    ),
+    (
+        'Rosa',
+        'Ortega',
+        '3201000011',
+        'Tía',
+        'Calle Viña 111',
+        'rosa.ortega@hotmail.com',
+        NULL,
+        84
+    ),
+    (
+        'Julio',
+        'Navarro',
+        '3201000012',
+        'Padre',
+        'Calle Verde 112',
+        'julio.navarro@gmail.com',
+        NULL,
+        85
+    ),
+    (
+        'Sandra',
+        'Herrera',
+        '3201000013',
+        'Madre',
+        'Calle Limón 113',
+        'sandraherrera@email.com',
+        'Vecina cercana',
+        86
+    ),
+    (
+        'Claudia',
+        'Pineda',
+        '3201000014',
+        'Hermana',
+        'Calle Mar 114',
+        'claudia.pineda@gmail.com',
+        NULL,
+        87
+    ),
+    (
+        'Raul',
+        'Salas',
+        '3201000015',
+        'Padre',
+        'Calle Agua 115',
+        'raul.salas@gmail.com',
+        'Trabaja cerca',
+        88
+    ),
+    (
+        'Marta',
+        'Salgado',
+        '3201000016',
+        'Madre',
+        'Calle Arena 116',
+        'marta.salgado@email.com',
+        NULL,
+        89
+    ),
+    (
+        'Pedro',
+        'Acosta',
+        '3201000017',
+        'Tío',
+        'Calle Nube 117',
+        'pedro.acosta@email.com',
+        NULL,
+        90
+    ),
+    (
+        'Clara',
+        'Rivas',
+        '3201000018',
+        'Madre',
+        'Calle Rosa 118',
+        'clara.rivas@gmail.com',
+        NULL,
+        91
+    );
+-- INSERTAR REGISTROS DE ASISTENCIA PARA LOs 16 ESTUDIANTES EN SUS RESPECTIVOS CURSOS
+INSERT INTO
+    Tb_asistencia (
+        fecha,
+        estado,
+        observaciones,
+        id_estudiante_curso,
+        id_profesor
+    )
+VALUES (
+        '2024-11-20',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Participativo en clase',
+        2,
+        2
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen comportamiento',
+        4,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        2
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Muy participativo',
+        8,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Excelente actitud',
+        11,
+        2
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Atento y participativo',
+        15,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        2
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Participativo en clase',
+        2,
+        3
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen comportamiento',
+        4,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        3
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Muy participativo',
+        8,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Excelente actitud',
+        11,
+        3
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Atento y participativo',
+        15,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        3
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Participativo en clase',
+        2,
+        4
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen comportamiento',
+        4,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        4
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Muy participativo',
+        8,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Excelente actitud',
+        11,
+        4
+    ),
+    (
+        '2024-11-20',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Atento y participativo',
+        15,
+        4
+    ),
+    (
+        '2024-11-20',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        4
+    );
+--dia 2024-11-20
+INSERT INTO
+    Tb_asistencia (
+        fecha,
+        estado,
+        observaciones,
+        id_estudiante_curso,
+        id_profesor
+    )
+VALUES (
+        '2024-11-21',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Participativo en clase',
+        2,
+        2
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen comportamiento',
+        4,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        2
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Muy participativo',
+        8,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Excelente actitud',
+        11,
+        2
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Atento y participativo',
+        15,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        2
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Participativo en clase',
+        2,
+        3
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen comportamiento',
+        4,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        3
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Muy participativo',
+        8,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Excelente actitud',
+        11,
+        3
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Atento y participativo',
+        15,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        3
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Participativo en clase',
+        2,
+        4
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen comportamiento',
+        4,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        4
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Muy participativo',
+        8,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Excelente actitud',
+        11,
+        4
+    ),
+    (
+        '2024-11-21',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Atento y participativo',
+        15,
+        4
+    ),
+    (
+        '2024-11-21',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        4
+    );
+--dia 2024-11-22
+INSERT INTO
+    Tb_asistencia (
+        fecha,
+        estado,
+        observaciones,
+        id_estudiante_curso,
+        id_profesor
+    )
+VALUES (
+        '2024-11-22',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Participativo en clase',
+        2,
+        2
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen comportamiento',
+        4,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        2
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Muy participativo',
+        8,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Excelente actitud',
+        11,
+        2
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Atento y participativo',
+        15,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        2
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Participativo en clase',
+        2,
+        3
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen comportamiento',
+        4,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        3
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Muy participativo',
+        8,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Excelente actitud',
+        11,
+        3
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Atento y participativo',
+        15,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        3
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Llegó a tiempo',
+        1,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Participativo en clase',
+        2,
+        4
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó por enfermedad',
+        3,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen comportamiento',
+        4,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Entregó tarea a tiempo',
+        5,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Necesita mejorar atención',
+        6,
+        4
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó sin justificación',
+        7,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Muy participativo',
+        8,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen desempeño en actividades',
+        9,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Llegó tarde pero asistió',
+        10,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Excelente actitud',
+        11,
+        4
+    ),
+    (
+        '2024-11-22',
+        'ausente',
+        'Faltó por viaje familiar',
+        12,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Necesita mejorar puntualidad',
+        13,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Buen trabajo en grupo',
+        14,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Atento y participativo',
+        15,
+        4
+    ),
+    (
+        '2024-11-22',
+        'presente',
+        'Cumplió con todas las tareas',
+        16,
+        4
+    );
+-- insertamos las competencias
+INSERT INTO
+    Tb_competencia (
+        codigo,
+        nombre,
+        descripcion,
+        id_profesor
+    )
+VALUES (
+        '111789270',
+        'arquitectura de software',
+        'Competencia en diseño y arquitectura de sistemas de software.',
+        2
+    ),
+    (
+        '111789271',
+        'desarrollo web',
+        'Habilidad para crear y mantener sitios web.',
+        2
+    ),
+    (
+        '111789272',
+        'bases de datos',
+        'Conocimiento en diseño, implementación y gestión de bases de datos.',
+        2
+    ),
+    (
+        '111789273',
+        'redes de computadoras',
+        'Comprensión de los principios y prácticas de las redes de computadoras.',
+        2
+    ),
+    (
+        '111789274',
+        'seguridad informática',
+        'Habilidad para proteger sistemas y datos contra amenazas cibernéticas.',
+        2
+    ),
+    -- competencias profesor 3
+    (
+        '111789275',
+        'inteligencia artificial',
+        'Conocimiento en algoritmos y técnicas de inteligencia artificial.',
+        3
+    ),
+    (
+        '111789276',
+        'aprendizaje automático',
+        'Habilidad para desarrollar y aplicar modelos de aprendizaje automático.',
+        3
+    ),
+    (
+        '111789277',
+        'visión por computadora',
+        'Competencia en procesamiento y análisis de imágenes y videos.',
+        3
+    ),
+    (
+        '111789278',
+        'procesamiento de lenguaje natural',
+        'Habilidad para trabajar con sistemas que entienden y generan lenguaje humano.',
+        3
+    ),
+    (
+        '111789279',
+        'robótica',
+        'Conocimiento en diseño, construcción y operación de robots.',
+        3
+    ),
+    -- competencia profesor 4 ingles 
+    (
+        '111789280',
+        'gramática inglesa',
+        'Conocimiento profundo de las reglas gramaticales del inglés.',
+        4
+    ),
+    (
+        '111789281',
+        'vocabulario inglés',
+        'Habilidad para utilizar y enseñar un amplio vocabulario en inglés.',
+        4
+    ),
+    (
+        '111789282',
+        'pronunciación inglesa',
+        'Competencia en la correcta pronunciación del inglés.',
+        4
+    ),
+    (
+        '111789283',
+        'comprensión lectora en inglés',
+        'Habilidad para entender y analizar textos escritos en inglés.',
+        4
+    ),
+    (
+        '111789284',
+        'expresión escrita en inglés',
+        'Capacidad para redactar textos claros y coherentes en inglés.',
+        4
+    );
+
+-- Inserts para Tb_competencia_curso (asignando cada competencia al curso correspondiente)
+INSERT INTO
+    Tb_competencia_curso (id_curso, id_competencia)
+VALUES (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7),
+    (1, 8),
+    (1, 9),
+    (1, 10),
+    (1, 11),
+    (1, 12),
+    (1, 13),
+    (1, 14),
+    (1, 15);
+-- insertamos evaluaciones
+INSERT INTO
+    Tb_evaluacion (
+        titulo,
+        activa,
+        descripcion,
+        fecha,
+        id_curso,
+        id_competencia,
+        id_profesor
+    )
+VALUES (
+        'arquitectura de software',
+        TRUE,
+        'Prueba de conocimientos fundamentales en arquitectura de software.',
+        '2025-11-21',
+        1,
+        1,
+        2
+    ),
+    (
+        'desarrollo web',
+        TRUE,
+        'Evaluación práctica de habilidades en desarrollo web.',
+        '2025-11-22',
+        1,
+        2,
+        2
+    ),
+    (
+        'bases de datos',
+        TRUE,
+        'Examen teórico sobre diseño y gestión de bases de datos.',
+        '2025-11-23',
+        1,
+        3,
+        2
+    ),
+    (
+        'redes de computadoras',
+        TRUE,
+        'Prueba de conceptos y prácticas en redes de computadoras.',
+        '2025-11-24',
+        1,
+        4,
+        2
+    ),
+    (
+        'seguridad informática',
+        TRUE,
+        'Evaluación sobre técnicas y estrategias de seguridad informática.',
+        '2025-11-25',
+        1,
+        5,
+        2
+    ),
+    (
+        'inteligencia artificial',
+        TRUE,
+        'Examen sobre algoritmos y aplicaciones de inteligencia artificial.',
+        '2025-11-26',
+        1,
+        6,
+        3
+    ),
+    (
+        'aprendizaje automático',
+        TRUE,
+        'Prueba práctica de modelos de aprendizaje automático.',
+        '2025-11-27',
+        1,
+        7,
+        3
+    );
+-- Tb_preguntas (10 preguntas x evaluaciones) presguntas de a,d,c,d
+--examen 1
+INSERT INTO
+    Tb_preguntas (pregunta, id_evaluacion)
+VALUES (
+        '¿Qué es la arquitectura de software?',
+        1
+    ),
+    (
+        '¿Cuál es el propósito de un patrón de diseño en arquitectura de software?',
+        1
+    ),
+    (
+        '¿Qué componente es responsable de la comunicación entre diferentes módulos en una arquitectura de software?',
+        1
+    ),
+    (
+        '¿Cuál es la diferencia entre una arquitectura monolítica y una arquitectura basada en microservicios?',
+        1
+    ),
+    (
+        '¿Qué es la escalabilidad en el contexto de la arquitectura de software?',
+        1
+    ),
+    (
+        '¿Cuál es el papel del middleware en una arquitectura de software?',
+        1
+    ),
+    (
+        '¿Qué es la separación de preocupaciones en el diseño de software?',
+        1
+    ),
+    (
+        '¿Cuál es la función de un diagrama de componentes en la arquitectura de software?',
+        1
+    ),
+    (
+        '¿Qué es la tolerancia a fallos en una arquitectura de software?',
+        1
+    ),
+    (
+        '¿Cuál es la importancia de la documentación en la arquitectura de software?',
+        1
+    );
+--examen 2
+INSERT INTO
+    Tb_preguntas (pregunta, id_evaluacion)
+VALUES (
+        '¿Qué es el desarrollo web?',
+        2
+    ),
+    (
+        '¿Cuál es la diferencia entre HTML y CSS?',
+        2
+    ),
+    (
+        '¿Qué es JavaScript y para qué se utiliza en el desarrollo web?',
+        2
+    ),
+    (
+        '¿Qué es un framework de desarrollo web?',
+        2
+    ),
+    (
+        '¿Cuál es la función de un servidor web en una aplicación web?',
+        2
+    ),
+    (
+        '¿Qué es el responsive design en el desarrollo web?',
+        2
+    ),
+    (
+        '¿Cuál es la diferencia entre front-end y back-end en el desarrollo web?',
+        2
+    ),
+    (
+        '¿Qué es una API y cómo se utiliza en el desarrollo web?',
+        2
+    ),
+    (
+        '¿Qué es el version control y por qué es importante en el desarrollo web?',
+        2
+    ),
+    (
+        '¿Cuál es la importancia de la optimización del rendimiento en las aplicaciones web?',
+        2
+    );
+--examen 3
+INSERT INTO
+    Tb_preguntas (pregunta, id_evaluacion)
+VALUES (
+        '¿Qué es una base de datos?',
+        3
+    ),
+    (
+        '¿Cuál es la diferencia entre una base de datos relacional y una no relacional?',
+        3
+    ),
+    (
+        '¿Qué es SQL y para qué se utiliza en las bases de datos?',
+        3
+    ),
+    (
+        '¿Qué es la normalización en el diseño de bases de datos?',
+        3
+    ),
+    (
+        '¿Cuál es la función de una clave primaria en una tabla de base de datos?',
+        3
+    ),
+    (
+        '¿Qué es una consulta JOIN en SQL?',
+        3
+    ),
+    (
+        '¿Qué es la integridad referencial en las bases de datos?',
+        3
+    ),
+    (
+        '¿Cuál es la diferencia entre un índice y una vista en una base de datos?',
+        3
+    ),
+    (
+        '¿Qué es una transacción en el contexto de las bases de datos?',
+        3
+    ),
+    (
+        '¿Cuál es la importancia de las copias de seguridad en la gestión de bases de datos?',
+        3
+    );
+--examen 4
+INSERT INTO
+    Tb_preguntas (pregunta, id_evaluacion)
+VALUES (
+        '¿Qué es una red de computadoras?',
+        4
+    ),
+    (
+        '¿Cuál es la diferencia entre una red LAN y una red WAN?',
+        4
+    ),
+    (
+        '¿Qué es el modelo OSI y cuáles son sus capas?',
+        4
+    ),
+    (
+        '¿Qué es una dirección IP y para qué se utiliza?',
+        4
+    ),
+    (
+        '¿Cuál es la función de un router en una red de computadoras?',
+        4
+    ),
+    (
+        '¿Qué es el protocolo TCP/IP y por qué es importante en las redes?',
+        4
+    ),
+    (
+        '¿Qué es una subred y cómo se utiliza en la gestión de redes?',
+        4
+    ),
+    (
+        '¿Cuál es la diferencia entre un switch y un hub en una red?',
+        4
+    ),
+    (
+        '¿Qué es el DNS y cómo funciona en las redes de computadoras?',
+        4
+    ),
+    (
+        '¿Cuál es la importancia de la seguridad en las redes de computadoras?',
+        4
+    );
+--examen 5
+INSERT INTO
+    Tb_preguntas (pregunta, id_evaluacion)
+VALUES (
+        '¿Qué es la seguridad informática?',
+        5
+    ),
+    (
+        '¿Cuál es la diferencia entre un virus y un malware?',
+        5
+    ),
+    (
+        '¿Qué es un firewall y cómo protege una red?',
+        5
+    ),
+    (
+        '¿Qué es el phishing y cómo se puede prevenir?',
+        5
+    ),
+    (
+        '¿Cuál es la función de la encriptación en la seguridad informática?',
+        5
+    ),
+    (
+        '¿Qué es la autenticación multifactor y por qué es importante?',
+        5
+    ),
+    (
+        '¿Qué es un ataque de denegación de servicio (DDoS)?',
+        5
+    ),
+    (
+        '¿Cuál es la importancia de las actualizaciones de software en la seguridad informática?',
+        5
+    ),
+    (
+        '¿Qué es la ingeniería social en el contexto de la seguridad informática?',
+        5
+    ),
+    (
+        '¿Cuál es el papel de las políticas de seguridad en una organización?',
+        5
+    );
+--examen 6
+INSERT INTO
+    Tb_preguntas (pregunta, id_evaluacion)
+VALUES (
+        '¿Qué es la inteligencia artificial?',
+        6
+    ),
+    (
+        '¿Cuál es la diferencia entre inteligencia artificial débil y fuerte?',
+        6
+    ),
+    (
+        '¿Qué es el aprendizaje supervisado en inteligencia artificial?',
+        6
+    ),
+    (
+        '¿Qué es una red neuronal y cómo funciona?',
+        6
+    ),
+    (
+        '¿Cuál es la función del procesamiento del lenguaje natural en la inteligencia artificial?',
+        6
+    ),
+    (
+        '¿Qué es el reconocimiento de patrones en inteligencia artificial?',
+        6
+    ),
+    (
+        '¿Cuál es la diferencia entre IA simbólica y conexionista?',
+        6
+    ),
+    (
+        '¿Qué es el razonamiento automático en inteligencia artificial?',
+        6
+    ),
+    (
+        '¿Cuál es la importancia de los datos en el desarrollo de sistemas de inteligencia artificial?',
+        6
+    ),
+    (
+        '¿Qué es la ética en la inteligencia artificial y por qué es relevante?',
+        6
+    );
+--examen 7
+INSERT INTO
+    Tb_preguntas (pregunta, id_evaluacion)
+VALUES (
+        '¿Qué es el aprendizaje automático?',
+        7
+    ),
+    (
+        '¿Cuál es la diferencia entre aprendizaje supervisado y no supervisado?',
+        7
+    ),
+    (
+        '¿Qué es un conjunto de datos de entrenamiento en aprendizaje automático?',
+        7
+    ),
+    (
+        '¿Qué es un modelo de regresión y para qué se utiliza?',
+        7
+    ),
+    (
+        '¿Cuál es la función de la validación cruzada en el aprendizaje automático?',
+        7
+    ),
+    (
+        '¿Qué es el sobreajuste (overfitting) en los modelos de aprendizaje automático?',
+        7
+    ),
+    (
+        '¿Cuál es la diferencia entre clasificación y regresión en aprendizaje automático?',
+        7
+    ),
+    (
+        '¿Qué es un árbol de decisión y cómo se utiliza en el aprendizaje automático?',
+        7
+    ),
+    (
+        '¿Cuál es la importancia de la selección de características en el desarrollo de modelos?',
+        7
+    ),
+    (
+        '¿Qué es el aprendizaje profundo (deep learning) y cómo se relaciona con el aprendizaje automático?',
+        7
+    );
+-- Tb_opciones_respuesta (4 por pregunta)
+-- Pregunta 1 (id_pregunta = 1)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Es el diseño estructural de sistemas de software.',
+        TRUE,
+        1
+    ),
+    (
+        'Es un lenguaje de programación específico para software.',
+        FALSE,
+        1
+    ),
+    (
+        'Es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        1
+    ),
+    (
+        'Es un protocolo de red para comunicación.',
+        FALSE,
+        1
+    );
+-- Pregunta 2 (id_pregunta = 2)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Facilitar la reutilización de soluciones probadas.',
+        TRUE,
+        2
+    ),
+    (
+        'Aumentar la velocidad de procesamiento del software.',
+        FALSE,
+        2
+    ),
+    (
+        'Reducir el tamaño del código fuente.',
+        FALSE,
+        2
+    ),
+    (
+        'Mejorar la interfaz de usuario del software.',
+        FALSE,
+        2
+    );
+-- Pregunta 3 (id_pregunta = 3)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES ('El bus de datos.', FALSE, 3),
+    (
+        'El controlador de memoria.',
+        FALSE,
+        3
+    ),
+    ('El middleware.', TRUE, 3),
+    (
+        'El sistema operativo.',
+        FALSE,
+        3
+    );
+-- Pregunta 4 (id_pregunta = 4)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una arquitectura monolítica es un solo bloque, mientras que una de microservicios está dividida en servicios independientes.',
+        TRUE,
+        4
+    ),
+    (
+        'Una arquitectura monolítica es más escalable que una de microservicios.',
+        FALSE,
+        4
+    ),
+    (
+        'Una arquitectura de microservicios no utiliza bases de datos.',
+        FALSE,
+        4
+    ),
+    (
+        'Una arquitectura monolítica siempre es más segura que una de microservicios.',
+        FALSE,
+        4
+    );
+-- Pregunta 5 (id_pregunta = 5)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La capacidad de un sistema para manejar un aumento en la carga de trabajo.',
+        TRUE,
+        5
+    ),
+    (
+        'La velocidad a la que un sistema procesa datos.',
+        FALSE,
+        5
+    ),
+    (
+        'La facilidad de uso de una aplicación.',
+        FALSE,
+        5
+    ),
+    (
+        'La cantidad de memoria utilizada por un programa.',
+        FALSE,
+        5
+    );
+-- Pregunta 6 (id_pregunta = 6)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Facilitar la comunicación entre diferentes aplicaciones.',
+        TRUE,
+        6
+    ),
+    (
+        'Almacenar datos de usuario.',
+        FALSE,
+        6
+    ),
+    (
+        'Gestionar la memoria del sistema.',
+        FALSE,
+        6
+    ),
+    (
+        'Controlar el hardware de la computadora.',
+        FALSE,
+        6
+    );
+-- Pregunta 7 (id_pregunta = 7)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Dividir un sistema en partes independientes para mejorar la mantenibilidad.',
+        TRUE,
+        7
+    ),
+    (
+        'Aumentar la velocidad de ejecución del software.',
+        FALSE,
+        7
+    ),
+    (
+        'Reducir el tamaño del código fuente.',
+        FALSE,
+        7
+    ),
+    (
+        'Mejorar la seguridad del software.',
+        FALSE,
+        7
+    );
+-- Pregunta 8 (id_pregunta = 8)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Representar la estructura física del hardware.',
+        FALSE,
+        8
+    ),
+    (
+        'Mostrar la interacción entre usuarios y el sistema.',
+        FALSE,
+        8
+    ),
+    (
+        'Ilustrar los componentes y sus relaciones en una arquitectura de software.',
+        TRUE,
+        8
+    ),
+    (
+        'Describir los algoritmos utilizados en el software.',
+        FALSE,
+        8
+    );
+-- Pregunta 9 (id_pregunta = 9)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La capacidad de un sistema para continuar operando ante fallos.',
+        TRUE,
+        9
+    ),
+    (
+        'La velocidad de procesamiento del sistema.',
+        FALSE,
+        9
+    ),
+    (
+        'La facilidad de uso del software.',
+        FALSE,
+        9
+    ),
+    (
+        'La cantidad de memoria utilizada por el sistema.',
+        FALSE,
+        9
+    );
+-- Pregunta 10 (id_pregunta = 10)
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Proporcionar una referencia clara para el desarrollo y mantenimiento del software.',
+        TRUE,
+        10
+    ),
+    (
+        'Reducir el tamaño del código fuente.',
+        FALSE,
+        10
+    ),
+    (
+        'Aumentar la velocidad de ejecución del software.',
+        FALSE,
+        10
+    ),
+    (
+        'Mejorar la interfaz de usuario del software.',
+        FALSE,
+        10
+    );
+-- examen 2 pregunta 1
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Es el proceso de crear y mantener sitios web.',
+        TRUE,
+        11
+    ),
+    (
+        'Es un lenguaje de programación específico para aplicaciones móviles.',
+        FALSE,
+        11
+    ),
+    (
+        'Es un tipo de base de datos utilizada en la web.',
+        FALSE,
+        11
+    ),
+    (
+        'Es un protocolo de red para comunicación web.',
+        FALSE,
+        11
+    );
+-- examen 2 pregunta 2
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'HTML se utiliza para estructurar contenido, mientras que CSS se utiliza para diseñar la apariencia.',
+        TRUE,
+        12
+    ),
+    (
+        'HTML es un lenguaje de programación, mientras que CSS es un lenguaje de marcado.',
+        FALSE,
+        12
+    ),
+    (
+        'HTML se utiliza para bases de datos, mientras que CSS se utiliza para redes.',
+        FALSE,
+        12
+    ),
+    (
+        'HTML y CSS son lo mismo y se usan indistintamente.',
+        FALSE,
+        12
+    );
+-- examen 2 pregunta 3
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'JavaScript es un lenguaje de programación que permite crear interactividad en las páginas web.',
+        TRUE,
+        13
+    ),
+    (
+        'JavaScript es un lenguaje de marcado utilizado para estructurar contenido.',
+        FALSE,
+        13
+    ),
+    (
+        'JavaScript es un protocolo de red para comunicación web.',
+        FALSE,
+        13
+    ),
+    (
+        'JavaScript es una base de datos utilizada en aplicaciones web.',
+        FALSE,
+        13
+    );
+-- examen 2 pregunta 4
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un framework es un conjunto de herramientas y bibliotecas que facilitan el desarrollo web.',
+        TRUE,
+        14
+    ),
+    (
+        'Un framework es un tipo de base de datos utilizada en la web.',
+        FALSE,
+        14
+    ),
+    (
+        'Un framework es un protocolo de red para comunicación web.',
+        FALSE,
+        14
+    ),
+    (
+        'Un framework es un lenguaje de programación específico para la web.',
+        FALSE,
+        14
+    );
+-- examen 2 pregunta 5
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un servidor web aloja y entrega contenido web a los usuarios.',
+        TRUE,
+        15
+    ),
+    (
+        'Un servidor web es un lenguaje de programación utilizado en la web.',
+        FALSE,
+        15
+    ),
+    (
+        'Un servidor web es un protocolo de red para comunicación web.',
+        FALSE,
+        15
+    ),
+    (
+        'Un servidor web es una base de datos utilizada en aplicaciones web.',
+        FALSE,
+        15
+    );
+-- examen 2 pregunta 6
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El responsive design permite que las páginas web se adapten a diferentes tamaños de pantalla.',
+        TRUE,
+        16
+    ),
+    (
+        'El responsive design es un lenguaje de programación utilizado en la web.',
+        FALSE,
+        16
+    ),
+    (
+        'El responsive design es un protocolo de red para comunicación web.',
+        FALSE,
+        16
+    ),
+    (
+        'El responsive design es una base de datos utilizada en aplicaciones web.',
+        FALSE,
+        16
+    );
+-- examen 2 pregunta 7
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El front-end se refiere a la parte visual y el back-end a la lógica del servidor.',
+        TRUE,
+        17
+    ),
+    (
+        'El front-end es una base de datos y el back-end es un lenguaje de programación.',
+        FALSE,
+        17
+    ),
+    (
+        'El front-end es un protocolo de red y el back-end es un framework.',
+        FALSE,
+        17
+    ),
+    (
+        'El front-end y el back-end son lo mismo y se usan indistintamente.',
+        FALSE,
+        17
+    );
+-- examen 2 pregunta 8
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una API permite la comunicación entre diferentes aplicaciones.',
+        TRUE,
+        18
+    ),
+    (
+        'Una API es un lenguaje de programación utilizado en la web.',
+        FALSE,
+        18
+    ),
+    (
+        'Una API es un protocolo de red para comunicación web.',
+        FALSE,
+        18
+    ),
+    (
+        'Una API es una base de datos utilizada en aplicaciones web.',
+        FALSE,
+        18
+    );
+-- examen 2 pregunta 9
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El version control permite gestionar cambios en el código fuente a lo largo del tiempo.',
+        TRUE,
+        19
+    ),
+    (
+        'El version control es un lenguaje de programación utilizado en la web.',
+        FALSE,
+        19
+    ),
+    (
+        'El version control es un protocolo de red para comunicación web.',
+        FALSE,
+        19
+    ),
+    (
+        'El version control es una base de datos utilizada en aplicaciones web.',
+        FALSE,
+        19
+    );
+-- examen 2 pregunta 10
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La optimización del rendimiento mejora la velocidad y eficiencia de las aplicaciones web.',
+        TRUE,
+        20
+    ),
+    (
+        'La optimización del rendimiento es un lenguaje de programación utilizado en la web.',
+        FALSE,
+        20
+    ),
+    (
+        'La optimización del rendimiento es un protocolo de red para comunicación web.',
+        FALSE,
+        20
+    ),
+    (
+        'La optimización del rendimiento es una base de datos utilizada en aplicaciones web.',
+        FALSE,
+        20
+    );
+-- examen 3 pregunta 1
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una base de datos es un sistema organizado para almacenar, gestionar y recuperar datos.',
+        TRUE,
+        21
+    ),
+    (
+        'Una base de datos es un lenguaje de programación para aplicaciones web.',
+        FALSE,
+        21
+    ),
+    (
+        'Una base de datos es un protocolo de red para comunicación.',
+        FALSE,
+        21
+    ),
+    (
+        'Una base de datos es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        21
+    );
+-- examen 3 pregunta 2
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una base de datos relacional utiliza tablas con relaciones definidas, mientras que una no relacional utiliza estructuras flexibles como documentos o grafos.',
+        TRUE,
+        22
+    ),
+    (
+        'Una base de datos relacional es más rápida que una no relacional.',
+        FALSE,
+        22
+    ),
+    (
+        'Una base de datos no relacional no puede almacenar grandes volúmenes de datos.',
+        FALSE,
+        22
+    ),
+    (
+        'Una base de datos relacional no utiliza índices para mejorar el rendimiento.',
+        FALSE,
+        22
+    );
+-- examen 3 pregunta 3
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'SQL es un lenguaje de consulta utilizado para gestionar y manipular bases de datos relacionales.',
+        TRUE,
+        23
+    ),
+    (
+        'SQL es un lenguaje de programación para aplicaciones web.',
+        FALSE,
+        23
+    ),
+    (
+        'SQL es un protocolo de red para comunicación.',
+        FALSE,
+        23
+    ),
+    (
+        'SQL es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        23
+    );
+-- examen 3 pregunta 4
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La normalización es el proceso de organizar los datos en una base de datos para reducir la redundancia y mejorar la integridad.',
+        TRUE,
+        24
+    ),
+    (
+        'La normalización es un lenguaje de programación para bases de datos.',
+        FALSE,
+        24
+    ),
+    (
+        'La normalización es un protocolo de red para comunicación.',
+        FALSE,
+        24
+    ),
+    (
+        'La normalización es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        24
+    );
+-- examen 3 pregunta 5
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una clave primaria es un campo o conjunto de campos que identifica de manera única cada registro en una tabla.',
+        TRUE,
+        25
+    ),
+    (
+        'Una clave primaria es un lenguaje de programación para bases de datos.',
+        FALSE,
+        25
+    ),
+    (
+        'Una clave primaria es un protocolo de red para comunicación.',
+        FALSE,
+        25
+    ),
+    (
+        'Una clave primaria es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        25
+    );
+-- examen 3 pregunta 6
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una consulta JOIN combina filas de dos o más tablas basándose en una columna relacionada entre ellas.',
+        TRUE,
+        26
+    ),
+    (
+        'Una consulta JOIN es un lenguaje de programación para bases de datos.',
+        FALSE,
+        26
+    ),
+    (
+        'Una consulta JOIN es un protocolo de red para comunicación.',
+        FALSE,
+        26
+    ),
+    (
+        'Una consulta JOIN es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        26
+    );
+-- examen 3 pregunta 7
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La integridad referencial asegura que las relaciones entre tablas se mantengan consistentes mediante restricciones de clave foránea.',
+        TRUE,
+        27
+    ),
+    (
+        'La integridad referencial es un lenguaje de programación para bases de datos.',
+        FALSE,
+        27
+    ),
+    (
+        'La integridad referencial es un protocolo de red para comunicación.',
+        FALSE,
+        27
+    ),
+    (
+        'La integridad referencial es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        27
+    );
+-- examen 3 pregunta 8
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un índice mejora la velocidad de las consultas, mientras que una vista es una tabla virtual basada en el resultado de una consulta.',
+        TRUE,
+        28
+    ),
+    (
+        'Un índice es un lenguaje de programación para bases de datos.',
+        FALSE,
+        28
+    ),
+    (
+        'Una vista es un protocolo de red para comunicación.',
+        FALSE,
+        28
+    ),
+    (
+        'Un índice es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        28
+    );
+-- examen 3 pregunta 9
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una transacción es una unidad de trabajo que se ejecuta de manera completa o no se ejecuta en absoluto, asegurando la integridad de los datos.',
+        TRUE,
+        29
+    ),
+    (
+        'Una transacción es un lenguaje de programación para bases de datos.',
+        FALSE,
+        29
+    ),
+    (
+        'Una transacción es un protocolo de red para comunicación.',
+        FALSE,
+        29
+    ),
+    (
+        'Una transacción es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        29
+    );
+-- examen 3 pregunta 10
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Las copias de seguridad protegen los datos contra pérdidas accidentales o fallos del sistema.',
+        TRUE,
+        30
+    ),
+    (
+        'Las copias de seguridad son un lenguaje de programación para bases de datos.',
+        FALSE,
+        30
+    ),
+    (
+        'Las copias de seguridad son un protocolo de red para comunicación.',
+        FALSE,
+        30
+    ),
+    (
+        'Las copias de seguridad son un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        30
+    );
+-- examen 4 pregunta 1
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una red de computadoras es un conjunto de dispositivos interconectados que pueden comunicarse entre sí.',
+        TRUE,
+        31
+    ),
+    (
+        'Una red de computadoras es un lenguaje de programación para aplicaciones web.',
+        FALSE,
+        31
+    ),
+    (
+        'Una red de computadoras es un protocolo de red para comunicación.',
+        FALSE,
+        31
+    ),
+    (
+        'Una red de computadoras es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        31
+    );
+-- examen 4 pregunta 2
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una red LAN es una red local limitada a un área pequeña, mientras que una WAN abarca áreas geográficas más grandes.',
+        TRUE,
+        32
+    ),
+    (
+        'Una red LAN es más rápida que una WAN.',
+        FALSE,
+        32
+    ),
+    (
+        'Una red WAN no puede conectar múltiples dispositivos.',
+        FALSE,
+        32
+    ),
+    (
+        'Una red LAN no utiliza protocolos de comunicación.',
+        FALSE,
+        32
+    );
+-- examen 4 pregunta 3
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El modelo OSI es un marco de referencia que divide las funciones de red en siete capas distintas.',
+        TRUE,
+        33
+    ),
+    (
+        'El modelo OSI es un lenguaje de programación para redes.',
+        FALSE,
+        33
+    ),
+    (
+        'El modelo OSI es un protocolo de red para comunicación.',
+        FALSE,
+        33
+    ),
+    (
+        'El modelo OSI es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        33
+    );
+-- examen 4 pregunta 4
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una dirección IP es un identificador único asignado a cada dispositivo en una red para facilitar la comunicación.',
+        TRUE,
+        34
+    ),
+    (
+        'Una dirección IP es un lenguaje de programación para redes.',
+        FALSE,
+        34
+    ),
+    (
+        'Una dirección IP es un protocolo de red para comunicación.',
+        FALSE,
+        34
+    ),
+    (
+        'Una dirección IP es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        34
+    );
+-- examen 4 pregunta 5
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un router dirige el tráfico de datos entre diferentes redes y dispositivos.',
+        TRUE,
+        35
+    ),
+    (
+        'Un router es un lenguaje de programación para redes.',
+        FALSE,
+        35
+    ),
+    (
+        'Un router es un protocolo de red para comunicación.',
+        FALSE,
+        35
+    ),
+    (
+        'Un router es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        35
+    );
+-- examen 4 pregunta 6
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El protocolo TCP/IP es el conjunto de reglas que gobiernan la comunicación en Internet y otras redes.',
+        TRUE,
+        36
+    ),
+    (
+        'El protocolo TCP/IP es un lenguaje de programación para redes.',
+        FALSE,
+        36
+    ),
+    (
+        'El protocolo TCP/IP es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        36
+    ),
+    (
+        'El protocolo TCP/IP es una aplicación de software.',
+        FALSE,
+        36
+    );
+-- examen 4 pregunta 7
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una subred es una subdivisión lógica de una red IP que mejora la gestión y seguridad del tráfico.',
+        TRUE,
+        37
+    ),
+    (
+        'Una subred es un lenguaje de programación para redes.',
+        FALSE,
+        37
+    ),
+    (
+        'Una subred es un protocolo de red para comunicación.',
+        FALSE,
+        37
+    ),
+    (
+        'Una subred es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        37
+    );
+-- examen 4 pregunta 8
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un switch dirige el tráfico de datos dentro de una red local, mientras que un hub simplemente retransmite los datos a todos los dispositivos.',
+        TRUE,
+        38
+    ),
+    (
+        'Un switch es un lenguaje de programación para redes.',
+        FALSE,
+        38
+    ),
+    (
+        'Un hub es un protocolo de red para comunicación.',
+        FALSE,
+        38
+    ),
+    (
+        'Un switch es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        38
+    );
+-- examen 4 pregunta 9
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El DNS traduce nombres de dominio legibles por humanos en direcciones IP numéricas.',
+        TRUE,
+        39
+    ),
+    (
+        'El DNS es un lenguaje de programación para redes.',
+        FALSE,
+        39
+    ),
+    (
+        'El DNS es un protocolo de red para comunicación.',
+        FALSE,
+        39
+    ),
+    (
+        'El DNS es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        39
+    );
+-- examen 4 pregunta 10
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La seguridad en las redes protege los datos y recursos contra accesos no autorizados y amenazas.',
+        TRUE,
+        40
+    ),
+    (
+        'La seguridad en las redes es un lenguaje de programación para redes.',
+        FALSE,
+        40
+    ),
+    (
+        'La seguridad en las redes es un protocolo de red para comunicación.',
+        FALSE,
+        40
+    ),
+    (
+        'La seguridad en las redes es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        40
+    );
+-- examen 5 pregunta 1
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La seguridad informática es la práctica de proteger sistemas, redes y datos contra ataques y accesos no autorizados.',
+        TRUE,
+        41
+    ),
+    (
+        'La seguridad informática es un lenguaje de programación para aplicaciones web.',
+        FALSE,
+        41
+    ),
+    (
+        'La seguridad informática es un protocolo de red para comunicación.',
+        FALSE,
+        41
+    ),
+    (
+        'La seguridad informática es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        41
+    );
+-- examen 5 pregunta 2
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un virus es un programa malicioso que se replica a sí mismo, mientras que el malware es un término general para cualquier software dañino.',
+        TRUE,
+        42
+    ),
+    (
+        'Un virus es un tipo de hardware, mientras que el malware es un lenguaje de programación.',
+        FALSE,
+        42
+    ),
+    (
+        'Un virus es un protocolo de red, mientras que el malware es una base de datos.',
+        FALSE,
+        42
+    ),
+    (
+        'Un virus y el malware son lo mismo y se usan indistintamente.',
+        FALSE,
+        42
+    );
+-- examen 5 pregunta 3
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un firewall es un sistema de seguridad que monitorea y controla el tráfico de red entrante y saliente.',
+        TRUE,
+        43
+    ),
+    (
+        'Un firewall es un lenguaje de programación para redes.',
+        FALSE,
+        43
+    ),
+    (
+        'Un firewall es un protocolo de red para comunicación.',
+        FALSE,
+        43
+    ),
+    (
+        'Un firewall es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        43
+    );
+-- examen 5 pregunta 4
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El phishing es un intento de obtener información confidencial mediante engaños, y se puede prevenir con educación y medidas de seguridad.',
+        TRUE,
+        44
+    ),
+    (
+        'El phishing es un lenguaje de programación para seguridad.',
+        FALSE,
+        44
+    ),
+    (
+        'El phishing es un protocolo de red para comunicación.',
+        FALSE,
+        44
+    ),
+    (
+        'El phishing es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        44
+    );
+-- examen 5 pregunta 5
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La encriptación convierte datos en un formato seguro para protegerlos contra accesos no autorizados.',
+        TRUE,
+        45
+    ),
+    (
+        'La encriptación es un lenguaje de programación para seguridad.',
+        FALSE,
+        45
+    ),
+    (
+        'La encriptación es un protocolo de red para comunicación.',
+        FALSE,
+        45
+    ),
+    (
+        'La encriptación es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        45
+    );
+-- examen 5 pregunta 6
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La autenticación multifactor requiere múltiples formas de verificación para acceder a un sistema, aumentando la seguridad.',
+        TRUE,
+        46
+    ),
+    (
+        'La autenticación multifactor es un lenguaje de programación para seguridad.',
+        FALSE,
+        46
+    ),
+    (
+        'La autenticación multifactor es un protocolo de red para comunicación.',
+        FALSE,
+        46
+    ),
+    (
+        'La autenticación multifactor es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        46
+    );
+-- examen 5 pregunta 7
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un ataque DDoS sobrecarga un sistema con tráfico para interrumpir su funcionamiento.',
+        TRUE,
+        47
+    ),
+    (
+        'Un ataque DDoS es un lenguaje de programación para seguridad.',
+        FALSE,
+        47
+    ),
+    (
+        'Un ataque DDoS es un protocolo de red para comunicación.',
+        FALSE,
+        47
+    ),
+    (
+        'Un ataque DDoS es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        47
+    );
+-- examen 5 pregunta 8
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Las actualizaciones de software corrigen vulnerabilidades y mejoran la seguridad del sistema.',
+        TRUE,
+        48
+    ),
+    (
+        'Las actualizaciones de software son un lenguaje de programación para seguridad.',
+        FALSE,
+        48
+    ),
+    (
+        'Las actualizaciones de software son un protocolo de red para comunicación.',
+        FALSE,
+        48
+    ),
+    (
+        'Las actualizaciones de software son un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        48
+    );
+-- examen 5 pregunta 9
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La ingeniería social manipula a las personas para obtener información confidencial, y se puede mitigar con educación y políticas de seguridad.',
+        TRUE,
+        49
+    ),
+    (
+        'La ingeniería social es un lenguaje de programación para seguridad.',
+        FALSE,
+        49
+    ),
+    (
+        'La ingeniería social es un protocolo de red para comunicación.',
+        FALSE,
+        49
+    ),
+    (
+        'La ingeniería social es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        49
+    );
+-- examen 5 pregunta 10
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Las políticas de seguridad establecen directrices para proteger los activos de información de una organización.',
+        TRUE,
+        50
+    ),
+    (
+        'Las políticas de seguridad son un lenguaje de programación para seguridad.',
+        FALSE,
+        50
+    ),
+    (
+        'Las políticas de seguridad son un protocolo de red para comunicación.',
+        FALSE,
+        50
+    ),
+    (
+        'Las políticas de seguridad son un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        50
+    );
+-- examen 6 pregunta 1
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La inteligencia artificial es la simulación de procesos de inteligencia humana por parte de máquinas.',
+        TRUE,
+        51
+    ),
+    (
+        'La inteligencia artificial es un lenguaje de programación para aplicaciones web.',
+        FALSE,
+        51
+    ),
+    (
+        'La inteligencia artificial es un protocolo de red para comunicación.',
+        FALSE,
+        51
+    ),
+    (
+        'La inteligencia artificial es un tipo de hardware utilizado en computadoras.',
+        FALSE,
+        51
+    );
+-- examen 6 pregunta 2
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La inteligencia artificial débil está diseñada para tareas específicas, mientras que la fuerte tiene capacidades cognitivas generales similares a las humanas.',
+        TRUE,
+        52
+    ),
+    (
+        'La inteligencia artificial débil es más avanzada que la fuerte.',
+        FALSE,
+        52
+    ),
+    (
+        'La inteligencia artificial fuerte no puede aprender de los datos.',
+        FALSE,
+        52
+    ),
+    (
+        'La inteligencia artificial débil no utiliza algoritmos.',
+        FALSE,
+        52
+    );
+-- examen 6 pregunta 3
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El aprendizaje supervisado utiliza datos etiquetados para entrenar modelos.',
+        TRUE,
+        53
+    ),
+    (
+        'El aprendizaje supervisado no requiere datos para entrenar modelos.',
+        FALSE,
+        53
+    ),
+    (
+        'El aprendizaje supervisado es un lenguaje de programación.',
+        FALSE,
+        53
+    ),
+    (
+        'El aprendizaje supervisado es un protocolo de red.',
+        FALSE,
+        53
+    );
+-- examen 6 pregunta 4
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Una red neuronal es un modelo computacional inspirado en el cerebro humano que procesa información mediante capas de nodos interconectados.',
+        TRUE,
+        54
+    ),
+    (
+        'Una red neuronal es un lenguaje de programación.',
+        FALSE,
+        54
+    ),
+    (
+        'Una red neuronal es un protocolo de red.',
+        FALSE,
+        54
+    ),
+    (
+        'Una red neuronal es un tipo de hardware.',
+        FALSE,
+        54
+    );
+-- examen 6 pregunta 5
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El procesamiento del lenguaje natural permite a las máquinas comprender e interpretar el lenguaje humano.',
+        TRUE,
+        55
+    ),
+    (
+        'El procesamiento del lenguaje natural es un lenguaje de programación.',
+        FALSE,
+        55
+    ),
+    (
+        'El procesamiento del lenguaje natural es un protocolo de red.',
+        FALSE,
+        55
+    ),
+    (
+        'El procesamiento del lenguaje natural es un tipo de hardware.',
+        FALSE,
+        55
+    );
+-- examen 6 pregunta 6
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El reconocimiento de patrones identifica regularidades en los datos para tomar decisiones o hacer predicciones.',
+        TRUE,
+        56
+    ),
+    (
+        'El reconocimiento de patrones es un lenguaje de programación.',
+        FALSE,
+        56
+    ),
+    (
+        'El reconocimiento de patrones es un protocolo de red.',
+        FALSE,
+        56
+    ),
+    (
+        'El reconocimiento de patrones es un tipo de hardware.',
+        FALSE,
+        56
+    );
+-- examen 6 pregunta 7
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La IA simbólica utiliza reglas explícitas y lógica, mientras que la conexionista se basa en redes neuronales y aprendizaje.',
+        TRUE,
+        57
+    ),
+    (
+        'La IA simbólica es más avanzada que la conexionista.',
+        FALSE,
+        57
+    ),
+    (
+        'La IA conexionista no puede aprender de los datos.',
+        FALSE,
+        57
+    ),
+    (
+        'La IA simbólica no utiliza algoritmos.',
+        FALSE,
+        57
+    );
+-- examen 6 pregunta 8
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El razonamiento automático permite a las máquinas derivar conclusiones lógicas a partir de un conjunto de premisas.',
+        TRUE,
+        58
+    ),
+    (
+        'El razonamiento automático es un lenguaje de programación.',
+        FALSE,
+        58
+    ),
+    (
+        'El razonamiento automático es un protocolo de red.',
+        FALSE,
+        58
+    ),
+    (
+        'El razonamiento automático es un tipo de hardware.',
+        FALSE,
+        58
+    );
+-- examen 6 pregunta 9
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Los datos son fundamentales para entrenar y evaluar sistemas de inteligencia artificial.',
+        TRUE,
+        59
+    ),
+    (
+        'Los datos no son necesarios para la inteligencia artificial.',
+        FALSE,
+        59
+    ),
+    (
+        'Los datos son un lenguaje de programación.',
+        FALSE,
+        59
+    ),
+    (
+        'Los datos son un protocolo de red.',
+        FALSE,
+        59
+    );
+-- examen 6 pregunta 10
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La ética en la inteligencia artificial aborda cuestiones morales relacionadas con su desarrollo y uso.',
+        TRUE,
+        60
+    ),
+    (
+        'La ética en la inteligencia artificial es un lenguaje de programación.',
+        FALSE,
+        60
+    ),
+    (
+        'La ética en la inteligencia artificial es un protocolo de red.',
+        FALSE,
+        60
+    ),
+    (
+        'La ética en la inteligencia artificial es un tipo de hardware.',
+        FALSE,
+        60
+    );
+-- examen 7 pregunta 1
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El aprendizaje automático es una rama de la inteligencia artificial que permite a las máquinas aprender de los datos.',
+        TRUE,
+        61
+    ),
+    (
+        'El aprendizaje automático es un lenguaje de programación.',
+        FALSE,
+        61
+    ),
+    (
+        'El aprendizaje automático es un protocolo de red.',
+        FALSE,
+        61
+    ),
+    (
+        'El aprendizaje automático es un tipo de hardware.',
+        FALSE,
+        61
+    );
+-- examen 7 pregunta 2
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El aprendizaje supervisado utiliza datos etiquetados, mientras que el no supervisado trabaja con datos no etiquetados.',
+        TRUE,
+        62
+    ),
+    (
+        'El aprendizaje supervisado no requiere datos para entrenar modelos.',
+        FALSE,
+        62
+    ),
+    (
+        'El aprendizaje no supervisado es un lenguaje de programación.',
+        FALSE,
+        62
+    ),
+    (
+        'El aprendizaje supervisado es un protocolo de red.',
+        FALSE,
+        62
+    );
+-- examen 7 pregunta 3
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un conjunto de datos de entrenamiento es un conjunto de datos utilizado para entrenar modelos de aprendizaje automático.',
+        TRUE,
+        63
+    ),
+    (
+        'Un conjunto de datos de entrenamiento es un lenguaje de programación.',
+        FALSE,
+        63
+    ),
+    (
+        'Un conjunto de datos de entrenamiento es un protocolo de red.',
+        FALSE,
+        63
+    ),
+    (
+        'Un conjunto de datos de entrenamiento es un tipo de hardware.',
+        FALSE,
+        63
+    );
+-- examen 7 pregunta 4
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un modelo de regresión predice valores continuos basándose en relaciones entre variables.',
+        TRUE,
+        64
+    ),
+    (
+        'Un modelo de regresión es un lenguaje de programación.',
+        FALSE,
+        64
+    ),
+    (
+        'Un modelo de regresión es un protocolo de red.',
+        FALSE,
+        64
+    ),
+    (
+        'Un modelo de regresión es un tipo de hardware.',
+        FALSE,
+        64
+    );
+-- examen 7 pregunta 5
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La validación cruzada evalúa el rendimiento de un modelo dividiendo los datos en conjuntos de entrenamiento y prueba.',
+        TRUE,
+        65
+    ),
+    (
+        'La validación cruzada es un lenguaje de programación.',
+        FALSE,
+        65
+    ),
+    (
+        'La validación cruzada es un protocolo de red.',
+        FALSE,
+        65
+    ),
+    (
+        'La validación cruzada es un tipo de hardware.',
+        FALSE,
+        65
+    );
+-- examen 7 pregunta 6
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El sobreajuste ocurre cuando un modelo se ajusta demasiado a los datos de entrenamiento y no generaliza bien a datos nuevos.',
+        TRUE,
+        66
+    ),
+    (
+        'El sobreajuste es un lenguaje de programación.',
+        FALSE,
+        66
+    ),
+    (
+        'El sobreajuste es un protocolo de red.',
+        FALSE,
+        66
+    ),
+    (
+        'El sobreajuste es un tipo de hardware.',
+        FALSE,
+        66
+    );
+-- examen 7 pregunta 7
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La clasificación asigna etiquetas a categorías discretas, mientras que la regresión predice valores continuos.',
+        TRUE,
+        67
+    ),
+    (
+        'La clasificación es un lenguaje de programación.',
+        FALSE,
+        67
+    ),
+    (
+        'La regresión es un protocolo de red.',
+        FALSE,
+        67
+    ),
+    (
+        'La clasificación y la regresión son lo mismo y se usan indistintamente.',
+        FALSE,
+        67
+    );
+-- examen 7 pregunta 8
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'Un árbol de decisión es un modelo que utiliza una estructura de árbol para tomar decisiones basadas en características de los datos.',
+        TRUE,
+        68
+    ),
+    (
+        'Un árbol de decisión es un lenguaje de programación.',
+        FALSE,
+        68
+    ),
+    (
+        'Un árbol de decisión es un protocolo de red.',
+        FALSE,
+        68
+    ),
+    (
+        'Un árbol de decisión es un tipo de hardware.',
+        FALSE,
+        68
+    );
+-- examen 7 pregunta 9
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'La selección de características mejora el rendimiento del modelo al reducir la dimensionalidad y eliminar datos irrelevantes.',
+        TRUE,
+        69
+    ),
+    (
+        'La selección de características es un lenguaje de programación.',
+        FALSE,
+        69
+    ),
+    (
+        'La selección de características es un protocolo de red.',
+        FALSE,
+        69
+    ),
+    (
+        'La selección de características es un tipo de hardware.',
+        FALSE,
+        69
+    );
+-- examen 7 pregunta 10
+INSERT INTO
+    Tb_opciones_respuesta (
+        opcion,
+        es_correcta,
+        id_pregunta
+    )
+VALUES (
+        'El aprendizaje profundo utiliza redes neuronales profundas para modelar y resolver problemas complejos.',
+        TRUE,
+        70
+    ),
+    (
+        'El aprendizaje profundo es un lenguaje de programación.',
+        FALSE,
+        70
+    ),
+    (
+        'El aprendizaje profundo es un protocolo de red.',
+        FALSE,
+        70
+    ),
+    (
+        'El aprendizaje profundo es un tipo de hardware.',
+        FALSE,
+        70
+    );
+-- insertamos las preguntas a la evaluaciones
+insert into
+    tb_evaluacion_pregunta (id_evaluacion, id_pregunta)
+values (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7),
+    (1, 8),
+    (1, 9),
+    (1, 10),
+    (2, 11),
+    (2, 12),
+    (2, 13),
+    (2, 14),
+    (2, 15),
+    (2, 16),
+    (2, 17),
+    (2, 18),
+    (2, 19),
+    (2, 20),
+    (3, 21),
+    (3, 22),
+    (3, 23),
+    (3, 24),
+    (3, 25),
+    (3, 26),
+    (3, 27),
+    (3, 28),
+    (3, 29),
+    (3, 30),
+    (4, 31),
+    (4, 32),
+    (4, 33),
+    (4, 34),
+    (4, 35),
+    (4, 36),
+    (4, 37),
+    (4, 38),
+    (4, 39),
+    (4, 40),
+    (5, 41),
+    (5, 42),
+    (5, 43),
+    (5, 44),
+    (5, 45),
+    (5, 46),
+    (5, 47),
+    (5, 48),
+    (5, 49),
+    (5, 50),
+    (6, 51),
+    (6, 52),
+    (6, 53),
+    (6, 54),
+    (6, 55),
+    (6, 56),
+    (6, 57),
+    (6, 58),
+    (6, 59),
+    (6, 60),
+    (7, 61),
+    (7, 62),
+    (7, 63),
+    (7, 64),
+    (7, 65),
+    (7, 66),
+    (7, 67),
+    (7, 68),
+    (7, 69),
+    (7, 70);
+-- insertamos los resultados del estudiante 12
+INSERT INTO
+    Tb_calificacion (
+        nota,
+        id_profesor,
+        id_competencia,
+        id_usuario,
+        id_evaluacion
+    )
+VALUES ('aprobado', 2, 1, 12, 1),
+    ('reprobado', 2, 2, 12, 2),
+    ('aprobado', 2, 3, 12, 3),
+    ('aprobado', 2, 4, 12, 4),
+    ('aprobado', 2, 5, 12, 5),
+    ('aprobado', 2, 6, 12, 6);
+
+-- respuetas de estudiante 12 examen 1
+INSERT INTO
+    Tb_respuestas_estudiante (
+        id_evaluacion,
+        id_pregunta,
+        id_opcion,
+        id_usuario
+    )
+VALUES (1, 1, 1, 12),
+    (1, 2, 2, 12),
+    (1, 3, 3, 12),
+    (1, 4, 1, 12),
+    (1, 5, 1, 12),
+    (1, 6, 1, 12),
+    (1, 7, 1, 12),
+    (1, 8, 3, 12),
+    (1, 9, 1, 12),
+    (1, 10, 1, 12);
+-- respuetas de estudiante 12 examen 2
+INSERT INTO
+    Tb_respuestas_estudiante (
+        id_evaluacion,
+        id_pregunta,
+        id_opcion,
+        id_usuario
+    )
+VALUES (2, 11, 1, 12),
+    (2, 12, 1, 12),
+    (2, 13, 1, 12),
+    (2, 14, 1, 12),
+    (2, 15, 1, 12),
+    (2, 16, 1, 12),
+    (2, 17, 1, 12),
+    (2, 18, 1, 12),
+    (2, 19, 1, 12),
+    (2, 20, 1, 12);
+-- respuetas de estudiante 12 examen 3
+INSERT INTO
+    Tb_respuestas_estudiante (
+        id_evaluacion,
+        id_pregunta,
+        id_opcion,
+        id_usuario
+    )
+VALUES (3, 21, 1, 12),
+    (3, 22, 1, 12),
+    (3, 23, 1, 12),
+    (3, 24, 1, 12),
+    (3, 25, 1, 12),
+    (3, 26, 1, 12),
+    (3, 27, 1, 12),
+    (3, 28, 1, 12),
+    (3, 29, 1, 12),
+    (3, 30, 1, 12);
+-- respuetas de estudiante 12 examen 4
+INSERT INTO
+    Tb_respuestas_estudiante (
+        id_evaluacion,
+        id_pregunta,
+        id_opcion,
+        id_usuario
+    )
+VALUES (4, 31, 1, 12),
+    (4, 32, 1, 12),
+    (4, 33, 1, 12),
+    (4, 34, 1, 12),
+    (4, 35, 1, 12),
+    (4, 36, 1, 12),
+    (4, 37, 1, 12),
+    (4, 38, 1, 12),
+    (4, 39, 1, 12),
+    (4, 40, 1, 12);
+-- respuetas de estudiante 12 examen 5
+INSERT INTO
+    Tb_respuestas_estudiante (
+        id_evaluacion,
+        id_pregunta,
+        id_opcion,
+        id_usuario
+    )
+VALUES (5, 41, 1, 12),
+    (5, 42, 1, 12),
+    (5, 43, 1, 12),
+    (5, 44, 1, 12),
+    (5, 45, 1, 12),
+    (5, 46, 1, 12),
+    (5, 47, 1, 12),
+    (5, 48, 1, 12),
+    (5, 49, 1, 12),
+    (5, 50, 1, 12);
+-- respuetas de estudiante 12 examen 6
+INSERT INTO
+    Tb_respuestas_estudiante (
+        id_evaluacion,
+        id_pregunta,
+        id_opcion,
+        id_usuario
+    )
+VALUES (6, 51, 1, 12),
+    (6, 52, 1, 12),
+    (6, 53, 1, 12),
+    (6, 54, 1, 12),
+    (6, 55, 1, 12),
+    (6, 56, 1, 12),
+    (6, 57, 1, 12),
+    (6, 58, 1, 12),
+    (6, 59, 1, 12),
+    (6, 60, 1, 12);
+--insertamos actividades para el curso 1 profesor 2
+--actividad 1
+INSERT INTO
+    Tb_actividad (
+        titulo,
+        descripcion,
+        fecha_publicacion,
+        fecha_entrega,
+        ruta_archivo,
+        id_competencia,
+        id_curso,
+        id_profesor
+    )
+VALUES (
+        'Actividad 1: Introducción a la Programación',
+        'Realiza un programa sencillo en el lenguaje de tu elección que imprima "Hola, Mundo!" en la consola.',
+        '2024-01-10',
+        '2024-01-17',
+        'storage/documents/actividad1.pdf',
+        1,
+        1,
+        2
+    );
+--actividad 2
+INSERT INTO
+    Tb_actividad (
+        titulo,
+        descripcion,
+        fecha_publicacion,
+        fecha_entrega,
+        ruta_archivo,
+        id_competencia,
+        id_curso,
+        id_profesor
+    )
+VALUES (
+        'Actividad 2: Estructuras de Datos',
+        'Crea un programa que implemente una lista enlazada y realice operaciones básicas como inserción, eliminación y búsqueda.',
+        '2024-01-18',
+        '2024-01-25',
+        'storage/documents/actividad2.pdf',
+        1,
+        1,
+        2
+    );
+--actividad 3
+INSERT INTO
+    Tb_actividad (
+        titulo,
+        descripcion,
+        fecha_publicacion,
+        fecha_entrega,
+        ruta_archivo,
+        id_competencia,
+        id_curso,
+        id_profesor
+    )
+VALUES (
+        'Actividad 3: Algoritmos de Ordenamiento',
+        'Implementa los algoritmos de ordenamiento Bubble Sort y Quick Sort en el lenguaje de tu elección y compara su rendimiento.',
+        '2024-01-26',
+        '2024-02-02',
+        'storage/documents/actividad3.pdf',
+        1,
+        1,
+        2
+    );
+-- entrega del estudiante 12 actividad 1
+UPDATE Tb_entrega_actividad SET(
+    estado_entrega,
+    fecha_entrega,
+    ruta_archivo
+) = (
+    TRUE,
+    '2024-01-16',
+    'storage/documents/entrega_actividad1.pdf'
+)
+WHERE
+    id_entrega = 1
+    AND id_estudiante = 12;

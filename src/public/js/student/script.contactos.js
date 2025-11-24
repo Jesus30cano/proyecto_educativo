@@ -3,10 +3,12 @@
 
 let contadorContactos = 2;
 
-document.getElementById('btnAgregarContacto').addEventListener('click', function() {
-  contadorContactos++;
-  //Con el boton de añadir crea nuevas listas, la misma informacion personal que alla como ejemplo.
-  const nuevoContacto = `
+document
+  .getElementById("btnAgregarContacto")
+  .addEventListener("click", function () {
+    contadorContactos++;
+    //Con el boton de añadir crea nuevas listas, la misma informacion personal que alla como ejemplo.
+    const nuevoContacto = `
     <hr class="my-4">
     
     <div class="contacto-emergencia">
@@ -67,18 +69,20 @@ document.getElementById('btnAgregarContacto').addEventListener('click', function
       </div>
     </div>
   `;
-  
-  document.getElementById('contenedorContactos').insertAdjacentHTML('beforeend', nuevoContacto);
-});
+
+    document
+      .getElementById("contenedorContactos")
+      .insertAdjacentHTML("beforeend", nuevoContacto);
+  });
 
 // funcion de eliminar la lista
 function eliminarContacto(boton) {
-  const contacto = boton.closest('.contacto-emergencia');
+  const contacto = boton.closest(".contacto-emergencia");
   const hr = contacto.previousElementSibling;
-  
-  if (hr && hr.tagName === 'HR') {
+
+  if (hr && hr.tagName === "HR") {
     hr.remove();
   }
-  
+
   contacto.remove();
 }

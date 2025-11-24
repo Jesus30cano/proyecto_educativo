@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   cargarDatosLog();
-  
 });
 let tablaInicializada = false;
 async function cargarDatosLog() {

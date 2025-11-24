@@ -1,64 +1,60 @@
 /* 🔵 Encabezado de la competencia */
 .competencia-header {
-    background: linear-gradient(135deg, #1E88E5 0%, #64B5F6 100%);
-    border-radius: 16px;
-    color: #ffffff;
-    padding: 28px 30px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(135deg, #1e88e5 0%, #64b5f6 100%);
+  border-radius: 16px;
+  color: #ffffff;
+  padding: 28px 30px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 /* 🗃 Tarjetas de actividades */
 .card {
-    background: #FAFAFA;
-    border: 1px solid #e0e0e0;
-    border-radius: 14px;
-    transition: transform .25s, box-shadow .25s;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(30, 136, 229, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(30, 136, 229, 0.15);
 }
 
 /* Títulos y textos */
 .card-title {
-    font-weight: 600;
-    color: #37474F;
+  font-weight: 600;
+  color: #37474f;
 }
 
-
-
 .card-text {
-    font-size: 0.92rem;
-    color: #5f5f6a;
+  font-size: 0.92rem;
+  color: #5f5f6a;
 }
 
 /* Botones */
 .btn-outline-primary {
-    border-color: #1E88E5 !important;
-    color: #1E88E5 !important;
+  border-color: #1e88e5 !important;
+  color: #1e88e5 !important;
 }
 
 .btn-outline-primary:hover {
-    background: #1E88E5 !important;
-    color: #fff !important;
+  background: #1e88e5 !important;
+  color: #fff !important;
 }
 
-
-
 .btn-primary {
-    background: #1E88E5 !important;
-    border-color: #1E88E5 !important;
+  background: #1e88e5 !important;
+  border-color: #1e88e5 !important;
 }
 
 .btn-primary:hover {
-    background: #1565C0 !important;
-    border-color: #1565C0 !important;
+  background: #1565c0 !important;
+  border-color: #1565c0 !important;
 }
 
 /* Espacio nav */
 .main-content {
-    margin-top: 95px !important;
+  margin-top: 95px !important;
 }
 
 /* ------------------------------
@@ -67,65 +63,65 @@
 
 /* Header Responsive */
 @media (max-width: 768px) {
-    .competencia-header {
-        text-align: center;
-        padding: 20px !important;
-    }
+  .competencia-header {
+    text-align: center;
+    padding: 20px !important;
+  }
 
-    #btnSeguimiento {
-        width: 100%;
-        margin-top: 12px;
-    }
+  #btnSeguimiento {
+    width: 100%;
+    margin-top: 12px;
+  }
 }
 
 /* Filtros de fecha */
 @media (max-width: 768px) {
-    .row.mb-4 .col-md-4 {
-        margin-bottom: 12px;
-    }
+  .row.mb-4 .col-md-4 {
+    margin-bottom: 12px;
+  }
 
-    #btnFiltrarFechas {
-        width: 100%;
-    }
+  #btnFiltrarFechas {
+    width: 100%;
+  }
 }
 
 /* Cards de actividades */
 @media (max-width: 768px) {
-    .card {
-        padding: 10px !important;
-    }
+  .card {
+    padding: 10px !important;
+  }
 
-    .card-title {
-        font-size: 1rem !important;
-    }
+  .card-title {
+    font-size: 1rem !important;
+  }
 
-    .card-text {
-        font-size: 0.85rem !important;
-    }
+  .card-text {
+    font-size: 0.85rem !important;
+  }
 
-    .card .btn {
-        width: 100%;
-        margin-top: 8px;
-    }
+  .card .btn {
+    width: 100%;
+    margin-top: 8px;
+  }
 }
 
 /* Panel de progreso */
 @media (max-width: 768px) {
-    #panelProgreso .d-flex {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
+  #panelProgreso .d-flex {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
 
-    #panelProgreso .progress {
-        width: 100% !important;
-    }
+  #panelProgreso .progress {
+    width: 100% !important;
+  }
 }
 
 /* Modal responsive */
 @media (max-width: 576px) {
-    .modal-dialog {
-        margin: 10px;
-        width: 100%;
-    }
+  .modal-dialog {
+    margin: 10px;
+    width: 100%;
+  }
 }

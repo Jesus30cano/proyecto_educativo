@@ -1,179 +1,178 @@
 /* ========== ENCABEZADO DEL CURSO ========== */
 .curso-header {
-    color: #1565C0 !important;
-    font-size: 1.8rem;
-    background: #E3F2FD;
-    padding: 20px 26px;
-    border-radius: 12px;
-    border-left: 6px solid #1565C0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  color: #1565c0 !important;
+  font-size: 1.8rem;
+  background: #e3f2fd;
+  padding: 20px 26px;
+  border-radius: 12px;
+  border-left: 6px solid #1565c0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
 }
 
 .curso-header h2 {
-    font-weight: 700;
-    margin-bottom: 6px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .curso-header p {
-    font-size: 1rem;
-    opacity: 0.9;
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
 /* ========== GRID COMPETENCIAS ========== */
 .competencias-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 280px));
-    gap: 24px;
-    /* justify-content: center; para que no este centrado las cartas de las actividades */
-    /* Centra las tarjetas si sobran espacios */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 280px));
+  gap: 24px;
+  /* justify-content: center; para que no este centrado las cartas de las actividades */
+  /* Centra las tarjetas si sobran espacios */
 }
 
 /* ========== TARJETAS COMPETENCIAS ========== */
 .competencia-card {
-    background: #FFF8E1;
-    border: 1px solid #E1E1E1;
-    padding: 18px;
-    border-radius: 14px;
-    width: 100%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: .25s;
+  background: #fff8e1;
+  border: 1px solid #e1e1e1;
+  padding: 18px;
+  border-radius: 14px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.25s;
 }
 
 .competencia-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Textos */
 .title {
-    font-weight: 600;
-    font-size: 1.05rem;
-    color: #37474F;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #37474f;
 }
 
 .desc {
-    font-size: .9rem;
-    color: #5E5E66;
+  font-size: 0.9rem;
+  color: #5e5e66;
 }
 
 .info {
-    font-size: .88rem;
-    color: #1E88E5;
-    font-weight: 500;
-    margin-top: 12px;
+  font-size: 0.88rem;
+  color: #1e88e5;
+  font-weight: 500;
+  margin-top: 12px;
 }
 
 /* Botones grupo */
 .btn-group-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 /* Botones */
 .btn-outline-primary {
-    border-color: #1E88E5 !important;
-    color: #1E88E5 !important;
+  border-color: #1e88e5 !important;
+  color: #1e88e5 !important;
 }
 
 .btn-outline-primary:hover {
-    background: #1E88E5 !important;
-    color: #ffffff !important;
+  background: #1e88e5 !important;
+  color: #ffffff !important;
 }
 
 .btn-primary {
-    background: #1E88E5 !important;
-    border-color: #1E88E5 !important;
+  background: #1e88e5 !important;
+  border-color: #1e88e5 !important;
 }
 
 .btn-primary:hover {
-    background: #1565C0 !important;
-    border-color: #1565C0 !important;
+  background: #1565c0 !important;
+  border-color: #1565c0 !important;
 }
 
 /* Layout */
 .main-content {
-    margin-top: 95px !important;
+  margin-top: 95px !important;
 }
-
 
 /* ----- Header del curso ----- */
 @media (max-width: 768px) {
-    .curso-header {
-        text-align: center;
-        padding: 18px !important;
-        font-size: 1.5rem !important;
-    }
+  .curso-header {
+    text-align: center;
+    padding: 18px !important;
+    font-size: 1.5rem !important;
+  }
 
-    .curso-header h2 {
-        font-size: 1.4rem !important;
-    }
+  .curso-header h2 {
+    font-size: 1.4rem !important;
+  }
 
-    .curso-header p {
-        font-size: 0.9rem !important;
-    }
+  .curso-header p {
+    font-size: 0.9rem !important;
+  }
 }
 
 /* ----- Grid de competencias ----- */
 @media (max-width: 768px) {
-    .competencias-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
+  .competencias-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }
 
 /* ----- Tarjetas de competencias ----- */
 @media (max-width: 768px) {
-    .competencia-card {
-        padding: 14px;
-    }
+  .competencia-card {
+    padding: 14px;
+  }
 
-    .title {
-        font-size: 1rem !important;
-    }
+  .title {
+    font-size: 1rem !important;
+  }
 
-    .desc {
-        font-size: 0.85rem !important;
-    }
+  .desc {
+    font-size: 0.85rem !important;
+  }
 
-    .info {
-        font-size: 0.82rem !important;
-    }
+  .info {
+    font-size: 0.82rem !important;
+  }
 }
 
 /* ----- Botones dentro de la tarjeta ----- */
 @media (max-width: 768px) {
-    .btn-group-actions {
-        flex-direction: column !important;
-        gap: 8px !important;
-    }
+  .btn-group-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
 
-    .btn-group-actions .btn {
-        width: 100% !important;
-    }
+  .btn-group-actions .btn {
+    width: 100% !important;
+  }
 }
 
 /* ----- Ajuste general del layout ----- */
 @media (max-width: 991px) {
-    .main-content {
-        margin-top: 75px !important;
-        padding: 18px !important;
-    }
+  .main-content {
+    margin-top: 75px !important;
+    padding: 18px !important;
+  }
 }
 
 /* ----- Optimización para pantallas muy pequeñas ----- */
 @media (max-width: 480px) {
-    .curso-header {
-        padding: 14px !important;
-    }
+  .curso-header {
+    padding: 14px !important;
+  }
 
-    .competencia-card {
-        border-radius: 12px !important;
-    }
+  .competencia-card {
+    border-radius: 12px !important;
+  }
 
-    .title {
-        font-size: 0.95rem !important;
-    }
+  .title {
+    font-size: 0.95rem !important;
+  }
 
-    .desc {
-        font-size: 0.8rem !important;
-    }
+  .desc {
+    font-size: 0.8rem !important;
+  }
 }
