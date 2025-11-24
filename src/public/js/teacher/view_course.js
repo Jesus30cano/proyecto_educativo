@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
     mensaje.innerHTML = "";
     for (const pair of formData.entries()) {
-  console.log(`${pair[0]}:`, pair[1]);
-}
+      console.log(`${pair[0]}:`, pair[1]);
+    }
 
     try {
       const res = await fetch("/teacher/activity/crear_actividad", {

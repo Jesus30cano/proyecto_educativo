@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const text = await response.text();
         console.log("📩 Respuesta cruda del servidor:", text);
 
-        
         try {
           data = JSON.parse(text);
         } catch (jsonErr) {
@@ -72,16 +71,19 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/auth/validar_codigo";
           }, 2000);
         } else {
-          showToast(data.message,"#e74c3c", 3000);
+          showToast(data.message, "#e74c3c", 3000);
           submitButton.disabled = false;
           submitButton.textContent = "ENVIAR CÓDIGO";
         }
         return;
       }
-
     } catch (error) {
       console.error("Error:", error);
-      showToast("Error de conexión. Por favor intenta nuevamente.", "#e74c3c", 3000);
+      showToast(
+        "Error de conexión. Por favor intenta nuevamente.",
+        "#e74c3c",
+        3000
+      );
       submitButton.disabled = false;
       submitButton.textContent = "ENVIAR CÓDIGO";
     }
@@ -101,5 +103,3 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.borderColor = "#90CAF9";
   });
 });
-
-

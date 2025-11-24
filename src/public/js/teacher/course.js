@@ -67,12 +67,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   let cursos = [];
 
   try {
-    const res = await fetch("/teacher/course/obtenerCursosProfesor", {
+    const res = await fetch("/teacher/course/obtenerCursosProfesorSinRepetir", {
       cache: "no-store",
     });
     const json = await res.json();
     console.log("Cursos obtenidos:", json);
-                  
+
     cursos = json.data || [];
   } catch (err) {
     console.error("Error al obtener cursos:", err);

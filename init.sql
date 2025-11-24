@@ -2,9 +2,13 @@
 -- ENUMERACIONES
 -- ============================================================
 CREATE TYPE tipo_documento AS ENUM ('cedula_de_ciudadania', 'tarjeta_identidad', 'cedula_extranjeria');
+
 CREATE TYPE estado_asistencia AS ENUM ('presente', 'excusa', 'ausente');
+
 CREATE TYPE tipo_rol AS ENUM ('administrador', 'profesor', 'estudiante');
+
 CREATE TYPE estado_est AS ENUM ('activo', 'inactivo', 'suspendido', 'graduado', 'retirado','aplazado');
+
 CREATE TYPE calificacion AS ENUM ('aprobado', 'reprobado');
 
 -- ============================================================
@@ -15,8 +19,6 @@ CREATE TABLE Tb_rol (
     nombre_rol tipo_rol UNIQUE NOT NULL
 );
 
-
-
 CREATE TABLE Tb_usuario (
     id_usuario SERIAL PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -25,7 +27,7 @@ CREATE TABLE Tb_usuario (
     password VARCHAR(255) NOT NULL,
     activo BOOLEAN DEFAULT TRUE,
     id_rol INT NOT NULL,
-    FOREIGN KEY (id_rol) REFERENCES Tb_rol(id_rol)
+    FOREIGN KEY (id_rol) REFERENCES Tb_rol (id_rol)
 );
 
 CREATE TABLE Tb_datos_personales (
@@ -38,9 +40,8 @@ CREATE TABLE Tb_datos_personales (
     genero VARCHAR(20),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_usuario INT UNIQUE NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario)
 );
-
 
 -- ============================================================
 -- CURSOS Y RELACIONES
@@ -53,7 +54,7 @@ CREATE TABLE Tb_curso (
     ficha_activa BOOLEAN DEFAULT TRUE,
     fecha_inicio DATE DEFAULT CURRENT_DATE,
     fecha_fin DATE DEFAULT CURRENT_DATE + INTERVAL '1 year',
-    FOREIGN KEY (id_profesor_lider) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_profesor_lider) REFERENCES Tb_usuario (id_usuario)
 );
 --=============================================================
 -- tabla intermedia estudiante_curso
@@ -63,8 +64,8 @@ CREATE TABLE Tb_estudiante_curso (
     id_usuario INT NOT NULL,
     id_curso INT NOT NULL,
     UNIQUE (id_usuario, id_curso),
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
-    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario),
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso (id_curso)
 );
 
 -------------------------------------------------------------
@@ -74,11 +75,10 @@ CREATE TABLE Tb_profesor_curso (
     id_usuario INT NOT NULL,
     id_curso INT NOT NULL,
     UNIQUE (id_usuario, id_curso),
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
-    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario),
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso (id_curso)
 );
 -- ============================================================
-
 
 -- ============================================================
 -- CONTACTOS DE EMERGENCIA (para cualquier usuario)
@@ -93,7 +93,7 @@ CREATE TABLE Tb_contacto_emergencia (
     correo VARCHAR(100),
     observaciones TEXT,
     id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario)
 );
 
 -- ============================================================
@@ -106,8 +106,12 @@ CREATE TABLE Tb_asistencia (
     observaciones TEXT,
     id_estudiante_curso INT NOT NULL,
     id_profesor INT NOT NULL,
-    UNIQUE(fecha, id_estudiante_curso),
-    FOREIGN KEY (id_estudiante_curso) REFERENCES Tb_estudiante_curso(id_estudiante_curso)
+    UNIQUE (
+        fecha,
+        id_estudiante_curso,
+        id_profesor
+    ),
+    FOREIGN KEY (id_estudiante_curso) REFERENCES Tb_estudiante_curso (id_estudiante_curso)
 );
 
 -- ============================================================
@@ -121,7 +125,7 @@ CREATE TABLE Tb_expediente_usuario (
     nombre_archivo VARCHAR(200) NOT NULL,
     ruta_documento VARCHAR(500) NOT NULL, -- ruta o referencia al documento
     id_usuario INT NOT NULL, -- el estudiante también es usuario
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario)
 );
 -- hay que hacer un tiger para el historial de estados del estudiante
 CREATE TABLE Tb_estado_usuario (
@@ -130,9 +134,8 @@ CREATE TABLE Tb_estado_usuario (
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     observaciones TEXT,
     id_usuario INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario)
 );
-
 
 -- ============================================================
 -- COMPETENCIAS Y EVALUACIONES
@@ -143,21 +146,18 @@ CREATE TABLE Tb_competencia (
     nombre VARCHAR(200) NOT NULL,
     descripcion TEXT,
     id_profesor INT NOT NULL,
-    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario (id_usuario)
 );
 --------------------------------------------------------------
-
-
 
 CREATE TABLE Tb_competencia_curso (
     id_curso INT NOT NULL,
     id_competencia INT NOT NULL,
     PRIMARY KEY (id_curso, id_competencia),
-    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
-    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia)
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso (id_curso),
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia (id_competencia)
 );
 --------------------------------------------------------------
-
 
 CREATE TABLE Tb_evaluacion (
     id_evaluacion SERIAL PRIMARY KEY,
@@ -168,16 +168,16 @@ CREATE TABLE Tb_evaluacion (
     id_curso INT,
     id_competencia INT,
     id_profesor INT NOT NULL,
-    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
-    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
-    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso (id_curso),
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia (id_competencia),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario (id_usuario)
 );
 
 CREATE TABLE Tb_preguntas (
     id_pregunta SERIAL PRIMARY KEY,
     pregunta TEXT NOT NULL,
     id_evaluacion INT,
-    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion)
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion (id_evaluacion)
 );
 
 CREATE TABLE Tb_opciones_respuesta (
@@ -185,15 +185,15 @@ CREATE TABLE Tb_opciones_respuesta (
     opcion TEXT NOT NULL,
     es_correcta BOOLEAN,
     id_pregunta INT,
-    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta)
+    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas (id_pregunta)
 );
 
 CREATE TABLE Tb_evaluacion_pregunta (
     id_evaluacion INT,
     id_pregunta INT,
     PRIMARY KEY (id_evaluacion, id_pregunta),
-    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion),
-    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta)
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion (id_evaluacion),
+    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas (id_pregunta)
 );
 
 CREATE TABLE Tb_calificacion (
@@ -203,10 +203,10 @@ CREATE TABLE Tb_calificacion (
     id_competencia INT,
     id_usuario INT, -- estudiante
     id_evaluacion INT,
-    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario),
-    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
-    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion)
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario (id_usuario),
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia (id_competencia),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario),
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion (id_evaluacion)
 );
 
 CREATE TABLE Tb_resultado_competencia (
@@ -215,25 +215,29 @@ CREATE TABLE Tb_resultado_competencia (
     estado calificacion NOT NULL,
     observaciones TEXT,
     id_competencia INT NOT NULL,
-    id_usuario INT NOT NULL,  -- estudiante
+    id_usuario INT NOT NULL, -- estudiante
     id_profesor INT NOT NULL, -- profesor que evaluó
-    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario),
-    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario),
-    UNIQUE (id_competencia, id_usuario)  -- un resultado por competencia y estudiante
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia (id_competencia),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario (id_usuario),
+    UNIQUE (id_competencia, id_usuario) -- un resultado por competencia y estudiante
 );
 
-CREATE TABLE Tb_respuestas_estudiante(
+CREATE TABLE Tb_respuestas_estudiante (
     id_respuesta SERIAL PRIMARY KEY,
     id_evaluacion INT,
     id_pregunta INT,
     id_opcion INT,
     id_usuario INT,
-    UNIQUE (id_evaluacion, id_pregunta, id_usuario), -- estudiante
-    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion(id_evaluacion),
-    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas(id_pregunta),
-    FOREIGN KEY (id_opcion) REFERENCES Tb_opciones_respuesta(id_opcion),
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+    UNIQUE (
+        id_evaluacion,
+        id_pregunta,
+        id_usuario
+    ), -- estudiante
+    FOREIGN KEY (id_evaluacion) REFERENCES Tb_evaluacion (id_evaluacion),
+    FOREIGN KEY (id_pregunta) REFERENCES Tb_preguntas (id_pregunta),
+    FOREIGN KEY (id_opcion) REFERENCES Tb_opciones_respuesta (id_opcion),
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario)
 );
 
 -- ============================================================
@@ -247,7 +251,7 @@ CREATE TABLE Tb_notificaciones (
     mensaje TEXT NOT NULL,
     id_usuario INT,
     leida BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario)
 );
 
 CREATE TABLE Tb_log_actividades (
@@ -255,10 +259,8 @@ CREATE TABLE Tb_log_actividades (
     actividad VARCHAR(255) NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tb_usuario (id_usuario)
 );
-
-
 
 -- ============================================================
 -- ACTIVIDADES (creadas por el profesor)
@@ -269,13 +271,13 @@ CREATE TABLE Tb_actividad (
     descripcion TEXT,
     fecha_publicacion DATE DEFAULT CURRENT_DATE,
     fecha_entrega DATE,
-    ruta_archivo VARCHAR(500),  -- ruta del archivo subido por el docente (PDF, DOCX, etc.)
+    ruta_archivo VARCHAR(500), -- ruta del archivo subido por el docente (PDF, DOCX, etc.)
     id_competencia INT NOT NULL,
     id_curso INT NOT NULL,
     id_profesor INT NOT NULL,
-    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia(id_competencia),
-    FOREIGN KEY (id_curso) REFERENCES Tb_curso(id_curso),
-    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario)
+    FOREIGN KEY (id_competencia) REFERENCES Tb_competencia (id_competencia),
+    FOREIGN KEY (id_curso) REFERENCES Tb_curso (id_curso),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario (id_usuario)
 );
 -- ============================================================
 -- ENTREGAS DE LOS ESTUDIANTES
@@ -285,25 +287,29 @@ CREATE TABLE Tb_entrega_actividad (
     titulo VARCHAR(200) NOT NULL,
     descripcion TEXT,
     estado_entrega BOOLEAN DEFAULT FALSE, -- entregado o no
-    fecha_entrega DATE ,
-    ruta_archivo VARCHAR(500),  -- archivo entregado por el estudiante
-    calificacion calificacion ,
+    fecha_entrega DATE,
+    ruta_archivo VARCHAR(500), -- archivo entregado por el estudiante
+    calificacion calificacion,
     fecha_calificacion DATE,
     observaciones TEXT DEFAULT 'sin observaciones',
     id_actividad INT NOT NULL,
     id_profesor INT,
     id_estudiante INT NOT NULL,
-    FOREIGN KEY (id_actividad) REFERENCES Tb_actividad(id_actividad) on DELETE CASCADE,
-    FOREIGN KEY (id_estudiante) REFERENCES Tb_usuario(id_usuario),
-    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario(id_usuario),
+    FOREIGN KEY (id_actividad) REFERENCES Tb_actividad (id_actividad) on DELETE CASCADE,
+    FOREIGN KEY (id_estudiante) REFERENCES Tb_usuario (id_usuario),
+    FOREIGN KEY (id_profesor) REFERENCES Tb_usuario (id_usuario),
     UNIQUE (id_actividad, id_estudiante) -- una sola entrega por estudiante por actividad
 );
 
-CREATE INDEX idx_usuario_rol ON Tb_usuario(id_rol);
-CREATE INDEX idx_curso_profesor ON Tb_curso(id_profesor_lider);
-CREATE INDEX idx_competencia_profesor ON Tb_competencia(id_profesor);
-CREATE INDEX idx_entrega_estudiante ON Tb_entrega_actividad(id_estudiante);
-CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad(id_actividad);
+CREATE INDEX idx_usuario_rol ON Tb_usuario (id_rol);
+
+CREATE INDEX idx_curso_profesor ON Tb_curso (id_profesor_lider);
+
+CREATE INDEX idx_competencia_profesor ON Tb_competencia (id_profesor);
+
+CREATE INDEX idx_entrega_estudiante ON Tb_entrega_actividad (id_estudiante);
+
+CREATE INDEX idx_entrega_actividad ON Tb_entrega_actividad (id_actividad);
 -- todos los tiggers deben ir al final del script
 --------------------------------------------------------------
 CREATE OR REPLACE FUNCTION log_competencia_curso()
@@ -374,6 +380,7 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
 CREATE TRIGGER trg_log_inscripcion_estudiante_curso
 AFTER INSERT ON Tb_estudiante_curso
 FOR EACH ROW
@@ -398,6 +405,7 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
 CREATE TRIGGER trg_log_asignacion_profesor_curso
 AFTER INSERT ON Tb_profesor_curso
 FOR EACH ROW
@@ -441,6 +449,7 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
 CREATE TRIGGER trg_log_creacion_competencia
 AFTER INSERT ON Tb_competencia
 FOR EACH ROW
@@ -460,6 +469,7 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
 CREATE TRIGGER trg_log_registro_usuario
 AFTER INSERT ON Tb_usuario
 FOR EACH ROW
@@ -551,7 +561,7 @@ $$;
 -- no retorna datos
 
 -- ============================================================
- CREATE OR REPLACE PROCEDURE crear_datos_personales(
+CREATE OR REPLACE PROCEDURE crear_datos_personales(
     p_id_usuario INT,
     p_nombre VARCHAR(100),
     p_apellido VARCHAR(100),
@@ -632,8 +642,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
 -- ============================================================
 -- función: obtener_notificaciones_usuario
 -- descripción: retorna todas las notificaciones de un usuario ordenadas por fecha
@@ -693,9 +701,8 @@ AS $$
     JOIN Tb_datos_personales dp ON log.id_usuario = dp.id_usuario
 $$ LANGUAGE sql;
 
-
 -- ======================================================================
--- función registrar usuario (administrador): 
+-- función registrar usuario (administrador):
 -- SELECT admin_registrar_usuario('Brallano@gmail.com','cedula_de_ciudadania','12345678','clave123',3);
 -- Inserta un nuevo usuario en la tabla Tb_usuario
 -- no retorna datos
@@ -717,7 +724,6 @@ $$ LANGUAGE sql;
 --   No retorna ningún valor.
 -- =====================================================================================
 
-
 CREATE OR REPLACE FUNCTION admin_registrar_usuario(
     p_email VARCHAR, 
     p_tipo_documento tipo_documento,
@@ -736,9 +742,6 @@ BEGIN
     RETURN v_id_usuario;
 END;
 $$;
-
-
-
 
 -- ======================================================================
 -- PROCEDIMIENTO: usuario_datos_personales
@@ -770,9 +773,6 @@ BEGIN
 END;
 $$;
 
-
-
-
 -- ============================================================
 -- FUNCION: listar_usuarios_por_idrol
 -- USO: SELECT * FROM listar_usuarios_por_idrol(3);  -- 2 = profesor, 3 = estudiante
@@ -781,8 +781,6 @@ $$;
 --   id_usuario, nombre, apellido, email, estado (activo/inactivo),
 --   fecha_nacimiento, telefono, direccion, genero, fecha_registro
 -- ============================================================
-
-
 
 CREATE OR REPLACE FUNCTION listar_usuarios_por_idrol(p_id_rol INT)
 RETURNS TABLE(
@@ -820,8 +818,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
 -- =======================================================================================
 -- PROCEDIMIENTO: actualizar_datos_personales
 -- USO: CALL actualizar_datos_personales(1,'Brallan','Echeverria','1990-01-01','3001234567','Calle 123','Masculino');
@@ -855,8 +851,6 @@ BEGIN
 END;
 $$;
 
-
-
 -- =======================================================================================
 -- PROCEDIMIENTO: desactivar_usuario
 -- USO: CALL desactivar_usuario(1);
@@ -875,9 +869,6 @@ BEGIN
     WHERE id_usuario = p_id_usuario;
 END;
 $$;
-
-
-
 
 -- =======================================================================================
 -- PROCEDIMIENTO: actualizar_usuario
@@ -916,8 +907,6 @@ BEGIN
 END;
 $$;
 
-
-
 -- =======================================================================================
 -- PROCEDIMIENTO: activar_usuario
 -- USO: CALL activar_usuario(1);
@@ -936,8 +925,6 @@ BEGIN
     WHERE id_usuario = p_id_usuario;
 END;
 $$;
-
-
 
 -- =======================================================================================
 -- PROCEDIMIENTO: crear_curso
@@ -966,7 +953,6 @@ BEGIN
     VALUES (p_ficha, p_nombre_curso, p_id_profesor_lider, p_fecha_inicio, p_fecha_fin);
 END;
 $$;
-
 
 -- =======================================================================================
 -- PROCEDIMIENTO: editar_curso
@@ -1007,8 +993,6 @@ BEGIN
 END;
 $$;
 
-
-
 -- =======================================================================================
 -- PROCEDIMIENTO: asignar_estudiante_a_curso
 -- USO: CALL asignar_estudiante_a_curso(1, 1);
@@ -1030,8 +1014,6 @@ BEGIN
     VALUES (p_id_usuario, p_id_curso);
 END;
 $$;
-
-
 
 -- =======================================================================================
 -- PROCEDIMIENTO: remover_estudiante_de_curso
@@ -1055,9 +1037,6 @@ BEGIN
       AND id_curso = p_id_curso;
 END;
 $$;
-
-
-
 
 -- =======================================================================================
 -- PROCEDIMIENTO: asignar_profesor_a_curso
@@ -1083,9 +1062,6 @@ BEGIN
 END;
 $$;
 
-
-
-
 -- =======================================================================================
 -- PROCEDIMIENTO: remover_profesor_de_curso
 -- USO: CALL remover_profesor_de_curso(4, 1);
@@ -1108,9 +1084,6 @@ BEGIN
       AND id_curso = p_id_curso;
 END;
 $$;
-
-
-
 
 -- =======================================================================================
 -- FUNCIÓN: reporte_notas_estudiante
@@ -1147,7 +1120,6 @@ BEGIN
     WHERE cal.id_usuario = p_id_usuario;
 END;
 $$ LANGUAGE plpgsql;
-
 
 -- =======================================================================================
 -- FUNCIÓN: reporte_notas_por_curso
@@ -1187,7 +1159,8 @@ BEGIN
     LEFT JOIN Tb_evaluacion e ON cal.id_evaluacion = e.id_evaluacion
     WHERE ec.id_curso = p_id_curso;
 END;
-$$ LANGUAGE plpgsql;-- =======================================================================================
+$$ LANGUAGE plpgsql;
+-- =======================================================================================
 -- FUNCIÓN: reporte_notas_por_curso
 -- USO: SELECT * FROM reporte_notas_por_curso(1);
 -- DESCRIPCIÓN: Muestra las calificaciones de todos los estudiantes de un curso.
@@ -1273,11 +1246,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
-
 -- ============================================================
 -- Procedimiento: crear_actividad
 -- Descripción: Inserta una nueva actividad en la tabla Tb_actividad.
@@ -1328,8 +1296,6 @@ BEGIN
 END;
 $$;
 
-
-
 -- =======================================================================================
 -- FUNCIÓN: enviar_notificacion_general
 -- USO:
@@ -1367,9 +1333,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
 -- =======================================================================================
 -- FUNCIÓN: enviar_notificacion_a_usuario
 -- USO:
@@ -1406,10 +1369,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
 -- =======================================================================================
 -- FUNCIÓN: marcar_notificacion_leida
 -- USO:
@@ -1443,12 +1402,6 @@ BEGIN
     RETURN 'Notificación marcada como leída';
 END;
 $$ LANGUAGE plpgsql;
-
-
-
-
-
-
 
 -- =======================================================================================
 -- FUNCIÓN: obtener_boletin_estudiante
@@ -1511,7 +1464,6 @@ $$ LANGUAGE plpgsql;
 --   p_id_profesor  → ID del profesor
 -- RETORNO:
 --   Datos de asistencia, estudiante y curso
-
 
 CREATE OR REPLACE FUNCTION obtener_asistencias_por_curso_profesor(
     p_ficha VARCHAR,
@@ -1594,7 +1546,6 @@ BEGIN
 END;
 $$;
 
-
 -- ============================================================
 -- FUNCIÓN: obtener_info_cursos
 -- USO:
@@ -1638,21 +1589,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
-
-
-
-
 --========================================================================================================
 --================Requerimientos estudiante===============================================================
 
-
-
 --=====================================Visualización de cursos y materias:================================
-
 
 -- =======================================================================================
 -- FUNCIÓN: obtener_curso_por_estudiante
@@ -1695,10 +1635,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
 -- =======================================================================================
 -- FUNCIÓN: obtener_competencias_por_curso
 -- USO: SELECT * FROM obtener_competencias_por_curso(1);
@@ -1713,7 +1649,7 @@ $$ LANGUAGE plpgsql;
 -- RETORNO:
 --   id_competencia, codigo, nombre_competencia, descripcion, profesor
 -- =======================================================================================
- 
+
 CREATE OR REPLACE FUNCTION obtener_competencias_por_curso(
     p_id_curso INT
 )
@@ -1741,16 +1677,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
 --===========================================Subida de actividades y exámenes:=====================
-
-
-
-
-
 
 -- =======================================================================================
 -- PROCEDIMIENTO: subir_entrega_actividad
@@ -1801,8 +1728,6 @@ BEGIN
 END;
 $$;
 
-
-
 -- =======================================================================================
 -- FUNCIÓN: obtener_actividades_pendientes
 -- USO:
@@ -1820,7 +1745,7 @@ $$;
 --   id_actividad, titulo, descripcion, fecha_entrega, nombre_curso, nombre_profesor
 -- =======================================================================================
 
-  CREATE OR REPLACE FUNCTION obtener_actividades_estudiante(p_id_estudiante INT)
+CREATE OR REPLACE FUNCTION obtener_actividades_estudiante(p_id_estudiante INT)
 RETURNS TABLE (
     id_actividad INT,
     titulo_actividad VARCHAR,
@@ -1863,18 +1788,9 @@ BEGIN
 
     ORDER BY a.fecha_entrega ASC;
 END;
-$$ LANGUAGE plpgsql;        
-
-
-
-
-
-
+$$ LANGUAGE plpgsql;
 
 --============================Visualización de calificaciones:=============================================
-
-
-
 
 -- =======================================================================================
 -- FUNCIÓN: obtener_calificaciones_por_estudiante
@@ -1925,10 +1841,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
 -- =======================================================================================
 -- FUNCIÓN: obtener_calificaciones_examenes
 -- USO: SELECT * FROM obtener_calificaciones_examenes(2);
@@ -1948,7 +1860,7 @@ $$ LANGUAGE plpgsql;
 --   descripcion         TEXT
 --   nombre_competencia  VARCHAR
 --   nombre_curso        VARCHAR
---   calificacion        TEXT        
+--   calificacion        TEXT
 --   fecha_evaluacion    DATE
 --   estado              VARCHAR
 -- =======================================================================================
@@ -2020,7 +1932,7 @@ $$;
 -- FUNCIÓN: obtener_totales_activos
 -- USO:
 --     SELECT * FROM obtener_totales_activos();
--- 
+--
 -- DESCRIPCIÓN:
 --     Retorna las cantidades totales de usuarios activos según su rol
 --     (estudiantes y profesores), así como el total de cursos activos
@@ -2052,7 +1964,7 @@ $$ LANGUAGE plpgsql;
 
 -- ============================================================
 -- FUNCIÓN: obtener_total_cursos
--- USO: 
+-- USO:
 --     SELECT * FROM obtener_total_cursos();
 -- DESCRIPCIÓN:
 --     Retorna información detallada de todos los cursos,
@@ -2098,42 +2010,6 @@ BEGIN
     GROUP BY c.id_curso, c.nombre_curso, c.ficha, c.fecha_inicio, c.fecha_fin, dp.nombre, dp.apellido, c.ficha_activa;
 END;
 $$ LANGUAGE plpgsql;
--- =======================================================================================
--- todos los inser al final del script
--- =======================================================================================
-INSERT INTO Tb_rol (nombre_rol) VALUES
-('administrador'),
-('profesor'),
-('estudiante');
--- ============================================================
---datos de prueba 
--- ============================================================
--- ============================================================
--- USUARIOS DE EJEMPLO
--- ============================================================
--- la clave es prueba123 para los tres usuarios
-INSERT INTO Tb_usuario (email, tipo_documento, no_documento, password, activo, id_rol) VALUES
-('admin@plataforma.com', 'cedula_de_ciudadania', '111111111', '$2y$10$mW/HS7/e6Q.0CDOaLVfroeEfBs.71Vp/ucuKkvDDRXyQy8bKfCX0S', TRUE, 1),
-('profesor@plataforma.com', 'tarjeta_identidad', '222222222', '$2y$10$CN7vIzIwuKDayz3BSTOCG.N4vV2MkODNaQsL67smqNbPOBho88N3W', TRUE, 2),
-('estudiante@plataforma.com', 'cedula_extranjeria', '333333333', '$2y$10$ovuBo/WrQBda2ANOk.TiU.sX3BXRm5cWygxgckwILOWQzL8OD.o.S', TRUE, 3);
-
--- ============================================================
--- DATOS PERSONALES (opcional)
--- ============================================================
-
-INSERT INTO Tb_datos_personales (nombre, apellido, fecha_nacimiento, telefono, direccion, genero, id_usuario)
-VALUES
-('Carlos', 'Ramírez', '1985-06-15', '3001234567', 'Calle 10 #5-20', 'Masculino', 1),
-('Laura', 'Gómez', '1990-04-22', '3109876543', 'Carrera 8 #12-45', 'Femenino', 2),
-('Andrés', 'Torres', '2002-09-10', '3207654321', 'Avenida 15 #30-50', 'Masculino', 3);
-
---prueba de datos curso y estudiante_curso
-
-INSERT INTO Tb_curso (ficha, nombre_curso, id_profesor_lider, ficha_activa)
-VALUES ('F12345', 'ADSO', 2, TRUE);
--- Si el curso tiene id=1
-INSERT INTO Tb_estudiante_curso (id_usuario, id_curso)
-VALUES (3, 1);
 
 -- ============================================================
 -- FUNCIÓN: get_instructores
@@ -2422,6 +2298,7 @@ BEGIN
     WHERE id_actividad = p_id_actividad;
 END;
 $$;
+
 CREATE OR REPLACE FUNCTION crear_entregas_automatica()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -2452,6 +2329,7 @@ BEGIN
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
+
 CREATE TRIGGER trigger_crear_entregas
 AFTER INSERT ON Tb_actividad
 FOR EACH ROW
@@ -2494,7 +2372,7 @@ BEGIN
 END;
 $$;
 -- ============================================================
-    CREATE OR REPLACE FUNCTION fn_entregas_por_actividad(p_id_actividad INT)
+CREATE OR REPLACE FUNCTION fn_entregas_por_actividad(p_id_actividad INT)
     RETURNS TABLE (
         id INT,
         estudiante TEXT,
@@ -2550,9 +2428,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
 CREATE OR REPLACE FUNCTION fn_estudiantes_por_curso(p_id_curso INT)
 RETURNS TABLE (
     id_estudiante_curso INT,
@@ -2579,9 +2454,6 @@ BEGIN
     ORDER BY dp.apellido, dp.nombre;
 END;
 $$ LANGUAGE plpgsql;
-
-
-
 
 CREATE OR REPLACE FUNCTION fn_registrar_asistencia(
     p_id_profesor INT,
@@ -2612,9 +2484,6 @@ BEGIN
         id_profesor = EXCLUDED.id_profesor;
 END;
 $$ LANGUAGE plpgsql;
-
-
-
 
 CREATE OR REPLACE FUNCTION fn_asistencias_profesor(
     p_id_profesor INT,
@@ -2723,10 +2592,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
-
 CREATE OR REPLACE FUNCTION obtener_evaluaciones_por_estudiante(p_id_estudiante INT)
 RETURNS TABLE (
     id_evaluacion      INT,
@@ -2780,3 +2645,35 @@ BEGIN
     ORDER BY e.fecha ASC;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_cursos_competencias_profesor_sin_repetir(p_id_profesor INT)
+RETURNS TABLE(
+    id_curso INT,
+    curso VARCHAR(100),
+    ficha VARCHAR(50),
+    ficha_activa BOOLEAN
+    
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT DISTINCT
+        c.id_curso,
+        c.nombre_curso,
+        c.ficha,
+        c.ficha_activa
+    FROM Tb_curso c
+    INNER JOIN Tb_profesor_curso pc ON c.id_curso = pc.id_curso
+    INNER JOIN Tb_competencia_curso cc ON c.id_curso = cc.id_curso
+    INNER JOIN Tb_competencia comp ON cc.id_competencia = comp.id_competencia
+    WHERE pc.id_usuario = p_id_profesor
+    AND comp.id_profesor = p_id_profesor ;
+END;
+$$ LANGUAGE plpgsql;
+-- =======================================================================================
+-- todos los inser al final del script
+-- =======================================================================================
+INSERT INTO
+    Tb_rol (nombre_rol)
+VALUES ('administrador'),
+    ('profesor'),
+    ('estudiante');

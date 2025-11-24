@@ -6,8 +6,8 @@
 
     <form id="borrarProfesorForm">
       <div class="form-group">
-        <label for="search_profesor_id">Buscar por ID del Profesor:</label>
-        <input type="number" id="search_profesor_id" required>
+        <label for="search_profesor_id2">Buscar por ID del Profesor:</label>
+        <input type="number" id="search_profesor_id2" required>
         <button type="button" class="btn btn-info" onclick="buscarProfesorBorrar()">Buscar</button>
       </div>
 

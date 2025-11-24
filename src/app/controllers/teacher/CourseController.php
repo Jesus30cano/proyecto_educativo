@@ -51,6 +51,28 @@ class CourseController extends Controller
         ], 405);
     }
 
+    public function obtenerCursosProfesorSinRepetir()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+            // Datos de prueba
+            $model = $this->model('teacher/TeacherModel');
+
+            $profesor_id = $_SESSION['user_id'];
+            $cursos = $model->fn_cursos_competencias_profesor_sin_repetir($profesor_id);
+            if (!$cursos) {
+                return $this->jsonResponse(["status" => "error", "message" => "No se encontraron cursos para el profesor."]);
+            }
+        
+
+            return $this->jsonResponse(["status" => "success", "data" => $cursos]);
+        }
+
+        return $this->jsonResponse([
+            'status' => 'error',
+            'message' => 'Método no permitido.'
+        ], 405);
+    }
 
     // este metodo selecciona el curso para trabajar en el panel del profesor, sin exponer el id en la url
     //este metodo recibe el id del curso por post y lo guarda en sesion
