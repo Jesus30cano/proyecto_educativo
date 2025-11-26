@@ -14,7 +14,7 @@
                 <th>INSTRUCTOR</th>
                 <th>FECHA INICIO</th>
                 <th>FECHA FIN</th>
-                <th>APRENDIZES</th>
+                <th>APRENDICES</th>
               </tr>
             </thead>
             <tbody>
