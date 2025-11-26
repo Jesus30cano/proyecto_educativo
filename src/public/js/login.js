@@ -21,7 +21,11 @@ async function login() {
       data = JSON.parse(text);
     } catch (e) {
       console.error("Respuesta no es JSON:", text);
-      showToast("Error interno. El servidor no devolvió una respuesta válida.", "#e74c3c", 4000);
+      showToast(
+        "Error interno. El servidor no devolvió una respuesta válida.",
+        "#e74c3c",
+        4000
+      );
       return;
     }
 
@@ -30,7 +34,7 @@ async function login() {
       localStorage.setItem("id_user", data.id_user);
       localStorage.setItem("usuario", data.usuario);
       localStorage.setItem("rol", data.rol);
-      
+
       // Redirigir después de mostrar el toast
       setTimeout(() => {
         window.location.href = data.redirect || "/home";
@@ -45,10 +49,13 @@ async function login() {
     } else {
       showToast("Ocurrió un error inesperado.", "#e74c3c", 4000);
     }
-
   } catch (error) {
     console.error("Error de conexión o JSON inválido:", error);
-    showToast("Error de conexión. Por favor, intenta de nuevo.", "#e74c3c", 4000);
+    showToast(
+      "Error de conexión. Por favor, intenta de nuevo.",
+      "#e74c3c",
+      4000
+    );
   }
 }
 
@@ -64,20 +71,20 @@ function setupFormSubmission() {
 
 setupFormSubmission();
 // Espera a que el DOM esté completamente cargado antes de ejecutar el código
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   /**
    * Esta función elimina cualquier carácter que no sea número del input del documento.
    * Así el usuario solo podrá escribir dígitos, ya sea al tipear o al pegar desde el portapapeles.
    */
   function soloNumeros(event) {
     // Reemplaza cualquier carácter que no sea un dígito por una cadena vacía
-    event.target.value = event.target.value.replace(/\D/g, '');
+    event.target.value = event.target.value.replace(/\D/g, "");
   }
 
   // Obtiene el campo de documento por su id
-  const documentoInput = document.getElementById('document');
+  const documentoInput = document.getElementById("document");
   if (documentoInput) {
     // Asigna el filtro cada vez que el usuario interactúe con el campo
-    documentoInput.addEventListener('input', soloNumeros);
+    documentoInput.addEventListener("input", soloNumeros);
   }
 });

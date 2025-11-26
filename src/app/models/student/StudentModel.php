@@ -66,7 +66,7 @@ class StudentModel
     // Obtener actividades pendientes de un estudiante
     public function obtenerActividadesPendientes($id_estudiante)
     {
-        $sql = "SELECT * FROM obtener_actividades_pendientes(:id_estudiante)";
+        $sql = "SELECT * FROM obtener_actividades_estudiante(:id_estudiante)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_estudiante', $id_estudiante, PDO::PARAM_INT);
         $stmt->execute();

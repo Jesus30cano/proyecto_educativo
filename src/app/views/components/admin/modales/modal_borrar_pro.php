@@ -2,12 +2,12 @@
   <div class="modal-content">
     <span class="close" onclick="closeModal('borrarProfesorModal')">&times;</span>
 
-    <h2>Borrar Profesor</h2>
+    <h2>Desactivar Profesor</h2>
 
     <form id="borrarProfesorForm">
       <div class="form-group">
-        <label for="search_profesor_id">Buscar por ID del Profesor:</label>
-        <input type="number" id="search_profesor_id" required>
+        <label for="search_profesor_id2">Buscar por ID del Profesor:</label>
+        <input type="number" id="search_profesor_id2" required>
         <button type="button" class="btn btn-info" onclick="buscarProfesorBorrar()">Buscar</button>
       </div>
 
@@ -38,7 +38,7 @@
         <input type="text" id="borrar_profesor_direccion" readonly>
       </div>
 
-      <button type="submit" class="btn btn-danger">Borrar Profesor</button>
+      <button type="submit" class="btn btn-danger">Desactivar Profesor</button>
       <button type="button" class="btn btn-secondary" onclick="closeModal('borrarProfesorModal')">Cancelar</button>
     </form>
   </div>

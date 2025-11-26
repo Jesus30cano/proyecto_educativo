@@ -1,115 +1,116 @@
 /* ============================
    ESPACIADO GENERAL
 =============================== */
-.main-content, main {
-    margin-top: 110px !important;
-    padding: 20px;
-    position: relative;
-    z-index: 5;
+.main-content,
+main {
+  margin-top: 110px !important;
+  padding: 20px;
+  position: relative;
+  z-index: 5;
 }
 
 /* ============================
    TÍTULO PRINCIPAL
 =============================== */
 .titulo-panel {
-    color: #1565C0 !important;
-    font-size: 1.8rem;
-    background: #E3F2FD;
-    padding: 14px 22px;
-    border-radius: 12px;
-    border-left: 6px solid #1565C0;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
-    margin-bottom: 30px;
+  color: #1565c0 !important;
+  font-size: 1.8rem;
+  background: #e3f2fd;
+  padding: 14px 22px;
+  border-radius: 12px;
+  border-left: 6px solid #1565c0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+  margin-bottom: 30px;
 }
 
 /* ============================
    CARDS ESTILIZADAS
 =============================== */
 .card-custom {
-    border-radius: 14px;
-    border: 1px solid #DCE2EB;
-    background: #ffffff;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
-    transition: .2s ease;
+  border-radius: 14px;
+  border: 1px solid #dce2eb;
+  background: #ffffff;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
+  transition: 0.2s ease;
 }
 
 .card-custom:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.09);
+  transform: translateY(-4px);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.09);
 }
 
 .card-custom h5 {
-    color: #1565C0 !important;
-    font-weight: 600;
+  color: #1565c0 !important;
+  font-weight: 600;
 }
 
 .card-number {
-    font-size: 2.2rem;
-    color: #0D47A1;
-    font-weight: bold;
+  font-size: 2.2rem;
+  color: #0d47a1;
+  font-weight: bold;
 }
 
 /* BG personalizados */
 .card-blue {
-    background: #E3F2FD !important;
+  background: #e3f2fd !important;
 }
 
 .card-yellow {
-    background: #FFF9C4 !important;
+  background: #fff9c4 !important;
 }
 
 /* ============================
    TABLAS
 =============================== */
 .card-table {
-    border-radius: 14px;
-    border: 1px solid #DCE2EB;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.06);
+  border-radius: 14px;
+  border: 1px solid #dce2eb;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
 }
 
 .card-table .card-header {
-    background: #E3F2FD;
-    color: #0D47A1;
-    font-weight: bold;
-    font-size: 1.1rem;
-    border-radius: 14px 14px 0 0;
+  background: #e3f2fd;
+  color: #0d47a1;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 14px 14px 0 0;
 }
 
 /* Cabecera tabla */
 table.dataTable thead {
-    background-color: #1565C0 !important;
+  background-color: #1565c0 !important;
 }
 
 table.dataTable thead th {
-    color: white !important;
-    font-weight: 600 !important;
+  color: white !important;
+  font-weight: 600 !important;
 }
 
 /* Filas alternas */
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #D7E8FB !important;
+  background-color: #d7e8fb !important;
 }
 
 .table-striped > tbody > tr:nth-of-type(even) {
-    background-color: #EBEEF3 !important;
+  background-color: #ebeef3 !important;
 }
 
 /* Hover */
 table.dataTable tbody tr:hover {
-    background-color: #FFF3CD !important;
-    transition: .2s ease-in-out;
+  background-color: #fff3cd !important;
+  transition: 0.2s ease-in-out;
 }
 
 /* ============================
    RESPONSIVE
 =============================== */
 @media (max-width: 768px) {
-    .titulo-panel {
-        font-size: 1.4rem;
-        padding: 10px 16px;
-    }
+  .titulo-panel {
+    font-size: 1.4rem;
+    padding: 10px 16px;
+  }
 
-    .card-number {
-        font-size: 1.8rem;
-    }
+  .card-number {
+    font-size: 1.8rem;
+  }
 }

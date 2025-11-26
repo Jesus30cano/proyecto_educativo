@@ -53,7 +53,11 @@ function openEliminarCursoModal() {
 async function buscarCursoPorFicha() {
   const ficha = document.getElementById("edit_ficha").value.trim();
   if (ficha === "") {
-    showToast("Por favor, ingresa la ficha del curso para buscar.", "#e74c3c", 4000);
+    showToast(
+      "Por favor, ingresa la ficha del curso para buscar.",
+      "#e74c3c",
+      4000
+    );
     return;
   }
 
@@ -70,8 +74,10 @@ async function buscarCursoPorFicha() {
     // Suponiendo estructura: { id_curso, ficha, nombre_curso, fecha_inicio, fecha_fin, instructor_lider }
     if (curso && curso.data && curso.data.id_curso) {
       document.getElementById("edit_curso_id").value = curso.data.id_curso;
-      document.getElementById("edit_nombre_combo").value = curso.data.nombre_curso;
-      document.getElementById("edit_fecha_inicio").value = curso.data.fecha_inicio;
+      document.getElementById("edit_nombre_combo").value =
+        curso.data.nombre_curso;
+      document.getElementById("edit_fecha_inicio").value =
+        curso.data.fecha_inicio;
       document.getElementById("edit_fecha_fin").value = curso.data.fecha_fin;
       await cargarInstructores(
         "edit_instructor_combo",
@@ -116,7 +122,7 @@ async function editarCurso2() {
     nombre_curso: nombre,
     id_profesor_lider: instructor_lider,
     fecha_inicio,
-    fecha_fin
+    fecha_fin,
   };
 
   try {
@@ -124,7 +130,7 @@ async function editarCurso2() {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
 
@@ -144,7 +150,7 @@ async function editarCurso2() {
 // Registrar evento submit para editar curso
 function editarCurso() {
   const form = document.getElementById("editCursoForm");
-  if(form){
+  if (form) {
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       await editarCurso2();
@@ -167,14 +173,14 @@ async function crearCurso2() {
     nombre_curso: nombre,
     id_profesor_lider: instructor_lider,
     fecha_inicio,
-    fecha_fin
+    fecha_fin,
   };
   try {
     const res = await fetch("/admin/course/crearCurso", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
 
@@ -194,7 +200,7 @@ async function crearCurso2() {
 // Registrar evento submit para crear curso
 function crearCurso() {
   const form = document.getElementById("createCursoForm");
-  if(form){
+  if (form) {
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       await crearCurso2();
@@ -209,14 +215,14 @@ async function desactivarCurso2() {
   const mensaje = document.getElementById("desactivar_mensaje").value.trim();
   const data = {
     ficha,
-    mensaje
+    mensaje,
   };
   try {
     const res = await fetch("/admin/course/desactivarCurso", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
     const result = await res.json();
@@ -235,7 +241,7 @@ async function desactivarCurso2() {
 // Registrar evento submit para desactivar curso
 function desactivarCurso() {
   const form = document.getElementById("desactivarCursoForm");
-  if(form){
+  if (form) {
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       await desactivarCurso2();

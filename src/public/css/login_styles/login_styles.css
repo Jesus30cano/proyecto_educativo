@@ -1,241 +1,241 @@
 :root {
-    --color-azul-primario: #1E88E5;     /* Azul Primario */
-    --color-azul-claro: #90CAF9;        /* Azul Claro */
-    --color-beige-claro: #FFF8E1;       /* Beige Claro */
-    --color-gris-suave: #F5F5F5;        /* Gris Suave */
-    --color-gris-texto: #37474F;        /* Gris Texto */
+  --color-azul-primario: #1e88e5; /* Azul Primario */
+  --color-azul-claro: #90caf9; /* Azul Claro */
+  --color-beige-claro: #fff8e1; /* Beige Claro */
+  --color-gris-suave: #f5f5f5; /* Gris Suave */
+  --color-gris-texto: #37474f; /* Gris Texto */
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Fondo de la página: Gris Suave */
 body {
-    background: linear-gradient(90deg, rgba(30, 136, 229, 0.3), #F5F5F5);
-    background-blend-mode: lighten;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  background: linear-gradient(90deg, rgba(30, 136, 229, 0.3), #f5f5f5);
+  background-blend-mode: lighten;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 /*Contenido principal con flexbox*/
 .container-all {
-    width: 100%;
-    /*max-width se reduce para que el módulo de login no sea tan grande */
-    max-width: 900px; 
-    margin: auto;
-    display: flex;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
+  width: 100%;
+  /*max-width se reduce para que el módulo de login no sea tan grande */
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 /*Columna izquierda*/
 .ctn-form {
-    width: 45%; 
-    min-width: 300px;
-    padding: 40px;
-    background-color: #FFF8E1; /* Beige Claro para el formulario */
-    max-height: 95vh;
-    overflow-y: auto;
-    display: flex; 
-    flex-direction: column;
+  width: 45%;
+  min-width: 300px;
+  padding: 40px;
+  background-color: #fff8e1; /* Beige Claro para el formulario */
+  max-height: 95vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .tittle {
-    color: #1E88E5; /* Azul Primario */
-    text-align: center;
-    margin-bottom: 5px;
-    font-size: 28px;
-    font-weight: 700;
+  color: #1e88e5; /* Azul Primario */
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .subtitle {
-    color: #37474F; /* Gris Texto */
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 20px;
-    font-weight: 400;
+  color: #37474f; /* Gris Texto */
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 /* Campos de Formulario */
 .input-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 label {
-    color: #37474F; /* Gris Texto */
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: 600;
+  color: #37474f; /* Gris Texto */
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #90CAF9; /* Azul Claro */
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #F5F5F5;
-    color: #37474F; /* Gris Texto */
-    transition: border-color 0.3s;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #90caf9; /* Azul Claro */
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  color: #37474f; /* Gris Texto */
+  transition: border-color 0.3s;
 }
 
-.tipo_documento { 
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid var(--color-azul-claro); 
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: var(--color-gris-suave);
-    color: var(--color-gris-texto);
-    transition: border-color 0.3s;
+.tipo_documento {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--color-azul-claro);
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: var(--color-gris-suave);
+  color: var(--color-gris-texto);
+  transition: border-color 0.3s;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus {
-    border-color: #1E88E5; /* Azul Primario */
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2); 
+  border-color: #1e88e5; /* Azul Primario */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
 }
 
 /* Botón de Login */
 .btn-login {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    background-color: #1E88E5; /* Azul Primario */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #1e88e5; /* Azul Primario */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
 }
 
 .btn-login:hover {
-    background-color: #1565C0; 
+  background-color: #1565c0;
 }
 
 /* Footer */
 .text-footer {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 14px;
-    color: #37474F; /* Gris Texto */
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #37474f; /* Gris Texto */
 }
 
 .text-footer a {
-    color: #1E88E5; /* Azul Primario */
-    text-decoration: none;
-    font-weight: 600;
+  color: #1e88e5; /* Azul Primario */
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .text-footer a:hover {
-    color: #90CAF9; /* Azul Claro */
-    text-decoration: underline;
+  color: #90caf9; /* Azul Claro */
+  text-decoration: underline;
 }
 
 /*Columna derecha sobre el panel*/
 .panel-info {
-    /* Ocupará el 55% restante */
-    width: 55%; 
-    background-image: url('../../img/log_bgEducativa.jpg');
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 1;
+  /* Ocupará el 55% restante */
+  width: 55%;
+  background-image: url("../../img/log_bgEducativa.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
 }
 
 .capa {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(30, 136, 229, 0.75);
-    z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(30, 136, 229, 0.75);
+  z-index: 2;
 }
 
 .tittle-description {
-    position: relative;
-    color: white; /* Texto blanco para resaltar sobre el fondo azul */
-    font-weight: 600;
-    font-size: 32px;
-    margin: 20px 0;
-    z-index: 3;
+  position: relative;
+  color: white; /* Texto blanco para resaltar sobre el fondo azul */
+  font-weight: 600;
+  font-size: 32px;
+  margin: 20px 0;
+  z-index: 3;
 }
 
 .text-description {
-    position: relative;
-    color: white;
-    font-size: 18px;
-    font-weight: 300;
-    margin: 10px 0;
-    max-width: 80%;
-    z-index: 3; 
+  position: relative;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 10px 0;
+  max-width: 80%;
+  z-index: 3;
 }
 
 /*Diseño adaptable */
 @media (max-width: 768px) {
-    .container-all {
-        flex-direction: column;
-        max-width: 450px;
-    }
+  .container-all {
+    flex-direction: column;
+    max-width: 450px;
+  }
 
-    .ctn-form,
-    .panel-info {
-        width: 100%;
-        padding: 30px;
-    }
+  .ctn-form,
+  .panel-info {
+    width: 100%;
+    padding: 30px;
+  }
 
-    .panel-info {
-        display: none; 
-        /*height: 200px; */
-    }
+  .panel-info {
+    display: none;
+    /*height: 200px; */
+  }
 }
 
-select#tipo_documento { 
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #90CAF9; /* Azul Claro */
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #F5F5F5;
-    color: #37474F; /* Gris Texto */
-    transition: border-color 0.3s;
-    cursor: pointer;
-    appearance: none; /* Remueve el estilo por defecto del navegador */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2337474F' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    padding-right: 40px;
+select#tipo_documento {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #90caf9; /* Azul Claro */
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  color: #37474f; /* Gris Texto */
+  transition: border-color 0.3s;
+  cursor: pointer;
+  appearance: none; /* Remueve el estilo por defecto del navegador */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2337474F' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
 }
 
 select#tipo_documento:focus {
-    border-color: #1E88E5; /* Azul Primario */
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+  border-color: #1e88e5; /* Azul Primario */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
 }
 
 select#tipo_documento option {
-    background-color: white;
-    color: #37474F;
-    padding: 10px;
+  background-color: white;
+  color: #37474f;
+  padding: 10px;
 }
