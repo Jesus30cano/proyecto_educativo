@@ -17,7 +17,7 @@
   <link href="/public/css/styles.css" rel="stylesheet">
   <!-- Estilos personalizados para esta página -->
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
+  <link rel="stylesheet" href="/public/css/teacher_courses/evaluatins.css">
   <!-- carta azul -->
   <link rel="stylesheet" href="/public/css/card.blue.css">
 
@@ -116,52 +116,7 @@
 
           </div>
 
-          <!-- otra fila decontenido -->
-          <div class="row">
-
-            <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card-header">
-                <h4 class="fw-bold mb-1">Session de calificaciones recientes</h4>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-white">Calificaciones recientes</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <!-- datos que mostrara la tabla. el js de esto ya esta modificado para que trabaje con los datos -->
-                      <th>Profesor</th>
-                      <th>Competencia</th>
-                      <th>Evaluacion</th>
-                      <th>Fecha Evaluacion</th>
-                      <th>nota de calificacion</th>
-                      <th>Observacion</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Aqui se ingresan los datos en el tr (esto es un ejemplo)-->
-                    <tr>
-                      <td>hola</td>
-                      <td>Sistema</td>
-                      <td>Tarea</td>
-                      <td>2025-01-01</td>
-                      <td>5.0</td>
-                      <td>AAAAAAAAAAAAAAAAA</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
+          
         </div>
         <!-- topnav -->
         <?php include __DIR__ . '/../components/footer.php'; ?>
