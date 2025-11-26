@@ -13,142 +13,239 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fondo de la página: Gris Suave */
+/* Fondo de la página suave y moderno */
 body {
-  background: linear-gradient(90deg, rgba(30, 136, 229, 0.3), #f5f5f5);
-  background-blend-mode: lighten;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  padding: 20px;
+  background:
+    radial-gradient(circle at top left, rgba(144, 202, 249, 0.25), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(30, 136, 229, 0.18), transparent 55%),
+    var(--color-gris-suave);
+  background-blend-mode: soft-light;
 }
 
-/*Contenido principal con flexbox*/
+/* Contenedor principal */
 .container-all {
   width: 100%;
-  /*max-width se reduce para que el módulo de login no sea tan grande */
   max-width: 900px;
   margin: auto;
   display: flex;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.308),
+    0 1px 0 rgba(255, 255, 255, 0.7) inset;
   overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(30, 136, 229, 0.12);
 }
 
-/*Columna izquierda*/
+
+
+
+/* Columna izquierda: formulario */
 .ctn-form {
   width: 45%;
   min-width: 300px;
-  padding: 40px;
-  background-color: #fff8e1; /* Beige Claro para el formulario */
+  padding: 40px 38px;
+  background-color: rgba(255, 248, 225, 0.97); /* Beige Claro suavizado */
   max-height: 95vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) inset;
 }
 
 .tittle {
-  color: #1e88e5; /* Azul Primario */
+  color: var(--color-azul-primario);
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   font-size: 28px;
   font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .subtitle {
-  color: #37474f; /* Gris Texto */
+  color: var(--color-gris-texto);
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 20px;
+  margin-bottom: 26px;
+  font-size: 18px;
   font-weight: 400;
+  opacity: 0.9;
 }
 
-/* Campos de Formulario */
+/* Campos de formulario */
 .input-group {
   margin-bottom: 20px;
 }
 
 label {
-  color: #37474f; /* Gris Texto */
+  color: var(--color-gris-texto);
   display: block;
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"] {
   width: 100%;
-  padding: 10px 15px;
-  border: 1px solid #90caf9; /* Azul Claro */
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #f5f5f5;
-  color: #37474f; /* Gris Texto */
-  transition: border-color 0.3s;
+  padding: 11px 14px;
+  border: 1px solid rgba(144, 202, 249, 0.8); /* Azul Claro suavizado */
+  border-radius: 9px;
+  font-size: 15px;
+  background-color: #fafafa;
+  color: var(--color-gris-texto);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease, transform 0.08s ease;
 }
 
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover {
+  background-color: #ffffff;
+}
+
+/* Clase genérica por si la usas en otros selects */
 .tipo_documento {
   width: 100%;
-  padding: 10px 15px;
+  padding: 11px 14px;
   border: 1px solid var(--color-azul-claro);
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 9px;
+  font-size: 15px;
   background-color: var(--color-gris-suave);
   color: var(--color-gris-texto);
-  transition: border-color 0.3s;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease, transform 0.08s ease;
 }
 
+/* Select específico del tipo de documento */
+select#tipo_documento {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid rgba(144, 202, 249, 0.9);
+  border-radius: 9px;
+  font-size: 15px;
+  background-color: #fafafa;
+  color: var(--color-gris-texto);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease, transform 0.08s ease;
+  cursor: pointer;
+  appearance: none; /* Quita estilo por defecto */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2337474F' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+}
+
+select#tipo_documento:hover {
+  background-color: #ffffff;
+}
+
+select#tipo_documento:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus {
-  border-color: #1e88e5; /* Azul Primario */
+  border-color: var(--color-azul-primario);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.18);
+  background-color: #ffffff;
+  transform: translateY(-1px);
 }
 
-/* Botón de Login */
+select#tipo_documento option {
+  background-color: #ffffff;
+  color: var(--color-gris-texto);
+  padding: 10px;
+}
+
+/* Botón de login */
 .btn-login {
   width: 100%;
   padding: 12px;
-  margin-top: 20px;
-  background-color: #1e88e5; /* Azul Primario */
-  color: white;
+  margin-top: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 136, 229, 0.9),
+    rgba(144, 202, 249, 0.9)
+  );
+  color: #ffffff;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 9px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 0.12s ease, box-shadow 0.2s ease,
+    opacity 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 6px 14px rgba(30, 136, 229, 0.28);
 }
 
 .btn-login:hover {
-  background-color: #1565c0;
+  transform: translateY(-1.5px);
+  box-shadow: 0 12px 26px rgba(30, 136, 229, 0.35);
+  filter: brightness(1.02);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 14px rgba(30, 136, 229, 0.28);
+}
+
+.btn-login:focus-visible {
+  outline: 2px solid rgba(144, 202, 249, 0.9);
+  outline-offset: 3px;
 }
 
 /* Footer */
 .text-footer {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 24px;
   font-size: 14px;
-  color: #37474f; /* Gris Texto */
+  color: var(--color-gris-texto);
 }
 
 .text-footer a {
-  color: #1e88e5; /* Azul Primario */
+  color: var(--color-azul-primario);
   text-decoration: none;
   font-weight: 600;
+  position: relative;
+}
+
+.text-footer a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-azul-primario),
+    var(--color-azul-claro)
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.text-footer a:hover::after {
+  transform: scaleX(1);
 }
 
 .text-footer a:hover {
-  color: #90caf9; /* Azul Claro */
-  text-decoration: underline;
+  color: var(--color-azul-claro);
 }
 
-/*Columna derecha sobre el panel*/
+/* Columna derecha: panel con imagen */
 .panel-info {
-  /* Ocupará el 55% restante */
   width: 55%;
   background-image: url("../../img/log_bgEducativa.jpg");
   background-position: center;
@@ -161,81 +258,91 @@ input[type="email"]:focus {
   align-items: center;
   text-align: center;
   z-index: 1;
+  filter: brightness(0.92) saturate(0.8); /* Suaviza la imagen */
 }
 
-.capa {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(30, 136, 229, 0.75);
-  z-index: 2;
-}
 
 .tittle-description {
   position: relative;
-  color: white; /* Texto blanco para resaltar sobre el fondo azul */
-  font-weight: 600;
-  font-size: 32px;
+  color: #ffffff;
+  font-weight: 650;
+  font-size: 30px;
   margin: 20px 0;
   z-index: 3;
+  letter-spacing: 0.05em;
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .text-description {
   position: relative;
-  color: white;
-  font-size: 18px;
+  color: #ffffff;
+  font-size: 17px;
   font-weight: 300;
   margin: 10px 0;
   max-width: 80%;
   z-index: 3;
+  line-height: 1.5;
+  opacity: 0.95;
 }
 
-/*Diseño adaptable */
+.text-descriptionP {
+  text-align: center;
+  color: #ffffff;
+  font-weight: 800%;
+  font-size: 17px;
+  
+  margin: 10px 0;
+  text-align: center;
+  z-index: 3;
+  line-height: 1.5;
+
+  
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .container-all {
+    max-width: 700px;
+  }
+
+  .tittle {
+    font-size: 24px;
+  }
+
+  .tittle-description {
+    font-size: 26px;
+  }
+}
+
 @media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
   .container-all {
     flex-direction: column;
     max-width: 450px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
   }
 
   .ctn-form,
   .panel-info {
     width: 100%;
-    padding: 30px;
+    padding: 30px 26px;
   }
 
   .panel-info {
-    display: none;
-    /*height: 200px; */
+    display: none; 
   }
 }
 
-select#tipo_documento {
-  width: 100%;
-  padding: 10px 15px;
-  border: 1px solid #90caf9; /* Azul Claro */
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #f5f5f5;
-  color: #37474f; /* Gris Texto */
-  transition: border-color 0.3s;
-  cursor: pointer;
-  appearance: none; /* Remueve el estilo por defecto del navegador */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2337474F' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 15px center;
-  padding-right: 40px;
-}
 
-select#tipo_documento:focus {
-  border-color: #1e88e5; /* Azul Primario */
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
-}
-
-select#tipo_documento option {
-  background-color: white;
-  color: #37474f;
-  padding: 10px;
+/* Fuerza la sombra del texto sobre el panel */
+.panel-info .tittle-description,
+.panel-info .text-descriptionP {
+  position: relative !important;
+  z-index: 999 !important;
+  color: #ffffff !important;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.60) !important;
+  filter: none !important; /* Esto es CLAVE */
 }

@@ -15,7 +15,7 @@
 
         <div class="ctn-form">
             <h1 class="tittle">Recuperar Contraseña</h1>
-            <h2 class="subtitle">Ingresa tu correo electrónico</h2>
+            <h2 class="subtitle"></h2>
 
             <form id="forgotPasswordForm">
                 <!-- 🔽 Correo Electrónico -->
@@ -38,13 +38,7 @@
             <div class="capa"></div>
             <div style="position: relative; z-index: 3;">
                 <div style="font-size: 80px; margin-bottom: 20px;"></div>
-                <h2 class="tittle-description">¿Olvidaste tu contraseña?</h2>
-                <p class="text-description">
-                    No te preocupes, ingresa tu correo electrónico y te enviaremos un código de verificación para que puedas restablecer tu contraseña de forma segura.
-                </p>
-                <p class="text-description" style="margin-top: 30px; font-size: 16px;">
-                    El código será válido por <strong>15 minutos</strong>
-                </p>
+                
             </div>
         </div>
 
