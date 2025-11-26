@@ -17,7 +17,10 @@
         <li><a href="/admin/teacher/index" class="nav-link px-3 load-view" data-view="profesores"><i class="bi bi-person-badge me-2"></i> Profesores</a></li>
         <li><a href="/admin/student/index" class="nav-link px-3 load-view" data-view="estudiantes"><i class="bi bi-people me-2"></i> Estudiantes</a></li>
         <li><a href="/admin/course/index" class="nav-link px-3 load-view" data-view="cursos"><i class="bi bi-journal-text me-2"></i> Cursos</a></li>
+        <li><a href="/admin/course/index" class="nav-link px-3 load-view" data-view="competencias"><i class="bi bi-journal-text me-2"></i> Competencias</a></li>
         <li><a href="/admin/attendance/index" class="nav-link px-3 load-view" data-view="asistencias"><i class="bi bi-calendar-check me-2"></i> Asistencias</a></li>
+        <li><a href="/admin/Users/index" class="nav-link px-3 load-view" data-view="Usuarios"><i class="bi bi-calendar-check me-2"></i> Usuarios</a></li>
+
 
         <li class="my-3"><hr class="dropdown-divider bg-light"></li>
 
