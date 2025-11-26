@@ -17,7 +17,7 @@
 
         <div class="ctn-form">
             <h1 class="tittle">Plataforma Educativa</h1>
-            <h2 class="subtitle">Inicia Sesión</h2>
+            <h2 class="subtitle"></h2>
 
             <form id="loginForm">
                 <!-- 🔽 Tipo de documento -->
@@ -55,12 +55,8 @@
         </div>
 
         <div class="panel-info">
-            <div class="capa"></div>
-            <h2 class="tittle-description">¡Bienvenido a la Plataforma!</h2>
-            <p class="text-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus vel ab fugit ipsam corrupti dolores
-                architecto, id illum dolorum asperiores sed?
-            </p>
+            
+            
         </div>
 
     </div>
