@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- FALTA LOS CONTROLADORES PARA ENTRAR AL CURSO Y DE ALLI LAS COMPETENCIAS. ESTO ES LO MISMO QUE LA VISTA DEL DOCENTE EN SUS CURSOS -->
+  <!-- archivos del css y diseño -->
 
   <!-- Fuentes personalizadas para esta plantilla -->
   <link href="/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,7 +53,16 @@
           </div>
 
           <!-- 🟦 CONTENEDOR DE CURSOS -->
-          <div id="#">
+          <div id="contenedorCursosEST">
+            <div class="course-card">
+              <div class="course-icon">
+                <i class="bi bi-journal-richtext"></i>
+              </div>
+              <h5 class="course-title">Nombre</h5>
+              <p class="course-info"><strong>Ficha:</strong> X</p>
+              <button class="btn btn-primary btn-sm w-100">Ver competencias</button>
+            </div>
+
             <div class="course-card">
               <div class="course-icon">
                 <i class="bi bi-journal-richtext"></i>
@@ -104,5 +113,6 @@
 
   <!-- Page level custom scripts -->
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
+
 </body>
 </html>
