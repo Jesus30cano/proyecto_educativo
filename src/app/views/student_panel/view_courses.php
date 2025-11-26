@@ -19,7 +19,8 @@
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <!-- carta azul -->
   <link rel="stylesheet" href="/public/css/card.blue.css">
-  <title>Perfil</title>
+  <link rel="stylesheet" href="/public/css/teacher_courses/courses.css">
+  <title>Cursos</title>
 </head>
 
 <body id="page-top">
@@ -43,18 +44,49 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mt-4 mb-0 text-gray-800">Perfil estudiante</h1>
+            <h1 class="h3 mt-4 mb-0 text-gray-800">Mis Cursos</h1>
           </div>
 
-          
-          <!-- Datos personales -->
-          <?php include __DIR__ . '/../components/perfil.php'; ?>
+          <!-- 🔍 BUSCADOR -->
+          <div class="mb-4 search-box" style="max-width: 320px;">
+            <input type="text" id="#" class="form-control" placeholder="Buscar por ficha o nombre...">
+          </div>
+
+          <!-- 🟦 CONTENEDOR DE CURSOS -->
+          <div id="contenedorCursosEST">
+            <div class="course-card">
+              <div class="course-icon">
+                <i class="bi bi-journal-richtext"></i>
+              </div>
+              <h5 class="course-title">Nombre</h5>
+              <p class="course-info"><strong>Ficha:</strong> X</p>
+              <button class="btn btn-primary btn-sm w-100">Ver competencias</button>
+            </div>
+
+            <div class="course-card">
+              <div class="course-icon">
+                <i class="bi bi-journal-richtext"></i>
+              </div>
+              <h5 class="course-title">Nombre</h5>
+              <p class="course-info"><strong>Ficha:</strong> X</p>
+              <button class="btn btn-primary btn-sm w-100">Ver competencias</button>
+            </div>
+
+          </div>
+
+          <!-- 📌 SIN RESULTADOS -->
+          <p id="#" class="text-center text-muted mt-4 d-none">
+            No se encontraron cursos.
+          </p>
+
+
+
         </div>
 
-        <!-- topnav -->
-        <?php include __DIR__ . '/../components/footer.php'; ?>
+        
       </div>
-
+      <!-- topnav -->
+      <?php include __DIR__ . '/../components/footer.php'; ?>
     </div>
 
   </div>
@@ -81,9 +113,6 @@
 
   <!-- Page level custom scripts -->
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
-
-  <!-- Funcionalidad -->
-  <script src="/public/js/perfil.js"></script>
 
 </body>
 </html>

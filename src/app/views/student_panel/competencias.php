@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
   <!-- archivos del css y diseño -->
 
   <!-- Fuentes personalizadas para esta plantilla -->
@@ -17,9 +14,12 @@
   <link href="/public/css/styles.css" rel="stylesheet">
   <!-- Estilos personalizados para esta página -->
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/teacher_courses/dashboard.css">
+  <link rel="stylesheet" href="/public/css/teacher_courses/view_course.css">
   <!-- carta azul -->
   <link rel="stylesheet" href="/public/css/card.blue.css">
-  <title>Perfil</title>
+  <title>Competencias</title>
+
 </head>
 
 <body id="page-top">
@@ -27,7 +27,6 @@
   <div id="wrapper">
     <!-- sidenav -->
     <?php include __DIR__ . '/../components/student/sidenav.php'; ?>
-
 
     <!-- contenido del contenido -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -43,19 +42,50 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mt-4 mb-0 text-gray-800">Perfil estudiante</h1>
+            <h1 class="h3 mt-4 mb-0 text-gray-800">Competencias</h1>
           </div>
 
-          
-          <!-- Datos personales -->
-          <?php include __DIR__ . '/../components/perfil.php'; ?>
+          <!-- 🔵 ENCABEZADO DINÁMICO DEL CURSO -->
+          <div id="cursoHeaderEST" class="curso-header mb-5 p-4 shadow-sm rounded">
+            <!-- JS inserta nombre y ficha -->
+            <h2 class="mb-1 fw-bold">ADSO</h2>
+            <p class="text-muted mb-0"><strong>Ficha:</strong> 2618258</p>
+          </div>
+
+          <!-- 🟦 TÍTULO -->
+          <h4 class="fw-bold mb-3">Competencias del Curso</h4>
+          <hr>
+
+          <!-- 🟦 CONTENEDOR DE COMPETENCIAS -->
+          <div id="listaCompetenciasEST" class="competencias-container">
+            <!-- JS inserta tarjetas -->
+            <div class="competencia-card shadow-sm" data-id="1">
+              <h5 class="title">Competencia de Comunicación Efectiva</h5>
+              <p class="desc">Desarrollo de habilidades para expresar ideas de forma clara y persuasiva en diversos
+                contextos profesionales.</p>
+              <p class="info"><strong>Actividades:</strong> <span class="contador">12</span></p>
+              <div class="btn-group-actions">
+                <button class="btn btn-outline-primary btn-ver" data-id="1">Ver Actividades</button>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- 📌 SIN COMPETENCIAS -->
+          <p id="sinCompetenciasEST" class="text-muted text-center mt-4 d-none">
+            No hay competencias registradas aún.
+          </p>
+
         </div>
 
-        <!-- topnav -->
-        <?php include __DIR__ . '/../components/footer.php'; ?>
+
       </div>
+      <!-- footer -->
+      <?php include __DIR__ . '/../components/footer.php'; ?>
 
     </div>
+  </div>
 
   </div>
   </div>
@@ -82,8 +112,6 @@
   <!-- Page level custom scripts -->
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
-  <!-- Funcionalidad -->
-  <script src="/public/js/perfil.js"></script>
-
+  <!-- script de funcionalidad -->
 </body>
 </html>

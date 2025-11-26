@@ -91,7 +91,7 @@
                 </a>
 
                 <!-- Mostrar más notificaciones -->
-                <a class="dropdown-item text-center small text-gray-500" href="#" data-toggle="modal"
+                <a class="dropdown-item text-center text-gray-900" href="#" data-toggle="modal"
                     data-target="#modalMostrarNotificaciones">
                     Mostrar más notificaciones
                 </a>
@@ -193,8 +193,8 @@
 
     </ul>
 
-    <!-- Datos personales -->
-    <?php include __DIR__ . '/showNotifications.php'; ?>
+    <!-- Modal de notificacions-->
+    <?php include __DIR__ . '/showNotificationsAdmin.php'; ?>
 </nav>
 <!-- End of Topbar -->
 <script src="/public/js/top_nav.js"></script>

@@ -110,7 +110,7 @@ table.dataTable tbody tr:hover {
 .modal-content {
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  padding: 10px 15px;
+   /*padding: 10px 15px; */ /* COMENTADO YA QUE EN MODALES MANTIENE UN PADDING AL PONER EL FONDO DE LOS TITULOS EN AZUL CON ESPACIOS EN ESQUINAS*/
 }
 
 .modal-body {

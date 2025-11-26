@@ -16,6 +16,23 @@
 }
 
 /* ============================
+   GRID DE ESTUDIANTES (Por si no hay problemas de id en estudiante)
+============================= */
+#contenedorCursosEST {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Ajuste extra para pantallas pequeñas */
+@media (max-width: 500px) {
+  #contenedorCursosEST {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* ============================
    TÍTULO PRINCIPAL
 ============================= */
 .titulo-panel {
