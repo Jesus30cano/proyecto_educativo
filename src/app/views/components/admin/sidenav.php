@@ -57,11 +57,25 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a href="/admin/Competencias" class="nav-link" data-view="Competecias">
+            <i class="fas fa-fw fa-clipboard-check"></i>
+            <span>Competencias</span>
+        </a>
+    </li>
+
     <!-- Nav Item - Asistencias-->
     <li class="nav-item">
         <a href="/admin/attendance" class="nav-link" data-view="asistencias">
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Asistencias</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="/admin/Users" class="nav-link" data-view="Users">
+            <i class="fas fa-fw fa-clipboard-check"></i>
+            <span>Users</span>
         </a>
     </li>
 
