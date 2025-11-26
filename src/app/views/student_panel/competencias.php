@@ -113,5 +113,6 @@
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
   <!-- script de funcionalidad -->
+   
 </body>
 </html>
