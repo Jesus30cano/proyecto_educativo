@@ -12,7 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const evaluacionModalIA = new bootstrap.Modal(
     document.getElementById("modalEvalIA")
   );
-
+function limpiarRepetidosSelect(selectElem) {
+  const encontrados = new Set();
+  // Recorre de atrás hacia adelante
+  for (let i = selectElem.options.length - 1; i >= 0; i--) {
+    const opt = selectElem.options[i];
+    // No eliminar la opción placeholder (value vacío)
+    if (opt.value !== "" && encontrados.has(opt.value)) {
+      selectElem.remove(i);
+    } else {
+      encontrados.add(opt.value);
+    }
+  }
+}
   const btnCrearManual = document.getElementById("btnCrearEvaluacionManual");
   btnCrearManual.addEventListener("click", () => {
     console.log("Abrir modal evaluación manual");
@@ -61,7 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
             optionCompetencia.selected = true;
           comboCurso.appendChild(optionCurso);
           comboCompetencia.appendChild(optionCompetencia);
+          limpiarRepetidosSelect(comboCurso);
+          limpiarRepetidosSelect(comboCompetencia);
         });
+        limpiarRepetidosSelect(comboCurso);
+        limpiarRepetidosSelect(comboCompetencia);
       }
     } catch (error) {
       console.error("Error al cargar los cursos:", error);
