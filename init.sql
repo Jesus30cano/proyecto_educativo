@@ -2669,6 +2669,27 @@ BEGIN
     AND comp.id_profesor = p_id_profesor ;
 END;
 $$ LANGUAGE plpgsql;
+--============================================
+CREATE OR REPLACE FUNCTION obtener_calificaciones_por_evaluacion(p_id_evaluacion INT)
+RETURNS TABLE (
+    id_calificacion INT,
+    nombre_completo text,
+    nota calificacion
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        c.id_calificacion,
+        dp.nombre || ' ' || dp.apellido AS nombre_completo,
+        c.nota
+    FROM 
+        Tb_calificacion c
+    JOIN Tb_datos_personales dp ON c.id_usuario = dp.id_usuario
+    WHERE 
+        c.id_evaluacion = p_id_evaluacion;
+END;
+$$ LANGUAGE plpgsql;
 -- =======================================================================================
 -- todos los inser al final del script
 -- =======================================================================================

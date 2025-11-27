@@ -17,7 +17,7 @@ class CourseController extends Controller {
             header('Location: /auth/login');
             exit;
         }
-        $this->view('student_panel/cursos');
+        $this->view('student_panel/course');
     }
 
 

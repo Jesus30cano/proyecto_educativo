@@ -59,7 +59,7 @@
 
     <!-- Nav Item - Cursos. aqui debe ir el apartado de sus cursos y de alli entra a competencias -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/student/course">
             <i class="fas fa-fw fa-clipboard-check"></i>
             <span>Cursos</span>
         </a>

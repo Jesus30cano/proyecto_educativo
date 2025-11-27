@@ -274,6 +274,46 @@
                     </div>
                 </div>
 
+                <!-- modal ver evaluacion -->
+             
+                <div class="modal fade" id="modalVerEvaluacion" tabindex="-1">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold">Ver Evaluación</h5>
+                                <button type="button" class="btn-close" data-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                
+                            
+                                <h6 class="mb-3">
+                                    <i class="bi bi-people me-2"></i>Examenes de Estudiantes
+                                </h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover" id="tablaEvaluacionEstudiantes">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="width: 5%">#</th>
+                                                <th style="width: 35%">Estudiante</th>
+                            
+                                                <th style="width: 30%">Calificación</th>
+                                                <th style="width: 5%">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyEvaluacionEstudiantes">
+
+                                        </tbody>
+                                    </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+
+
                 <!-- footer -->
                 <?php include __DIR__ . '/../components/footer.php'; ?>
             </div>
