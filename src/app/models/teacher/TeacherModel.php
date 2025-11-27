@@ -367,7 +367,89 @@ class TeacherModel
         $stmt->bindParam(':id_pregunta',$id_pregunta, PDO::PARAM_INT);
         $stmt->execute();
     }
+    public function obtener_calificaciones_por_evaluacion($id_evaluacion){
+        $query="SELECT * FROM obtener_calificaciones_por_evaluacion(:id_evaluacion)";
+        $stmt=$this->conn->prepare($query);
+        $stmt->bindParam(':id_evaluacion',$id_evaluacion, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+public function obtener_examen_estudiante($id){
+    $query1="select 
+(select nombre || ' ' || apellido AS nombre_completo from tb_datos_personales where id_usuario =tbc.id_usuario),
+e.titulo,
+            e.descripcion,
+            e.fecha,
+            c.nombre_curso AS courseName,
+            c.ficha AS ficha,
+            cmp.nombre AS competenceName,
+            cmp.codigo AS competenciaCodigo,
+            u.id_usuario AS idProfesor,
+            dp.nombre AS teacherName,
+            dp.apellido AS teacherApellido,
+			tbc.nota,
+			tbc.id_evaluacion,
+            tbc.id_usuario
+from tb_calificacion tbc 
+LEFT JOIN tb_evaluacion e on e.id_evaluacion = tbc.id_evaluacion
+LEFT JOIN Tb_curso c ON e.id_curso = c.id_curso
+        LEFT JOIN Tb_competencia cmp ON e.id_competencia = cmp.id_competencia
+        LEFT JOIN Tb_usuario u ON e.id_profesor = u.id_usuario
+        LEFT JOIN Tb_datos_personales dp ON dp.id_usuario = u.id_usuario
+		WHERE tbc.id_calificacion=:id";
+    $stmt1=$this->conn->prepare($query1);
+    $stmt1->bindParam(':id',$id);
+    $stmt1->execute();
+    $examData = $stmt1->fetch(PDO::FETCH_ASSOC);
+    if (!$examData) return null;
+    $id_evaluacion=$examData['id_evaluacion'];
+    $id_usuario = $examData['id_usuario'];
+    // 2. Preguntas
+    $stmt2 = $this->conn->prepare("
+        SELECT p.id_pregunta, p.pregunta as text
+        FROM Tb_preguntas p
+        JOIN Tb_evaluacion_pregunta ep ON ep.id_pregunta = p.id_pregunta
+        WHERE ep.id_evaluacion = ?
+        ORDER BY p.id_pregunta
+    ");
+    $stmt2->execute([$id_evaluacion]);
+    $questions = [];
+    while ($q = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+        // Opciones (solo texto, sin id)
+        $stmt3 = $this->conn->prepare("SELECT id_opcion,opcion as text,es_correcta FROM Tb_opciones_respuesta WHERE id_pregunta = ? ORDER BY id_opcion");
+        $stmt3->execute([$q['id_pregunta']]);
+        $options = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
+        // Obtener la respuesta del estudiante para esta pregunta
+        $stmt4 = $this->conn->prepare("SELECT id_opcion FROM Tb_respuestas_estudiante WHERE id_evaluacion = ? AND id_usuario = ? AND id_pregunta = ?");
+        $stmt4->execute([$id_evaluacion, $id_usuario, $q['id_pregunta']]);
+        $studentAnswer = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+        $questions[] = [
+            'id' => $q['id_pregunta'],
+            'text' => $q['text'],
+            'options' => $options,
+            'studentAnswer' => $studentAnswer ? $studentAnswer['id_opcion'] : null
+        ];
+    }
+    $teacherName = trim($examData['teachername'] . " " . $examData['teacherapellido']);
+
+    return [
+        'title' => $examData['titulo'],
+        'teacherName' => $teacherName,
+        'date' => $examData['fecha'],
+        'courseName' => $examData['coursename'],
+        'ficha' => $examData['ficha'],
+        'competenceName' => $examData['competencename'],
+        'competenceCode' => $examData['competenciacodigo'],
+        'description' => $examData['descripcion'],
+        'id_evaluacion'=>$id_evaluacion,
+        'questions' => $questions,
+        'studentName'=>$examData['nombre_completo'],
+        'nota'=>$examData['nota']
+    ];
+
+}
     
 }
 ?>

@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Elementos DOM principales
   const tablaBody = document.getElementById("tabla-evaluaciones");
   const sinDatos = document.getElementById("sinDatos");
+const modalBody = document.getElementById("tbodyEvaluacionEstudiantes");
+  
 
   let evaluaciones = [];
   let evaluacionActual = null;
@@ -35,13 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>
           <button class="btn btn-sm btn-outline-primary btn-ver" data-id="${
             ev.id_evaluacion
-          }" title="Ver entregas">
+          }" title="Ver evaluación">
             <i class="bi bi-eye"></i>
           </button>
           <button class="btn btn-sm btn-outline-warning ms-1 btn-editar" data-id="${
             ev.id_evaluacion
           }" title="Editar evaluación">
             <i class="bi bi-pencil"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-secondary ms-1 btn-ver_evaluacion" id="btnVerEvaluacion" data-toggle="modal" data-target="#modalVerEvaluacion" data-id="${
+            ev.id_evaluacion
+          }" title="Ver entregas">
+            <i class="bi bi-clipboard-check"></i>
           </button>
           <button class="btn btn-sm btn-outline-danger ms-1 btn-eliminar" data-id="${
             ev.id_evaluacion
@@ -82,6 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
         abrirModalEditarEvaluacion(evaluacion);
       });
     });
+    tablaBody.querySelectorAll(".btn-ver_evaluacion").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.id;
+        const evaluacion = evaluaciones.find((ev) => ev.id_evaluacion == id);
+        evaluacionActual = evaluacion;
+        cargarEvaluacionPorExamen(id);
+        
+      });
+    });
 
     tablaBody.querySelectorAll(".btn-eliminar").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -105,7 +121,49 @@ document.addEventListener("DOMContentLoaded", () => {
       sinDatos.classList.remove("d-none");
     }
   }
+  async function cargarEvaluacionPorExamen(id) {
+    try {
+      const res = await fetch('/teacher/evaluations/obtener_calificaciones_por_evaluacion', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ id })
+      });
+      const json = await res.json();
+      evaluaciones = json.data || [];
+      renderTablaEvaluaciones(evaluaciones);
+    } catch (err) {
+      console.error("Error al cargar evaluaciones:", err);
+      sinDatos.classList.remove("d-none");
+    }
+  }
 
+
+  function renderTablaEvaluaciones(lista) {
+    
+    modalBody.innerHTML = "";
+    lista.forEach((ev) => {
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${ev.id_calificacion}</td>
+        <td>${ev.nombre_completo}</td>
+        <td>${ev.nota !== null ? ev.nota : "No calificado"}</td>
+        <td> <button class="btn btn-primary btn-ver_evaluacion_id" data-id="${ev.id_calificacion}" title="Ver evaluación">
+            <i class="bi bi-eye"></i></button> </td>
+      `;
+      modalBody.appendChild(fila);
+      modalBody.querySelectorAll(".btn-ver_evaluacion_id").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      console.log("Botón ver evaluación clickeado");
+      
+      const id = btn.dataset.id;  
+      localStorage.setItem("id_evaluacion_id", id);
+      window.open("/teacher/evaluations/ver_examen_estudiante", "_blank");
+      showToast("Abriendo evaluación...", "#3ce783ff", 3000);
+    });
+  });
+    });
+  }  // 👁️ Abre el modal para ver la evaluación
+  
   // 👁️ Abre el modal de entregas de la evaluación
   function abrirModalEntregasEvaluacion(evaluacion) {
     // Aquí llamas tu modal para ver entregas, ejemplo:
@@ -115,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.open("/teacher/evaluations/ver_examen", "_blank");
     showToast("Abriendo examen...", "#3ce783ff", 3000);
   }
+  
 
   // 📝 Abre el modal para editar la evaluación
   function abrirModalEditarEvaluacion(evaluacion) {
