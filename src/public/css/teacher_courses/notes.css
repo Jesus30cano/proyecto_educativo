@@ -1,0 +1,76 @@
+/* ============================
+   GRID DE COMPETENCIAS
+=============================== */
+#contenedorCompetencias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (max-width: 500px) {
+    #contenedorCompetencias {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* ============================
+   TARJETAS DE COMPETENCIAS
+=============================== */
+.comp-card {
+    cursor: pointer;
+    border-radius: 14px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #dce2eb;
+    transition: 0.25s ease;
+    text-align: center;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.06);
+}
+
+.comp-card:hover {
+    transform: translateY(-4px);
+    border-color: #1565c0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.comp-card i {
+    font-size: 2.6rem;
+    color: #1565c0;
+    margin-bottom: 12px;
+}
+
+.comp-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #263238;
+    margin-bottom: 6px;
+}
+
+.comp-desc {
+    font-size: 0.9rem;
+    color: #455a64;
+}
+
+/* ============================
+   BOTONES DE APROBADO
+=============================== */
+.btn-aprobado {
+    background: #2e7d32;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-aprobado:hover {
+    background: #1b5e20;
+}
+
+.btn-no-aprobado {
+    background: #c62828;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-no-aprobado:hover {
+    background: #8e0000;
+}

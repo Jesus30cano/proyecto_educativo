@@ -70,9 +70,17 @@ $currentRoute = $_SERVER['REQUEST_URI'];
     <!-- Nav Item - Asistencias-->
     <li class="nav-item">
         <a href="/teacher/assistance"
-            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/assistances') !== false) ? 'active' : '' ?>">
+            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/assistance') !== false) ? 'active' : '' ?>">
             <i class="fas fa-fw fa-tasks"></i>
             <span>Asistencias</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="/teacher/notes"
+            class="nav-link px-3 <?= (strpos($currentRoute, '/teacher/notes') !== false) ? 'active' : '' ?>">
+            <i class="fas fa-fw fa-tasks"></i>
+            <span>Notas</span>
         </a>
     </li>
 
