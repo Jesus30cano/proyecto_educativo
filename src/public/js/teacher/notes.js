@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const selectFicha = document.getElementById("selectCurso"); // reutilizamos el mismo select pero ahora es ficha
+  const selectFicha = document.getElementById("selectFicha"); 
   const selectCompetencia = document.getElementById("selectCompetencia");
   const btnBuscarNotas = document.getElementById("btnBuscarNotas");
   const contenedorCompetencias = document.getElementById(
