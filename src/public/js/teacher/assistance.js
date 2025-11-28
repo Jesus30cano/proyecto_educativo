@@ -43,6 +43,19 @@ document.addEventListener("DOMContentLoaded", () => {
 // ======================================================
 // CARGAR CURSOS EN CUALQUIER <select> POR ID
 // ======================================================
+function limpiarRepetidosSelect(selectElem) {
+  const encontrados = new Set();
+  // Recorre de atrás hacia adelante
+  for (let i = selectElem.options.length - 1; i >= 0; i--) {
+    const opt = selectElem.options[i];
+    // No eliminar la opción placeholder (value vacío)
+    if (opt.value !== "" && encontrados.has(opt.value)) {
+      selectElem.remove(i);
+    } else {
+      encontrados.add(opt.value);
+    }
+  }
+}
 function cargarCursosEnSelect(idSelect) {
   fetch("/teacher/dashboard/obtenerCursosProfesor")
     .then((res) => res.json())
@@ -67,7 +80,9 @@ function cargarCursosEnSelect(idSelect) {
                         ${curso.curso} - Ficha ${curso.ficha}
                     </option>
                 `;
+          
       });
+      limpiarRepetidosSelect(select);
     })
     .catch((err) => {
       console.error("Error obteniendo cursos:", err);
