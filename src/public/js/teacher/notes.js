@@ -119,11 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.id
               }">
                 <option value="">Seleccione nota...</option>
-                <option value="Aprobado" ${
-                  e.nota === "Aprobado" ? "selected" : ""
+                <option value="aprobado" ${
+                  e.nota === "aprobado" ? "selected" : ""
                 }>Aprobado</option>
-                <option value="No aprobado" ${
-                  e.nota === "No aprobado" ? "selected" : ""
+                <option value="reprobado" ${
+                  e.nota === "reprobado" ? "selected" : ""
                 }>No aprobado</option>
               </select>
             </td>
@@ -162,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const json = await res.json();
       if (json.status === "success") {
         showToast("✅ Notas guardadas correctamente.", "#5cb85c");
+        console.log("Notas guardadas:", json);
         modalNotas.hide();
       } else {
         showToast("❌ No se pudieron guardar las notas.", "#d9534f");
