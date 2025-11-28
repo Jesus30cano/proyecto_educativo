@@ -451,5 +451,65 @@ LEFT JOIN Tb_curso c ON e.id_curso = c.id_curso
 
 }
     
+// =======================
+//  NOTAS 
+
+
+public function obtener_fichas_para_notas($id_profesor)
+{
+    $query = "SELECT * FROM fn_obtener_fichas_para_notas(:id_profesor)";
+    $stmt  = $this->conn->prepare($query);
+    $stmt->bindParam(':id_profesor', $id_profesor, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function obtener_competencias_para_notas($id_profesor, $id_curso)
+{
+    $query = "SELECT * FROM fn_obtener_competencias_para_notas(:id_profesor, :id_curso)";
+    $stmt  = $this->conn->prepare($query);
+    $stmt->bindParam(':id_profesor', $id_profesor, PDO::PARAM_INT);
+    $stmt->bindParam(':id_curso', $id_curso, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function obtener_estudiantes_notas_competencia($id_curso, $id_competencia)
+{
+    $query = "SELECT * FROM fn_estudiantes_notas_competencia(:id_curso, :id_competencia)";
+    $stmt  = $this->conn->prepare($query);
+    $stmt->bindParam(':id_curso', $id_curso, PDO::PARAM_INT);
+    $stmt->bindParam(':id_competencia', $id_competencia, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function guardar_nota_competencia($id_estudiante, $id_competencia, $id_profesor, $nota)
+{
+    $query = "SELECT fn_guardar_nota_competencia(
+                :id_estudiante,
+                :id_competencia,
+                :id_profesor,
+                :nota
+              ) AS mensaje";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id_estudiante', $id_estudiante, PDO::PARAM_INT);
+    $stmt->bindParam(':id_competencia', $id_competencia, PDO::PARAM_INT);
+    $stmt->bindParam(':id_profesor', $id_profesor, PDO::PARAM_INT);
+    $stmt->bindParam(':nota', $nota, PDO::PARAM_STR); // 'aprobado' / 'reprobado'
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC)['mensaje'] ?? null;
+
+
+
+}
+
+
+
+}
+
+
+
 ?>

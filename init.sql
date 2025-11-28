@@ -2698,3 +2698,138 @@ INSERT INTO
 VALUES ('administrador'),
     ('profesor'),
     ('estudiante');
+
+
+
+
+
+
+    -- ==========================================ey mani porque esta incompleta, tu hiciste eso???
+
+
+
+
+----=================funciones para que el profesor califique...
+
+
+
+    CREATE OR REPLACE FUNCTION fn_obtener_fichas_para_notas(p_id_profesor INT)
+RETURNS TABLE (
+    id    INT,
+    ficha VARCHAR,
+    curso VARCHAR
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        c.id_curso AS id,
+        c.ficha,
+        c.nombre_curso AS curso
+    FROM Tb_curso c
+    INNER JOIN Tb_profesor_curso pc
+        ON pc.id_curso = c.id_curso
+    WHERE pc.id_usuario = p_id_profesor
+    ORDER BY c.ficha;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+CREATE OR REPLACE FUNCTION fn_obtener_competencias_para_notas(
+    p_id_profesor   INT,
+    p_id_curso      INT
+)
+RETURNS TABLE (
+    id          INT,
+    nombre      VARCHAR,
+    descripcion TEXT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        comp.id_competencia AS id,
+        comp.nombre,
+        comp.descripcion
+    FROM Tb_competencia comp
+    INNER JOIN Tb_competencia_curso cc
+        ON cc.id_competencia = comp.id_competencia
+    WHERE cc.id_curso     = p_id_curso
+      AND comp.id_profesor = p_id_profesor
+    ORDER BY comp.nombre;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+CREATE OR REPLACE FUNCTION fn_estudiantes_notas_competencia(
+    p_id_curso       INT,
+    p_id_competencia INT
+)
+RETURNS TABLE (
+    id     INT,
+    nombre TEXT,
+    nota   calificacion
+)
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        u.id_usuario AS id,
+        (dp.nombre || ' ' || dp.apellido) AS nombre,
+        rc.estado AS nota   
+    FROM Tb_estudiante_curso ec
+    INNER JOIN Tb_usuario u
+        ON u.id_usuario = ec.id_usuario
+    INNER JOIN Tb_datos_personales dp
+        ON dp.id_usuario = u.id_usuario
+    LEFT JOIN Tb_resultado_competencia rc
+        ON rc.id_usuario    = u.id_usuario
+       AND rc.id_competencia = p_id_competencia
+    WHERE ec.id_curso = p_id_curso
+    ORDER BY nombre;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION fn_guardar_nota_competencia(
+    p_id_estudiante  INT,
+    p_id_competencia INT,
+    p_id_profesor    INT,
+    p_nota           calificacion
+)
+RETURNS TEXT
+AS $$
+BEGIN
+    INSERT INTO Tb_resultado_competencia (
+        fecha_evaluacion,
+        estado,
+        observaciones,
+        id_competencia,
+        id_usuario,
+        id_profesor
+    ) VALUES (
+        CURRENT_DATE,
+        p_nota,
+        'registrado desde notas',
+        p_id_competencia,
+        p_id_estudiante,
+        p_id_profesor
+    )
+    ON CONFLICT (id_competencia, id_usuario)
+    DO UPDATE SET
+        fecha_evaluacion = EXCLUDED.fecha_evaluacion,
+        estado           = EXCLUDED.estado,
+        id_profesor      = EXCLUDED.id_profesor;
+
+    RETURN 'ok';
+END;
+$$ LANGUAGE plpgsql;
