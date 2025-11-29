@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
   <!-- carta azul -->
   <link rel="stylesheet" href="/public/css/card.blue.css">
+  <link rel="stylesheet" href="/public/css/toast.css">
+
 
   <title>Usuarios</title>
 </head>
@@ -48,16 +50,52 @@
 
           <!-- Título -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Asistencias</h1>
+            <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
           </div>
 
 
           <!-- Dashboard Cards -->
-          <?php include __DIR__ . '/../components/admin/cards/card_usuarios.php'; ?>
+<div class="row">
+
+<div class="col-md-4 mb-3">
+    <div class="card bg-success text-white h-100">
+      <div  class="card-body py-5">Total Usuarios: <span id="totalUsuarios"></span> </div>
+    </div>
+  </div>
+
+</div>
           <!-- Toolbar con botón Crear Usuario -->
           <?php include __DIR__ . '/../components/admin/toolbars/toolbar_Usuarios.php'; ?>
           <!-- Tabla de usuarios -->
-          <?php include __DIR__ . '/../components/admin/tables/DataTableUsuarios.php'; ?>
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <span><i class="bi bi-table me-2"></i></span> Data Table
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-striped data-table" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>APELLIDO </th>
+                                <th>ESTADO</th>
+                                <th>CORREO</th>
+                                <th>GENERO</th>
+                            </tr>
+                        </thead>
+                        <tbody id ="usuariosTableBody">
+                           
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -99,7 +137,8 @@
     <!-- NAVIGATION SCRIPTS -->
     <script src="/public/js/navigation.js"></script>
     <script src="/public/js/admin/modal.js"></script>
-
+    <script src="/public/js/admin/usuario.js"></script>
+    <script src="/public/js/toast.js"></script>
 
 
 </body>

@@ -48,14 +48,13 @@ public function desactivarUsuario($id_usuario){
 
 
 
-public function actualizarUsuario($id_usuario, $email, $password, $id_rol){
+public function actualizarUsuario($id_usuario, $email, $password){
 
-    $sql = "CALL actualizar_usuario(:id_usuario, :email, :password, :id_rol)";
+    $sql = "CALL actualizar_usuario(:id_usuario, :email, :password)";
     $stmt = $this->conn->prepare($sql);
     $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':password', $password); 
-    $stmt->bindParam(':id_rol', $id_rol, PDO::PARAM_INT);
     $stmt->execute();
 }
 
