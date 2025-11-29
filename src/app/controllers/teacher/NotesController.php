@@ -162,6 +162,7 @@ class NotesController extends Controller
 
         try {
             $teacherModel = $this->model('teacher/TeacherModel');
+            $ver_si=[];
 
             foreach ($notas as $n) {
                 $id_estudiante = $n['id']   ?? null;
@@ -183,11 +184,13 @@ class NotesController extends Controller
                     (int)$id_profesor,
                     $nota
                 );
+                $ver_si[]=$n;
             }
 
             return $this->jsonResponse([
                 'status'  => 'success',
-                'message' => 'Notas guardadas correctamente.'
+                'message' => 'Notas guardadas correctamente.',
+                'data'    => $ver_si
             ]);
         } catch (PDOException $e) {
             return $this->jsonResponse([

@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- carta azul -->
     <link rel="stylesheet" href="/public/css/card.blue.css">
+    <link rel="stylesheet" href="/public/css/toast.css">
+
+    
 </head>
 
 <body id="page-top">
@@ -146,6 +149,7 @@
 
     <!-- Script funcional -->
     <script src="/public/js/teacher/notes.js"></script>
+    <script src="/public/js/toast.js"></script>
 
 </body>
 
