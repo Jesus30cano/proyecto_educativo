@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarDatosDashboardCard();
   cargarDatosDashboardTabla();
 });
-
-// Función para cargar datos desde el backend
 async function cargarDatosDashboardCard() {
   try {
     const response = await fetch("/admin/dashboard/obtenerTotalesActivos"); // Asegúrate de que esta ruta coincida con la del backend
@@ -33,13 +31,20 @@ async function cargarDatosDashboardCard() {
 }
 async function cargarDatosDashboardTabla() {
   try {
-    const response = await fetch("/admin/dashboard/obtenerTotalesCursos"); // Asegúrate de que esta ruta coincida con la del backend
+    const response = await fetch("/admin/general/listarUsuariosPorIdRol",
+        { method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id_rol:3 }),
+    }
+    ); // Asegúrate de que esta ruta coincida con la del backend
     const data = await response.json();
     if (data.status !== "success") {
       console.error("❌ Error en la respuesta del servidor:", data.message);
       return;
     }
-    console.log("✅ Datos del dashboard cargados:", data.data);
+    
     actualizarTabla(data.data || []);
   } catch (error) {
     console.error("❌ Error cargando dashboard tabla:", error);
@@ -50,11 +55,7 @@ async function cargarDatosDashboardTabla() {
 function actualizarContadores(info) {
   document.getElementById("totalEstudiantes").textContent =
     info.total_estudiantes;
-  document.getElementById("totalProfesores").textContent =
-    info.total_profesores;
-
-  document.getElementById("totalCursos").textContent =
-    info.total_cursos_activos;
+  
 }
 
 let tablaInicializada = false;
@@ -75,12 +76,16 @@ function actualizarTabla(data) {
     $("#dataTable").DataTable({
       data: data,
       columns: [
-        { data: "ficha" },
-        { data: "nombre_curso" },
-        { data: "nombre_profesor" },
-        { data: "fecha_inicio" },
-        { data: "fecha_fin" },
-        { data: "cantidad_estudiantes" },
+        { data: "id_usuario" },
+        { data: "nombre" },
+        { data: "apellido" },
+        { data: "estado" },
+        { data: "fecha_nacimiento" },
+        { data: "email" },
+        { data: "telefono" },
+        
+        { data: "direccion" },
+        { data: "genero" },
       ],
       destroy: true,
       language: {
@@ -88,7 +93,7 @@ function actualizarTabla(data) {
       },
     });
     tablaInicializada = true;
-    console.log("✅ DataTable inicializado con:", data);
+    
   } else {
     let table = $("#dataTable").DataTable();
     table.clear();

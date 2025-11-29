@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
   <!-- carta azul -->
   <link rel="stylesheet" href="/public/css/card.blue.css">
+  <link rel="stylesheet" href="/public/css/toast.css">
 
 
   <title>Estudiantes</title>
@@ -49,18 +50,47 @@
 
 
           <!-- Dashboard Cards -->
-          <?php include __DIR__ . '/../components/admin/cards/Card_estu.php'; ?>
+          <div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card bg-primary text-white h-100">
+            <div class="card-body py-5">Total ESTUDIANTES: <span id="totalEstudiantes"> </span></div>
+        </div>
+    </div>
+</div>
 
           <?php include __DIR__ . '/../components/admin/toolbars/toolbar_estu.php'; ?>
       
           <!-- Data Table -->
-          <?php include __DIR__ . '/../components/admin/tables/DataTableEstu.php'; ?>
-
+          
+  <div class="col-md-12 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <span><i class="bi bi-table me-2"></i></span>Estudiantes
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="dataTable" class="table table-striped data-table" style="width: 100%">
+            <thead>
+              <tr>
+                <th>ID </th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>ESTADO</th>
+                <th>EDAD</th>
+                <th>CORREO</th>
+                <th>TELEFONO</th>
+                <th>DIRECCION</th>
+                <th>GENERO</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+          </table>
         </div>
-
-
-
-
+      </div>
+    </div>
+  </div>
       </div>
       <!-- topnav -->
     <?php include __DIR__ . '/../components/footer.php'; ?>
@@ -100,6 +130,8 @@
   <!-- script de funcionalidad -->
    <script src="./../../public/js/navigation.js"></script>
   <script src="./../../public/js/admin/modal.js"></script>
+  <script src="./../../public/js/admin/estudiante.js"></script>
+  <script src="./../../public/js/toast.js"></script>
 
 
 </body>
