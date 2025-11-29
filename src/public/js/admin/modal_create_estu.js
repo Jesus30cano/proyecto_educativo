@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Referencias a elementos del DOM
   const modal = document.getElementById("create_estudi");
   const openModalBtn = document.getElementById("openModalBtn");
-  const studentForm = document.getElementById("studentForm");
+  const createForm = document.getElementById("createForm");
 
   // Verificar que los elementos existen antes de agregar event listeners
   if (openModalBtn) {
     openModalBtn.addEventListener("click", function () {
       openModal("create_estudi");
+
     });
   }
 
@@ -23,25 +24,81 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (studentForm) {
-    // Manejo del envío del formulario
-    studentForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      handleFormSubmit();
+
+
+});
+setupFormSubmissionEstudiante();
+function setupFormSubmissionEstudiante() {
+  const form = document.getElementById("createForm");
+  if (form) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      await registrar_estudiante();
     });
   }
-});
+}
+async function registrar_estudiante()  {
+  const tipo_documento = document.getElementById("tipo_documento").value;
+  const numero_documento = document.getElementById("create_cedula").value;
+  const nombre = document.getElementById("create_nombre").value;
+  const apellido = document.getElementById("create_apellido").value;
+  const fecha_nacimiento = document.getElementById("create_fecha_nacimiento").value;
+  const correo = document.getElementById("create_correo").value;
+  const password = document.getElementById("create_password").value;
+  const telefono = document.getElementById("create_telefono").value;
+  const direccion = document.getElementById("create_direccion").value;
+  const genero = document.getElementById("create_genero").value;
+  const id_rol = 3; // Rol de estudiante
+  const formData = new FormData();
+  formData.append("tipo_documento", tipo_documento);
+  formData.append("no_documento", numero_documento);
+  formData.append("nombre", nombre);
+  formData.append("apellido", apellido);
+  formData.append("fecha_nacimiento", fecha_nacimiento);
+  formData.append("email", correo);
+  formData.append("password", password);
+  formData.append("telefono", telefono);
+  formData.append("direccion", direccion);
+  formData.append("genero", genero);
+  formData.append("id_rol", id_rol);
+  try {
+    const response = await fetch("/admin/general/registrarUsuario", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    console.log("Respuesta del servidor:", data);
+    if (data.status === "success") {
+      showToast("Estudiante registrado exitosamente", "#27ae60", 3000);
+      closeModal("create_estudi");
+      // Aquí puedes agregar código para actualizar la tabla o limpiar el formulario si es necesario
+    } else {
+      showToast("❌ Error al registrar el estudiante: " + data.message, "#e74c3c", 3000);
+    }
+  } catch (error) {
+    console.error("❌ Error en la solicitud:", error);
+    showToast("❌ Error en la solicitud: " + error.message, "#e74c3c", 3000);
+  }
+}
 
 // Función para abrir el modal
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.style.display = "block";
-    // Limpiar formulario y errores al abrir
-    if (document.getElementById("studentForm")) {
-      document.getElementById("studentForm").reset();
-    }
-    clearErrors();
+    document.getElementById("tipo_documento_group").value = "";
+    document.getElementById("create_cedula").value = "";
+    document.getElementById("create_nombre").value = "";
+    document.getElementById("create_apellido").value = "";
+    document.getElementById("create_fecha_nacimiento").value = "";
+    document.getElementById("create_correo").value = "";
+    document.getElementById("create_password").value = "";
+    document.getElementById("create_fecha_nacimiento").value = "";
+    document.getElementById("create_telefono").value = "";
+    document.getElementById("create_direccion").value = "";
+    document.getElementById("create_genero").value = "";
+    console.log("Modal abierto:", modalId);
+    
   } else {
     console.error("Modal no encontrado:", modalId);
   }
@@ -60,25 +117,3 @@ function openCreateEstudianteModal() {
   openModal("create_estudi");
 }
 
-// Función para limpiar mensajes de error
-function clearErrors() {
-  const errorElements = document.querySelectorAll(".error");
-  errorElements.forEach((element) => {
-    element.textContent = "";
-  });
-}
-
-// Resto de tus funciones (validateForm, showError, etc.)
-function handleFormSubmit() {
-  const formData = new FormData(document.getElementById("studentForm"));
-
-  if (validateForm(formData)) {
-    alert("Estudiante creado exitosamente");
-    closeModal("create_estudi");
-  }
-}
-
-function validateForm(formData) {
-  // Tu lógica de validación aquí
-  return true;
-}

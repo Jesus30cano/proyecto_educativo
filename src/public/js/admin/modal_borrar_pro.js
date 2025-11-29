@@ -14,7 +14,7 @@ function buscarProfesorBorrar() {
   const id = document.getElementById("search_profesor_id2").value.trim();
 
   if (id === "") {
-    alert("Ingrese un ID para buscar.");
+    showToast("Por favor ingresa un ID de profesor.", "#920b0bff", 3000);
     return;
   }
 
@@ -37,7 +37,7 @@ function buscarProfesorBorrar() {
   document.getElementById("borrar_profesor_direccion").value =
     profesor.direccion;
 
-  alert("Profesor encontrado.");
+  showToast("Profesor encontrado.", "#0b920bff", 3000);
 }
 
 // SUBMIT DEL FORMULARIO
@@ -46,8 +46,7 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (confirm("¿Estás seguro de borrar este profesor?")) {
-      alert("Profesor eliminado correctamente.");
+      showToast("Profesor desactivado con éxito.", "#0b920bff", 3000);
       closeModal("borrarProfesorModal");
-    }
+    
   });
