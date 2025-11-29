@@ -58,7 +58,6 @@ async function buscarInstructor() {
         data.data.nombre + " " + (data.data.apellido || "") ;
       
       showToast("Profesor encontrado", "#27ae60", 3000);
-      console.log("Datos recibidos para edición:", data.data);
     } else {
       showToast(data.message || "No se encontró el profesor.", "#e74c3c", 4000);
     }

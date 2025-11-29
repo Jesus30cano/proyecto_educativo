@@ -22,7 +22,6 @@ async function cargarTotales() {
       console.warn("⚠ Error en totales:", data.message);
       return;
     }
-    console.log("✅ Totales cargados:", data.data);
     document.getElementById("totalCursos").textContent =
       data.data.total_cursos ?? 0;
     document.getElementById("totalPendientes").textContent =

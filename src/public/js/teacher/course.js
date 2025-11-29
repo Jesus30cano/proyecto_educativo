@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     contenedor.innerHTML = lista
       .map((curso) => {
         const id = curso.id_curso ?? "";
-        console.log("Renderizando curso:", curso.id_curso, curso.curso);
         const nombre = curso.curso ?? "Sin nombre";
         const ficha = curso.ficha ?? "Sin ficha";
         const estado = curso.ficha_activa ? "Activo" : "Inactivo";
@@ -71,7 +70,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       cache: "no-store",
     });
     const json = await res.json();
-    console.log("Cursos obtenidos:", json);
 
     cursos = json.data || [];
   } catch (err) {

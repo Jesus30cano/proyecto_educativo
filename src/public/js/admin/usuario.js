@@ -21,7 +21,6 @@ async function buscarUsuario() {
       body: JSON.stringify({ id_user: id }),
     });
     const data = await response.json();
-    console.log(data);
     if (data.status !== "success") {
       showToast("No se encontró el usuario con ese ID.", "#920b0bff", 3000);
       return;
@@ -84,7 +83,6 @@ async function cargarDatosTabla() {
       console.error("Error en la respuesta del servidor:", data.message);
       return;
     }
-    console.log("Datos del usuarios cargados:", data.data);
 
     // Llama a la función para actualizar la DataTable
     actualizarTabla(data.data || []);
@@ -128,7 +126,6 @@ function actualizarTabla(data) {
     table.clear();
     table.rows.add(data);
     table.draw();
-    console.log("DataTable actualizado con:", data);
   }
 }
 
@@ -183,7 +180,6 @@ document.getElementById('editUsuarioForm').addEventListener('submit', function (
       })
     }).then(response => response.json())
       .then(data2 => {
-        console.log(data2);
         if (data2.status === 'success') {
           showToast("Usuario actualizado con éxito.", "#0b920bff", 3000);
           closeModal('editUsuarioModal');

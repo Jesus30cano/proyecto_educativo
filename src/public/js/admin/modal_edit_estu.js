@@ -52,7 +52,6 @@ async function buscarEstudiante() {
       document.getElementById("edit_profesor_genero").value =
         data.data.genero || "";
       showToast("Estudiante encontrado", "#27ae60", 3000);
-      console.log("Datos recibidos para edición:", data.data);
     } else {
       showToast(data.message || "No se encontró el estudiante.", "#e74c3c", 4000);
     }

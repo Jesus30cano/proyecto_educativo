@@ -54,7 +54,6 @@ async function cargarDatosTabla() {
       console.error("Error en la respuesta del servidor:", data.message);
       return;
     }
-    console.log("Datos del dashboard cargados:", data.data);
 
     // Llama a la función para actualizar la DataTable
     actualizarTabla(data.data || []);
@@ -110,7 +109,6 @@ function actualizarTabla(data) {
     table.clear();
     table.rows.add(data);
     table.draw();
-    console.log("DataTable actualizado con:", data);
   }
 }
 
@@ -226,7 +224,6 @@ async function buscarProfesor() {
       document.getElementById("edit_profesor_genero").value =
         data.data.genero || "";
       showToast("Profesor encontrado", "#27ae60", 3000);
-      console.log("Datos recibidos para edición:", data.data);
     } else {
       showToast(data.message || "No se encontró el profesor.", "#e74c3c", 4000);
     }

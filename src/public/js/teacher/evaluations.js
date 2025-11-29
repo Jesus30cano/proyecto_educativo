@@ -153,7 +153,6 @@ const modalBody = document.getElementById("tbodyEvaluacionEstudiantes");
       modalBody.appendChild(fila);
       modalBody.querySelectorAll(".btn-ver_evaluacion_id").forEach((btn) => {
     btn.addEventListener("click", () => {
-      console.log("Botón ver evaluación clickeado");
       
       const id = btn.dataset.id;  
       localStorage.setItem("id_evaluacion_id", id);

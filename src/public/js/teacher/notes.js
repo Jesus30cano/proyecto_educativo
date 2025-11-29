@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const json = await res.json();
       if (json.status === "success") {
         showToast("✅ Notas guardadas correctamente.", "#5cb85c");
-        console.log("Notas guardadas:", json);
         modalNotas.hide();
       } else {
         showToast("❌ No se pudieron guardar las notas.", "#d9534f");

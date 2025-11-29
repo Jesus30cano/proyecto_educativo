@@ -59,7 +59,6 @@ window.onclick = function (event) {
         data.data.nombre_completo  ;
       
       showToast("Competencia encontrada", "#27ae60", 3000);
-      console.log("Datos recibidos para edición:", data.data);
     } else {
       showToast(data.message || "No se encontró la competencia.", "#e74c3c", 4000);
     }
@@ -107,7 +106,6 @@ async function buscarInstructorEditar() {
         data.data.nombre + " " + (data.data.apellido || "") ;
       
       showToast("Profesor encontrado", "#27ae60", 3000);
-      console.log("Datos recibidos para edición:", data.data);
     } else {
       showToast(data.message || "No se encontró el profesor.", "#e74c3c", 4000);
     }

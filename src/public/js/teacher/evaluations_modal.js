@@ -27,7 +27,6 @@ function limpiarRepetidosSelect(selectElem) {
 }
   const btnCrearManual = document.getElementById("btnCrearEvaluacionManual");
   btnCrearManual.addEventListener("click", () => {
-    console.log("Abrir modal evaluación manual");
     document.getElementById("man_titulo").value = "";
     document.getElementById("man_descripcion").value = "";
     document.getElementById("man_fecha").value = "";
@@ -37,7 +36,6 @@ function limpiarRepetidosSelect(selectElem) {
 
   const btnCrearIA = document.getElementById("btnCrearEvaluacionIA");
   btnCrearIA.addEventListener("click", () => {
-    console.log("Abrir modal evaluación con IA");
     document.getElementById("ia_titulo").value = "";
     document.getElementById("ia_descripcion").value = "";
     document.getElementById("ia_fecha").value = "";
@@ -235,7 +233,6 @@ function limpiarRepetidosSelect(selectElem) {
     });
 
     // Ya tienes tu data JSON:
-    console.log(data);
 
     // Ejemplo de envío usando fetch (ajusta la URL y método según tu backend)
 
@@ -246,7 +243,6 @@ function limpiarRepetidosSelect(selectElem) {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      console.log(result);
       // Notifica usuario o redirige, etc
       if (result.status === "success") {
         showToast(result.message, "#3ce783ff", 3000);
@@ -259,7 +255,6 @@ function limpiarRepetidosSelect(selectElem) {
       } else {
         showToast(result.message, "#e74c3c", 3000);
       }
-      console.log(result);
     } catch (err) {
       alert("Error al guardar!" + err);
     }
@@ -317,7 +312,6 @@ function limpiarRepetidosSelect(selectElem) {
         }
       );
       const result = await response.json();
-      console.log("Resultado IA:", result);
 
       if (
         !result.questions ||
@@ -410,7 +404,6 @@ function limpiarRepetidosSelect(selectElem) {
       });
     });
 
-    console.log("Datos de evaluación IA a guardar:", data);
     try {
       const response = await fetch("/teacher/evaluations/guardar_evaluacion", {
         method: "POST",
@@ -418,7 +411,6 @@ function limpiarRepetidosSelect(selectElem) {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      console.log(result);
       if (result.status === "success") {
         showToast(result.message, "#3ce783ff", 3000);
         document.getElementById("ia_titulo").value = "";

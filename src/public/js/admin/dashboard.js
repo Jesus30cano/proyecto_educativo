@@ -39,7 +39,6 @@ async function cargarDatosDashboardTabla() {
       console.error("❌ Error en la respuesta del servidor:", data.message);
       return;
     }
-    console.log("✅ Datos del dashboard cargados:", data.data);
     actualizarTabla(data.data || []);
   } catch (error) {
     console.error("❌ Error cargando dashboard tabla:", error);
@@ -88,12 +87,10 @@ function actualizarTabla(data) {
       },
     });
     tablaInicializada = true;
-    console.log("✅ DataTable inicializado con:", data);
   } else {
     let table = $("#dataTable").DataTable();
     table.clear();
     table.rows.add(data);
     table.draw();
-    console.log("🔄 DataTable actualizado con:", data);
   }
 }
