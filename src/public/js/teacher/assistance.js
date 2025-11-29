@@ -221,8 +221,6 @@ function guardarAsistenciaDia() {
   })
     .then(async (res) => {
       const raw = await res.text();
-      console.log("STATUS registrarAsistenciaDia:", res.status);
-      console.log("RAW registrarAsistenciaDia:", raw);
 
       let data;
       try {
@@ -399,8 +397,6 @@ function actualizarAsistencia() {
   })
     .then(async (res) => {
       const raw = await res.text();
-      console.log("STATUS actualizarAsistencia:", res.status);
-      console.log("RAW actualizarAsistencia:", raw);
 
       let data;
       try {

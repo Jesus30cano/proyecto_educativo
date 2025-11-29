@@ -20,7 +20,6 @@ async function mostarDatosPersonales() {
       return;
     }
 
-    console.log("✅ Datos del perfil cargados:", data.data);
     mostarDatosPerfil(data.data);
   } catch (error) {
     console.error("❌ Error cargando perfil:", error);
@@ -42,7 +41,6 @@ async function mostarDatosEmergencia() {
       return;
     }
 
-    console.log("✅ Datos de emergencia cargados:", data.data);
     mostarDatosEmergencia2(data.data);
   } catch (error) {
     console.error("❌ Error cargando datos de emergencia:", error);

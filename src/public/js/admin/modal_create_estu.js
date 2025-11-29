@@ -67,7 +67,6 @@ async function registrar_estudiante()  {
       body: formData,
     });
     const data = await response.json();
-    console.log("Respuesta del servidor:", data);
     if (data.status === "success") {
       showToast("Estudiante registrado exitosamente", "#27ae60", 3000);
       closeModal("create_estudi");
@@ -97,7 +96,6 @@ function openModal(modalId) {
     document.getElementById("create_telefono").value = "";
     document.getElementById("create_direccion").value = "";
     document.getElementById("create_genero").value = "";
-    console.log("Modal abierto:", modalId);
     
   } else {
     console.error("Modal no encontrado:", modalId);

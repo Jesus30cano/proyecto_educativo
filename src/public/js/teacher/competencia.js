@@ -138,7 +138,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const nuevoBtnNo = document.getElementById("btnNoEliminar");
 
         nuevoBtnSi.addEventListener("click", () => {
-          console.log("Eliminando actividad con ID:", id);
           // Aquí se hace la petición al backend igual que antes
           fetch("/teacher/activity/eliminar_actividad", {
             method: "POST",
@@ -147,14 +146,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           })
             .then((res) => res.json())
             .then((json) => {
-              console.log("Respuesta del servidor:", json);
               if (json.status === "success") {
                 actividades = actividades.filter((a) => a.id != id);
                 renderActividades();
                 mensaje.innerHTML = `<div class="alert alert-success">${json.message}</div>`;
-                console.log("Actividad eliminada correctamente");
               } else {
-                console.log("Error al eliminar actividad:", json.message);
                 mensaje.innerHTML = `<div class="alert alert-danger">${json.message}</div>`;
               }
               confirmacion.style.display = "none";

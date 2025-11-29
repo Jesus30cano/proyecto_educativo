@@ -99,6 +99,5 @@ function actualizarTabla(data) {
     table.clear();
     table.rows.add(data);
     table.draw();
-    console.log("🔄 DataTable actualizado con:", data);
   }
 }

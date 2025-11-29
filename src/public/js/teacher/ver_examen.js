@@ -14,7 +14,6 @@ async function fetchExamData(id_examen) {
   }
   // Esperamos que el backend devuelva directamente el objeto examData
   $datos = await response.json();
-  console.log("Datos del examen recibidos:", $datos);
   loadExamData($datos);
   return $datos;
 }

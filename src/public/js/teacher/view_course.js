@@ -2,9 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursoHeader = document.getElementById("cursoHeader");
   const listaCompetencias = document.getElementById("listaCompetencias");
   const sinCompetencias = document.getElementById("sinCompetencias");
-  console.log("estos son los datos", competenciasData);
-  console.log("estos son los datos del curso", cursoData);
-  console.log("estos son los datos del profesor");
 
   const modal = new bootstrap.Modal(
     document.getElementById("modalCrearActividad")
@@ -67,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
     mensaje.innerHTML = "";
     for (const pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
     }
 
     try {

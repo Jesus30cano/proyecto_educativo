@@ -20,7 +20,6 @@ async function cargarDatosCard() {
     }
 
     const data = await response.json();
-    console.log(data);
 
     if (data.status !== "success") {
       console.error("❌ Error en la respuesta del servidor:", data.message);
@@ -40,7 +39,6 @@ async function cargarDatosTabla() {
       console.error("❌ Error en la respuesta del servidor:", data.message);
       return;
     }
-    console.log("✅ Datos del dashboard cargados:", data.data);
     actualizarTabla(data.data || []);
   } catch (error) {
     console.error("❌ Error cargando dashboard tabla:", error);
@@ -49,7 +47,6 @@ async function cargarDatosTabla() {
 
 // 🔹 Actualiza los cards (contador)
 function actualizarContadores(info) {
-    console.log(info);
   document.getElementById("total_competencias").textContent =
     info.total_competencias;
   document.getElementById("competencias_activas").textContent =
@@ -95,12 +92,10 @@ function actualizarTabla(data) {
       },
     });
     tablaInicializada = true;
-    console.log("✅ DataTable inicializado con:", data);
   } else {
     let table = $("#dataTable").DataTable();
     table.clear();
     table.rows.add(data);
     table.draw();
-    console.log("🔄 DataTable actualizado con:", data);
   }
 }
