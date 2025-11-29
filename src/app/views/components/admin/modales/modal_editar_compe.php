@@ -21,18 +21,13 @@
       </div>
 
       <div class="form-group">
-        <label for="edit_competencia_fecha_inicio">Fecha de Inicio:</label>
-        <input type="date" id="edit_competencia_fecha_inicio" name="fecha_inicio" required>
+        <label for="edit_competencia_codigo">Codigo:</label>
+        <input type="text" id="edit_competencia_codigo" name="codigo" required>
       </div>
 
       <div class="form-group">
-        <label for="edit_competencia_fecha_fin">Fecha Final:</label>
-        <input type="date" id="edit_competencia_fecha_fin" name="fecha_fin" required>
-      </div>
-
-      <div class="form-group">
-        <label for="edit_competencia_modalidad">Modalidad:</label>
-        <input type="text" id="edit_competencia_modalidad" name="modalidad" required>
+        <label for="edit_competencia_descripcion">Descripcion:</label>
+        <input type="text" id="edit_competencia_descripcion" name="descripcion" required>
       </div>
 
       <hr>

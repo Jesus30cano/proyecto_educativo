@@ -48,12 +48,57 @@
 
 
            <!-- Dashboard Cards -->
-            <?php include __DIR__ . '/../components/admin/cards/Card_competen.php'; ?>
+           <div class="row">
+  <div class="col-md-4 mb-3">
+    <div class="card bg-primary text-white h-100">
+      <div class="card-body py-5">Total Competencias:<span id="total_competencias"></span></div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card bg-success text-white h-100">
+      <div class="card-body py-5">Competencias activas:<span id="competencias_activas"></span></div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card bg-warning text-dark h-100">
+      <div class="card-body py-5">Competencias Inactivas:<span id="competencias_inactivas"></span></div>
+    </div>
+  </div>
+</div>
 
             <?php include __DIR__ . '/../components/admin/toolbars/toolbar_Competen.php'; ?>
       
             <!-- Data Table -->
-            <?php include __DIR__ .'/../components/admin/tables/DataTableCom.php'; ?>
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <span><i class="bi bi-table me-2"></i></span> Data Table
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-striped data-table" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>CODIGO</th>
+                                <th>NOMBRE</th>
+                                <th>DECRIPCION</th>
+                                <th>PROFESOR</th>
+                                <th>ESTADO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
 
 
@@ -95,7 +140,7 @@
 
   <!-- script de funcionalidad -->
   <script src="/public/js/script.js"></script>
-  <script src="/public/js/admin/curso.js"></script>
+  <script src="/public/js/admin/competencia.js"></script>
   <script src="/public/js/toast.js"></script>
 
 

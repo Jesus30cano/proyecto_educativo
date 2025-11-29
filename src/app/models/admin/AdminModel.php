@@ -274,6 +274,57 @@ public function desactivarCursoYLog($ficha, $mensaje) {
     $stmt->execute();
     
 }
-
+public function total_competencia(){
+    $sql = "SELECT 
+    COUNT(*) AS total_competencias,
+    COUNT(*) FILTER (WHERE activa = TRUE) AS total_activas,
+    COUNT(*) FILTER (WHERE activa = FALSE) AS total_inactivas
+FROM Tb_competencia";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+public function obtener_todas_competencias() {
+    $sql = "SELECT c.id_competencia,c.codigo, c.nombre, c.descripcion, u.nombre || ' ' || u.apellido AS nombre_profesor, c.activa
+            FROM Tb_competencia c
+            JOIN Tb_datos_personales u ON c.id_profesor = u.id_usuario";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+public function crear_competencia($nombre, $codigo, $descripcion, $instructor_id) {
+    $sql = "INSERT INTO Tb_competencia (nombre, codigo, descripcion, id_profesor, activa)
+            VALUES (:nombre, :codigo, :descripcion, :instructor_id, TRUE)";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':codigo', $codigo);
+    $stmt->bindParam(':descripcion', $descripcion);
+    $stmt->bindParam(':instructor_id', $instructor_id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+public function obtener_competencia_por_id($id_competencia) {
+    $sql = "SELECT  c.nombre,c.codigo,c.descripcion,c.id_profesor,dt.nombre || ' '|| dt.apellido as nombre_completo
+from Tb_competencia c join tb_datos_personales dt on c.id_profesor =dt.id_usuario
+where c.id_competencia = :id_competencia";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':id_competencia', $id_competencia, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+public function actualizar_competencia($id_competencia, $nombre, $codigo, $descripcion, $instructor_id) {
+    $sql = "UPDATE Tb_competencia
+            SET nombre = :nombre,
+                codigo = :codigo,
+                descripcion = :descripcion,
+                id_profesor = :instructor_id
+            WHERE id_competencia = :id_competencia";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':id_competencia', $id_competencia, PDO::PARAM_INT);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':codigo', $codigo);
+    $stmt->bindParam(':descripcion', $descripcion);
+    $stmt->bindParam(':instructor_id', $instructor_id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
 }
 ?>
