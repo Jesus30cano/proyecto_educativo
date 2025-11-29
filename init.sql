@@ -146,6 +146,7 @@ CREATE TABLE Tb_competencia (
     nombre VARCHAR(200) NOT NULL,
     descripcion TEXT,
     id_profesor INT NOT NULL,
+    activa BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (id_profesor) REFERENCES Tb_usuario (id_usuario)
 );
 --------------------------------------------------------------
