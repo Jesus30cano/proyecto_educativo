@@ -192,29 +192,30 @@ public function desactivarUsuario()
 public function actualizarUsuario()
 {
     $input = json_decode(file_get_contents("php://input"), true);
+    if (!isset($input['id_usuario']) || !is_numeric($input['id_usuario'])) {
+        $this->jsonResponse(['status' => 'error', 'message' => 'Falta o es inválido el id_usuario.'], 400);
+    }
 
-    if (
-        !isset($input['id_usuario']) || !is_numeric($input['id_usuario']) ||
-        !isset($input['email']) ||
-        !isset($input['password']) ||
-        !isset($input['id_rol']) || !is_numeric($input['id_rol'])
-    ) {
-        $this->jsonResponse(['error' => 'Faltan datos requeridos o son inválidos.'], 400);
+     if (!isset($input['correo']) || !filter_var($input['correo'], FILTER_VALIDATE_EMAIL)) {
+        $this->jsonResponse(['status' => 'error', 'message' => 'Correo inválido.'], 400);
     }
 
     try {
-        $password_hashed = password_hash($input['password'], PASSWORD_DEFAULT);
+        if(empty($input['password'])){
+            $password_hashed = null;
+        } else {
+            $password_hashed = password_hash($input['password'], PASSWORD_DEFAULT);
+        }
         $adminModel = $this->model('admin/AdminModel');
         $adminModel->actualizarUsuario(
             (int) $input['id_usuario'],
-            $input['email'],
-            $password_hashed,
-            (int) $input['id_rol']
+            $input['correo'],
+            $password_hashed
         );
 
-        $this->jsonResponse(['mensaje' => 'Usuario actualizado correctamente.']);
+        $this->jsonResponse(['status' => 'success', 'message' => 'Usuario actualizado correctamente.']);
     } catch (PDOException $e) {
-        $this->jsonResponse(['error' => 'Error al actualizar usuario: ' . $e->getMessage()], 500);
+        $this->jsonResponse(['status' => 'error', 'message' => 'Error al actualizar usuario: ' . $e->getMessage()], 500);
     }
 }
 

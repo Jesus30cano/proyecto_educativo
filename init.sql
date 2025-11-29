@@ -814,7 +814,9 @@ BEGIN
         d.fecha_registro
     FROM Tb_usuario u
     INNER JOIN Tb_datos_personales d ON u.id_usuario = d.id_usuario
-    WHERE u.id_rol = p_id_rol;
+    WHERE (p_id_rol = 99 AND u.id_rol IN (2, 3))
+        OR
+        (p_id_rol != 99 AND u.id_rol = p_id_rol);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -892,18 +894,24 @@ $$;
 CREATE OR REPLACE PROCEDURE actualizar_usuario(
     p_id_usuario INT,
     p_email VARCHAR,
-    p_password VARCHAR,
-    p_id_rol INT
+    p_password VARCHAR
 )
 LANGUAGE plpgsql
 AS $$
 BEGIN
+    -- Actualizar email e id_rol siempre
     UPDATE Tb_usuario
     SET 
-        email = p_email,
-        password = p_password,
-        id_rol = p_id_rol
+        email = p_email
+    
     WHERE id_usuario = p_id_usuario;
+
+
+    IF p_password IS NOT NULL AND p_password <> '' THEN
+        UPDATE Tb_usuario
+        SET password = p_password
+        WHERE id_usuario = p_id_usuario;
+    END IF;
 END;
 $$;
 
