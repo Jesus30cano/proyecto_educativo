@@ -1,7 +1,22 @@
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #8b5cf6;
+  --dark-bg: #0f172a;
+  --light-bg: #f8fafc;
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --white: #ffffff;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -9,6 +24,7 @@ body {
   color: #1a1a1a;
   overflow-x: hidden;
   line-height: 1.6;
+  background: var(--white);
 }
 
 .container {
