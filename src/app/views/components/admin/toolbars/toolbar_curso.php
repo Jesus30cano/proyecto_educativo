@@ -8,10 +8,16 @@
 </head>
 <body>
 
-  <div class="toolbar mb-3">
-    <button class="btn btn-success" onclick="openCreateCursoModal()">➕ Crear Curso</button>
-    <button class="btn btn-warning" onclick="openEditCursoModal()">✏️ Editar Curso</button>
-    <button class="btn btn-danger" onclick="openEliminarCursoModal()">🗑️ Eliminar Curso</button>
+  <div class="toolbar mb-4">
+    <button class="btn btn-success btn-modern" onclick="openCreateCursoModal()">
+      <i class="fas fa-plus-circle mr-2"></i>Crear Curso
+    </button>
+    <button class="btn btn-warning btn-modern" onclick="openEditCursoModal()">
+      <i class="fas fa-edit mr-2"></i>Editar Curso
+    </button>
+    <button class="btn btn-danger btn-modern" onclick="openEliminarCursoModal()">
+      <i class="fas fa-trash-alt mr-2"></i>Eliminar Curso
+    </button>
   </div>
   
   <!-- Modal crear curso -->

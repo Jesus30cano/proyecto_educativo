@@ -43,7 +43,9 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mt-4 mb-0 text-gray-800">Actividades</h1>
+            <h1 class="h2 mt-4 mb-0 font-weight-bold text-gray-800">
+              <i class="fas fa-tasks mr-3 text-success"></i>Actividades
+            </h1>
           </div>
 
           <!-- fila de contenido-->

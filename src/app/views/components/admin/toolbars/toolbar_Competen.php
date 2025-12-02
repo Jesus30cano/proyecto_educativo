@@ -9,10 +9,16 @@
 </head>
 
 <body>
-    <div class="toolbar">
-        <button class="btn btn-success" onclick="openCrearCompetenciaModal()">➕ Crear Competencia</button>
-        <button class="btn btn-warning" onclick="openEditCompetenciaModal()">✏️ Editar Competencia</button>
-        <button class="btn btn-danger" onclick="openBorrarCompetenciaModal()">🗑️ Eliminar Competencia</button>
+    <div class="toolbar mb-4">
+        <button class="btn btn-success btn-modern" onclick="openCrearCompetenciaModal()">
+          <i class="fas fa-plus-circle mr-2"></i>Crear Competencia
+        </button>
+        <button class="btn btn-warning btn-modern" onclick="openEditCompetenciaModal()">
+          <i class="fas fa-edit mr-2"></i>Editar Competencia
+        </button>
+        <button class="btn btn-danger btn-modern" onclick="openBorrarCompetenciaModal()">
+          <i class="fas fa-trash-alt mr-2"></i>Eliminar Competencia
+        </button>
     </div>
 
 

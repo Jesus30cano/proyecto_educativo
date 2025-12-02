@@ -20,9 +20,16 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background:
-    radial-gradient(circle at top left, rgba(144, 202, 249, 0.25), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(30, 136, 229, 0.18), transparent 55%),
+  background: radial-gradient(
+      circle at top left,
+      rgba(144, 202, 249, 0.25),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(30, 136, 229, 0.18),
+      transparent 55%
+    ),
     var(--color-gris-suave);
   background-blend-mode: soft-light;
 }
@@ -35,16 +42,12 @@ body {
   display: flex;
   border-radius: 18px;
   background-color: rgba(255, 255, 255, 0.96);
-  box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.308),
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.308),
     0 1px 0 rgba(255, 255, 255, 0.7) inset;
   overflow: hidden;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(30, 136, 229, 0.12);
 }
-
-
-
 
 /* Columna izquierda: formulario */
 .ctn-form {
@@ -183,8 +186,8 @@ select#tipo_documento option {
   cursor: pointer;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: transform 0.12s ease, box-shadow 0.2s ease,
-    opacity 0.2s ease, filter 0.2s ease;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, opacity 0.2s ease,
+    filter 0.2s ease;
   box-shadow: 0 6px 14px rgba(30, 136, 229, 0.28);
 }
 
@@ -261,7 +264,6 @@ select#tipo_documento option {
   filter: brightness(0.92) saturate(0.8); /* Suaviza la imagen */
 }
 
-
 .tittle-description {
   position: relative;
   color: #ffffff;
@@ -290,13 +292,11 @@ select#tipo_documento option {
   color: #ffffff;
   font-weight: 800%;
   font-size: 17px;
-  
+
   margin: 10px 0;
   text-align: center;
   z-index: 3;
   line-height: 1.5;
-
-  
 }
 
 /* Responsivo */
@@ -332,10 +332,9 @@ select#tipo_documento option {
   }
 
   .panel-info {
-    display: none; 
+    display: none;
   }
 }
-
 
 /* Fuerza la sombra del texto sobre el panel */
 .panel-info .tittle-description,
@@ -343,7 +342,7 @@ select#tipo_documento option {
   position: relative !important;
   z-index: 999 !important;
   color: #ffffff !important;
-  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.60) !important;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6) !important;
   filter: none !important; /* Esto es CLAVE */
 }
 
@@ -356,7 +355,11 @@ select#tipo_documento option {
   align-items: center;
   gap: 8px;
   padding: 10px 18px;
-  background: linear-gradient(135deg, rgba(30, 136, 229, 0.95), rgba(144, 202, 249, 0.95));
+  background: linear-gradient(
+    135deg,
+    rgba(30, 136, 229, 0.95),
+    rgba(144, 202, 249, 0.95)
+  );
   color: #ffffff;
   text-decoration: none;
   border-radius: 10px;
@@ -400,12 +403,12 @@ select#tipo_documento option {
     padding: 8px 14px;
     font-size: 13px;
   }
-  
+
   .btn-home svg {
     width: 18px;
     height: 18px;
   }
-  
+
   .btn-home span {
     display: none;
   }

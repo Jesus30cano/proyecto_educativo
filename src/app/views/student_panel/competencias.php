@@ -42,7 +42,9 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mt-4 mb-0 text-gray-800">Competencias</h1>
+            <h1 class="h2 mt-4 mb-0 font-weight-bold text-gray-800">
+              <i class="fas fa-award mr-3 text-warning"></i>Competencias
+            </h1>
           </div>
 
           <!-- 🔵 ENCABEZADO DINÁMICO DEL CURSO -->

@@ -44,16 +44,18 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Profesores</h1>
+            <h1 class="h2 mb-0 font-weight-bold text-gray-800">
+              <i class="fas fa-chalkboard-teacher mr-3 text-success"></i>Gestión de Profesores
+            </h1>
           </div>
 
           <!-- Dashboard Cards -->
           <?php include __DIR__ . '/../components/admin/cards/card_P.php'; ?>
 
-          <!-- Toolbar con botón Crear Usuario -->
+          <!-- Toolbar con botones de acción -->
           <?php include __DIR__ . '/../components/admin/toolbars/toolbar_pro.php'; ?>
 
-          <!-- Tabla de usuarios -->
+          <!-- Tabla de profesores -->
           <?php include __DIR__ .'/../components/admin/tables/DataTablePro.php'; ?>
 
         </div>
