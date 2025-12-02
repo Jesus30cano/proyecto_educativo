@@ -12,14 +12,11 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Navbar transparente al hacer scroll
+// Navbar se mantiene blanco siempre
 window.addEventListener("scroll", function () {
   const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 50) {
-    navbar.style.background = "rgba(30, 136, 229, 0.95)";
-  } else {
-    navbar.style.background = "#1E88E5";
-  }
+  // Mantener el navbar siempre blanco
+  navbar.style.background = "#ffffff";
 });
 
 // Animación para las cards cuando aparecen en viewport
@@ -45,9 +42,8 @@ document.querySelectorAll(".card, .service-item").forEach((card) => {
   observer.observe(card);
 });
 
-// Funcionalidad del botón Login (puedes personalizarlo)
+// Funcionalidad del botón Login
 document.querySelector(".btn-login").addEventListener("click", function () {
-  // Aquí puedes agregar la redirección a tu página de login
   window.location.href = "auth/login";
 });
 
