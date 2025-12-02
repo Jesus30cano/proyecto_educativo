@@ -27,38 +27,54 @@
 
     <form id="editUsuarioForm">
       <!-- Campo para buscar -->
-      <div class="form-group">
-        <label for="search_usuario_id">Buscar por ID del Usuario:</label>
-        <input type="number" id="search_usuario_id" name="search_usuario_id" required>
-        <button type="button" class="btn btn-info" onclick="buscarUsuario()">Buscar</button>
+      <div class="search-section">
+        <div class="form-group">
+          <label for="search_usuario_id">Buscar por ID del Usuario:</label>
+          <div class="search-input-group">
+            <input type="number" id="search_usuario_id" name="search_usuario_id" placeholder="Ingrese el ID del usuario" required>
+            <button type="button" class="btn btn-info" onclick="buscarUsuario()">
+              <i class="fas fa-search"></i> Buscar
+            </button>
+          </div>
+        </div>
       </div>
 
       <hr>
-      <div class="form-group">
-        <label for="edit_usuario_nombre">Nombre:</label>
-        <input type="text" id="edit_usuario_nombre" name="nombre" disabled>
+
+      <div class="info-section">
+        <h3>Información del Usuario</h3>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edit_usuario_nombre">Nombre:</label>
+            <input type="text" id="edit_usuario_nombre" name="nombre" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="edit_usuario_apellido">Apellido:</label>
+            <input type="text" id="edit_usuario_apellido" name="apellido" disabled>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edit_usuario_correo">Correo:</label>
+            <input type="email" id="edit_usuario_correo" name="correo" required>
+          </div>
+
+          <div class="form-group">
+            <label for="edit_usuario_password">Contraseña:</label>
+            <input type="password" id="edit_usuario_password" name="password" placeholder="Dejar vacío para no cambiar">
+          </div>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="edit_usuario_apellido">Apellido:</label>
-        <input type="text" id="edit_usuario_apellido" name="apellido" disabled>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('editUsuarioModal')">Cancelar</button>
+        <button type="submit" class="btn btn-warning">
+          <i class="fas fa-save"></i> Actualizar Usuario
+        </button>
       </div>
-
-      
-
-
-      <div class="form-group">
-        <label for="edit_usuario_correo">Correo:</label>
-        <input type="email" id="edit_usuario_correo" name="correo" required>
-      </div>
-
-      <div class="form-group">
-        <label for="edit_usuario_password">Contraseña:</label>
-        <input type="password" id="edit_usuario_password" name="password" >
-      </div>
-
-      <button type="submit" class="btn btn-warning">Actualizar Usuario</button>
-      <button type="button" class="btn btn-secondary" onclick="closeModal('editUsuarioModal')">Cancelar</button>
     </form>
   </div>
 </div>
