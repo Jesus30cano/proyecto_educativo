@@ -1,6 +1,6 @@
 /* === Modal de Crear Curso === */
 .modal_crear_curso {
-  display: none; /* Oculto por defecto */
+  display: none;
   position: fixed;
   z-index: 2000;
   left: 0;
@@ -8,17 +8,29 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
 }
 
 .modal_crear_curso-content {
   background-color: #fff;
-  margin: 5% auto; /* Centrado vertical y horizontal */
-  padding: 25px;
-  border: 1px solid #888;
-  width: 40%;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  margin: 3% auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  width: 65%;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal_crear_curso-content h2 {
+  margin-top: 0;
+  color: #333;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 /* Botón de cierre (la X) */
@@ -34,22 +46,71 @@
   color: black;
 }
 
-/* Contenedor de botones dentro del modal */
-.modal_crear_curso .toolbar {
+/* === Formularios === */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.modal_crear_curso .form-group {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.modal_crear_curso label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+}
+
+.modal_crear_curso input,
+.modal_crear_curso select,
+.modal_crear_curso textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.modal_crear_curso input:focus,
+.modal_crear_curso select:focus,
+.modal_crear_curso textarea:focus {
+  border-color: #28a745;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+
+.modal_crear_curso textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* === Botones === */
+.form-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
 }
 
 .modal_crear_curso .btn {
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 15px;
-  cursor: pointer;
+  padding: 11px 24px;
+  border-radius: 6px;
   border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .btn-success {
@@ -59,6 +120,8 @@
 
 .btn-success:hover {
   background-color: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 .btn-secondary {
@@ -68,23 +131,136 @@
 
 .btn-secondary:hover {
   background-color: #5a6268;
+  transform: translateY(-1px);
 }
 
-/* Espaciado y formato de los inputs */
-.modal_crear_curso .form-group {
-  margin-bottom: 15px;
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
 }
 
-.modal_crear_curso label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+.btn-danger:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
-.modal_crear_curso input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
+.btn-info {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+/* === Estilos específicos para modal de editar/desactivar === */
+.search-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+}
+
+.search-input-group {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.search-input-group input {
+  flex: 1;
+}
+
+.search-input-group .btn {
+  white-space: nowrap;
+  padding: 11px 20px;
+}
+
+.info-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.info-section h3 {
+  color: #495057;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #dee2e6;
+  margin: 25px 0;
+}
+
+/* === Animaciones === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .modal_crear_curso-content {
+    width: 90%;
+    margin: 5% auto;
+    padding: 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .modal_crear_curso .btn {
+    width: 100%;
+  }
+  
+  .search-input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-input-group .btn {
+    width: 100%;
+  }
 }

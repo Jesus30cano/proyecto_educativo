@@ -346,3 +346,67 @@ select#tipo_documento option {
   text-shadow: 0 3px 12px rgba(0, 0, 0, 0.60) !important;
   filter: none !important; /* Esto es CLAVE */
 }
+
+/* Botón de home */
+.btn-home {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, rgba(30, 136, 229, 0.95), rgba(144, 202, 249, 0.95));
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-home:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 136, 229, 0.4);
+  filter: brightness(1.05);
+}
+
+.btn-home:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+}
+
+.btn-home svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
+}
+
+.btn-home span {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .btn-home {
+    top: 15px;
+    right: 15px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  
+  .btn-home svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .btn-home span {
+    display: none;
+  }
+}
