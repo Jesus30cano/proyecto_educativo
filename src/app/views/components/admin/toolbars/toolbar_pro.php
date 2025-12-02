@@ -11,10 +11,16 @@
 
 <body>
 
-  <div class="toolbar mb-3"> <!-- 🔧 margen inferior -->
-    <button class="btn btn-success" onclick="openCreateModal()">➕ Crear profesor</button>
-    <button class="btn btn-warning" onclick="openEditProfesorModal()">✏️ Editar Profesor</button>
-    <button class="btn btn-danger" onclick="openEliminarProfesorModal()"> Desactivar Profesor</button>
+  <div class="toolbar mb-4">
+    <button class="btn btn-success btn-modern" onclick="openCreateModal()">
+      <i class="fas fa-plus-circle mr-2"></i>Crear profesor
+    </button>
+    <button class="btn btn-warning btn-modern" onclick="openEditProfesorModal()">
+      <i class="fas fa-edit mr-2"></i>Editar Profesor
+    </button>
+    <button class="btn btn-danger btn-modern" onclick="openEliminarProfesorModal()">
+      <i class="fas fa-user-times mr-2"></i>Desactivar Profesor
+    </button>
   </div>
 
 

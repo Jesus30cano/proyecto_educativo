@@ -43,7 +43,9 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mt-4 mb-0 text-gray-800">Calificaciones</h1>
+            <h1 class="h2 mt-4 mb-0 font-weight-bold text-gray-800">
+              <i class="fas fa-chart-line mr-3 text-info"></i>Calificaciones
+            </h1>
           </div>
 
           <!-- FILA SUPERIOR: Gráfico y Resumen -->

@@ -46,7 +46,9 @@
 
         <!-- Título -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Contenido principal</h1>
+            <h1 class="h2 mb-0 font-weight-bold text-gray-800">
+              <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Panel de Control
+            </h1>
           </div>
 
           

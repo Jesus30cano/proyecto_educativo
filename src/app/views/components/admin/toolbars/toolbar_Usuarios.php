@@ -11,10 +11,12 @@
 
 <body>
 
-  <div class="toolbar mb-3"> 
+  <div class="toolbar mb-4"> 
 
  
-    <button class="btn btn-warning" onclick="openEditUsuarioModal()">✏️ Editar Usuario</button>
+    <button class="btn btn-warning btn-modern" onclick="openEditUsuarioModal()">
+      <i class="fas fa-edit mr-2"></i>Editar Usuario
+    </button>
 
   </div>
 

@@ -1,3 +1,110 @@
+/* ===================================
+   Estilos Mejorados para Cards Dashboard
+   =================================== */
+
+/* Cards Estadísticas - Diseño Moderno y Profesional */
+.card.bg-primary,
+.card.bg-success,
+.card.bg-warning {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.card.bg-primary::before,
+.card.bg-success::before,
+.card.bg-warning::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(0, 0, 0, 0.02) 100%
+  );
+  pointer-events: none;
+}
+
+.card.bg-primary:hover,
+.card.bg-success:hover,
+.card.bg-warning:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
+}
+
+/* Colores integrados del tema */
+.card.bg-primary {
+  background-color: #4e73df !important;
+}
+
+.card.bg-success {
+  background-color: #1cc88a !important;
+}
+
+.card.bg-warning {
+  background-color: #f6c23e !important;
+}
+
+/* Card Body */
+.card.bg-primary .card-body,
+.card.bg-success .card-body,
+.card.bg-warning .card-body {
+  padding: 1.5rem 1.25rem;
+}
+
+/* Texto */
+.card .text-xs.font-weight-bold.text-uppercase {
+  font-size: 0.65rem;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  opacity: 0.9;
+}
+
+.card .h3.font-weight-bold {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Iconos */
+.card .icon-shape i {
+  transition: all 0.3s ease;
+  opacity: 0.25;
+}
+
+.card:hover .icon-shape i {
+  opacity: 0.4 !important;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card .h3.font-weight-bold {
+    font-size: 1.5rem;
+  }
+
+  .card .icon-shape i {
+    font-size: 1.5rem !important;
+  }
+
+  .card.bg-primary .card-body,
+  .card.bg-success .card-body,
+  .card.bg-warning .card-body {
+    padding: 1.25rem 1rem;
+  }
+}
+
+/* ===================================
+   Card Header Styles (Existente)
+   =================================== */
+
 .card-header {
   background: linear-gradient(135deg, #1e88e5 0%, #64b5f6 100%);
   border-radius: 16px;
@@ -11,5 +118,97 @@
   .card-header {
     text-align: center;
     padding: 20px !important;
+  }
+}
+
+/* ===================================
+   Estilos Mejorados para Botones Toolbar
+   =================================== */
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.btn-modern {
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(58, 59, 69, 0.2);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02em;
+}
+
+.btn-modern i {
+  font-size: 0.95rem;
+}
+
+/* Botón Success (Crear) */
+.btn-success.btn-modern {
+  background-color: #1cc88a;
+  color: #ffffff;
+}
+
+.btn-success.btn-modern:hover {
+  background-color: #17a673;
+  transform: translateY(-1px);
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(28, 200, 138, 0.3);
+  color: #ffffff;
+}
+
+/* Botón Warning (Editar) */
+.btn-warning.btn-modern {
+  background-color: #f6c23e;
+  color: #3a3b45;
+}
+
+.btn-warning.btn-modern:hover {
+  background-color: #f4b619;
+  transform: translateY(-1px);
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(246, 194, 62, 0.3);
+  color: #3a3b45;
+}
+
+/* Botón Danger (Desactivar) */
+.btn-danger.btn-modern {
+  background-color: #e74a3b;
+  color: #ffffff;
+}
+
+.btn-danger.btn-modern:hover {
+  background-color: #d63426;
+  transform: translateY(-1px);
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(231, 74, 59, 0.3);
+  color: #ffffff;
+}
+
+/* Botón Active State */
+.btn-modern:active {
+  transform: translateY(0);
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(58, 59, 69, 0.25);
+}
+
+.btn-modern:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Responsive Toolbar */
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn-modern {
+    width: 100%;
+    padding: 0.7rem 1.25rem;
   }
 }

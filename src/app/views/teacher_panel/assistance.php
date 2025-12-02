@@ -47,7 +47,9 @@
 
                   <!-- Título -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Asistencias</h1>
+                    <h1 class="h2 mb-0 font-weight-bold text-gray-800">
+                        <i class="fas fa-user-check mr-3 text-success"></i>Asistencias
+                    </h1>
                 </div>
 
                     <div class="row">
@@ -55,9 +57,9 @@
 
                             <!-- Acciones rápidas -->
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <button class="btn btn-success" data-toggle="modal"
+                                <button class="btn btn-success btn-modern" data-toggle="modal"
                                     data-target="#modalRegistrarAsistencia">
-                                    <i class="bi bi-plus-circle me-2"></i>Registrar Asistencia del Día
+                                    <i class="fas fa-plus-circle mr-2"></i>Registrar Asistencia del Día
                                 </button>
                             </div>
 

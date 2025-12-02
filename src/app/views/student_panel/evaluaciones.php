@@ -41,7 +41,9 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mt-4 mb-0 text-gray-800">Evaluaciones</h1>
+            <h1 class="h2 mt-4 mb-0 font-weight-bold text-gray-800">
+              <i class="fas fa-clipboard-list mr-3 text-primary"></i>Evaluaciones
+            </h1>
           </div>
 
           <!-- Fila de contenido -->

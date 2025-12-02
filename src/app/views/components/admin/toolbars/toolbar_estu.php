@@ -9,10 +9,16 @@
 </head>
 
 <body>
-    <div class="toolbar">
-        <button class="btn btn-success" onclick="openCreateEstudianteModal()">➕ Crear Estudiante</button>
-        <button class="btn btn-warning" onclick="openEditEstudianteModal()">✏️ Editar Estudiante</button>
-        <button class="btn btn-danger" onclick="openEliminarEstudianteModal()">Desactivar Estudiante</button>
+    <div class="toolbar mb-4">
+        <button class="btn btn-success btn-modern" onclick="openCreateEstudianteModal()">
+          <i class="fas fa-plus-circle mr-2"></i>Crear Estudiante
+        </button>
+        <button class="btn btn-warning btn-modern" onclick="openEditEstudianteModal()">
+          <i class="fas fa-edit mr-2"></i>Editar Estudiante
+        </button>
+        <button class="btn btn-danger btn-modern" onclick="openEliminarEstudianteModal()">
+          <i class="fas fa-user-times mr-2"></i>Desactivar Estudiante
+        </button>
     </div>
 
 

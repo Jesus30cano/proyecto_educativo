@@ -241,25 +241,25 @@ hr {
     margin: 5% auto;
     padding: 20px;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .form-actions {
     flex-direction: column;
   }
-  
+
   .modal_crear_curso .btn {
     width: 100%;
   }
-  
+
   .search-input-group {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .search-input-group .btn {
     width: 100%;
   }

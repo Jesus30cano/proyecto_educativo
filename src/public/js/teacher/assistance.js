@@ -80,7 +80,6 @@ function cargarCursosEnSelect(idSelect) {
                         ${curso.curso} - Ficha ${curso.ficha}
                     </option>
                 `;
-          
       });
       limpiarRepetidosSelect(select);
     })
@@ -127,10 +126,10 @@ function onChangeCursoAsistencia(e) {
       estudiantes.forEach((est, index) => {
         tbody.innerHTML += `
                     <tr data-id-estudiante-curso="${est.id_estudiante_curso}">
-                        <td>${index + 1}</td>
-                        <td>${est.nombre} ${est.apellido}</td>
+                        <td class="text-center">${index + 1}</td>
+                        <td><strong>${est.nombre} ${est.apellido}</strong></td>
                         <td>
-                            <select class="form-select form-select-sm estado-asistencia">
+                            <select class="form-control form-control-sm estado-asistencia" style="border-radius: 6px;">
                                 <option value="presente" selected>✓ Presente</option>
                                 <option value="ausente">✗ Ausente</option>
                                 <option value="excusa">📄 Excusa</option>
@@ -139,7 +138,8 @@ function onChangeCursoAsistencia(e) {
                         <td>
                             <input type="text"
                                    class="form-control form-control-sm observacion"
-                                   placeholder="Observaciones...">
+                                   placeholder="Observaciones..."
+                                   style="border-radius: 6px;">
                         </td>
                     </tr>
                 `;

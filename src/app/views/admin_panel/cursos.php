@@ -43,7 +43,9 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Cursos</h1>
+            <h1 class="h2 mb-0 font-weight-bold text-gray-800">
+              <i class="fas fa-book-open mr-3 text-warning"></i>Gestión de Cursos
+            </h1>
           </div>
 
 
