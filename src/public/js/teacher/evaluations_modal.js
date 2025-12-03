@@ -312,6 +312,7 @@ function limpiarRepetidosSelect(selectElem) {
         }
       );
       const result = await response.json();
+      console.log("Resultado IA:", result);
 
       if (
         !result.questions ||

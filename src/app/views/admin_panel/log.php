@@ -117,7 +117,6 @@
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
   <!-- script de funcionalidad -->
-  <script src="/public/js/boostrap_dashboard/admin/sidebar.js"></script>
   <script src="/public/js/admin/log.js"></script>
 
 

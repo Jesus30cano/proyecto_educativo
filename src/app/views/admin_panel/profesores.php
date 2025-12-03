@@ -1,9 +1,12 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- Fuentes personalizadas para esta plantilla -->
   <link href="/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -14,11 +17,13 @@
   <!-- Estilos personalizados para esta página -->
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
-  <link rel="stylesheet" href="/public/css/admin/ModalRegistro.css">
-  <link rel="stylesheet" href="/public/css/admin/styles_modal_cursoCR.css">
   <link rel="stylesheet" href="/public/css/toast.css">
   <!-- carta azul -->
   <link rel="stylesheet" href="/public/css/card.blue.css">
+  <!-- Fix para DataTable -->
+  <link rel="stylesheet" href="/public/css/admin/datatable-fix.css">
+  <title>Profesores</title>
+
 
 
 </head>
