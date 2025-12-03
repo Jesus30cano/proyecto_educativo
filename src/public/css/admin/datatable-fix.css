@@ -1,0 +1,8 @@
+/* Fix para alinear el buscador de DataTable a la derecha */
+div.dataTables_wrapper div.dataTables_filter {
+  text-align: right !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+  float: right !important;
+}

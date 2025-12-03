@@ -19,6 +19,7 @@
   <!-- carta azul -->
   <link rel="stylesheet" href="/public/css/card.blue.css">
   <link rel="stylesheet" href="/public/css/toast.css">
+    <link rel="stylesheet" href="/public/css/admin/datatable-fix.css">
 
 
   <title>Estudiantes</title>

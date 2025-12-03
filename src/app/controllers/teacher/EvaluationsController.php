@@ -213,7 +213,7 @@ EOT;
     }
 
     // Llave de groq: coloca la tuya abajo o usa variable de entorno segura
-    $api_key = "TU_API_KEY_AQUI";
+    $api_key = "##";
 
     // Preparar llamada a groq API (endpoint y modelo correctos)
     $postData = [

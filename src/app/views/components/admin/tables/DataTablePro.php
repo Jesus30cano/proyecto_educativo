@@ -21,15 +21,6 @@
               </tr>
             </thead>
             <tbody>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
-              <th>a</th>
             </tbody>
           </table>
         </div>
