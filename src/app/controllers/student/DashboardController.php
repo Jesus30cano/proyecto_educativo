@@ -58,5 +58,37 @@ class DashboardController extends Controller
     }
     
     }
+
+    /**
+     * Obtener datos del dashboard del estudiante
+     * Retorna: nombre, apellido, curso, ficha, actividades asignadas y exámenes pendientes
+     */
+    public function getDashboardData()
+    {
+        if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 3) {
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'No se ha iniciado sesión o no tiene permisos.'
+            ], 401);
+        }
+
+        try {
+            $studentModel = $this->model('student/StudentModel');
+            $id_estudiante = $_SESSION['user_id'];
+
+            $dashboardData = $studentModel->getDashboardData($id_estudiante);
+
+            return $this->jsonResponse([
+                'status' => 'success',
+                'data' => $dashboardData
+            ]);
+
+        } catch (Exception $e) {
+            return $this->jsonResponse([
+                'status' => 'error',
+                'message' => 'Error al obtener los datos del dashboard: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 }
 ?>

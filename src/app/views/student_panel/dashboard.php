@@ -58,7 +58,7 @@
                     <div class="col-md-8">
                       <h3 class="font-weight-bold mb-2" style="color: #4e73df;">
                         <i class="fas fa-user-graduate mr-2" style="color: #4e73df;"></i>¡Bienvenido de nuevo,
-                       Estudiante!
+                       <span id="nombreEstudiante">Estudiante</span>!
                       </h3>
                       <p class="text-muted mb-0">
                         <i class="fas fa-info-circle mr-2"></i>Aquí podrás ver tus curso principal, actividades
@@ -86,8 +86,8 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                         Estudiante
                       </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        Keiner Cardenas <!-- Aquí irá el nombre real -->
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="nombreCompleto">
+                        Cargando...
                       </div>
                     </div>
                     <div class="col-auto">
@@ -107,8 +107,8 @@
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                         Curso Principal
                       </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        ADSO - Ficha 2568991
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="cursoFicha">
+                        Cargando...
                       </div>
                     </div>
                     <div class="col-auto">
@@ -133,7 +133,7 @@
                       <div class="text-xs font-weight-bold text-uppercase mb-1" style="opacity: 0.9;">
                         Actividades Pendientes
                       </div>
-                      <div class="h3 mb-0 font-weight-bold"><span>3</span></div>
+                      <div class="h3 mb-0 font-weight-bold"><span id="actividadesPendientes">0</span></div>
                     </div>
                     <div class="icon-shape">
                       <i class="fas fa-tasks fa-2x" style="opacity: 0.3;"></i>
@@ -152,7 +152,7 @@
                       <div class="text-xs font-weight-bold text-uppercase mb-1" style="opacity: 0.9;">
                         Examenes Pendientes
                       </div>
-                      <div class="h3 mb-0 font-weight-bold"><span>3</span></div>
+                      <div class="h3 mb-0 font-weight-bold"><span id="examenesPendientes">0</span></div>
                     </div>
                     <div class="icon-shape">
                       <i class="fas fa-tasks fa-2x" style="opacity: 0.3;"></i>
@@ -250,6 +250,44 @@
   <script src="/public/js/student/script.calendar.js"></script>
   <script src="/public/js/student/frases.js"></script>
   <script src="/public/js/script.js"></script>
+  
+  <!-- Script para cargar datos del dashboard -->
+  <script>
+    // Cargar datos del dashboard al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('/student/dashboard/getDashboardData')
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            const dashboardData = data.data;
+            
+            // Actualizar nombre del estudiante en el banner de bienvenida
+            document.getElementById('nombreEstudiante').textContent = dashboardData.nombre;
+            
+            // Actualizar nombre completo
+            document.getElementById('nombreCompleto').textContent = 
+              dashboardData.nombre + ' ' + dashboardData.apellido;
+            
+            // Actualizar curso y ficha
+            document.getElementById('cursoFicha').textContent = 
+              dashboardData.curso + ' - Ficha ' + dashboardData.ficha;
+            
+            // Actualizar actividades pendientes
+            document.getElementById('actividadesPendientes').textContent = 
+              dashboardData.actividades_pendientes;
+            
+            // Actualizar exámenes pendientes
+            document.getElementById('examenesPendientes').textContent = 
+              dashboardData.examenes_pendientes;
+          } else {
+            console.error('Error al cargar datos:', data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error en la petición:', error);
+        });
+    });
+  </script>
 </body>
 
 </html>
