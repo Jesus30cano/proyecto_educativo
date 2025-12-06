@@ -18,7 +18,6 @@
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/public/css/teacher_courses/evaluations.css">
   <!-- carta azul -->
-  <link rel="stylesheet" href="/public/css/card.blue.css">
 
 
   <title>Calificaciones</title>
@@ -54,8 +53,9 @@
             <!-- COLUMNA IZQUIERDA: Lista de competencias con scroll -->
             <div class="col-xl-7 col-lg-7 mb-4">
               <div class="card shadow h-100">
-                <div class="card-header py-3 bg-success">
-                  <h6 class="m-0 font-weight-bold text-white">Lista de aprobación de competencias</h6>
+                <div class="card-header py-3 bg-success text-white">
+                  <i class="fas fa-filter mr-2"></i>
+                  Lista de aprobación de competencias
                 </div>
                 <div class="card-body" style="max-height: 500px; overflow-y: auto;">
 
@@ -139,7 +139,7 @@
             <!-- Filtro de Competencias -->
               <div class="col-xl-12 mb-4">
                 <div class="card shadow">
-                  <div class="card-header py-3 bg-primary">
+                  <div class="card-header py-3 blue-claro">
                     <h6 class="m-0 font-weight-bold text-white">
                       <i class="fas fa-filter mr-2"></i>
                       Filtrar Calificaciones por Competencia
@@ -172,7 +172,7 @@
 
               <!-- DataTales Example Adaptado -->
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                <div class="card-header bg-success py-3">
                   <h6 class="m-0 font-weight-bold text-white">
                     <i class="fas fa-table mr-2"></i>
                     Calificaciones

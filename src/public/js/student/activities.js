@@ -139,6 +139,7 @@ function renderizarActividades(actividades) {
     let badgeClase = "bg-light text-dark";
     let iconoEstado = "bi-exclamation-circle";
     let textoFechaClase = "text-danger";
+    let btnDetalles = "bg-warning";
 
     if (estadoRaw === "calificada") {
       textoEstado = "Calificada";
@@ -147,6 +148,7 @@ function renderizarActividades(actividades) {
       badgeClase = "bg-light text-info";
       iconoEstado = "bi-star-fill";
       textoFechaClase = "text-success";
+      btnDetalles = "bg-success";
     } else if (estadoRaw === "entregada") {
       textoEstado = "Entregada";
       borderClase = "border-success";
@@ -170,7 +172,7 @@ function renderizarActividades(actividades) {
             <div class="card h-100 ${borderClase} shadow-sm">
                 <div class="card-header ${headerClase} text-white">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">${titulo}</h6>
+                        <h6 class="mb-0 font-weight-bold">${titulo}</h6>
                         <span class="badge ${badgeClase}">
                             <i class="bi ${iconoEstado}"></i> ${textoEstado}
                         </span>
@@ -195,7 +197,7 @@ function renderizarActividades(actividades) {
                             }
                         </span>
 
-                        <button class="btn btn-sm btn-primary btn-ver-detalles"
+                        <button class="btn btn-sm ${btnDetalles} text-white btn-ver-detalles"
                             data-id-actividad="${idActividad}">
                             <i class="bi bi-eye me-1"></i>Ver Detalles
                         </button>

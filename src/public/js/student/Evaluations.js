@@ -140,8 +140,16 @@ function renderizarEvaluaciones(evaluaciones) {
     // Definir colores/badges según estado
     let badgeTexto = "Disponible";
     let badgeClase = "badge-success";
-    let headerClase = "bg-primary";
+    let headerClase = "bg-warning";
     let iconoBadge = "fas fa-check-circle";
+    let btnDetalles = "bg-warning";
+    let notaDetalles = "badge-secondary";
+
+    if (nota && nota.toLowerCase() === "aprobado") {
+      notaDetalles = "badge-success";
+    } else if (nota && nota.toLowerCase() === "reprobado") {
+      notaDetalles = "badge-danger";
+    }
 
     if (estadoRaw === "inactiva" || !activa) {
       badgeTexto = "Inactiva";
@@ -153,6 +161,7 @@ function renderizarEvaluaciones(evaluaciones) {
       badgeClase = "badge-light text-success";
       headerClase = "bg-success";
       iconoBadge = "fas fa-check-circle";
+      btnDetalles = "bg-success";
     }
 
     const fechaTexto = fechaLimite ? formatearFecha(fechaLimite) : null;
@@ -177,13 +186,13 @@ function renderizarEvaluaciones(evaluaciones) {
                     <p class="card-text small">${descripcion}</p>
 
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <button class="btn btn-sm btn-primary btn-detalles-evaluacion"
+                        <button class="btn btn-sm ${btnDetalles} text-white btn-detalles-evaluacion"
                             data-id-evaluacion="${idEvaluacion}">
                             <i class="fas fa-eye mr-1"></i>Detalles
                         </button>
                         ${
                           nota
-                            ? `<span class="badge badge-success">
+                            ? `<span class="badge ${notaDetalles}">
                                        <i class="fas fa-star"></i> Nota: ${nota}
                                    </span>`
                             : ""

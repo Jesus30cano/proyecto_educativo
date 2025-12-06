@@ -17,8 +17,6 @@
   <link href="/public/css/styles.css" rel="stylesheet">
   <!-- Estilos personalizados para esta página -->
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <!-- carta azul -->
-  <link rel="stylesheet" href="/public/css/card.blue.css">
   <title>Evaluaciones</title>
 </head>
 
@@ -53,7 +51,7 @@
 
               <!-- Filtro de evaluaciones -->
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                <div class="card-header blue-claro py-3">
                   <h6 class="m-0 font-weight-bold text-white">
                     <i class="fas fa-filter mr-2"></i>Filtrar Evaluaciones
                   </h6>
