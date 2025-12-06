@@ -119,5 +119,89 @@ class StudentModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Obtener datos del dashboard del estudiante
+     * Retorna: nombre, apellido, curso, ficha, actividades asignadas y exámenes pendientes
+     */
+    public function getDashboardData($id_estudiante)
+    {
+        try {
+            // Obtener datos personales del estudiante
+            $sqlDatosPersonales = "
+                SELECT 
+                    dp.nombre, 
+                    dp.apellido
+                FROM Tb_datos_personales dp
+                WHERE dp.id_usuario = :id_estudiante
+            ";
+            $stmtDatos = $this->conn->prepare($sqlDatosPersonales);
+            $stmtDatos->bindParam(':id_estudiante', $id_estudiante, PDO::PARAM_INT);
+            $stmtDatos->execute();
+            $datosPersonales = $stmtDatos->fetch(PDO::FETCH_ASSOC);
+
+            // Obtener curso y ficha del estudiante
+            $sqlCurso = "
+                SELECT 
+                    c.nombre_curso, 
+                    c.ficha
+                FROM Tb_estudiante_curso ec
+                INNER JOIN Tb_curso c ON ec.id_curso = c.id_curso
+                WHERE ec.id_usuario = :id_estudiante
+                LIMIT 1
+            ";
+            $stmtCurso = $this->conn->prepare($sqlCurso);
+            $stmtCurso->bindParam(':id_estudiante', $id_estudiante, PDO::PARAM_INT);
+            $stmtCurso->execute();
+            $curso = $stmtCurso->fetch(PDO::FETCH_ASSOC);
+
+            // Contar actividades asignadas (pendientes)
+            $sqlActividades = "
+                SELECT COUNT(*) as total_actividades
+                FROM Tb_actividad a
+                INNER JOIN Tb_estudiante_curso ec ON a.id_curso = ec.id_curso
+                WHERE ec.id_usuario = :id_estudiante
+                AND a.id_actividad NOT IN (
+                    SELECT id_actividad 
+                    FROM Tb_entrega_actividad 
+                    WHERE id_estudiante = :id_estudiante
+                )
+            ";
+            $stmtActividades = $this->conn->prepare($sqlActividades);
+            $stmtActividades->bindParam(':id_estudiante', $id_estudiante, PDO::PARAM_INT);
+            $stmtActividades->execute();
+            $actividades = $stmtActividades->fetch(PDO::FETCH_ASSOC);
+
+            // Contar exámenes pendientes (sin realizar)
+            $sqlExamenes = "
+                SELECT COUNT(*) as total_examenes
+                FROM Tb_evaluacion e
+                INNER JOIN Tb_estudiante_curso ec ON e.id_curso = ec.id_curso
+                WHERE ec.id_usuario = :id_estudiante
+                AND e.id_evaluacion NOT IN (
+                    SELECT id_evaluacion 
+                    FROM Tb_respuestas_estudiante 
+                    WHERE id_usuario = :id_estudiante
+                )
+            ";
+            $stmtExamenes = $this->conn->prepare($sqlExamenes);
+            $stmtExamenes->bindParam(':id_estudiante', $id_estudiante, PDO::PARAM_INT);
+            $stmtExamenes->execute();
+            $examenes = $stmtExamenes->fetch(PDO::FETCH_ASSOC);
+
+            // Construir el resultado
+            return [
+                'nombre' => $datosPersonales['nombre'] ?? 'No disponible',
+                'apellido' => $datosPersonales['apellido'] ?? '',
+                'curso' => $curso['nombre_curso'] ?? 'Sin curso asignado',
+                'ficha' => $curso['ficha'] ?? 'N/A',
+                'actividades_pendientes' => $actividades['total_actividades'] ?? 0,
+                'examenes_pendientes' => $examenes['total_examenes'] ?? 0
+            ];
+
+        } catch (PDOException $e) {
+            throw new Exception("Error al obtener datos del dashboard: " . $e->getMessage());
+        }
+    }
 }
 ?>
