@@ -45,15 +45,40 @@
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h2 mt-4 mb-0 font-weight-bold text-gray-800">
-              <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Panel de Control
+              <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Panel Estudiante
             </h1>
           </div>
 
-          <!-- Fila de contenido -->
-          <div class="row">
+          <!-- Banner de Bienvenida -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="card border-left-primary shadow py-3" style="background: #ffffff;">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-md-8">
+                      <h3 class="font-weight-bold mb-2" style="color: #4e73df;">
+                        <i class="fas fa-user-graduate mr-2" style="color: #4e73df;"></i>¡Bienvenido de nuevo,
+                       Estudiante!
+                      </h3>
+                      <p class="text-muted mb-0">
+                        <i class="fas fa-info-circle mr-2"></i>Aquí podrás ver tus curso principal, actividades
+                        pendientes y examenes pendientes
+                      </p>
+                    </div>
+                    <div class="col-md-4 text-right d-none d-md-block">
+                      <i class="fas fa-graduation-cap fa-5x" style="color: #4e73df; opacity: 0.3;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <!-- Nombre del estudiante -->
-            <div class="col-xl-4 col-md-6 mb-4">
+          <!-- Tarjetas de Estadísticas -->
+          <div class="row mb-1">
+
+          <!-- Nombre del estudiante -->
+            <div class="col-xl-6 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -74,7 +99,7 @@
             </div>
 
             <!-- Curso + ficha -->
-            <div class="col-xl-4 col-md-6 mb-4">
+            <div class="col-xl-6 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -94,25 +119,48 @@
               </div>
             </div>
 
-            <!-- Tareas pendientes -->
-            <div class="col-md-4 mb-4">
-              <div class="card bg-primary text-white h-100">
+          </div>
+
+          <!-- Fila de contenido principal -->
+          <div class="row">
+
+            <!-- Actividades Pendientes -->
+            <div class="col-md-6 mb-4">
+              <div class="card bg-warning text-white h-100">
                 <div class="card-body py-4">
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
                       <div class="text-xs font-weight-bold text-uppercase mb-1" style="opacity: 0.9;">
-                        Tareas pendientes
+                        Actividades Pendientes
                       </div>
                       <div class="h3 mb-0 font-weight-bold"><span>3</span></div>
                     </div>
                     <div class="icon-shape">
-                      <i class="fas fa-user-graduate fa-2x" style="opacity: 0.3;"></i>
+                      <i class="fas fa-tasks fa-2x" style="opacity: 0.3;"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
+            <!-- Actividades Pendientes -->
+            <div class="col-md-6 mb-4">
+              <div class="card bg-primary text-white h-100">
+                <div class="card-body py-4">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1" style="opacity: 0.9;">
+                        Examenes Pendientes
+                      </div>
+                      <div class="h3 mb-0 font-weight-bold"><span>3</span></div>
+                    </div>
+                    <div class="icon-shape">
+                      <i class="fas fa-tasks fa-2x" style="opacity: 0.3;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- Fila Calendario + Mensaje motivacional -->
             <!-- Calendario -->
@@ -150,7 +198,14 @@
 
                   </div>
                 </div>
+                <div class="card-footer text-center bg-light">
+                  <small class="text-muted">
+                    <i class="far fa-calendar-alt mr-1"></i>
+                    ¡Sigue adelante, cada día es una nueva oportunidad!
+                  </small>
+                </div>
               </div>
+
             </div>
 
 
