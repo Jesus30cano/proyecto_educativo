@@ -109,7 +109,7 @@
   background: linear-gradient(135deg, #1e88e5 0%, #64b5f6 100%);
   border-radius: 16px;
   color: #ffffff;
-  padding: 28px 30px;
+  /* padding: 28px 30px; */
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 

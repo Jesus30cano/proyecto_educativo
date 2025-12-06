@@ -16,8 +16,7 @@
   <link href="/public/css/styles.css" rel="stylesheet">
   <!-- Estilos personalizados para esta página -->
   <link href="/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <!-- carta azul -->
-  <link rel="stylesheet" href="/public/css/card.blue.css">
+
   <title>Actividades</title>
 </head>
 
@@ -56,7 +55,7 @@
 
               <!-- Filtro de competencias -->
               <div class="card mb-4">
-                <div class="card-header bg-light">
+                <div class="card-header blue-claro bg-light">
                   <h6 class="m-0 font-weight-bold text-white">Filtro de actividades</h6>
                 </div>
                 <div class="card-body">
@@ -70,7 +69,7 @@
                     </div>
                     <div class="col-md-4">
                       <button class="btn btn-primary w-100" id="btnBuscarActividades">
-                        <i class="bi bi-search me-2"></i>Buscar
+                        <i class="fas fa-search mr-2"></i>Aplicar
                       </button>
                     </div>
                   </div>
