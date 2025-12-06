@@ -48,72 +48,125 @@
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h2 mt-4 mb-0 font-weight-bold text-gray-800">
-              <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Panel de Control
+              <i class="fas fa-tachometer-alt mr-3 text-primary"></i>Panel de Control del Estudiante
             </h1>
+            <span class="text-muted">
+              <i class="far fa-calendar-alt mr-2"></i><?php echo date('d/m/Y'); ?>
+            </span>
           </div>
 
-          <!-- Fila de contenido -->
+          <!-- Banner de Bienvenida -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="card border-left-primary shadow py-3" style="background: #ffffff;">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-md-8">
+                      <h3 class="font-weight-bold mb-2" style="color: #4e73df;">
+                        <i class="fas fa-user-graduate mr-2" style="color: #4e73df;"></i>¡Bienvenido de nuevo, <?php echo $_SESSION['user']['nombre'] ?? 'Estudiante'; ?>!
+                      </h3>
+                      <p class="text-muted mb-0">
+                        <i class="fas fa-info-circle mr-2"></i>Aquí podrás ver tu progreso académico, actividades pendientes y recursos de aprendizaje
+                      </p>
+                    </div>
+                    <div class="col-md-4 text-right d-none d-md-block">
+                      <i class="fas fa-graduation-cap fa-5x" style="color: #4e73df; opacity: 0.3;"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjetas de Estadísticas -->
+          <div class="row mb-4">
+            
+            <!-- Actividades Pendientes -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                        Actividades Pendientes
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-tasks fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Exámenes Pendientes -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                        Exámenes Pendientes
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Fila de contenido principal -->
           <div class="row">
 
-            <!-- Ejemplo de tarjeta normal -->
-            <div class="col-xl-12 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Bienvenido Estudiante</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Este es su contenido principal.</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
             <!-- Calendario -->
-            <div class="col-lg-8 mb-3">
-              <div class="card h-100 shadow">
-                <div class="card-header d-flex align-items-center">
-                  <i class="bi bi-calendar3 me-2"></i>
-                  <span>Calendario</span>
+            <div class="col-lg-8 mb-4">
+              <div class="card shadow h-100">
+                <div class="card-header py-3 d-flex align-items-center bg-primary text-white">
+                  <i class="fas fa-calendar-alt mr-2"></i>
+                  <h6 class="m-0 font-weight-bold">Calendario Académico</h6>
                 </div>
                 <div class="card-body">
-                  <div id="calendar"></div> <!-- Tu script de calendario lo controla -->
+                  <div id="calendar"></div>
                 </div>
               </div>
             </div>
 
-
-            <!-- Mensaje Motivacional -->
-            <div class="col-xl-4 col-md-6 mb-4"> <!-- Más ancho para combinar con el calendario -->
-              <div class="card border-bottom-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-2">
-                        Mensaje motivacional
-                      </div>
-
-                      <!-- Frase que se llena desde JS -->
-                      <h5 class="font-weight-bold text-gray-800 mb-0" id="frase">
-                        <!-- Aquí aparece la frase -->
-                      </h5>
-                    </div>
-
-                    <!-- Ícono a la derecha -->
-                    <div class="col-auto">
-                      <i class="fas fa-smile-beam fa-2x text-gray-300"></i>
-                    </div>
-
+            <!-- Columna Derecha -->
+            <div class="col-lg-4 mb-4">
+              
+              <!-- Mensaje Motivacional Destacado -->
+              <div class="card shadow h-100" style="border-left: 5px solid #1cc88a;">
+                <div class="card-header py-3" style="background: linear-gradient(135deg, #1cc88a 0%, #13855c 100%);">
+                  <h6 class="m-0 font-weight-bold text-white text-center">
+                    <i class="fas fa-quote-left mr-2"></i>Mensaje Motivacional del Día
+                    <i class="fas fa-quote-right ml-2"></i>
+                  </h6>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center p-4">
+                  <i class="fas fa-lightbulb fa-3x text-warning mb-4"></i>
+                  <h5 class="font-weight-bold text-gray-800 mb-3" id="frase" style="line-height: 1.6;">
+                    Cargando frase motivacional...
+                  </h5>
+                  <div class="mt-3">
+                    <i class="fas fa-heart text-danger"></i>
+                    <i class="fas fa-star text-warning mx-2"></i>
+                    <i class="fas fa-smile-beam text-success"></i>
                   </div>
                 </div>
+                <div class="card-footer text-center bg-light">
+                  <small class="text-muted">
+                    <i class="far fa-calendar-alt mr-1"></i>
+                    ¡Sigue adelante, cada día es una nueva oportunidad!
+                  </small>
+                </div>
               </div>
+
             </div>
 
           </div>
