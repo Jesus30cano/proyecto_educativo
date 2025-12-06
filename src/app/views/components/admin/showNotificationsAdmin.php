@@ -12,56 +12,12 @@
             </div>
 
             <!-- Body -->
-            <div class="modal-body body-notif-custom">
-
-                <!-- Notificación 1: Profesor -->
-                <div class="card-notif bg-primary-light mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-primary">
-                                <i class="fas fa-file-alt text-white"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <div class="font-weight-bold text-primary">Profesor Juan Pérez v</div>
-                            <div class="small text-muted mb-1">Hoy, 09:15 AM</div>
-                            <span class="text-dark">Se ha publicado un nuevo reporte de asistencia para tu grupo.</span>
-                        </div>
-                    </div>
+            <div class="modal-body body-notif-custom" id="notificaciones-modal-body">
+                <!-- Las notificaciones se cargarán dinámicamente desde JavaScript -->
+                <div class="text-center text-muted py-5">
+                    <i class="fas fa-spinner fa-spin fa-3x mb-3" style="opacity: 0.3;"></i>
+                    <p class="h5">Cargando notificaciones...</p>
                 </div>
-
-                <!-- Notificación 2: Estudiante -->
-                <div class="card-notif bg-success-light mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-success">
-                                <i class="fas fa-file-alt text-white"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <div class="font-weight-bold text-success">Estudiante Ana Gómez</div>
-                            <div class="small text-muted mb-1">Hoy, 08:45 AM</div>
-                            <span class="text-dark">Tu calificación en Matemáticas ha sido actualizada.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Notificación 3: Profesor -->
-                <div class="card-notif bg-primary-light mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="mr-3">
-                            <div class="icon-circle bg-primary">
-                                <i class="fas fa-file-alt text-white"></i>
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <div class="font-weight-bold text-primary">Profesor Laura Martínez</div>
-                            <div class="small text-muted mb-1">Ayer, 05:30 PM</div>
-                            <span class="text-dark">Se ha enviado un recordatorio de evaluación a tu grupo.</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <!-- Footer -->

@@ -56,48 +56,19 @@
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter" style="display: none;">0</span>
             </a>
            <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="alertsDropdown">
+                aria-labelledby="alertsDropdown" id="notificaciones-dropdown">
                 <h6 class="dropdown-header blue-claro text-white">
                     Notificaciones
                 </h6>
-                <!-- Notificación 1: Profesor -->
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-file-alt text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="font-weight-bold text-primary">Profesor Juan Pérez</div>
-                        <div class="small text-gray-800">Hoy, 09:15 AM</div>
-                        <span>Se ha publicado un nuevo reporte de asistencia para tu grupo.</span>
-                    </div>
-                </a>
-
-                <!-- Notificación 2: Estudiante -->
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-success">
-                            <i class="fas fa-file-alt text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="font-weight-bold text-success">Estudiante Ana Gómez</div>
-                        <div class="small text-gray-800">Hoy, 08:45 AM</div>
-                        <span>Tu calificación en Matemáticas ha sido actualizada.</span>
-                    </div>
-                </a>
-
-                <!-- Mostrar más notificaciones -->
-                <a class="dropdown-item text-center text-gray-900" href="#" data-toggle="modal"
-                    data-target="#modalMostrarNotificaciones">
-                    Mostrar más notificaciones
-                </a>
-
+                <!-- Las notificaciones se cargarán dinámicamente -->
+                <div class="dropdown-item text-center text-muted py-3">
+                    <i class="fas fa-spinner fa-spin mr-2"></i>
+                    Cargando notificaciones...
+                </div>
             </div>
         </li>
 
@@ -198,3 +169,4 @@
 </nav>
 <!-- End of Topbar -->
     <script src="/public/js/top_nav.js"></script>
+    <script src="/public/js/student/notifications.js"></script>
