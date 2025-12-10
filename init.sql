@@ -1763,7 +1763,12 @@ RETURNS TABLE (
     nombre_competencia VARCHAR,
     nombre_profesor TEXT,
     estado_entrega TEXT,
-    calificacion TEXT
+    calificacion TEXT,
+    ruta_archivo_actividad VARCHAR,
+    ruta_archivo_entrega VARCHAR,
+    observaciones TEXT,
+    fecha_calificacion DATE,
+    id_entrega INT
 )
 AS $$
 BEGIN
@@ -1782,7 +1787,12 @@ BEGIN
             ELSE 'entregada'
         END AS estado_entrega,
 
-        ea.calificacion::TEXT
+        ea.calificacion::TEXT,
+        a.ruta_archivo AS ruta_archivo_actividad,
+        ea.ruta_archivo AS ruta_archivo_entrega,
+        ea.observaciones,
+        ea.fecha_calificacion,
+        ea.id_entrega
 
     FROM Tb_actividad a
     INNER JOIN Tb_competencia comp ON comp.id_competencia = a.id_competencia

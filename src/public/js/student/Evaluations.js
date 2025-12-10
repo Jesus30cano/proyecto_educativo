@@ -212,6 +212,151 @@ function renderizarEvaluaciones(evaluaciones) {
 
     contenedor.appendChild(col);
   });
+
+  // Agregar event listeners a los botones de detalles
+  agregarEventosDetalles();
+}
+
+// Función para agregar eventos a los botones de detalles
+function agregarEventosDetalles() {
+  const botonesDetalles = document.querySelectorAll('.btn-detalles-evaluacion');
+  
+  botonesDetalles.forEach(boton => {
+    boton.addEventListener('click', function() {
+      const idEvaluacion = this.getAttribute('data-id-evaluacion');
+      abrirModalEvaluacion(idEvaluacion);
+    });
+  });
+}
+
+// Función para abrir el modal con los detalles de la evaluación
+function abrirModalEvaluacion(idEvaluacion) {
+  const evaluacion = evaluacionesGlobal.find(ev => ev.id_evaluacion == idEvaluacion);
+  
+  if (!evaluacion) {
+    console.error('Evaluación no encontrada:', idEvaluacion);
+    return;
+  }
+
+  // Llenar el modal con los datos de la evaluación
+  const titulo = evaluacion.titulo_evaluacion || evaluacion.titulo || "Evaluación sin título";
+  const descripcion = evaluacion.descripcion || "Sin descripción.";
+  const fechaLimite = evaluacion.fecha_limite || evaluacion.fecha || null;
+  const competencia = evaluacion.nombre_competencia || "Competencia no especificada";
+  const activa = evaluacion.activa === true || evaluacion.activa === "t";
+  const estadoRaw = (evaluacion.estado || "").toLowerCase();
+  const numeroPreguntas = evaluacion.numero_preguntas || evaluacion.preguntas || "No especificado";
+  
+  // Determinar si está disponible o inactiva
+  const esDisponible = estadoRaw === "disponible" && activa;
+  
+  // Actualizar el contenido del modal
+  const modalLabel = document.getElementById('modalEvaluacion1Label');
+  const modalBody = document.querySelector('#modalEvaluacion1 .modal-body');
+  const modalHeader = document.querySelector('#modalEvaluacion1 .modal-header');
+  const modalFooter = document.querySelector('#modalEvaluacion1 .modal-footer');
+  
+  if (!modalLabel || !modalBody || !modalHeader || !modalFooter) {
+    console.error('No se encontraron elementos del modal');
+    return;
+  }
+
+  // Actualizar título
+  modalLabel.innerHTML = `<i class="fas fa-clipboard-check mr-2"></i>${titulo}`;
+  
+  // Actualizar clase del header
+  modalHeader.className = esDisponible ? 'modal-header blue-claro text-white' : 'modal-header bg-secondary text-white';
+  
+  // Actualizar body
+  const fechaTexto = fechaLimite ? formatearFecha(fechaLimite) : 'No especificada';
+  
+  if (esDisponible) {
+    modalBody.innerHTML = `
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle mr-2"></i>
+        <strong>Evaluación Disponible</strong> - Puedes iniciarla en cualquier momento antes de la fecha límite.
+      </div>
+
+      <div class="mb-3">
+        <h6 class="text-primary"><i class="fas fa-bookmark mr-2"></i>Competencia:</h6>
+        <p>${competencia}</p>
+      </div>
+
+      <div class="mb-3">
+        <h6 class="text-primary"><i class="fas fa-card-text mr-2"></i>Descripción:</h6>
+        <p>${descripcion}</p>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <h6 class="text-primary"><i class="fas fa-list-ol mr-2"></i>Número de Preguntas:</h6>
+          <p class="text-warning font-weight-bold">${numeroPreguntas} preguntas</p>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <h6 class="text-primary"><i class="fas fa-calendar-event mr-2"></i>Fecha Límite:</h6>
+        <p class="text-danger font-weight-bold">${fechaTexto}</p>
+      </div>
+
+      <div class="alert alert-warning">
+        <i class="fas fa-exclamation-triangle mr-2"></i>
+        <strong>Importante:</strong> Una vez iniciada la evaluación, el tiempo comenzará a correr automáticamente y no podrás pausarla.
+      </div>
+    `;
+    
+    modalFooter.innerHTML = `
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <i class="fas fa-times-circle mr-1"></i>Cancelar
+      </button>
+      <button type="button" class="btn btn-success">
+        <i class="fas fa-play-circle mr-1"></i>Iniciar Evaluación
+      </button>
+    `;
+  } else {
+    modalBody.innerHTML = `
+      <div class="alert alert-danger">
+        <i class="fas fa-times-circle mr-2"></i>
+        <strong>Evaluación Inactiva</strong> - Esta evaluación ya no está disponible porque venció la fecha límite.
+      </div>
+
+      <div class="mb-3">
+        <h6 class="text-primary"><i class="fas fa-bookmark mr-2"></i>Competencia:</h6>
+        <p>${competencia}</p>
+      </div>
+
+      <div class="mb-3">
+        <h6 class="text-primary"><i class="fas fa-card-text mr-2"></i>Descripción:</h6>
+        <p>${descripcion}</p>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <h6 class="text-muted"><i class="fas fa-list-ol mr-2"></i>Número de Preguntas:</h6>
+          <p class="text-muted">${numeroPreguntas} preguntas</p>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <h6 class="text-danger"><i class="fas fa-calendar-x mr-2"></i>Fecha Límite:</h6>
+        <p class="text-danger font-weight-bold">${fechaTexto}</p>
+      </div>
+
+      <div class="alert alert-secondary">
+        <i class="fas fa-info-circle mr-2"></i>
+        <strong>Nota:</strong> Contacta a tu profesor si necesitas más información sobre esta evaluación.
+      </div>
+    `;
+    
+    modalFooter.innerHTML = `
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <i class="fas fa-times-circle mr-1"></i>Cerrar
+      </button>
+    `;
+  }
+  
+  // Abrir el modal
+  $('#modalEvaluacion1').modal('show');
 }
 
 // =========================

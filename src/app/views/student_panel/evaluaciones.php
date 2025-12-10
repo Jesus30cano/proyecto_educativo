@@ -131,8 +131,6 @@
       <script src="/public/js/styles/demo/datatables-demo.js"></script>
 
       <!-- script de funcionalidad -->
-      <script src="/public/js/student/script.calendar.js"></script>
-      <script src="/public/js/student/frases.js"></script>
       <script src="/public/js/student/Evaluations.js"></script>
 </body>
 
