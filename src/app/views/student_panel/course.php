@@ -44,39 +44,22 @@
 
           <!-- TITULO -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mt-4 mb-0 text-gray-800">Mis Cursos</h1>
+            <h1 class="h3 mt-4 mb-0 text-gray-800"><i class="fas fa-award mr-2 text-warning"></i>Mis Competencias</h1>
           </div>
 
           <!-- 🔍 BUSCADOR -->
-          <div class="mb-4 search-box" style="max-width: 320px;">
-            <input type="text" id="#" class="form-control" placeholder="Buscar por ficha o nombre...">
+          <div class="mb-4 search-box" style="max-width: 420px;">
+            <input type="text" id="buscarCursoEST" class="form-control" placeholder="Buscar por código o nombre de competencia...">
           </div>
 
           <!-- 🟦 CONTENEDOR DE CURSOS -->
           <div id="contenedorCursosEST">
-            <div class="course-card">
-              <div class="course-icon">
-                <i class="bi bi-journal-richtext"></i>
-              </div>
-              <h5 class="course-title">Nombre</h5>
-              <p class="course-info"><strong>Ficha:</strong> X</p>
-              <button class="btn btn-primary btn-sm w-100">Ver competencias</button>
-            </div>
-
-            <div class="course-card">
-              <div class="course-icon">
-                <i class="bi bi-journal-richtext"></i>
-              </div>
-              <h5 class="course-title">Nombre</h5>
-              <p class="course-info"><strong>Ficha:</strong> X</p>
-              <button class="btn btn-primary btn-sm w-100">Ver competencias</button>
-            </div>
-
+            <!-- Los cursos se cargarán dinámicamente aquí -->
           </div>
 
           <!-- 📌 SIN RESULTADOS -->
-          <p id="#" class="text-center text-muted mt-4 d-none">
-            No se encontraron cursos.
+          <p id="sinResultadosEST" class="text-center text-muted mt-4 d-none">
+            No se encontraron competencias.
           </p>
 
 
@@ -113,6 +96,9 @@
 
   <!-- Page level custom scripts -->
   <script src="/public/js/styles/demo/datatables-demo.js"></script>
+
+  <!-- Script para cursos del estudiante -->
+  <script src="/public/js/student/course.js"></script>
 
 </body>
 </html>

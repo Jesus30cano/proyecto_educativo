@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnBuscar) {
     btnBuscar.addEventListener("click", aplicarFiltroActividades);
   }
+
+  // Event listener para el botón de enviar actividad en el modal
+  configurarEnvioActividad();
 });
 
 // =============================
@@ -214,6 +217,159 @@ function renderizarActividades(actividades) {
 
     contenedor.appendChild(col);
   });
+
+  // Agregar event listeners a los botones de "Ver Detalles"
+  agregarEventListenersDetalles();
+}
+
+// =============================
+//   EVENT LISTENERS PARA MODALES
+// =============================
+function agregarEventListenersDetalles() {
+  const botones = document.querySelectorAll('.btn-ver-detalles');
+  
+  botones.forEach(boton => {
+    boton.addEventListener('click', function() {
+      const idActividad = this.getAttribute('data-id-actividad');
+      abrirModalActividad(idActividad);
+    });
+  });
+}
+
+function abrirModalActividad(idActividad) {
+  // Buscar la actividad en el array global
+  const actividad = actividadesGlobal.find(act => act.id_actividad == idActividad);
+  
+  if (!actividad) {
+    console.error('Actividad no encontrada:', idActividad);
+    return;
+  }
+
+  // Determinar qué modal abrir según el estado
+  const estadoRaw = (actividad.estado_entrega || "").toLowerCase();
+  
+  let modalId = 'modalActividad1'; // Modal para pendientes
+  
+  if (estadoRaw === 'calificada' || estadoRaw === 'entregada') {
+    modalId = 'modalActividad2'; // Modal para entregadas/calificadas
+  }
+
+  // Llenar el modal con los datos de la actividad
+  llenarDatosModal(modalId, actividad);
+  
+  // Abrir el modal usando Bootstrap 4
+  $(`#${modalId}`).modal('show');
+}
+
+function llenarDatosModal(modalId, actividad) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+
+  const titulo = actividad.titulo_actividad || actividad.titulo || "Sin título";
+  const competencia = actividad.nombre_competencia || "No especificada";
+  const descripcion = actividad.descripcion || "Sin descripción";
+  const fechaEntrega = actividad.fecha_entrega ? formatearFechaCompleta(actividad.fecha_entrega) : "No especificada";
+  const calificacion = actividad.calificacion || null;
+  const observaciones = actividad.observaciones || "Sin observaciones del profesor.";
+  const rutaArchivoActividad = actividad.ruta_archivo_actividad || null;
+  const rutaArchivoEntrega = actividad.ruta_archivo_entrega || null;
+
+  // Actualizar título del modal
+  const tituloElement = modal.querySelector('.modal-title');
+  if (tituloElement) {
+    const icono = modalId === 'modalActividad2' ? 'bi-file-earmark-check' : 'bi-file-earmark-text';
+    tituloElement.innerHTML = `<i class="bi ${icono} me-2"></i>${titulo}`;
+  }
+
+  // Para el modal de actividad PENDIENTE (modalActividad1)
+  if (modalId === 'modalActividad1') {
+    // Actualizar competencia
+    const competenciaP = modal.querySelector('.mb-3:nth-child(1) p');
+    if (competenciaP) competenciaP.textContent = competencia;
+
+    // Actualizar descripción
+    const descripcionP = modal.querySelector('.mb-3:nth-child(2) p');
+    if (descripcionP) descripcionP.textContent = descripcion;
+
+    // Actualizar fecha de entrega
+    const fechaP = modal.querySelector('.text-danger.fw-bold');
+    if (fechaP) fechaP.textContent = fechaEntrega;
+
+    // Actualizar enlace de descarga del documento de instrucciones
+    const linkDescarga = modal.querySelector('a.btn-outline-primary');
+    if (linkDescarga) {
+      if (rutaArchivoActividad) {
+        linkDescarga.href = rutaArchivoActividad;
+        linkDescarga.style.display = '';
+        linkDescarga.setAttribute('download', '');
+        linkDescarga.setAttribute('target', '_blank');
+      } else {
+        linkDescarga.style.display = 'none';
+      }
+    }
+
+    // Guardar ID de actividad en el botón de enviar
+    const btnEnviar = modal.querySelector('.btn-success');
+    if (btnEnviar) {
+      btnEnviar.setAttribute('data-id-actividad', actividad.id_actividad);
+    }
+  }
+
+  // Para el modal de actividad ENTREGADA/CALIFICADA (modalActividad2)
+  if (modalId === 'modalActividad2') {
+    // Actualizar competencia
+    const competenciaP = modal.querySelector('.mb-3:nth-child(2) p');
+    if (competenciaP) competenciaP.textContent = competencia;
+
+    // Actualizar descripción
+    const descripcionP = modal.querySelector('.mb-3:nth-child(3) p');
+    if (descripcionP) descripcionP.textContent = descripcion;
+
+    // Actualizar fecha de entrega
+    const fechaP = modal.querySelector('.mb-3:nth-child(4) p');
+    if (fechaP) fechaP.textContent = fechaEntrega;
+
+    // Actualizar calificación
+    if (calificacion) {
+      const resultadoH4 = modal.querySelector('h4.text-success, h4.text-danger');
+      if (resultadoH4) {
+        const esAprobado = calificacion.toLowerCase() === 'aprobado';
+        resultadoH4.className = esAprobado ? 'text-success' : 'text-danger';
+        resultadoH4.textContent = capitalizar(calificacion);
+      }
+    }
+
+    // Actualizar observaciones del profesor
+    const observacionesDiv = modal.querySelector('.alert.alert-info');
+    if (observacionesDiv) {
+      observacionesDiv.textContent = observaciones;
+    }
+
+    // Actualizar enlaces de descarga
+    const linkInstrucciones = modal.querySelector('a.btn-outline-primary');
+    if (linkInstrucciones) {
+      if (rutaArchivoActividad) {
+        linkInstrucciones.href = rutaArchivoActividad;
+        linkInstrucciones.style.display = '';
+        linkInstrucciones.setAttribute('download', '');
+        linkInstrucciones.setAttribute('target', '_blank');
+      } else {
+        linkInstrucciones.style.display = 'none';
+      }
+    }
+
+    const linkEntrega = modal.querySelector('a.btn-outline-success');
+    if (linkEntrega) {
+      if (rutaArchivoEntrega) {
+        linkEntrega.href = rutaArchivoEntrega;
+        linkEntrega.style.display = '';
+        linkEntrega.setAttribute('download', '');
+        linkEntrega.setAttribute('target', '_blank');
+      } else {
+        linkEntrega.style.display = 'none';
+      }
+    }
+  }
 }
 
 // =========================
@@ -231,8 +387,129 @@ function formatearFecha(fechaISO) {
   return fecha.toLocaleDateString("es-ES", opciones);
 }
 
+function formatearFechaCompleta(fechaISO) {
+  if (!fechaISO) return "";
+
+  const fecha = new Date(fechaISO);
+  if (isNaN(fecha.getTime())) {
+    return fechaISO;
+  }
+
+  const opciones = { 
+    year: "numeric", 
+    month: "long", 
+    day: "numeric",
+    weekday: "long"
+  };
+  return fecha.toLocaleDateString("es-ES", opciones);
+}
+
 function capitalizar(texto) {
   if (!texto) return "";
   texto = String(texto).toLowerCase();
   return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
+
+// =============================
+//   ENVÍO DE ACTIVIDADES
+// =============================
+function configurarEnvioActividad() {
+  // Delegación de eventos para el botón de enviar en modalActividad1
+  $(document).on('click', '#modalActividad1 .btn-success', function() {
+    const idActividad = $(this).data('id-actividad');
+    if (idActividad) {
+      enviarActividad(idActividad);
+    }
+  });
+}
+
+async function enviarActividad(idActividad) {
+  const modal = document.getElementById('modalActividad1');
+  const inputArchivo = modal.querySelector('#archivoEntrega1');
+  const textareaDescripcion = modal.querySelector('#descripcionEntrega1');
+
+  // Validar que se haya seleccionado un archivo
+  if (!inputArchivo.files || !inputArchivo.files[0]) {
+    mostrarToast('Por favor, selecciona un archivo para entregar.', 'warning');
+    return;
+  }
+
+  const archivo = inputArchivo.files[0];
+  const descripcion = textareaDescripcion.value.trim();
+
+  // Validar tamaño del archivo (máx 10MB)
+  const maxSize = 10 * 1024 * 1024;
+  if (archivo.size > maxSize) {
+    mostrarToast('El archivo supera el tamaño máximo permitido (10MB).', 'error');
+    return;
+  }
+
+  // Crear FormData para enviar el archivo
+  const formData = new FormData();
+  formData.append('archivo', archivo);
+  formData.append('id_actividad', idActividad);
+  formData.append('descripcion', descripcion);
+
+  try {
+    // Deshabilitar botón mientras se procesa
+    const btnEnviar = modal.querySelector('.btn-success');
+    const textoOriginal = btnEnviar.innerHTML;
+    btnEnviar.disabled = true;
+    btnEnviar.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Enviando...';
+
+    const response = await fetch('/student/activities/subirArchivoActividad', {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.status === 'success') {
+      mostrarToast('Actividad entregada correctamente.', 'success');
+      
+      // Cerrar modal
+      $('#modalActividad1').modal('hide');
+      
+      // Recargar actividades
+      await cargarActividades();
+      
+      // Limpiar formulario
+      inputArchivo.value = '';
+      textareaDescripcion.value = '';
+    } else {
+      mostrarToast(result.message || 'Error al entregar la actividad.', 'error');
+    }
+
+    // Restaurar botón
+    btnEnviar.disabled = false;
+    btnEnviar.innerHTML = textoOriginal;
+
+  } catch (error) {
+    console.error('Error al enviar actividad:', error);
+    mostrarToast('Error al procesar la entrega.', 'error');
+    
+    // Restaurar botón en caso de error
+    const btnEnviar = modal.querySelector('.btn-success');
+    btnEnviar.disabled = false;
+    btnEnviar.innerHTML = '<i class="bi bi-send me-1"></i>Enviar Actividad';
+  }
+}
+
+// Función auxiliar para mostrar notificaciones
+function mostrarToast(mensaje, tipo = 'info') {
+  // Si existe una función global de toast, usarla
+  if (typeof showToast === 'function') {
+    showToast(mensaje, tipo);
+    return;
+  }
+
+  // Fallback: usar alert simple
+  const iconos = {
+    success: '✓',
+    error: '✗',
+    warning: '⚠',
+    info: 'ℹ'
+  };
+  
+  alert(`${iconos[tipo] || ''} ${mensaje}`);
 }
